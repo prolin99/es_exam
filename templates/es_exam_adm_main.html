@@ -1,0 +1,132 @@
+<link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_url}>/modules/tadtools/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_url}>/modules/tadtools/bootstrap/css/bootstrap-responsive.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_url}>/modules/tadtools/css/xoops_adm.css" />
+
+<h2><{$smarty.const._MA_TADASSIGN_ASSN_LIST}></h2>
+
+<script>
+function delete_tad_assignment_func(assn){
+  var sure = window.confirm("<{$smarty.const._TAD_DEL_CONFIRM}>");
+  if (!sure)  return;
+  location.href="main.php?op=delete_tad_assignment&assn=" + assn;
+}
+</script>
+
+<table class="table table-striped table-bordered table-hover">
+<tr>
+ <th>班級</th>
+  <th><{$smarty.const._MA_TADASSIGN_ASSN}></th>
+  <th><{$smarty.const._MA_TADASSIGN_TITLE}></th>
+  <th><{$smarty.const._MA_TADASSIGN_PASSWD}></th>
+  <th><{$smarty.const._MA_TADASSIGN_UID}></th>
+  <th>是否上傳</th>
+  <th><{$smarty.const._MA_TADASSIGN_SHOW}></th>
+  <th><{$smarty.const._TAD_FUNCTION}></th>
+</tr>
+<tbody>
+
+<{foreach from=$all_data item=as}>
+  <tr>
+    <td><{$as.class_id}></td>
+    <td><{$as.assn}></td>
+    <td><a href="../show.php?assn=<{$as.assn}>"><{$as.title}></a></td>
+    <td><input id="pwd_<{$as.assn}>" class="span2 pwd"  value="<{$as.passwd}>"></td>
+    <td><{$as.uid_name}></td>
+    
+    <td>
+    <div class="span2">
+      <label class="radio inline">
+        <input type="radio" class="upload"  name="upload_mode[<{$as.assn}>]" id="upload_<{$as.assn}>" value="1" <{if $as.upload_mode=='1'}>checked<{/if}>>開啟
+      </label>
+      <label class="radio inline">
+        <input type="radio"  class="upload"  name="upload_mode[<{$as.assn}>]" id="upload_<{$as.assn}>"  value="0" <{if $as.upload_mode=='0'}>checked<{/if}>>關畢
+      </label>
+    </div>    
+    </td>
+    
+    <td> 
+    <div class="span2">
+      <label class="radio inline">
+        <input type="radio"  class="show" name="open_show[<{$as.assn}>]" id="show_<{$as.assn}>" value="1" <{if $as.open_show=='1'}>checked<{/if}>>開放
+      </label>
+
+      <label class="radio inline">
+        <input type="radio"  class="show" name="open_show[<{$as.assn}>]" id="show_<{$as.assn}>" value="0" <{if $as.open_show=='0'}>checked<{/if}>>不開放
+      </label>
+    </div>    
+    </td>
+    
+    <td>
+      <a href="javascript:delete_tad_assignment_func(<{$as.assn}>);" class="btn btn-mono btn-danger"><{$smarty.const._TAD_DEL}></a>
+      <a href="add.php?op=tad_assignment_form&assn=<{$as.assn}>" class="btn btn-mono btn-warning"><{$smarty.const._TAD_EDIT}></a>
+    </td>
+  </tr>
+<{/foreach}>
+
+</tbody>
+<tr>
+<td colspan=9 style="text-align:center;">
+<{$bar}></td></tr>
+</table>
+
+<script type="text/javascript">
+//密碼更改
+$(function() {
+	$(".pwd").change(function(){
+		var tid = $( this ).attr('id') ;
+		var pwd = $( this ).val();
+ 		setdata( 'pwd' ,tid , pwd ) ;
+	});
+});
+
+//上傳更改 
+$(function() {
+	$(".upload").click(function(){
+		var tid = $( this ).attr('id') ;
+		var my_val = $( this ).val();
+ 		setdata( 'upload' ,tid , my_val ) ;
+	});
+});
+
+//展示更改 
+$(function() {
+	$(".show").click(function(){
+		var tid = $( this ).attr('id') ;
+		var my_val = $( this ).val();
+ 		setdata( 'show' ,tid , my_val ) ;
+	});
+});
+
+
+$(function() {
+	$(".pwd").focus(function(){
+		  $( this ).select() ; 
+	});
+});
+
+ function setdata(do_mode ,tid , sdata )  {
+ 
+ 	var splits = tid.split('_') ;
+ 	var iid= splits[1] ;
+ 	//alert (sdata) ;
+ 	$.ajax({
+ 		url: 'ajax_set_exam_data.php',
+ 		type: 'GET',
+ 		data: {do: do_mode , id:iid  , setdata :sdata   },
+ 	})
+ 	.done(function(data) {
+ 		console.log("success");
+ 		//alert(data) ;
+ 	})
+ 	.fail(function() {
+ 		console.log("error");
+ 		
+ 	})
+ 	.always(function() {
+ 		console.log("complete");
+ 	});
+ 
+ 	
+ }
+
+</script>

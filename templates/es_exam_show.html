@@ -46,12 +46,12 @@
       location.href="show.php?op=delete_tad_assignment_file&assn=<{$assn}>&asfsn=" + asfsn;
     }
   </script>
-
+<{if ($assn) }>
   <div class="row-fluid">
     <div class="span10"><h2><{$class_id}>班   <{$title}></h2></div>
     <div class="span2 text-right"><a href="index.php?assn=<{$assn}>" class="btn btn-primary"><{$smarty.const._MD_SAVE}></a></div>
   </div>
-  <{if (!$open_show)}>
+  <{if (!$open_show) }>
   	<div class="alert alert-info">
   	<strong>注意！</strong>
   	這項主題作業未開放展示，只顯示上傳記錄！
@@ -69,8 +69,8 @@
     <tr>
       <td><{$all.up_time}></td>
       <td>
-      <{if ($all.open_show)}>
-      <a href='<{$smarty.const._TAD_ASSIGNMENT_UPLOAD_URL}><{$all.assn}>/<{$all.asfsn}>.<{$all.sub_name}>'  class="assignment_fancy_<{$assn}>" rel="group" title="<{$all.author}> (<{$all.up_time}>) <{$all.file_name}>"><{$all.file_name}></a>
+      <{if ($data.open_show)}>
+      <a href='<{$smarty.const._TAD_ASSIGNMENT_UPLOAD_URL}><{$all.assn}>/<{$all.asfsn}>.<{$all.sub_name}>'  class="assignment_fancy_<{$assn}>" rel="group" title="<{$all.sit_id}>.<{$all.author}> (<{$all.up_time}>) <{$all.file_name}>"><{$all.file_name}></a>
       <{else}>
  		<{$all.file_name}>
       <{/if}>
@@ -86,5 +86,5 @@
   <{/foreach}>
   </tbody>
   </table>
-
+<{/if}>
  

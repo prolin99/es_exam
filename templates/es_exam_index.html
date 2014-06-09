@@ -63,7 +63,9 @@
     <table class="table table-striped table-bordered table-hover">
       <tr>
         <th>你的姓名</th>
-        <td><span class="label label-info  span3"><{$class_id}>班 <{$sit_id}> 號 <{$stud_name}> </span><span class='span1' ></span> <a href="index.php?assn=<{$assn}>" class="btn btn-danger">不正確，重選</a> 
+        <td><span class="label label-info  span3"><{$class_id}>班 <{$sit_id}> 號 <{$stud_name}> </span><span class='span1' ></span> 
+          <a href="index.php?assn=<{$assn}>" class="btn btn-danger">如不正確，重選</a> 
+         </td>
       </tr>    
       <tr>
         <th><{$smarty.const._MD_TADASSIGN_FILE}></th>
@@ -92,7 +94,7 @@
 		var fn = ($("#file").val() ) ;
 		
 		if (  $("#file").val()=="" ) {
-			alert ('還沒有選擇上傳的檔案！')　;
+			alert ('你還沒有選擇要上傳的檔案！')　;
 			return false ;
 		}　
 		<{if ($j_ext_file) }>

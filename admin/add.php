@@ -50,8 +50,8 @@ function insert_tad_assignment(){
   $uid=$xoopsUser->getVar('uid');
   //echo '00000001 <br />';
   foreach ($_POST['class_id'] as $class_id =>$class ) { 
-  	$sql = "insert into ".$xoopsDB->prefix("exam")." (`title`,class_id , `passwd`, `note`,`uid`,`open_show` ,upload_mode , ext_file) 
-   		values('{$_POST['title']}',  '$class'  ,'{$_POST['passwd']}','{$_POST['note']}','{$uid}','{$_POST['open_show']}' ,'{$_POST['upload_mode']}'  ,'{$_POST['ext_file']}'  )";
+  	$sql = "insert into ".$xoopsDB->prefix("exam")." (`title`,class_id , `passwd`, `note`,`uid`,`open_show` ,upload_mode , ext_file ,create_date) 
+   		values('{$_POST['title']}',  '$class'  ,'{$_POST['passwd']}','{$_POST['note']}','{$uid}','{$_POST['open_show']}' ,'{$_POST['upload_mode']}'  ,'{$_POST['ext_file']}' ,now()  )";
    	//echo $sql .'<br />';	
   	$xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
   }

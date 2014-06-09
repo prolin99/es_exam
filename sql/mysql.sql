@@ -20,6 +20,7 @@ CREATE TABLE `exam_files` (
   `assn` int(10) unsigned NOT NULL DEFAULT '0',
   `class_id` varchar(255) NOT NULL DEFAULT '',
   `sit_id` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `stud_id`  varchar(255) NOT NULL DEFAULT '',
   `file_name` varchar(255) NOT NULL DEFAULT '',
   `file_size` mediumint(9) unsigned NOT NULL DEFAULT '0',
   `file_type` varchar(255) NOT NULL DEFAULT '',
@@ -29,4 +30,5 @@ CREATE TABLE `exam_files` (
   `score` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `comment` text NOT NULL,
   `up_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`asfsn`)
 ) ENGINE=MyISAM;

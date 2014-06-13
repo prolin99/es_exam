@@ -1,7 +1,7 @@
 <?php
 $modversion = array();
 
-//---¼Ò²Õ°ò¥»¸ê°T---//
+//---æ¨¡çµ„åŸºæœ¬è³‡è¨Š---//
 $modversion['name'] = _MI_ESEXAM_NAME;
 $modversion['version'] = 0.2;
 $modversion['description'] = _MI_ESEXAM_DESC;
@@ -10,21 +10,21 @@ $modversion['credits'] = _MI_ESEXAM_CREDITS;
 $modversion['help'] = 'page=help';
 $modversion['license'] = 'GNU GPL 2.0';
 $modversion['license_url'] = 'www.gnu.org/licenses/gpl-2.0.html/';
-$modversion['image'] = "images/logo_{$xoopsConfig['language']}.png";
+$modversion['image'] = "images/logo.png";
 $modversion['dirname'] = basename(dirname(__FILE__));
 
-//---¼Ò²Õª¬ºA¸ê°T---//
+//---æ¨¡çµ„ç‹€æ…‹è³‡è¨Š---//
 $modversion['release_date'] = '2014/7/01';
-$modversion['module_website_url'] = 'http://tad0616.net/';
-$modversion['module_website_name'] = _MI_TAD_WEB;
+$modversion['module_website_url'] = 'https://github.com/prolin99/es_exam';
+$modversion['module_website_name'] = "prolin";
 $modversion['module_status'] = 'release';
-$modversion['author_website_url'] = 'http://tad0616.net/';
-$modversion['author_website_name'] = _MI_TAD_WEB;
+$modversion['author_website_url'] = 'https://github.com/prolin99/es_exam';
+$modversion['author_website_name'] = "prolin";
 $modversion['min_php']=5.2;
 $modversion['min_xoops']='2.5';
 $modversion['min_tadtools']='2.02';
 /*
-//---paypal¸ê°T---//
+//---paypalè³‡è¨Š---//
 $modversion ['paypal'] = array();
 $modversion ['paypal']['business'] = 'prolin99@gmail.com';
 $modversion ['paypal']['item_name'] = 'Donation : ' . _MI_TAD_WEB;
@@ -32,33 +32,32 @@ $modversion ['paypal']['amount'] = 0;
 $modversion ['paypal']['currency_code'] = 'USD';
 */
 
-//---¸ê®Æªí¬[ºc---//
+//---è³‡æ–™è¡¨æž¶æ§‹---//
 $modversion['sqlfile']['mysql'] = "sql/mysql.sql";
 $modversion['tables'][1] = "exam";
 $modversion['tables'][2] = "exam_files";
 //$modversion['tables'][3] = "es_exam_types";
 
-//---±Ò°Ê«á¥xºÞ²z¬É­±¿ï³æ---//
+//---å•Ÿå‹•å¾Œå°ç®¡ç†ç•Œé¢é¸å–®---//
 $modversion['system_menu'] = 1;
 
-//---¦w¸Ë³]©w---//
+//---å®‰è£è¨­å®š---//
 $modversion['onInstall'] = "include/onInstall.php";
 $modversion['onUpdate'] = "include/onUpdate.php";
 $modversion['onUninstall'] = "include/onUninstall.php";
 
 
-//---ºÞ²z¤¶­±³]©w---//
+//---ç®¡ç†ä»‹é¢è¨­å®š---//
 $modversion['hasAdmin'] = 1;
 $modversion['adminindex'] = "admin/index.php";
 $modversion['adminmenu'] = "admin/menu.php";
 
-//---¨Ï¥ÎªÌ¥D¿ï³æ³]©w---//
+//---ä½¿ç”¨è€…ä¸»é¸å–®è¨­å®š---//
 $modversion['hasMain'] = 1;
-$modversion['sub'][2]['name'] =_MI_ESEXAM_SMNAME2;
-$modversion['sub'][2]['url'] = "show.php";
 
 
-//---¼ËªO³]©w---//
+
+//---æ¨£æ¿è¨­å®š---//
 $i=1;
 $modversion['templates'][$i]['file'] = 'es_exam_index.html';
 $modversion['templates'][$i]['description'] = 'es_exam_index.html';
@@ -76,15 +75,33 @@ $modversion['templates'][$i]['file'] = 'es_exam_adm_add.html';
 $modversion['templates'][$i]['description'] = 'es_exam_adm_add.html';
 
 $i++;
-$modversion['templates'][$i]['file'] = 'es_exam_adm_add_type.html';
-$modversion['templates'][$i]['description'] = 'es_exam_adm_add_type.html';
+$modversion['templates'][$i]['file'] = 'es_exam_adm_score.html';
+$modversion['templates'][$i]['description'] = 'es_exam_adm_score.html';
 
 /*
-//---°Ï¶ô³]©w---//
+//---å€å¡Šè¨­å®š---//
 $modversion['blocks'][1]['file'] = "tad_new_assignment.php";
 $modversion['blocks'][1]['name'] = _MI_ESEXAM_BNAME1;
 $modversion['blocks'][1]['description'] = _MI_ESEXAM_BDESC1;
 $modversion['blocks'][1]['show_func'] = "tad_new_assignment";
 $modversion['blocks'][1]['template'] = "tad_new_assignment.html";
 */
+
+
+$i=1 ;
+//åå¥½è¨­å®š
+$modversion['config'][$i]['name'] = 'ESEXAM_BASE';
+$modversion['config'][$i]['title']   = '_MI_ESEXAM_CONFIG_T1';
+$modversion['config'][$i]['description'] = '_MI_ESEXAM_CONFIG_D1';
+$modversion['config'][$i]['formtype']    = 'text';
+$modversion['config'][$i]['valuetype']   = 'int';
+$modversion['config'][$i]['default'] = 60 ;			
+
+$i++;
+$modversion['config'][$i]['name'] = 'ESEXAM_LOST';
+$modversion['config'][$i]['title']   = '_MI_ESEXAM_CONFIG_T2';
+$modversion['config'][$i]['description'] = '_MI_ESEXAM_CONFIG_D2';
+$modversion['config'][$i]['formtype']    = 'text';
+$modversion['config'][$i]['valuetype']   = 'int';
+$modversion['config'][$i]['default'] = 50 ;		
 ?>

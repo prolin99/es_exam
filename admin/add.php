@@ -48,7 +48,7 @@ function tad_assignment_form($assn=""){
 function insert_tad_assignment(){
   global $xoopsDB,$xoopsUser;
   $uid=$xoopsUser->getVar('uid');
-  //echo '00000001 <br />';
+ 
   foreach ($_POST['class_id'] as $class_id =>$class ) { 
   	$sql = "insert into ".$xoopsDB->prefix("exam")." (`title`,class_id , `passwd`, `note`,`uid`,`open_show` ,upload_mode , ext_file ,create_date) 
    		values('{$_POST['title']}',  '$class'  ,'{$_POST['passwd']}','{$_POST['note']}','{$uid}','{$_POST['open_show']}' ,'{$_POST['upload_mode']}'  ,'{$_POST['ext_file']}' ,now()  )";
@@ -68,7 +68,7 @@ function update_tad_assignment($assn=""){
   global $xoopsDB,$xoopsUser;
   $uid=$xoopsUser->getVar('uid');
 
-  $sql = "update ".$xoopsDB->prefix("exam")." set  `title` = '{$_POST['title']}', `passwd` = '{$_POST['passwd']}',  `note` = '{$_POST['note']}', `uid` = '{$uid}', `open_show` = '{$_POST['open_show']}'  , upload_mode='{$_POST['upload_mode']}'  , ext_file= '{$_POST['ext_file']}'   where assn='$assn'     " ;
+  $sql = "update ".$xoopsDB->prefix("exam")." set  `title` = '{$_POST['title']}', `passwd` = '{$_POST['passwd']}',  `note` = '{$_POST['note']}',  `open_show` = '{$_POST['open_show']}'  , upload_mode='{$_POST['upload_mode']}'  , ext_file= '{$_POST['ext_file']}'   where assn='$assn'     " ;
   
   $xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
   return $assn;

@@ -1,11 +1,11 @@
 <?php
-/*-----------¤Þ¤JÀÉ®×°Ï--------------*/
+/*-----------å¼•å…¥æª”æ¡ˆå€--------------*/
 include "header.php";
 $xoopsOption['template_main'] = "es_exam_show.html";
 include_once XOOPS_ROOT_PATH."/header.php";
 
-/*-----------function°Ï--------------*/
-//¦C¥X©Ò¦³tad_assignment¸ê®Æ
+/*-----------functionå€--------------*/
+//åˆ—å‡ºæ‰€æœ‰tad_assignmentè³‡æ–™
 function list_tad_assignment_menu(){
   global $xoopsDB,$xoopsModule,$isAdmin,$xoopsTpl;
 
@@ -35,7 +35,7 @@ function list_tad_assignment_menu(){
   $xoopsTpl->assign('select_assn_all',$alldata);
 }
 
-//¦C¥X©Ò¦³tad_assignment_file¸ê®Æ
+//åˆ—å‡ºæ‰€æœ‰tad_assignment_fileè³‡æ–™
 function list_tad_assignment_file($assn=""){
   global $xoopsDB,$xoopsModule,$isAdmin,$xoopsTpl;
 
@@ -57,6 +57,8 @@ function list_tad_assignment_file($assn=""){
       $$k=$v;
       $data[$i][$k]=$v;
     }
+    //åªå‡ºç¾å§“
+    $data[$i]['author'] =  mb_substr( $data[$i]['author'] ,0,1) .'åŒå­¸' ;
 
     $show_name=(empty($show_name))?$author._MD_TADASSIGN_UPLOAD_FILE:$show_name;
     $filepart=explode('.',$file_name);
@@ -81,14 +83,14 @@ function list_tad_assignment_file($assn=""){
 
 
 
-/*-----------°õ¦æ°Ê§@§PÂ_°Ï----------*/
+/*-----------åŸ·è¡Œå‹•ä½œåˆ¤æ–·å€----------*/
 $_REQUEST['op']=(empty($_REQUEST['op']))?"":$_REQUEST['op'];
 $assn = (!isset($_REQUEST['assn']))? "":intval($_REQUEST['assn']);
 $asfsn = (!isset($_REQUEST['asfsn']))? "":intval($_REQUEST['asfsn']);
 
 switch($_REQUEST['op']){
  
-  //§R°£¸ê®Æ
+  //åˆªé™¤è³‡æ–™
   case "delete_tad_assignment_file":
   delete_tad_assignment_file($asfsn);
   header("location: show.php?assn=$assn");
@@ -105,7 +107,7 @@ switch($_REQUEST['op']){
   break;
 }
 
-/*-----------¨q¥Xµ²ªG°Ï--------------*/
+/*-----------ç§€å‡ºçµæžœå€--------------*/
 $xoopsTpl->assign( "toolbar" , toolbar_bootstrap($interface_menu)) ;
 $xoopsTpl->assign( "bootstrap" , get_bootstrap()) ;
 $xoopsTpl->assign( "jquery" , get_jquery(true)) ;

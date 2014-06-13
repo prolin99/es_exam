@@ -328,6 +328,8 @@ class ModuleAdmin
         return $ret;
     }
 
+ 
+
     function renderAbout($type = 'default')
     {
         $path = XOOPS_URL . "/modules/" . $this->_obj->getVar('dirname') . "/images/admin/";
@@ -344,6 +346,7 @@ class ModuleAdmin
         $ret .= "</td>\n";
         $ret .= "</tr>\n";
         $ret .= "</table>\n";
+ 
         $ret .= "<div align=\"center\">";
 //        $ret .= "<a href=\"http://www.xoops.org\" target=\"_blank\"><img src=\"" . $path . "xoopsmicrobutton.gif\" alt=\"XOOPS\" title=\"XOOPS\"></a>";
         $ret .= "</div>";

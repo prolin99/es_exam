@@ -170,13 +170,8 @@ switch($_REQUEST['op']){
   //預設動作
   default:
   list_tad_assignment_menu();
-/* 
-  if(!empty($assn)){
-    tad_assignment_file_form($assn);
-  }else{
-    list_tad_assignment_menu();
-  }
-*/ 
+ 
+ 
   break;
 }
 

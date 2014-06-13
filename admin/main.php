@@ -1,17 +1,35 @@
 <?php
-/*-----------¤Ş¤JÀÉ®×°Ï--------------*/
+/*-----------å¼•å…¥æª”æ¡ˆå€--------------*/
 $xoopsOption['template_main'] = "es_exam_adm_main.html";
 include_once "header.php";
 include_once "../function.php";
-/*-----------function°Ï--------------*/
+/*-----------functionå€--------------*/
 
 
-//¦C¥X©Ò¦³tad_assignment¸ê®Æ
-function list_tad_assignment($show_function=1){
-	global $xoopsDB,$xoopsModule,$xoopsTpl;
-	$sql = "select * from ".$xoopsDB->prefix("exam")." order by class_id,  assn desc";
+//åˆ—å‡ºæ‰€æœ‰tad_assignmentè³‡æ–™
+function list_tad_assignment($show_function=1 ,$semester =1  ){
+	global $xoopsDB,$xoopsModule,$xoopsTpl , $xoopsUser ;
+	
+	if  ($semester) {
+		//åªå‡ºç¾é€™å­¸æœŸçš„ä½œæ¥­ 0201  or 08/01 
+		if  (date("m")>=2 and date("m")<8) 
+			$beg_date = date( "Y-m-d", mktime (0,0,0,2 ,1, date("Y")) );
+		elseif  	  (date("m")<2) 
+			$beg_date = date( "Y-m-d", mktime (0,0,0,8 ,1, date("Y")-1) );
+		else 
+			$beg_date = date( "Y-m-d", mktime (0,0,0,8 ,1, date("Y")) );
+		$and_date_sql = "  and   create_date>=$beg_date	" ; 
+	}		
+	
+	//åªåˆ—å‡ºè‡ªå·²å»ºç«‹çš„
+	$my_uid = $xoopsUser->uid() ;
+		if (! in_array(1,$xoopsUser->groups())   )		 
+ 			$and_my_sql = "  and   uid='$my_uid' 	" ; 
+ 
+	
+	$sql = "select * from ".$xoopsDB->prefix("exam")." where 1  $and_my_sql  $and_date_sql  order by class_id,  assn desc";
 
-	//PageBar(¸ê®Æ¼Æ, ¨C­¶Åã¥Ü´Xµ§¸ê®Æ, ³Ì¦hÅã¥Ü´X­Ó­¶¼Æ¿ï¶µ);
+	//PageBar(è³‡æ–™æ•¸, æ¯é é¡¯ç¤ºå¹¾ç­†è³‡æ–™, æœ€å¤šé¡¯ç¤ºå¹¾å€‹é æ•¸é¸é …);
 	$result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
 	$total=$xoopsDB->getRowsNum($result);
 
@@ -23,7 +41,7 @@ function list_tad_assignment($show_function=1){
 	$result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
 
 	$data="";
-  $i=0;
+  	$i=0;
 	while($all=$xoopsDB->fetchArray($result)){
 	  foreach($all as $k=>$v){
 			$$k=$v;
@@ -51,32 +69,32 @@ function list_tad_assignment($show_function=1){
 }
 
 
-//§R°£tad_assignment¬Yµ§¸ê®Æ¸ê®Æ
+//åˆªé™¤tad_assignmentæŸç­†è³‡æ–™è³‡æ–™
 function delete_tad_assignment($assn=""){
 	global $xoopsDB;
 	$sql = "delete from ".$xoopsDB->prefix("exam")." where assn='$assn'";
 	$xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
 }
 
-/*-----------°õ¦æ°Ê§@§PÂ_°Ï----------*/
+/*-----------åŸ·è¡Œå‹•ä½œåˆ¤æ–·å€----------*/
 $op = (!isset($_REQUEST['op']))? "":$_REQUEST['op'];
 
 switch($op){
 
-	//§R°£¸ê®Æ
+	//åˆªé™¤è³‡æ–™
 	case "delete_tad_assignment";
 	delete_tad_assignment($_GET['assn']);
 	header("location: {$_SERVER['PHP_SELF']}");
 	break;
 
 
-	//¹w³]°Ê§@
+	//é è¨­å‹•ä½œ
 	default:
 	list_tad_assignment();
 	break;
 
 }
 
-/*-----------¨q¥Xµ²ªG°Ï--------------*/
+/*-----------ç§€å‡ºçµæœå€--------------*/
 include_once 'footer.php';
 ?>

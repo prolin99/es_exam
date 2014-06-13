@@ -1,5 +1,5 @@
 <?php
-//¤Ş¤JTadToolsªº¨ç¦¡®w
+//å¼•å…¥TadToolsçš„å‡½å¼åº«
 if(!file_exists(XOOPS_ROOT_PATH."/modules/tadtools/tad_function.php")){
  redirect_header("http://www.tad0616.net/modules/tad_uploader/index.php?of_cat_sn=50",3, _TAD_NEED_TADTOOLS);
 }
@@ -10,9 +10,9 @@ define("_TAD_ASSIGNMENT_UPLOAD_URL",XOOPS_URL."/uploads/es_exam/");
 
 
 function  get_exam_list($mode , $semester=1) {
-	global $xoopsDB;
+	global $xoopsDB, $xoopsUser;
 	if  ($semester) {
-		//¥u¥X²{³o¾Ç´Áªº§@·~ 0201  or 08/01 
+		//åªå‡ºç¾é€™å­¸æœŸçš„ä½œæ¥­ 0201  or 08/01 
 		if  (date("m")>=2 and date("m")<8) 
 			$beg_date = date( "Y-m-d", mktime (0,0,0,2 ,1, date("Y")) );
 		elseif  	  (date("m")<2) 
@@ -27,8 +27,15 @@ function  get_exam_list($mode , $semester=1) {
   	if ($mode=='show') {
 		$sql_and = "  and open_show ='1'  " ;
   	}  	
+  	
+  	//æ•™å¸«ï¼Œåªåˆ—å‡ºè‡ªå·²é–‹è¨­çš„ä½œæ¥­
+  	if ($mode=='teacher') {
+		$my_uid = $xoopsUser->uid() ;
+		$sql_and = " and uid ='$my_uid'  " ;
+  	}  	
+  	
   $sql = "select assn,title,uid , class_id,open_show  from ".$xoopsDB->prefix("exam")." where 1    $sql_and     $and_date_sql   order by class_id ,  assn desc  ";
- 
+ //echo $sql ;
   $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
   $i=0;
   $data="";
@@ -47,7 +54,65 @@ function  get_exam_list($mode , $semester=1) {
 }
 
 
-//¥H¬y¤ô¸¹¨ú±o¬Yµ§tad_assignment¸ê®Æ
+//åˆ—å‡ºæ‰€æœ‰tad_assignment_fileè³‡æ–™
+function list_exam_file($assn=""  , $my_order=' `up_time` DESC '){
+  global $xoopsDB,$xoopsModule,$isAdmin,$xoopsTpl ,$xoopsModuleConfig ;
+  
+  $base_score= $xoopsModuleConfig['ESEXAM_BASE'] ;
+
+  //ä½œæ¥­ä¸»é¡Œ
+  $DBV=get_tad_assignment($assn);
+  foreach($DBV as $k=>$v){
+    $$k=$v;
+    $xoopsTpl->assign($k,$v);
+  }
+
+  //ç­ç´šåå–®
+  $sql =  "  SELECT  class_sit_num , name  FROM " . $xoopsDB->prefix("e_student") . "   where class_id='{$class_id}'  order by  class_sit_num  " ;
+  $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
+  while($row=$xoopsDB->fetchArray($result)){
+	$class_students[$row['class_sit_num']]['name']=$row['name'] ;
+  }	
+  $xoopsTpl->assign('class_students',$class_students); 
+  
+  //å€‹äººä½œå“
+  $sql = "select * from ".$xoopsDB->prefix("exam_files")." where assn='{$assn}' order by $my_order  ";
+  $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
+
+  $i=0;
+  $data="";
+  while($all=$xoopsDB->fetchArray($result)){
+
+    foreach($all as $k=>$v){
+	
+      $$k=$v;
+      $data[$i][$k]=$v;
+    }
+
+    $show_name=(empty($show_name))?$author._MD_TADASSIGN_UPLOAD_FILE:$show_name;
+    $filepart=explode('.',$file_name);
+    foreach($filepart as $ff){
+      $sub_name=strtolower($ff);
+    }
+
+    $data[$i]['sub_name']=$sub_name;
+    $data[$i]['show_name']=$show_name;
+    
+    //ä½œå“åº§è™Ÿæ¨™è¨˜
+    $class_students[$sit_id]['in']= 1 ;
+ 
+    //æˆç¸¾ bar
+    $data[$i]['score_bar']=$data[$i]['score']-$base_score ;
+    if  ($data[$i]['score_bar']<0) $data[$i]['score_bar']=0 ;
+    
+    $i++ ;
+ } 
+     $xoopsTpl->assign('class_students',$class_students); 
+    return $data ;
+}
+  
+ 
+//ä»¥æµæ°´è™Ÿå–å¾—æŸç­†tad_assignmentè³‡æ–™
 function get_tad_assignment($assn=""){
   global $xoopsDB;
   if(empty($assn))return;
@@ -58,7 +123,7 @@ function get_tad_assignment($assn=""){
 }
 
 
-//Âà´«¦¨®É¶¡ÂW°O
+//è½‰æ›æˆæ™‚é–“æˆ³è¨˜
 function day2ts($day="",$sy="-"){
   if(empty($day))$day=date("Y-m-d H:i:s");
   $dt=explode(" ",$day);
@@ -70,7 +135,7 @@ function day2ts($day="",$sy="-"){
   return $ts;
 }
 
-//§R°£tad_assignment_file¬Yµ§¸ê®Æ¸ê®Æ
+//åˆªé™¤tad_assignment_fileæŸç­†è³‡æ–™è³‡æ–™
 function delete_tad_assignment_file($asfsn=""){
   global $xoopsDB;
 
@@ -94,10 +159,10 @@ function delete_tad_assignment_file($asfsn=""){
 }
 
 
-/********************* ¹w³]¨ç¼Æ *********************/
+/********************* é è¨­å‡½æ•¸ *********************/
 
 function get_class_list(  ) {
-	//¨ú±o¥ş®Õ¯Z¯Å¦Cªí 
+	//å–å¾—å…¨æ ¡ç­ç´šåˆ—è¡¨ 
 	global  $xoopsDB ;
  
 		$sql =  "  SELECT  class_id  FROM " . $xoopsDB->prefix("e_student") . "   group by class_id   " ;
@@ -113,7 +178,7 @@ function get_class_list(  ) {
 }
 
 function get_stud_name($class_id , $sit_id) {
-	//¨ú±o¾Ç¥Í©m¦W
+	//å–å¾—å­¸ç”Ÿå§“å
 	global  $xoopsDB ;
  
 		$sql =  "  SELECT  name  FROM " . $xoopsDB->prefix("e_student") . "   where class_id='$class_id' and class_sit_num='$sit_id'  " ;
@@ -124,5 +189,8 @@ function get_stud_name($class_id , $sit_id) {
 		}		
 	return $data ;	
 }
+
+ 
+
 
  

@@ -10,12 +10,8 @@ include_once "../function.php";
 
 /*-----------執行動作判斷區----------*/
 	//列出教師指定各項作業，作為選單
-	/*
-	if   ( in_array(1,$xoopsUser->groups())  )  
-		$exam_list=get_exam_list('teacher') ;
-	else 
-	*/
-		$exam_list=get_exam_list('teacher') ; 
+
+	$exam_list=get_exam_list('teacher') ; 
   	$xoopsTpl->assign('exam_list' , $exam_list);
   	
 if ($_GET['assn'])  {

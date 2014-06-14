@@ -9,27 +9,7 @@ include_once XOOPS_ROOT_PATH."/header.php";
 function list_tad_assignment_menu(){
   global $xoopsDB,$xoopsModule,$isAdmin,$xoopsTpl;
 
-  /*
-//  $where=($isAdmin)?"":"  where `open_show`='1'  ";
- 
-  $sql = "select assn,title,uid, class_id ,open_show from ".$xoopsDB->prefix("exam")." $where order by  create_date  desc";
 
- 
-  $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
-
-  $i=0;
-  $alldata="";
-  while(list($assn,$title,$uid,$class_id)=$xoopsDB->fetchRow($result)){
-    $uid_name=XoopsUser::getUnameFromId($uid,1);
-    if(empty($uid_name))$uid_name=XoopsUser::getUnameFromId($uid,0);
-    $alldata[$i]['assn']=$assn;
-    $alldata[$i]['title']=$title;
-    $alldata[$i]['uid_name']=$uid_name;
-    $alldata[$i]['class_id']=$class_id;
- 
-    $i++;
-  }
-  */
   $alldata=get_exam_list('') ;
   
   $xoopsTpl->assign('select_assn_all',$alldata);
@@ -64,10 +44,13 @@ function list_tad_assignment_file($assn=""){
     $data[$i]['author'] =  mb_substr( $data[$i]['author'] ,0,1) .'同學' ;
     
     
-    //分數拉bar 7等份
+    //分數拉bar 7 等份
     if  ($data[$i]['score'] ) 
     	$data[$i]['bar'] = floor(($data[$i]['score'] - $bar_base_score ) / (( 100-$bar_base_score) /7) )*14+10 ;
     
+    //作品說明做處理
+    $myts =& MyTextSanitizer::getInstance();
+    $data[$i]['memo'] = $myts->displayTarea($data[$i]['memo'] ) ;    	
 
     $show_name=(empty($show_name))?$author._MD_TADASSIGN_UPLOAD_FILE:$show_name;
     $filepart=explode('.',$file_name);

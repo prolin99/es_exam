@@ -76,6 +76,7 @@
       <td>
       <{if ($open_show)}>
       <a href='<{$smarty.const._TAD_ASSIGNMENT_UPLOAD_URL}><{$all.assn}>/<{$all.asfsn}>.<{$all.sub_name}>'  class="assignment_fancy_<{$assn}>" rel="group" title="<{$all.sit_id}>.<{$all.author}> (<{$all.up_time}>) <{$all.file_name}>"><{$all.file_name}></a>
+      <div><{  $all.memo}></div>
       <{else}>
  		<{$all.file_name}>
       <{/if}>
@@ -87,6 +88,7 @@
       		<div class="progress progress-success progress-striped">
 			<div class="bar" style="width: <{$all.bar}>%"></div>
 		</div>
+		<div><{  $all.comment}></div>
 	  <{/if}>	
 	</td>
       <{if $isAdmin}>

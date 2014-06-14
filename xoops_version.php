@@ -43,8 +43,7 @@ $modversion['system_menu'] = 1;
 
 //---安裝設定---//
 $modversion['onInstall'] = "include/onInstall.php";
-$modversion['onUpdate'] = "include/onUpdate.php";
-$modversion['onUninstall'] = "include/onUninstall.php";
+
 
 
 //---管理介面設定---//
@@ -90,18 +89,18 @@ $modversion['blocks'][1]['template'] = "tad_new_assignment.html";
 
 $i=1 ;
 //偏好設定
-$modversion['config'][$i]['name'] = 'ESEXAM_BASE';
+$modversion['config'][$i]['name'] = 'ESEXAM_BASE';					//起跳分數
 $modversion['config'][$i]['title']   = '_MI_ESEXAM_CONFIG_T1';
 $modversion['config'][$i]['description'] = '_MI_ESEXAM_CONFIG_D1';
 $modversion['config'][$i]['formtype']    = 'text';
 $modversion['config'][$i]['valuetype']   = 'int';
-$modversion['config'][$i]['default'] = 60 ;			
+$modversion['config'][$i]['default'] = 70 ;			
 
 $i++;
-$modversion['config'][$i]['name'] = 'ESEXAM_LOST';
+$modversion['config'][$i]['name'] = 'ESEXAM_LOST';					//未交作品給分
 $modversion['config'][$i]['title']   = '_MI_ESEXAM_CONFIG_T2';
 $modversion['config'][$i]['description'] = '_MI_ESEXAM_CONFIG_D2';
 $modversion['config'][$i]['formtype']    = 'text';
 $modversion['config'][$i]['valuetype']   = 'int';
-$modversion['config'][$i]['default'] = 50 ;		
+$modversion['config'][$i]['default'] = 60 ;		
 ?>

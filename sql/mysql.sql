@@ -25,7 +25,7 @@ CREATE TABLE `exam_files` (
   `file_size` mediumint(9) unsigned NOT NULL DEFAULT '0',
   `file_type` varchar(255) NOT NULL DEFAULT '',
   `show_name` varchar(255) NOT NULL DEFAULT '',
-  `desc` text NOT NULL,
+  `memo` text NOT NULL,
   `author` varchar(255) NOT NULL DEFAULT '',
   `score` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `comment` text NOT NULL,

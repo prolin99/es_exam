@@ -69,12 +69,7 @@ function list_tad_assignment($show_function=1 ,$semester =1  ){
 }
 
 
-//刪除tad_assignment某筆資料資料
-function delete_tad_assignment($assn=""){
-	global $xoopsDB;
-	$sql = "delete from ".$xoopsDB->prefix("exam")." where assn='$assn'";
-	$xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
-}
+
 
 /*-----------執行動作判斷區----------*/
 $op = (!isset($_REQUEST['op']))? "":$_REQUEST['op'];

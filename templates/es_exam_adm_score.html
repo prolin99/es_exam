@@ -26,10 +26,10 @@
     });
 
 
-    function delete_func(asfsn){
+    function delete_func(asfsn ,stud_id){
       var sure = window.confirm('<{$smarty.const._TAD_DEL_CONFIRM}>');
       if (!sure)  return;
-      location.href="score.php?op=delete_tad_assignment_file&assn=<{$assn}>&asfsn=" + asfsn;
+      location.href="score.php?op=delete_tad_assignment_file&assn=<{$assn}>&asfsn=" + asfsn   + "&stud_id=" + stud_id  ;
     }
   </script>
 <h2>主題</h2>
@@ -64,18 +64,19 @@
   <th><{$smarty.const._MD_TADASSIGN_FILENAME}></th>
   <th><{$smarty.const._MD_TADASSIGN_AUTHOR}></th>
   <th>評語</th>
-  <th>得分(最低分數<{$base_score}>)</th>
+  <th>評分(啟始分<{$base_score}>，未交<{$score_lost}>)</th>
   <th><{$smarty.const._TAD_FUNCTION}></th> 
   </tr>
   <tbody>
   <{if ($data.stud) }>
+  <{assign var="ti" value="100"}>
   <{foreach from=$data.stud  item=all}>
     <tr>
       <td><{$all.up_time}></td>
       <td>
  
       <a href='<{$smarty.const._TAD_ASSIGNMENT_UPLOAD_URL}><{$all.assn}>/<{$all.asfsn}>.<{$all.sub_name}>'  class="assignment_fancy_<{$assn}>" rel="group" title="<{$all.sit_id}>.<{$all.author}> (<{$all.up_time}>) <{$all.file_name}>"  target="show"><{$all.file_name}></a>
- 
+     	<div><{  $all.memo}></div>
       </td>
       
       <td><span class="badge badge-info"><{$all.sit_id}></span> <{$all.author}></td>
@@ -87,10 +88,10 @@
       	<div id="slider_<{$all.asfsn}>"  class="span2 slider" data_ref="<{$all.asfsn}>" ></div>
  	<script>$( "#slider_<{$all.asfsn}>" ).slider({value: <{$all.score_bar}>, min: 0,max: <{$bar_max}>}) </script>
       		<input class="span1 score" type="text" onfocus="this.select()"   name="score[<{$all.asfsn}>]"  id="score_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>"  
-      		<{if ($all.score)}> value="<{$all.score}>" <{/if}>></input>
+      		<{if ($all.score)}> value="<{$all.score}>" <{/if}> tabindex="<{$ti++}>" title="可直接輸入成績">
       	</td>
       <td>
-        <a href="javascript:delete_func(<{$all.asfsn}>);" class="btn btn-mini btn-danger"><{$smarty.const._TAD_DEL}></a>
+        <a href="javascript:delete_func(<{$all.asfsn}>,<{$all.stud_id}>);" class="btn btn-mini btn-danger"><{$smarty.const._TAD_DEL}></a>
       </td>
  
     </tr>

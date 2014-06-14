@@ -40,16 +40,20 @@
     });
 
 
-    function delete_func(asfsn){
+    function delete_func(asfsn ,stud_id){
       var sure = window.confirm('<{$smarty.const._TAD_DEL_CONFIRM}>');
       if (!sure)  return;
-      location.href="show.php?op=delete_tad_assignment_file&assn=<{$assn}>&asfsn=" + asfsn;
+      location.href="show.php?op=delete_tad_assignment_file&assn=<{$assn}>&asfsn=" + asfsn   + "&stud_id=" + stud_id  ;
     }
   </script>
 <{if ($assn) }>
   <div class="row-fluid">
     <div class="span10"><h2><{$class_id}>班   <{$title}></h2></div>
-    <div class="span2 text-right"><a href="index.php?assn=<{$assn}>" class="btn btn-primary"><{$smarty.const._MD_SAVE}></a></div>
+    <div class="span2 text-right">
+    	<a href="index.php?assn=<{$assn}>" class="btn btn-primary"><{$smarty.const._MD_SAVE}></a>
+    	<{if $isAdmin}><a href="admin/score.php?assn=<{$assn}>" class="btn btn-success">評分</a><{/if}>
+    	
+    </div>
   </div>
   <{if (!$open_show) }>
   	<div class="alert alert-info">
@@ -62,6 +66,7 @@
   <th><{$smarty.const._MD_TADASSIGN_UP_TIME}></th>
   <th><{$smarty.const._MD_TADASSIGN_FILENAME}></th>
   <th><{$smarty.const._MD_TADASSIGN_AUTHOR}></th>
+  <th>表現</th>
   <{if $isAdmin}><th><{$smarty.const._TAD_FUNCTION}></th><{/if}>
   </tr>
   <tbody>
@@ -69,17 +74,24 @@
     <tr>
       <td><{$all.up_time}></td>
       <td>
-      <{if ($data.open_show)}>
+      <{if ($open_show)}>
       <a href='<{$smarty.const._TAD_ASSIGNMENT_UPLOAD_URL}><{$all.assn}>/<{$all.asfsn}>.<{$all.sub_name}>'  class="assignment_fancy_<{$assn}>" rel="group" title="<{$all.sit_id}>.<{$all.author}> (<{$all.up_time}>) <{$all.file_name}>"><{$all.file_name}></a>
       <{else}>
  		<{$all.file_name}>
       <{/if}>
       </td>
       
-      <td><span class="badge badge-info"><{$all.sit_id}></span> <{$all.author}></td>
+      <td>   <span class="badge badge-info"><{$all.sit_id}></span> <{$all.author}></td>
+      <td>
+          <{if ($all.score) }>
+      		<div class="progress progress-success progress-striped">
+			<div class="bar" style="width: <{$all.bar}>%"></div>
+		</div>
+	  <{/if}>	
+	</td>
       <{if $isAdmin}>
       <td>
-        <a href="javascript:delete_func(<{$all.asfsn}>);" class="btn btn-mini btn-danger"><{$smarty.const._TAD_DEL}></a>
+        <a href="javascript:delete_func(<{$all.asfsn}>,<{$all.stud_id}>);" class="btn btn-mini btn-danger"><{$smarty.const._TAD_DEL}></a>
       </td>
       <{/if}>
     </tr>

@@ -1,7 +1,7 @@
 <?php
 function xoops_module_install_tad_assignment(&$module) {
 
-	mk_dir(XOOPS_ROOT_PATH."/uploads/tad_assignment");
+	mk_dir(XOOPS_ROOT_PATH."/uploads/es_exam");
 
 	return true;
 }

@@ -9,7 +9,7 @@ define("_TAD_ASSIGNMENT_UPLOAD_DIR",XOOPS_ROOT_PATH."/uploads/es_exam/");
 define("_TAD_ASSIGNMENT_UPLOAD_URL",XOOPS_URL."/uploads/es_exam/");
 
 
-function  get_exam_list($mode , $semester=1) {
+function  get_exam_list($mode , $order= ' class_id ,  assn desc' , $semester=1) {
 	global $xoopsDB, $xoopsUser;
 	if  ($semester) {
 		//只出現這學期的作業 0201  or 08/01 
@@ -34,7 +34,7 @@ function  get_exam_list($mode , $semester=1) {
 		$sql_and = " and uid ='$my_uid'  " ;
   	}  	
   	
-  $sql = "select assn,title,uid , class_id,open_show  from ".$xoopsDB->prefix("exam")." where 1    $sql_and     $and_date_sql   order by class_id ,  assn desc  ";
+  $sql = "select assn,title,uid , class_id,open_show  from ".$xoopsDB->prefix("exam")." where 1    $sql_and     $and_date_sql   order by  $order    ";
  //echo $sql ;
   $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
   $i=0;
@@ -88,7 +88,11 @@ function list_exam_file($assn=""  , $my_order=' `up_time` DESC '){
       $$k=$v;
       $data[$i][$k]=$v;
     }
-
+    
+    //作品說明做處理
+    $myts =& MyTextSanitizer::getInstance();
+    $data[$i]['memo'] = $myts->displayTarea($data[$i]['memo'] ) ;
+    
     $show_name=(empty($show_name))?$author._MD_TADASSIGN_UPLOAD_FILE:$show_name;
     $filepart=explode('.',$file_name);
     foreach($filepart as $ff){
@@ -135,12 +139,51 @@ function day2ts($day="",$sy="-"){
   return $ts;
 }
 
-//刪除tad_assignment_file某筆資料資料
-function delete_tad_assignment_file($asfsn=""){
+//刪除整個目錄
+function delete_directory($dirname) {
+    if (is_dir($dirname))
+        $dir_handle = opendir($dirname);
+    if (!$dir_handle)
+        return false;
+    while($file = readdir($dir_handle)) {
+        if ($file != "." && $file != "..") {
+            if (!is_dir($dirname."/".$file))
+                unlink($dirname."/".$file);
+            else
+                delete_directory($dirname.'/'.$file);
+        }
+    }
+    closedir($dir_handle);
+    rmdir($dirname);
+    return true;
+}
+    
+    
+//刪除 exam 某筆資料資料
+function delete_tad_assignment($assn=""){
+	global $xoopsDB;
+	//exam
+	$sql = "delete from ".$xoopsDB->prefix("exam")." where assn='$assn'";
+	$xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
+	
+	//exam_files
+	$sql = "delete from ".$xoopsDB->prefix("exam_files")." where assn='$assn'";
+	$xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());	
+	
+	//刪除目錄
+	delete_directory(_TAD_ASSIGNMENT_UPLOAD_DIR."{$assn}");
+	
+	
+}
+
+//刪除 exam_files 某筆資料資料
+function delete_tad_assignment_file($asfsn="" , $stud_id ){
   global $xoopsDB;
 
-  $sql = "select * from ".$xoopsDB->prefix("exam_files")." where asfsn='{$asfsn}'";
+  $sql = "select * from ".$xoopsDB->prefix("exam_files")." where asfsn='{$asfsn}'    and stud_id = '$stud_id'   ";
+ //   echo  $sql ; exit ;
   $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
+
   while($all=$xoopsDB->fetchArray($result)){
     foreach($all as $k=>$v){
       $$k=$v;
@@ -178,14 +221,14 @@ function get_class_list(  ) {
 }
 
 function get_stud_name($class_id , $sit_id) {
-	//取得學生姓名
+	//取得學生姓名，stud_id 
 	global  $xoopsDB ;
  
-		$sql =  "  SELECT  name  FROM " . $xoopsDB->prefix("e_student") . "   where class_id='$class_id' and class_sit_num='$sit_id'  " ;
+		$sql =  "  SELECT  stud_id , name  FROM " . $xoopsDB->prefix("e_student") . "   where class_id='$class_id' and class_sit_num='$sit_id'  " ;
  
 		$result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
 		while($row=$xoopsDB->fetchArray($result)){
-			$data=$row['name'] ;
+			$data=$row ;
 		}		
 	return $data ;	
 }

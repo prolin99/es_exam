@@ -37,7 +37,7 @@ function list_tad_assignment_menu(){
 
 //列出所有tad_assignment_file資料
 function list_tad_assignment_file($assn=""){
-  global $xoopsDB,$xoopsModule,$isAdmin,$xoopsTpl;
+  global $xoopsDB,$xoopsModule,$isAdmin,$xoopsTpl  ,$xoopsModuleConfig ;
 
   $DBV=get_tad_assignment($assn);
   foreach($DBV as $k=>$v){
@@ -51,6 +51,9 @@ function list_tad_assignment_file($assn=""){
 
   $i=0;
   $data="";
+  //拉bar秀成績，低限
+  $bar_base_score= 51 ;
+  
   while($all=$xoopsDB->fetchArray($result)){
 
     foreach($all as $k=>$v){
@@ -59,6 +62,12 @@ function list_tad_assignment_file($assn=""){
     }
     //只出現姓
     $data[$i]['author'] =  mb_substr( $data[$i]['author'] ,0,1) .'同學' ;
+    
+    
+    //分數拉bar 7等份
+    if  ($data[$i]['score'] ) 
+    	$data[$i]['bar'] = floor(($data[$i]['score'] - $bar_base_score ) / (( 100-$bar_base_score) /7) )*14+10 ;
+    
 
     $show_name=(empty($show_name))?$author._MD_TADASSIGN_UPLOAD_FILE:$show_name;
     $filepart=explode('.',$file_name);
@@ -87,12 +96,13 @@ function list_tad_assignment_file($assn=""){
 $_REQUEST['op']=(empty($_REQUEST['op']))?"":$_REQUEST['op'];
 $assn = (!isset($_REQUEST['assn']))? "":intval($_REQUEST['assn']);
 $asfsn = (!isset($_REQUEST['asfsn']))? "":intval($_REQUEST['asfsn']);
+$stud_id = (!isset($_REQUEST['stud_id']))? "":intval($_REQUEST['stud_id']);
 
 switch($_REQUEST['op']){
  
   //刪除資料
   case "delete_tad_assignment_file":
-  delete_tad_assignment_file($asfsn);
+  delete_tad_assignment_file($asfsn ,$stud_id );
   header("location: show.php?assn=$assn");
   break;
 

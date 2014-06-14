@@ -1,5 +1,5 @@
 <?php
-define("_MD_SHOW","上傳展示");
+define("_MD_SHOW","展示");
 
 //月曆用
 define("_W0","日");

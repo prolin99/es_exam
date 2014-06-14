@@ -10,9 +10,11 @@ include_once "../function.php";
 
 /*-----------執行動作判斷區----------*/
 	//列出教師指定各項作業，作為選單
+	/*
 	if   ( in_array(1,$xoopsUser->groups())  )  
-		$exam_list=get_exam_list() ;
+		$exam_list=get_exam_list('teacher') ;
 	else 
+	*/
 		$exam_list=get_exam_list('teacher') ; 
   	$xoopsTpl->assign('exam_list' , $exam_list);
   	
@@ -27,22 +29,26 @@ if ($_GET['assn'])  {
  		redirect_header("main.php",3, "非作業管理人，無法打成績！");
  	
  	//刪除檔案	
-	if ( $_GET['op'])
-		delete_tad_assignment_file($_GET['asfsn']);	
+	if ( $_GET['op']=='delete_tad_assignment_file')
+		delete_tad_assignment_file($_GET['asfsn'] ,$_GET['stud_id']  );	
 	
 	//取得作業
 	$data['stud']=  list_exam_file($_GET['assn'] ) ;
 	
  
 
-	//基本分
+	//基本分，拉bar 值
 	$base_score= $xoopsModuleConfig['ESEXAM_BASE'] ;
 	$bar_max=100- $base_score ;
+	
+	//未交作業，給的分數
+ 	$score_lost= $xoopsModuleConfig['ESEXAM_LOST'] ;
 	
 	$xoopsTpl->assign('data' , $data);
 	
 	$xoopsTpl->assign('base_score' , $base_score);
 	$xoopsTpl->assign('bar_max' , $bar_max);
+	$xoopsTpl->assign('score_lost' , $score_lost);
  
 }	
 

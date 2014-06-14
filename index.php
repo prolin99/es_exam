@@ -9,32 +9,8 @@ include_once XOOPS_ROOT_PATH."/header.php";
 function list_tad_assignment_menu(){
   global $xoopsDB,$xoopsModule,$xoopsTpl  ;
   $now=xoops_getUserTimestamp(time());
-  /*
-  //只出現這學期的作業 0201  or 08/01 
-  if  (date("m")>=2 and date("m")<8) 
-  	 $beg_date = date( "Y-m-d", mktime (0,0,0,2 ,1, date("Y")) );
-  elseif  	  (date("m")<2) 
-  	 $beg_date = date( "Y-m-d", mktime (0,0,0,8 ,1, date("Y")-1) );
-  else 
-  	 $beg_date = date( "Y-m-d", mktime (0,0,0,8 ,1, date("Y")) );
-  
-  $sql = "select assn,title,uid , class_id  from ".$xoopsDB->prefix("exam")." where  upload_mode ='1' and  create_date>=$beg_date  order by class_id ,  assn desc  ";
  
-  $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
-  $i=0;
-  $data="";
-  while(list($assn,$title,$uid,$class_id)=$xoopsDB->fetchRow($result)){
-    $uid_name=XoopsUser::getUnameFromId($uid,1);
-    if(empty($uid_name))$uid_name=XoopsUser::getUnameFromId($uid,0);
-    $data[$i]['assn']=$assn;
-    $data[$i]['title']=$title;
-    $data[$i]['uid_name']=$uid_name;
-     $data[$i]['class_id']=$class_id;
-
-    $i++;
-  }
- */
- 
+ //出現可以上傳的作業
   $data = get_exam_list('upload') ;
   
   $xoopsTpl->assign('all',$data);
@@ -45,7 +21,7 @@ function list_tad_assignment_menu(){
 
 
 
-//tad_assignment_file編輯表單------------------------------------------------------------
+//進入上傳畫面   -----------------------------------------------------------
 function tad_assignment_file_form($assn=""){
   global $xoopsDB,$xoopsTpl;
   
@@ -67,24 +43,30 @@ function tad_assignment_file_form($assn=""){
   }
 
   //取得學生資料
-  $stud_name=   get_stud_name($class_id , $_POST['sit_id']) ;
-  if( ! $stud_name){
+  $stud_data=   get_stud_name($class_id , $_POST['sit_id']) ;
+  if( ! $stud_data){
     redirect_header($_SERVER['PHP_SELF']."?assn={$_POST['assn']}" ,3, "找不到合適的學生，請重新輸入座號" );
     exit;
   }
+  
+ 
+  
+  //可上傳的副檔
   $j_ext_file  = str_replace(',', '|', $ext_file);
  
   
   $xoopsTpl->assign('note',nl2br($note));
   $xoopsTpl->assign('sit_id',$_POST['sit_id']);
-  $xoopsTpl->assign('stud_name',$stud_name );
+  $xoopsTpl->assign('stud_data',$stud_data );
   $xoopsTpl->assign('j_ext_file',$j_ext_file );
   $xoopsTpl->assign('now_op','tad_assignment_file_form');
 }
 
-//新增資料到tad_assignment_file中-----------------------------------------------------------------------------------
+//上傳動作，新增資料到tad_assignment_file中-----------------------------------------------------------------------------------
 function insert_tad_assignment_file(){
   global $xoopsDB;
+  
+  //密碼再次確認
   $assignment=get_tad_assignment($_POST['assn']);
   if($_POST['passwd']!=$assignment['passwd']){
     redirect_header($_SERVER['PHP_SELF'],3, _TAD_ASSIGNMENT_WRONG_PASSWD);
@@ -94,23 +76,27 @@ function insert_tad_assignment_file(){
 
   
   $now=date("Y-m-d H:i:s");
-  //刪除舊檔案
+  
+  //檢查學生先前上傳的檔案，並刪除舊檔案 ，再新增檔案
   $sql = "SELECT * FROM " .$xoopsDB->prefix("exam_files")." WHERE `assn` ='{$_POST['assn']}' and  class_id='{$_POST['class_id']}' and sit_id= '{$_POST['sit_id']}'  " ;
  
   $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
   while($row=$xoopsDB->fetchArray($result)){
  			$old_asfsn = $row['asfsn'] ;
+ 			$stud_id = $row['stud_id'] ;
 	}
  
   if ( $old_asfsn ) {
-	delete_tad_assignment_file($old_asfsn) ;
+	delete_tad_assignment_file($old_asfsn ,$stud_id ) ;
   }   
  
+  $myts =& MyTextSanitizer::getInstance();
+  $desc = $myts->addSlashes($_POST['desc'] ) ;
  
   
   //新增
-  $sql = "insert into ".$xoopsDB->prefix("exam_files")." (`assn` ,   `show_name` , `desc` , class_id , sit_id  ,`author` ,  `up_time`) 
-   		values('{$_POST['assn']}', '{$_POST['show_name']}','{$_POST['desc']}','{$_POST['class_id']}', '{$_POST['sit_id']}', '{$_POST['author']}',  '$now')";
+  $sql = "insert into ".$xoopsDB->prefix("exam_files")." (`assn` ,   `show_name` , `memo` , class_id , sit_id  ,`author` ,  stud_id ,  `up_time`) 
+   		values('{$_POST['assn']}', '{$_POST['show_name']}','{$_POST['desc']}','{$_POST['class_id']}', '{$_POST['sit_id']}', '{$_POST['author']}',  '{$_POST['stud_id']}' ,  '$now')";
   $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
   //取得最後新增資料的流水編號
   $asfsn=$xoopsDB->getInsertId();

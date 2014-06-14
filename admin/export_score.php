@@ -5,68 +5,85 @@
 // $Id:$
 // ------------------------------------------------------------------------- //
 /*-----------引入檔案區--------------*/
-include_once "header_admin.php";
-
+include_once "header.php";
 include_once "../function.php";
 
 include_once "../../tadtools/PHPExcel.php";
 require_once '../../tadtools/PHPExcel/IOFactory.php';    
 /*-----------function區--------------*/
 
-function export($class_id   ) {
-	
-	//取得所屬作業
- 	$exam_list= get_exam_list('teacher') ;
- 	//
- 	$ei = 0 ;
- 	foreach ($exam_list as  $k=>$exam ) {
-		
-		if ($exam['class_id'] =$class_id ) {
-			//取得成績
-			$score[$class_id][$ei] = get_score($exam['assn'])  ;
-		}
-		$ei ++ ;
- 	}	
- 	
-}
 
 //取得一項作業的成績
 function get_score($assn)  {
 	global $xoopsDB,$xoopsModule,$isAdmin,$xoopsTpl ,$xoopsModuleConfig ;	
-  //個人作品
-  $sql = "select stud_id , score  from ".$xoopsDB->prefix("exam_files")." where assn='{$assn}' order by $my_order  ";
-  $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());	
-  while($row=$xoopsDB->fetchArray($result)){
-	$data[$row['stud_id']]=$row['score'] ;
-   }	
-   return $data ;
+  	//個人作品
+  	$sql = "select stud_id , score  from ".$xoopsDB->prefix("exam_files")." where assn='{$assn}' order by sit_id  ";
+ 
+  	$result = $xoopsDB->query($sql) or die($sql."<br>". mysql_error()); 
+  	while($row=$xoopsDB->fetchArray($result)){
+		if  ($row['score']==0 )
+			$row['score']='未評' ;
+		$data[$row['stud_id']]=$row['score'] ;
+   	}	
+   	return $data ;
 	
 }	
 
+function get_class_stud_list( $class_id ) {
+	//取得該班的學生名冊 
+	global  $xoopsDB ;
+ 
+		$sql =  "  SELECT  class_id ,stud_id , class_sit_num , name  FROM " . $xoopsDB->prefix("e_student") . "   where class_id='$class_id'   order by  class_sit_num " ;
+		$result = $xoopsDB->query($sql) or die($sql."<br>". mysql_error()); 
+		while($row=$xoopsDB->fetchArray($result)){
+ 			$data[]=$row ;
+		}		
+	return $data ;		
+	
+}
+
 /*-----------執行動作判斷區----------*/
+
 if  ($_GET['op']) {
-	if  ($_GET['op'] =='all') {
+	//未交作業，給的分數
+ 	$score_lost= $xoopsModuleConfig['ESEXAM_LOST'] ;
+ 	
+	//取得所屬作業 排序 班級-作業
+ 	$exam_list= get_exam_list('teacher' ,  'class_id ,  assn' ) ;
+ 	$class_id = $_GET['class'] ;
+ 	//取得各班的多項成績
+ 	$ei = 0 ;
+ 	foreach ($exam_list as  $k=>$exam ) {
+
+		if  ($_GET['op'] == 'all' )  {
+			if ($now_class <>  $exam['class_id'] ) {
+				//換班，分數序歸 0 
+				$now_class =$exam['class_id'] ;
+				$ei = 0 ;
+				$stud_data[$now_class] =  get_class_stud_list($now_class) ;
+			}		
+			//取得成績
+			$score_data[$now_class][$ei] = get_score($exam['assn'])  ;
+			$ei ++ ;
+		}else {	
+			if ($exam['class_id'] ==$class_id ) {
+				//單一班級
+				//取得成績
+				$score_data[$class_id][$ei] = get_score($exam['assn'])  ;
+				if ( !$stud_data[$class_id]) 
+					$stud_data[$class_id] =  get_class_stud_list($class_id) ;
+			}
+			$ei ++ ;
+		}
 		
-	}else {
-		$mid =export($_GET['class']) ;
-	}	
-	
-	$mid =$_GET['mid'] ;
-	//echo $mid  ;
-	
-	//取得報名表格式
-	$kind_get=get_sign_kind($mid) ;
-	$kind=$kind_get[$mid] ;
-	//var_dump($kind) ;
-	
- 	//取得報名學生資料
- 	$sign_studs = get_sign_data($mid , 'all' ) ;
-	//var_dump($sign_studs) ;
+ 	}	
+
+ 
 
  	$objPHPExcel = new PHPExcel();
 	$objPHPExcel->setActiveSheetIndex(0);  //設定預設顯示的工作表
 	$objActSheet = $objPHPExcel->getActiveSheet(); //指定預設工作表為 $objActSheet
-	$objActSheet->setTitle("校園報名");  //設定標題	
+	$objActSheet->setTitle("學期成績");  //設定標題	
   	//設定框線
 	$objBorder=$objActSheet->getDefaultStyle()->getBorders();
 	$objBorder->getBottom()
@@ -76,100 +93,85 @@ if  ($_GET['op']) {
 
 	
 	$row= 1 ;
+	/*
        //標題行
       	$objPHPExcel->setActiveSheetIndex(0) 
-            ->setCellValue('A' . $row, 'NO.')
-            ->setCellValue('B' . $row, '班級')
-            ->setCellValue('C' . $row, '順位')
-            ->setCellValue('D' . $row, '學生姓名') ;
-      //擷取欄位
-      $col ='D' ;
-
-      foreach ($kind['field_get']  as $k=>$v) {
+            ->setCellValue('A' . $row, '班級')
+            ->setCellValue('B' . $row, '座號')
+            ->setCellValue('C' . $row, '姓名') ;
+ 
+	//成績欄
+      	$col ='C' ;
+      	for ($i =1 ; $i <=10;$i++) {
 		$col++ ;
 		$col_str =$col .$row ;
-		$mystr= $DEF_SET['export'][$v] ;
-		$objPHPExcel->setActiveSheetIndex(0)->setCellValue($col_str , $mystr) ;
-      }	
- 
-      //輸入欄位
-      foreach ($kind['field_input']  as $k=>$v) {
-		$col++ ;
-		$col_str =$col .$row ;
- 
-		$objPHPExcel->setActiveSheetIndex(0)->setCellValue($col_str , $v[1]) ;
-      }	      
- 
-      //是否正取
-		$col++ ;
-		$col_str =$col .$row ;
-		$objPHPExcel->setActiveSheetIndex(0)->setCellValue($col_str , '錄取') ;      
- 
- 
+		$objPHPExcel->setActiveSheetIndex(0)->setCellValue($col_str ,$i) ;
+      	}	
+ */
         //資料區
-        foreach ( $sign_studs  as $ci => $class_stud )  {
-		$stud_order=0 ;	//順位
-		foreach ( $class_stud  as $order => $stud )  {
+        foreach ( $stud_data  as $class_id => $class_list )  {
+		
+		if ($row<>1) $row += 4 ;		//多班級時，間隔
+		//標題行
+		$objPHPExcel->setActiveSheetIndex(0) 
+		->setCellValue('A' . $row, '班級')
+		->setCellValue('B' . $row, '座號')
+		->setCellValue('C' . $row, '姓名') ;
+	
+		//成績欄
+		$col ='C' ;
+		$i=1 ;
+		foreach ($score_data[$class_id]  as $ei=>$score_one) {
+		//for ($i =1 ; $i <=10;$i++) {
+			$i_str='作業'.$i ;
+			$col++ ;
+			$col_str =$col .$row ;
+			$objPHPExcel->setActiveSheetIndex(0)->setCellValue($col_str ,$i_str) ;
+			$i++ ;
+		}
+		foreach ( $class_list  as $order => $stud )  {
 			$row++ ;
 			$stud_order++ ;
 			
 			$objPHPExcel->setActiveSheetIndex(0)
-				->setCellValue('A'.$row,$row-1)
-				->setCellValue('B'.$row , $stud['class_id'])
-				->setCellValue('C'.$row ,$stud['order_pos'])
-				->setCellValue('D'.$row, $stud['stud_name']) ;
-			//擷取欄位
-			$col ='D' ;
+				->setCellValue('A'.$row,$stud['class_id'])
+				->setCellValue('B'.$row , $stud['class_sit_num'])
+				->setCellValue('C'.$row ,$stud['name']) ;
+			$stud_id= $stud['stud_id']  ;
+			//成績
+			$col ='C' ;
 			
-			foreach ($kind['field_get']  as $k=>$v) {
+			foreach ($score_data[$class_id]  as $ei=>$score_one) {
+	 
 					$col++ ;
 					$col_str =$col .$row ;
- 
-					$my_data= $stud['get_field_2'][$v] ;
 					
- 
-					//日期格式
-					if ($v=='birthday'){
-						$b_date = preg_split("/[-\/]/",$stud['get_field_2'][$v]) ;
-						$my_data="=date({$b_date[0]}, {$b_date[1]}, {$b_date[2]}) "  ;
- 					}
+					//成績，未交給設定分	
+					$my_data=$score_one[$stud_id] ;
+					if ($my_data =='' )  {
+						$my_data=$score_lost ;
+						$objPHPExcel->getActiveSheet(0)->getStyle($col_str)->getFont()->getColor()->setARGB('FF808080');
+					}	
  
 					   $objPHPExcel->setActiveSheetIndex(0)->setCellValue($col_str , $my_data) ;
+					   
   
-			}	
-			
-			//輸入欄位
-			foreach ($kind['field_input']  as $k=>$v) {
-					$col++ ;
-					$col_str =$col .$row ;
-					$my_data= $stud['in_'.$v[0]] ;
-					//日期格式
-					if ($v[2]=='d'){
-						$b_date = preg_split("/[-\/]/",$my_data) ;
-						$my_data="=date({$b_date[0]}, {$b_date[1]}, {$b_date[2]}) "  ;						
-					}
-					$objPHPExcel->setActiveSheetIndex(0)->setCellValue($col_str , $my_data) ;
-			}	
-			
-			//是否正取
-			$col++ ;
-			$col_str =$col .$row ;
-			if ($stud_order<= $kind['stud_get'])
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue($col_str , '正取') ;      
-			else 	
-				$objPHPExcel->setActiveSheetIndex(0)->setCellValue($col_str , '備取') ;      
-		}	
+			}	//end foreach --成績
+		}	//end foreach --班級
+		
+ 
   
 	} 	
 
- 	
+ 
 	header('Content-Type: application/vnd.ms-excel');
-	header('Content-Disposition: attachment;filename=after'.date("mdHi").'.xls' );
+	header('Content-Disposition: attachment;filename=score'.date("mdHi").'.xls' );
 	header('Cache-Control: max-age=0');
 
 	//$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
 	$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
 	$objWriter->save('php://output');
-	exit;		 	
+	exit;		
+ 
 }	
 ?>

@@ -1,5 +1,5 @@
 <?php
-function xoops_module_install_tad_assignment(&$module) {
+function xoops_module_install_es_exam(&$module) {
 
 	mk_dir(XOOPS_ROOT_PATH."/uploads/es_exam");
 

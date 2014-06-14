@@ -43,6 +43,7 @@ $modversion['system_menu'] = 1;
 
 //---安裝設定---//
 $modversion['onInstall'] = "include/onInstall.php";
+$modversion['onUninstall'] = "include/onUninstall.php";
 
 
 

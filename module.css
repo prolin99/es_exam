@@ -18,18 +18,18 @@ table.big_tbl input,table.big_tbl select,table.big_tbl a {
 	font-size:20px;
 }
 
-/************************** ªí³æªí®æ¼Ë¦¡ **************************/
-/* ¦³ªí³æªºªí®æ¼Ë¦¡ */
+/************************** è¡¨å–®è¡¨æ ¼æ¨£å¼ **************************/
+/* æœ‰è¡¨å–®çš„è¡¨æ ¼æ¨£å¼ */
 table#form_tbl {
 	width: 100%;
 	padding: 8px;
 	border-collapse: collapse;
 }
-/* ¦³ªí³æªºÀx¦s®æ¼Ë¦¡ */
+/* æœ‰è¡¨å–®çš„å„²å­˜æ ¼æ¨£å¼ */
 table#form_tbl td {
 	padding: 3px;
 }
-/* ¼ĞÃDÀx¦s®æ¼Ë¦¡ */
+/* æ¨™é¡Œå„²å­˜æ ¼æ¨£å¼ */
 table#form_tbl th {
 	padding: 3px;
 	border-top: 1px solid rgb(119,119,119);
@@ -39,7 +39,7 @@ table#form_tbl th {
 	text-align: center;
 	vertical-align: middle;
 }
-/* ¦³ªí³æªº¡uªí³æ¼ĞÃD¡vÀx¦s®æ¼Ë¦¡ */
+/* æœ‰è¡¨å–®çš„ã€Œè¡¨å–®æ¨™é¡Œã€å„²å­˜æ ¼æ¨£å¼ */
 table#form_tbl td.form {
 	font-weight: bold;
 	font-size: 110%;
@@ -47,7 +47,7 @@ table#form_tbl td.form {
 	color: rgb(127,0,0);
 	text-align: center;
 }
-/* ¦³ªí³æªº¡u¼ĞÃD¡vÀx¦s®æ¼Ë¦¡ */
+/* æœ‰è¡¨å–®çš„ã€Œæ¨™é¡Œã€å„²å­˜æ ¼æ¨£å¼ */
 table#form_tbl td.title {
 	background-color: transparent;
 	color: rgb(0,0,0);
@@ -56,13 +56,13 @@ table#form_tbl td.title {
 	vertical-align: middle;
 	border-bottom: 1px dotted rgb(150,150,150);
 }
-/* ¦³ªí³æªº¡u¿é¤JÄæ¦ì¡vÀx¦s®æ¼Ë¦¡ */
+/* æœ‰è¡¨å–®çš„ã€Œè¼¸å…¥æ¬„ä½ã€å„²å­˜æ ¼æ¨£å¼ */
 table#form_tbl td.col {
 	padding: 4px 6px 4px 6px;
 	background-color: transparent;
 	border-bottom: 1px dotted rgb(200,200,200);
 }
-/* ¦³ªí³æªº¡u¤u¨ã¦C¡vÀx¦s®æ¼Ë¦¡ */
+/* æœ‰è¡¨å–®çš„ã€Œå·¥å…·åˆ—ã€å„²å­˜æ ¼æ¨£å¼ */
 table#form_tbl td.bar {
 	text-align: center;
 	color: rgb(0,0,153);
@@ -72,30 +72,30 @@ table#form_tbl td.bar {
 table#form_tbl td.col input,table#form_tbl td.col textarea {
 	border:1px solid gray;
 }
-/************************** ¤@¯ëªí®æ¼Ë¦¡ **************************/
-/* ªí®æ¼Ë¦¡ */
+/************************** ä¸€èˆ¬è¡¨æ ¼æ¨£å¼ **************************/
+/* è¡¨æ ¼æ¨£å¼ */
 table#tbl {
 	width: auto;
 	padding: 8px;
 	border-collapse: collapse;
 }
-/* ¼ĞÃDÀx¦s®æ¼Ë¦¡ */
+/* æ¨™é¡Œå„²å­˜æ ¼æ¨£å¼ */
 table#tbl th {
 	padding: 5px;
 	border-bottom: 1px solid rgb(192,192,192);
 	text-align: center;
 	vertical-align: middle;
 }
-/* Àx¦s®æ¼Ë¦¡ */
+/* å„²å­˜æ ¼æ¨£å¼ */
 table#tbl td {
 	padding: 5px;
 	border-bottom: 1px solid rgb(192,192,192);
 	vertical-align: middle;
 }
 
-/************************** 3D¶ê¨¤¼Ë¦¡ **************************/
+/************************** 3Dåœ“è§’æ¨£å¼ **************************/
 
-/*  ¥ßÅé¶ê¨¤®Ø  */
+/*  ç«‹é«”åœ“è§’æ¡†  */
 .raised {
 	background: transparent;
 	width: auto;
@@ -181,7 +181,7 @@ table#tbl td {
 }
 
 
-/*  ¤º´O¶ê¨¤®Ø  */
+/*  å…§åµŒåœ“è§’æ¡†  */
 .inset {
 	background: transparent;
 	width: auto;
@@ -265,7 +265,7 @@ table#tbl td {
 	padding: 10px 25px 10px 25px;
 }
 
-/*  ¥Õ©³¦Ç¶ê¨¤®Ø  */
+/*  ç™½åº•ç°åœ“è§’æ¡†  */
 
 .corners {
 	background: transparent;

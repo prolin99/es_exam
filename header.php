@@ -2,7 +2,7 @@
 include_once "../../mainfile.php";
 include_once "function.php";
 
-//§PÂ_¬O§_¹ï¸Ó¼Ò²Õ¦³ºŞ²zÅv­­
+//åˆ¤æ–·æ˜¯å¦å°è©²æ¨¡çµ„æœ‰ç®¡ç†æ¬Šé™
 $isAdmin=false;
 if ($xoopsUser) {
     $module_id = $xoopsModule->getVar('mid');

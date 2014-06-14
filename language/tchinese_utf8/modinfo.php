@@ -3,7 +3,7 @@ include_once XOOPS_ROOT_PATH."/modules/tadtools/language/{$xoopsConfig['language
 define("_MI_ESEXAM_NAME","學生作業繳交");
 define("_MI_ESEXAM_AUTHOR","prolin(prolin99@gmail.com)");
 define("_MI_ESEXAM_CREDITS","");
-define("_MI_ESEXAM_DESC","此模組可以讓管理者（老師）開設需上傳檔案的項目，以便讓使用者（學生）上傳檔案。");
+define("_MI_ESEXAM_DESC","此模組可以讓老師開設班級上傳作業。");
 define("_MI_ESEXAM_ADMENU1", "管理主題");
 define("_MI_ESEXAM_ADMENU2", "新增上傳主題");
 define("_MI_ESEXAM_ADMENU3", "新增檔案格式");

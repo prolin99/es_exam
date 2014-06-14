@@ -51,7 +51,7 @@ xoops_cp_footer();
 //列出目前的權限 ------------------------------------------
 function show_module_group_permission($module_id=0 ) {
 	//取得群組權限
-	$power_mode = array('module_read'=>"使用權", 'module_admin'=>管理權,  'block_read'=>'區塊使用權' ,  system_admin=>'系統管理權' ) ;
+	$power_mode = array('module_read'=>"使用權", 'module_admin'=>'管理權',  'block_read'=>'區塊使用權' ,  'system_admin'=>'系統管理權' ) ;
 	global  $xoopsDB, $xoopsModule ;
 	if (!$module_id='' ) {
 		$module_id = $xoopsModule->getVar('mid'); 

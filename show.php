@@ -41,7 +41,7 @@ function list_tad_assignment_file($assn=""){
       $data[$i][$k]=$v;
     }
     //只出現姓
-    $data[$i]['author'] =  mb_substr( $data[$i]['author'] ,0,1) .'同學' ;
+    $data[$i]['author'] =  mb_substr( $data[$i]['author'] ,0,1,'UTF-8') .'同學' ;
     
     
     //分數拉bar 7 等份

@@ -49,9 +49,18 @@ function insert_tad_assignment(){
   global $xoopsDB,$xoopsUser;
   $uid=$xoopsUser->getVar('uid');
  
+    //資料檢查
+  $myts =& MyTextSanitizer::getInstance();
+  $title = $myts->htmlspecialchars($myts->addSlashes($_POST['title'] )   );
+  $passwd = $myts->htmlspecialchars($myts->addSlashes($_POST['passwd'] )   );
+  $note = $myts->htmlspecialchars($myts->addSlashes($_POST['note'] )   );
+  $ext_file = $myts->htmlspecialchars($myts->addSlashes($_POST['ext_file'] )   );  
+  $_POST['open_show'] = intval($_POST['open_show']) ;
+  $_POST['upload_mode'] = intval($_POST['upload_mode']) ;
+  
   foreach ($_POST['class_id'] as $class_id =>$class ) { 
   	$sql = "insert into ".$xoopsDB->prefix("exam")." (`title`,class_id , `passwd`, `note`,`uid`,`open_show` ,upload_mode , ext_file ,create_date) 
-   		values('{$_POST['title']}',  '$class'  ,'{$_POST['passwd']}','{$_POST['note']}','{$uid}','{$_POST['open_show']}' ,'{$_POST['upload_mode']}'  ,'{$_POST['ext_file']}' ,now()  )";
+   		values('$title',  '$class'  ,'$passwd','$note','{$uid}','{$_POST['open_show']}' ,'{$_POST['upload_mode']}'  ,'$ext_file' ,now()  )";
    	//echo $sql .'<br />';	
   	$xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
   }
@@ -68,7 +77,16 @@ function update_tad_assignment($assn=""){
   global $xoopsDB,$xoopsUser;
   $uid=$xoopsUser->getVar('uid');
 
-  $sql = "update ".$xoopsDB->prefix("exam")." set  `title` = '{$_POST['title']}', `passwd` = '{$_POST['passwd']}',  `note` = '{$_POST['note']}',  `open_show` = '{$_POST['open_show']}'  , upload_mode='{$_POST['upload_mode']}'  , ext_file= '{$_POST['ext_file']}'   where assn='$assn'     " ;
+    //資料檢查
+  $myts =& MyTextSanitizer::getInstance();
+  $title = $myts->htmlspecialchars($myts->addSlashes($_POST['title'] )   );
+  $passwd = $myts->htmlspecialchars($myts->addSlashes($_POST['passwd'] )   );
+  $note = $myts->htmlspecialchars($myts->addSlashes($_POST['note'] )   );
+  $ext_file = $myts->htmlspecialchars($myts->addSlashes($_POST['ext_file'] )   );  
+  $_POST['open_show'] = intval($_POST['open_show']) ;
+  $_POST['upload_mode'] = intval($_POST['upload_mode']) ;
+  
+  $sql = "update ".$xoopsDB->prefix("exam")." set  `title` = '$title', `passwd` = '$passwd',  `note` = '$note',  `open_show` = '{$_POST['open_show']}'  , upload_mode='{$_POST['upload_mode']}'  , ext_file= '$ext_file'   where assn='$assn'     " ;
   
   $xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
   return $assn;

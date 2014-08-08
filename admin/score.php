@@ -5,7 +5,8 @@ include_once "header.php";
 include_once "../function.php";
 /*-----------function區--------------*/
 
-
+//資料檢查
+$_GET['assn'] = intval($_GET['assn']) ;
   
 
 /*-----------執行動作判斷區----------*/

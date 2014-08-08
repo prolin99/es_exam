@@ -24,9 +24,10 @@ function list_tad_assignment_menu(){
 //進入上傳畫面   -----------------------------------------------------------
 function tad_assignment_file_form($assn=""){
   global $xoopsDB,$xoopsTpl;
+  $_POST['assn'] = intval($_POST['assn'] ) ;
   
-  $assignment=get_tad_assignment($_POST['assn']);
-  if($_POST['passwd']!=$assignment['passwd']){
+  $assignment=get_tad_assignment(intval($_POST['assn']));
+  if($_POST['passwd'] != $assignment['passwd']){
     redirect_header($_SERVER['PHP_SELF'] ."?assn={$_POST['assn']}",3, _TAD_ASSIGNMENT_WRONG_PASSWD);
     exit;
   }
@@ -43,7 +44,7 @@ function tad_assignment_file_form($assn=""){
   }
 
   //取得學生資料
-  $stud_data=   get_stud_name($class_id , $_POST['sit_id']) ;
+  $stud_data=   get_stud_name($class_id , intval($_POST['sit_id'] ) ) ;
   if( ! $stud_data){
     redirect_header($_SERVER['PHP_SELF']."?assn={$_POST['assn']}" ,3, "找不到合適的學生，請重新輸入座號" );
     exit;
@@ -59,6 +60,7 @@ function tad_assignment_file_form($assn=""){
   $xoopsTpl->assign('sit_id',$_POST['sit_id']);
   $xoopsTpl->assign('stud_data',$stud_data );
   $xoopsTpl->assign('j_ext_file',$j_ext_file );
+
   $xoopsTpl->assign('now_op','tad_assignment_file_form');
 }
 
@@ -67,13 +69,20 @@ function insert_tad_assignment_file(){
   global $xoopsDB;
   
   //密碼再次確認
-  $assignment=get_tad_assignment($_POST['assn']);
+  $assignment=get_tad_assignment(intval($_POST['assn']));
   if($_POST['passwd']!=$assignment['passwd']){
     redirect_header($_SERVER['PHP_SELF'],3, _TAD_ASSIGNMENT_WRONG_PASSWD);
     exit;
   }
   
+  	//資料檢查
+	$_POST['assn']= intval($_POST['assn']) ;
+	$_POST['class_id']= intval($_POST['class_id']) ;
+	$_POST['sit_id']= intval($_POST['sit_id']) ;
+	$_POST['stud_id']= intval($_POST['stud_id']) ;
 
+ 
+ 
   
   $now=date("Y-m-d H:i:s");
   
@@ -87,16 +96,18 @@ function insert_tad_assignment_file(){
 	}
  
   if ( $old_asfsn ) {
+	//刪除舊檔
 	delete_tad_assignment_file($old_asfsn ,$stud_id ) ;
   }   
  
+  //資料檢查
   $myts =& MyTextSanitizer::getInstance();
-  $desc = $myts->addSlashes($_POST['desc'] ) ;
+  $desc = $myts->htmlspecialchars($myts->addSlashes($_POST['desc'] )   );
+  $author = $myts->htmlspecialchars($myts->addSlashes($_POST['author'] )   );
  
-  
   //新增
   $sql = "insert into ".$xoopsDB->prefix("exam_files")." (`assn` ,   `show_name` , `memo` , class_id , sit_id  ,`author` ,  stud_id ,  `up_time`) 
-   		values('{$_POST['assn']}', '{$_POST['show_name']}','{$_POST['desc']}','{$_POST['class_id']}', '{$_POST['sit_id']}', '{$_POST['author']}',  '{$_POST['stud_id']}' ,  '$now')";
+   		values('{$_POST['assn']}', '$show_name','$desc','{$_POST['class_id']}', '{$_POST['sit_id']}', '$author',  '{$_POST['stud_id']}' ,  '$now')";
   $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
   //取得最後新增資料的流水編號
   $asfsn=$xoopsDB->getInsertId();
@@ -137,25 +148,25 @@ function upload_file($asfsn="",$assn=""){
 
 
 /*-----------執行動作判斷區----------*/
-$_REQUEST['op']=(empty($_REQUEST['op']))?"":$_REQUEST['op'];
+$_REQUEST['op']=(empty($_REQUEST['op']))?"":strip_tags($_REQUEST['op']);
 $assn = (!isset($_REQUEST['assn']))? "":intval($_REQUEST['assn']);
 
 switch($_REQUEST['op']){
 
   //登入作業
   case "login_es_exam":
-
-  tad_assignment_file_form($assn);
+  	tad_assignment_file_form($assn);
   break;  
+  
   //新增資料
   case "insert_tad_assignment_file":
-  $assn=insert_tad_assignment_file();
-  header("location: show.php?assn=$assn");
+  	$assn=insert_tad_assignment_file();
+  	header("location: show.php?assn=$assn");
   break;
 
   //預設動作
   default:
-  list_tad_assignment_menu();
+  	list_tad_assignment_menu();
  
  
   break;

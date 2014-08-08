@@ -89,7 +89,7 @@
       	<div id="slider_<{$all.asfsn}>"  class="span2 slider" data_ref="<{$all.asfsn}>" ></div>
  	<script>$( "#slider_<{$all.asfsn}>" ).slider({value: <{$all.score_bar}>, min: 0,max: <{$bar_max}>}) </script>
       		<input class="span1 score" type="text" onfocus="this.select()"   name="score[<{$all.asfsn}>]"  id="score_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>"  
-      		<{if ($all.score)}> value="<{$all.score}>" <{/if}> tabindex="<{$ti++}>" title="可直接輸入成績">
+      		<{if ($all.score)}> value="<{$all.score}>" <{/if}> tabindex="<{$ti++}>" title="可直接輸入整數成績">
       	</td>
       <td>
         <a href="javascript:delete_func(<{$all.asfsn}>,<{$all.stud_id}>);" class="btn btn-mini btn-danger"><{$smarty.const._TAD_DEL}></a>

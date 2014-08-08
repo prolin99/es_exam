@@ -50,7 +50,7 @@ if  ($_GET['op']) {
  	
 	//取得所屬作業 排序 班級-作業
  	$exam_list= get_exam_list('teacher' ,  'class_id ,  assn' ) ;
- 	$class_id = $_GET['class'] ;
+ 	$class_id = intval($_GET['class'] );
  	//取得各班的多項成績
  	$ei = 0 ;
  	foreach ($exam_list as  $k=>$exam ) {

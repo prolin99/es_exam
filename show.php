@@ -64,6 +64,8 @@ function list_tad_assignment_file($assn=""){
     $i++;
   }
 
+  //取得作業
+  $data['stud']=  list_exam_file($_GET['assn'] ) ;
 
   $xoopsTpl->assign('title',$title);
   $xoopsTpl->assign('assn',$assn);

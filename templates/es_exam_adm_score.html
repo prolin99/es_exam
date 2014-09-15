@@ -16,11 +16,13 @@
   <script type='text/javascript'>
     $(document).ready(function(){
       $(".assignment_fancy_<{$assn}>").fancybox({
+      'type' : 'iframe' ,
       fitToView : true,
       width   : '90%',
       height    : '100%',
       autoSize  : true,
-      closeClick  : false
+      closeClick  : false,
+
       });
 
     });
@@ -31,6 +33,10 @@
       if (!sure)  return;
       location.href="score.php?op=delete_tad_assignment_file&assn=<{$assn}>&asfsn=" + asfsn   + "&stud_id=" + stud_id  ;
     }
+
+function  t2(id,file) {
+  document.write(Date());
+}    
   </script>
     <{if ($exam_list) }>
 <h2>主題</h2>
@@ -50,12 +56,15 @@
 
 <{if ($assn) }>
   <div class="row-fluid">
-    <div class="span5"><h2><{$data.exam.class_id}>班   <{$data.exam.title}></h2></div>
-    <div class="span5">
+    <div class="span4"><h2><{$data.exam.class_id}>班   <{$data.exam.title}></h2></div>
+    <div class="span4">
     <a class="btn btn-mono btn-success" href="export_score.php?op=class&class=<{$data.exam.class_id}>">本班學期成績</a>
     <a class="btn btn-mono btn-success" href="export_score.php?op=all">全部任教班學期成績</a>
     </div>
-    <div class="span2 text-right"><a href="../index.php?assn=<{$assn}>" class="btn btn-primary"><{$smarty.const._MD_SAVE}></a></div>
+    <div class="span4 text-right">
+      <button class="btn btn-warning" type="button" onClick="window.location.reload()" title='重新載入畫面'>重整</button>
+      <a href="../index.php?assn=<{$assn}>" class="btn btn-primary"><{$smarty.const._MD_SAVE}></a>
+    </div>
     <div class="span10"><{$data.exam.note}></div>
   </div>
 
@@ -75,8 +84,8 @@
     <tr>
       <td><{$all.up_time}></td>
       <td>
- 
-      <a href='<{$smarty.const._TAD_ASSIGNMENT_UPLOAD_URL}><{$all.assn}>/<{$all.asfsn}>.<{$all.sub_name}>'  class="assignment_fancy_<{$assn}>" rel="group" title="<{$all.sit_id}>.<{$all.author}> (<{$all.up_time}>) <{$all.file_name}>"  target="show"><{$all.file_name}></a>
+        <!--      bmp gif jpg jpeg png sb sb2 flash          -->
+       <a href="show_file.php?assn=<{$all.assn}>&asfsn=<{$all.asfsn}>&sub_name=<{$all.sub_name}>"  studfile='<{$smarty.const._TAD_ASSIGNMENT_UPLOAD_URL}><{$all.assn}>/<{$all.asfsn}>.<{$all.sub_name}>'  class="assignment_fancy_<{$assn}>" rel="group" title="<{$all.sit_id}>.<{$all.author}> (<{$all.up_time}>) <{$all.file_name}>"  target="show"><{$all.file_name}></a>
      	<div><{  $all.memo}></div>
       </td>
       
@@ -108,7 +117,8 @@
   <{/if}>
    <{/foreach}>
 </div>   
-<script>
+<script  >
+
   //分數拉條
   $(function() {
 		$( ".slider" ).slider({ 

@@ -48,8 +48,9 @@
   </script>
 <{if ($assn) }>
   <div class="row-fluid">
-    <div class="span10"><h2><{$class_id}>班   <{$title}></h2></div>
-    <div class="span2 text-right">
+    <div class="span8"><h2><{$class_id}>班   <{$title}></h2></div>
+    <div class="span4 text-right">
+       <button class="btn btn-warning" type="button" onClick="window.location.reload()" title='重新載入畫面'>重整</button>
     	<a href="index.php?assn=<{$assn}>" class="btn btn-primary"><{$smarty.const._MD_SAVE}></a>
     	<{if $isAdmin}><a href="admin/score.php?assn=<{$assn}>" class="btn btn-success">評分</a><{/if}>
     	
@@ -60,6 +61,18 @@
   	<strong>注意！</strong>
   	這項主題作業未開放展示，只顯示上傳記錄！
   	</div>
+  <{/if}>
+  <{if $isAdmin}>
+  <div class="row-fluid">
+  <h5>未繳交作業：</h5>
+    <div class="span11">
+  <{foreach from=$class_students  key=sit item=stud}>
+  <{if (!$stud.in)  }>
+  <span class="badge badge-info"><{ $sit }></span> <{ $stud.name }>  , 
+  <{/if}>
+   <{/foreach}>    
+   </div>
+    </div>
   <{/if}>
   <table class="table table-striped table-bordered table-hover">
   <tr>

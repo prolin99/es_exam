@@ -1,16 +1,16 @@
 <?php
-/*-----------¤Þ¤JÀÉ®×°Ï--------------*/
+/*-----------å¼•å…¥æª”æ¡ˆå€--------------*/
 include "header.php";
 $xoopsOption['template_main'] = "es_exam_index.html";
 include_once XOOPS_ROOT_PATH."/header.php";
-/*-----------function°Ï--------------*/
+/*-----------functionå€--------------*/
 
-//¦C¥X©Ò¦³tad_assignment¸ê®Æ
+//åˆ—å‡ºæ‰€æœ‰tad_assignmentè³‡æ–™
 function list_tad_assignment_menu(){
   global $xoopsDB,$xoopsModule,$xoopsTpl  ;
   $now=xoops_getUserTimestamp(time());
  
- //¥X²{¥i¥H¤W¶Çªº§@·~
+ //å‡ºç¾å¯ä»¥ä¸Šå‚³çš„ä½œæ¥­
   $data = get_exam_list('upload') ;
   
   $xoopsTpl->assign('all',$data);
@@ -21,7 +21,7 @@ function list_tad_assignment_menu(){
 
 
 
-//¶i¤J¤W¶Çµe­±   -----------------------------------------------------------
+//é€²å…¥ä¸Šå‚³ç•«é¢   -----------------------------------------------------------
 function tad_assignment_file_form($assn=""){
   global $xoopsDB,$xoopsTpl;
   $_POST['assn'] = intval($_POST['assn'] ) ;
@@ -31,9 +31,9 @@ function tad_assignment_file_form($assn=""){
     redirect_header($_SERVER['PHP_SELF'] ."?assn={$_POST['assn']}",3, _TAD_ASSIGNMENT_WRONG_PASSWD);
     exit;
   }
-    //¤£¥i¥H¤W¶Ç
+    //ä¸å¯ä»¥ä¸Šå‚³
   if( $assignment['upload_mode'] ==0 ){
-    redirect_header($_SERVER['PHP_SELF'],3, "³o­Ó§@·~¤wÃö²¦¤F¡AµLªk¤W¶Ç¡I");
+    redirect_header($_SERVER['PHP_SELF'],3, "é€™å€‹ä½œæ¥­å·²é—œç•¢äº†ï¼Œç„¡æ³•ä¸Šå‚³ï¼");
     exit;
   }
   
@@ -43,16 +43,16 @@ function tad_assignment_file_form($assn=""){
     $xoopsTpl->assign($k,$v);
   }
 
-  //¨ú±o¾Ç¥Í¸ê®Æ
+  //å–å¾—å­¸ç”Ÿè³‡æ–™
   $stud_data=   get_stud_name($class_id , intval($_POST['sit_id'] ) ) ;
   if( ! $stud_data){
-    redirect_header($_SERVER['PHP_SELF']."?assn={$_POST['assn']}" ,3, "§ä¤£¨ì¦X¾Aªº¾Ç¥Í¡A½Ð­«·s¿é¤J®y¸¹" );
+    redirect_header($_SERVER['PHP_SELF']."?assn={$_POST['assn']}" ,3, "æ‰¾ä¸åˆ°åˆé©çš„å­¸ç”Ÿï¼Œè«‹é‡æ–°è¼¸å…¥åº§è™Ÿ" );
     exit;
   }
   
  
   
-  //¥i¤W¶Çªº°ÆÀÉ
+  //å¯ä¸Šå‚³çš„å‰¯æª”
   $j_ext_file  = str_replace(',', '|', $ext_file);
  
   
@@ -64,18 +64,18 @@ function tad_assignment_file_form($assn=""){
   $xoopsTpl->assign('now_op','tad_assignment_file_form');
 }
 
-//¤W¶Ç°Ê§@¡A·s¼W¸ê®Æ¨ìtad_assignment_file¤¤-----------------------------------------------------------------------------------
+//ä¸Šå‚³å‹•ä½œï¼Œæ–°å¢žè³‡æ–™åˆ°tad_assignment_fileä¸­-----------------------------------------------------------------------------------
 function insert_tad_assignment_file(){
   global $xoopsDB;
   
-  //±K½X¦A¦¸½T»{
+  //å¯†ç¢¼å†æ¬¡ç¢ºèª
   $assignment=get_tad_assignment(intval($_POST['assn']));
   if($_POST['passwd']!=$assignment['passwd']){
     redirect_header($_SERVER['PHP_SELF'],3, _TAD_ASSIGNMENT_WRONG_PASSWD);
     exit;
   }
   
-  	//¸ê®ÆÀË¬d
+  	//è³‡æ–™æª¢æŸ¥
 	$_POST['assn']= intval($_POST['assn']) ;
 	$_POST['class_id']= intval($_POST['class_id']) ;
 	$_POST['sit_id']= intval($_POST['sit_id']) ;
@@ -86,7 +86,7 @@ function insert_tad_assignment_file(){
   
   $now=date("Y-m-d H:i:s");
   
-  //ÀË¬d¾Ç¥Í¥ý«e¤W¶ÇªºÀÉ®×¡A¨Ã§R°£ÂÂÀÉ®× ¡A¦A·s¼WÀÉ®×
+  //æª¢æŸ¥å­¸ç”Ÿå…ˆå‰ä¸Šå‚³çš„æª”æ¡ˆï¼Œä¸¦åˆªé™¤èˆŠæª”æ¡ˆ ï¼Œå†æ–°å¢žæª”æ¡ˆ
   $sql = "SELECT * FROM " .$xoopsDB->prefix("exam_files")." WHERE `assn` ='{$_POST['assn']}' and  class_id='{$_POST['class_id']}' and sit_id= '{$_POST['sit_id']}'  " ;
  
   $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
@@ -96,20 +96,20 @@ function insert_tad_assignment_file(){
 	}
  
   if ( $old_asfsn ) {
-	//§R°£ÂÂÀÉ
+	//åˆªé™¤èˆŠæª”
 	delete_tad_assignment_file($old_asfsn ,$stud_id ) ;
   }   
  
-  //¸ê®ÆÀË¬d
+  //è³‡æ–™æª¢æŸ¥
   $myts =& MyTextSanitizer::getInstance();
   $desc = $myts->htmlspecialchars($myts->addSlashes($_POST['desc'] )   );
   $author = $myts->htmlspecialchars($myts->addSlashes($_POST['author'] )   );
  
-  //·s¼W
+  //æ–°å¢ž
   $sql = "insert into ".$xoopsDB->prefix("exam_files")." (`assn` ,   `show_name` , `memo` , class_id , sit_id  ,`author` ,  stud_id ,  `up_time`) 
    		values('{$_POST['assn']}', '$show_name','$desc','{$_POST['class_id']}', '{$_POST['sit_id']}', '$author',  '{$_POST['stud_id']}' ,  '$now')";
   $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
-  //¨ú±o³Ì«á·s¼W¸ê®Æªº¬y¤ô½s¸¹
+  //å–å¾—æœ€å¾Œæ–°å¢žè³‡æ–™çš„æµæ°´ç·¨è™Ÿ
   $asfsn=$xoopsDB->getInsertId();
 
   upload_file($asfsn,$_POST['assn']);
@@ -117,7 +117,7 @@ function insert_tad_assignment_file(){
   return $_POST['assn'];
 }
 
-//¤W¶ÇÀÉ®×
+//ä¸Šå‚³æª”æ¡ˆ
 function upload_file($asfsn="",$assn=""){
   global $xoopsDB;
   include_once XOOPS_ROOT_PATH."/modules/tadtools/upload/class.upload.php";
@@ -147,24 +147,24 @@ function upload_file($asfsn="",$assn=""){
 
 
 
-/*-----------°õ¦æ°Ê§@§PÂ_°Ï----------*/
+/*-----------åŸ·è¡Œå‹•ä½œåˆ¤æ–·å€----------*/
 $_REQUEST['op']=(empty($_REQUEST['op']))?"":strip_tags($_REQUEST['op']);
 $assn = (!isset($_REQUEST['assn']))? "":intval($_REQUEST['assn']);
 
 switch($_REQUEST['op']){
 
-  //µn¤J§@·~
+  //ç™»å…¥ä½œæ¥­
   case "login_es_exam":
   	tad_assignment_file_form($assn);
   break;  
   
-  //·s¼W¸ê®Æ
+  //æ–°å¢žè³‡æ–™
   case "insert_tad_assignment_file":
   	$assn=insert_tad_assignment_file();
   	header("location: show.php?assn=$assn");
   break;
 
-  //¹w³]°Ê§@
+  //é è¨­å‹•ä½œ
   default:
   	list_tad_assignment_menu();
  
@@ -172,7 +172,7 @@ switch($_REQUEST['op']){
   break;
 }
 
-/*-----------¨q¥Xµ²ªG°Ï--------------*/
+/*-----------ç§€å‡ºçµæžœå€--------------*/
 $xoopsTpl->assign( "toolbar" , toolbar_bootstrap($interface_menu)) ;
 $xoopsTpl->assign( "bootstrap" , get_bootstrap()) ;
 $xoopsTpl->assign( "jquery" , get_jquery(true)) ;

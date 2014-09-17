@@ -16,7 +16,9 @@
   <script type='text/javascript'>
     $(document).ready(function(){
       $(".assignment_fancy_<{$assn}>").fancybox({
+      <{if  ($data.ifram_show) }>
       'type' : 'iframe' ,
+      <{/if}>
       fitToView : true,
       width   : '90%',
       height    : '100%',
@@ -34,9 +36,7 @@
       location.href="score.php?op=delete_tad_assignment_file&assn=<{$assn}>&asfsn=" + asfsn   + "&stud_id=" + stud_id  ;
     }
 
-function  t2(id,file) {
-  document.write(Date());
-}    
+ 
   </script>
     <{if ($exam_list) }>
 <h2>主題</h2>
@@ -85,7 +85,11 @@ function  t2(id,file) {
       <td><{$all.up_time}></td>
       <td>
         <!--      bmp gif jpg jpeg png sb sb2 flash          -->
-       <a href="show_file.php?assn=<{$all.assn}>&asfsn=<{$all.asfsn}>&sub_name=<{$all.sub_name}>"  studfile='<{$smarty.const._TAD_ASSIGNMENT_UPLOAD_URL}><{$all.assn}>/<{$all.asfsn}>.<{$all.sub_name}>'  class="assignment_fancy_<{$assn}>" rel="group" title="<{$all.sit_id}>.<{$all.author}> (<{$all.up_time}>) <{$all.file_name}>"  target="show"><{$all.file_name}></a>
+        <{if  ($data.ifram_show) }>
+       <a href="show_file.php?assn=<{$all.assn}>&stud_id=<{$all.stud_id}>&asfsn=<{$all.asfsn}>&sub_name=<{$all.sub_name}>&score_bar=<{$all.score_bar}>"  studfile='<{$smarty.const._TAD_ASSIGNMENT_UPLOAD_URL}><{$all.assn}>/<{$all.asfsn}>.<{$all.sub_name}>'  class="assignment_fancy_<{$assn}>" rel="group" title="<{$all.sit_id}>.<{$all.author}> (<{$all.up_time}>) <{$all.file_name}>"  target="show"><{$all.file_name}></a>
+       <{else}>
+       <a href="<{$smarty.const._TAD_ASSIGNMENT_UPLOAD_URL}><{$all.assn}>/<{$all.asfsn}>.<{$all.sub_name}>"  studfile='<{$smarty.const._TAD_ASSIGNMENT_UPLOAD_URL}><{$all.assn}>/<{$all.asfsn}>.<{$all.sub_name}>'  class="assignment_fancy_<{$assn}>" rel="group" title="<{$all.sit_id}>.<{$all.author}> (<{$all.up_time}>) <{$all.file_name}>"  target="show"><{$all.file_name}></a>       
+       <{/if}>
      	<div><{  $all.memo}></div>
       </td>
       

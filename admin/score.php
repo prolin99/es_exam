@@ -32,6 +32,12 @@ if ($_GET['assn'])  {
 	//取得作業
 	$data['stud']=  list_exam_file($_GET['assn'] ) ;
 	
+ 	//判別是否要以框架出現，評分用
+  	if  ($data['exam']['ext_file'] ) {
+ 		$data['ifram_show'] = preg_match('/(jpg|jpeg|swf|bmp|png|sb|sb2)/i'  ,$data['exam']['ext_file'] ) ;
+ 	}else {
+ 		$data['ifram_show']  = 0 ;
+ 	}
  
 
 	//基本分，拉bar 值

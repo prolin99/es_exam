@@ -114,6 +114,33 @@ function list_exam_file($assn=""  , $my_order=' `up_time` DESC '){
      $xoopsTpl->assign('class_students',$class_students); 
     return $data ;
 }
+
+
+function list_one_exam($asfsn) {
+    global $xoopsDB,$xoopsModule,$isAdmin,$xoopsTpl ,$xoopsModuleConfig ;
+
+  $base_score= $xoopsModuleConfig['ESEXAM_BASE'] ;
+    //個人作品
+  $sql = "select * from ".$xoopsDB->prefix("exam_files")." where asfsn='{$asfsn}'   ";
+ 
+  $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
+
+  $data="";
+  while($all=$xoopsDB->fetchArray($result)){
+
+    foreach($all as $k=>$v){
+        $$k=$v;
+      $data[$k]=$v;
+    }
+  }
+
+    //成績 bar
+    $data['score_bar']=$data['score']-$base_score ;
+    if  ($data['score_bar']<0) $data['score_bar']=0 ;
+ 
+    return $data ;
+
+}
   
  
 //以流水號取得某筆tad_assignment資料

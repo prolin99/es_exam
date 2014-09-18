@@ -78,6 +78,10 @@ $i++;
 $modversion['templates'][$i]['file'] = 'es_exam_adm_score.html';
 $modversion['templates'][$i]['description'] = 'es_exam_adm_score.html';
 
+$i++;
+$modversion['templates'][$i]['file'] = 'es_exam_empt.html';
+$modversion['templates'][$i]['description'] = 'es_exam_empt.html';
+
 /*
 //---區塊設定---//
 $modversion['blocks'][1]['file'] = "tad_new_assignment.php";

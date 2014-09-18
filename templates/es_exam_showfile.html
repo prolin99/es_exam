@@ -1,0 +1,84 @@
+<link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_url}>/modules/tadtools/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_url}>/modules/tadtools/bootstrap/css/bootstrap-responsive.css" />
+
+<script src="<{$xoops_url}>/modules/tadtools/jquery/ui/jquery-ui.js"></script>
+<link rel="stylesheet" href="<{$xoops_url}>/modules/tadtools/jquery/themes/base/jquery-ui.css">
+
+ 
+<div class='row-fluid'>
+	<div class='span7 offset4'><span class='span1'>評分</span>
+      	<div class="span2"><div id="slider"  class="slider" data_ref="<{$all.asfsn}>" ></div>	</div>	
+ 	<script>$( "#slider" ).slider({value: <{$all.score_bar}>, min: 0,max: <{$bar_max}>}) </script>
+      		<input class="span1 score" type="text" onfocus="this.select()"   name="score[<{$all.asfsn}>]"  id="score_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>"  
+      		<{if ($all.score)}> value="<{$all.score}>" <{/if}> tabindex="<{$ti++}>" title="可直接輸入整數成績">		
+	</div>
+	<div class='span9 offset3'> <img src='<{$file}>'></div>
+
+	
+</div>
+
+<script  >
+
+  //分數拉條
+  $(function() {
+		$( ".slider" ).slider({ 
+ 			slide: function( event, ui ) {
+ 				var v_id= $(this).attr('data_ref')
+				$( "#score_"+v_id ).val(  parseInt("<{$base_score}>", 10) + ui.value );
+			}});
+
+	});
+	
+ //離開才做動作寫入成績
+  $(function() {	
+		$( ".slider" ).focusout(function(){
+		 
+			var get_score =parseInt("<{$base_score}>", 10) +$(this).slider( "value" ) ;
+			var v_id= $(this).attr('data_ref') ;
+ 
+ 			save_score('score', v_id ,  get_score    ) ;
+			//alert(v_id +  get_score  );
+		})		;	
+		
+	});	
+
+//成績直接修改
+$(function() {
+	$(".score").change(function(){
+		var v_id = $( this ).attr('data_ref') ;
+		var get_score = $( this ).val();
+ 		save_score( 'score' ,v_id ,  get_score ) ;
+	});
+});	
+
+//評語直接修改
+$(function() {
+	$(".comment").change(function(){
+		var v_id = $( this ).attr('data_ref') ;
+		var get_score = $( this ).val();
+ 		save_score( 'comment' ,v_id ,  get_score ) ;
+	});
+});	
+
+ //寫入成績、評語	
+ function save_score(do_mode ,tid , sdata )  {
+  	$.ajax({
+ 		url: 'ajax_score_exam_data.php',
+ 		type: 'GET',
+ 		data: {do: do_mode , id:tid  , setdata :sdata    },
+ 	})
+ 	.done(function(data) {
+ 		console.log("success");
+ 		//alert(data) ;
+ 	})
+ 	.fail(function() {
+ 		console.log("error");
+ 		
+ 	})
+ 	.always(function() {
+ 		console.log("complete");
+ 	});
+  }		
+  
+  
+  </script>﻿  

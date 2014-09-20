@@ -73,7 +73,7 @@ function list_exam_file($assn=""  , $my_order=' `up_time` DESC '){
   while($row=$xoopsDB->fetchArray($result)){
 	$class_students[$row['class_sit_num']]['name']=$row['name'] ;
   }	
-  $xoopsTpl->assign('class_students',$class_students); 
+  //$xoopsTpl->assign('class_students',$class_students); 
   
   //個人作品
   $sql = "select * from ".$xoopsDB->prefix("exam_files")." where assn='{$assn}' order by $my_order  ";

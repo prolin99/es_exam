@@ -127,11 +127,11 @@
   <{/if}>
   </tbody>
   </table>
+  <div class="row-fluid">  
   <h4>未上傳作業列表</h4>
-<div class="row-fluid">  
   <{foreach from=$class_students  key=sit item=stud}>
   <{if (!$stud.in)  }>
- 	<span class="badge badge-info"><{ $sit }></span> <{ $stud.name }> <br /> 
+ 	<span class="span2"><span class="badge badge-info"><{ $sit }></span> <{ $stud.name }>  </span>
   <{/if}>
    <{/foreach}>
 </div>   

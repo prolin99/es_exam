@@ -71,7 +71,7 @@
   <h5>未繳交作業：</h5>
   <{foreach from=$class_students  key=sit item=stud}>
   <{if (!$stud.in)  }>
-  <span class="span2"><span class="badge badge-info"><{ $sit }></span> <{ $stud.name }>  , </span>
+  <span class="span2"><span class="badge badge-info"><{ $sit }></span> <{ $stud.name }></span>
   <{/if}>
    <{/foreach}>    
    </div>
@@ -87,6 +87,7 @@
   </tr>
   <tbody>
   <{foreach from=$file_data item=all}>
+    <{if $all.stud_id}>
     <tr>
       <td><{$all.up_time}></td>
       <td>
@@ -118,6 +119,7 @@
       </td>
       <{/if}>
     </tr>
+    <{/if}>
   <{/foreach}>
   </tbody>
   </table>

@@ -26,6 +26,9 @@
       <{if  ($data.ifram_show) }>
       'type' : 'iframe' ,
       'beforeClose': function() { window.location.reload() },
+      'afterShow': function(){
+          $('.fancybox-iframe').contents().find(".score").attr("tabindex",1).focus();
+      } ,     
       <{/if}>
       fitToView : true,
       width   : '90%',
@@ -109,8 +112,9 @@
       </td>
       <td>
       	<!----     拉bar            ---->
-      	<div id="slider_<{$all.asfsn}>"  class="span2 slider" data_ref="<{$all.asfsn}>" ></div>
- 	<script>$( "#slider_<{$all.asfsn}>" ).slider({value: <{$all.score_bar}>, min: 0,max: <{$bar_max}>}) </script>
+      	<div id="slider_<{$all.asfsn}>"  class="span2 slider" data_ref="<{$all.asfsn}>" style="background: #CCC" ></div>
+ 	<script>$( "#slider_<{$all.asfsn}>" ).slider({value: <{$all.score_bar}>, min: 0,max: <{$bar_max}>}) ;
+       </script>
       		<input class="span1 score" type="text" onfocus="this.select()"   name="score[<{$all.asfsn}>]"  id="score_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>"  
       		<{if ($all.score)}> value="<{$all.score}>" <{/if}> tabindex="<{$ti++}>" title="可直接輸入整數成績">
       	</td>
@@ -160,10 +164,24 @@
 $(function() {
 	$(".score").change(function(){
 		var v_id = $( this ).attr('data_ref') ;
-		var get_score = $( this ).val();
- 		save_score( 'score' ,v_id ,  get_score ) ;
+              var get_score = $( this ).val();
+              get_score = get_score.trim() ;
+              if (get_score ) {
+                  if (  (get_score > 100) | (get_score<0)  | (! isInteger(get_score) ) ) {    
+                      alert (  '輸入分數有問題！') ;
+                      $(this).val(0) ;
+                      $(this).focus() ;
+                      get_score= 0 ;
+                  }
+              }
+              save_score( 'score' ,v_id ,  get_score ) ;    
 	});
 });	
+
+function isInteger(value) {
+    return (value == parseInt(value));
+}
+
 
 //評語直接修改
 $(function() {

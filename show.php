@@ -64,13 +64,19 @@ function list_tad_assignment_file($assn=""){
     $i++;
   }
 
-  //取得作業
-  $data['stud']=  list_exam_file($_GET['assn'] ) ;
+ if (preg_match('/(sb|sb2)/i'  ,$ext_file )  )  {
+    $ifram_show  =1 ;
+    $file_mode = 'scratch' ;
+ }    
+
+
 
   $xoopsTpl->assign('title',$title);
   $xoopsTpl->assign('assn',$assn);
   $xoopsTpl->assign('file_data',$data);
   $xoopsTpl->assign('now_op','list_tad_assignment_file');
+  $xoopsTpl->assign('ifram_show',$ifram_show);
+  $xoopsTpl->assign('file_mode',$file_mode);
 }
 
 

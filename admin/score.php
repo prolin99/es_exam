@@ -34,7 +34,7 @@ if ($_GET['assn'])  {
 	
  	//判別是否要以框架出現，評分用
   	if  ($data['exam']['ext_file'] ) {
- 		$data['ifram_show'] = preg_match('/(jpg|jpeg|swf|bmp|png|sb|sb2)/i'  ,$data['exam']['ext_file'] ) ;
+ 		$data['ifram_show'] = preg_match('/(jpg|jpeg|swf|bmp|png|gif|sb|sb2)/i'  ,$data['exam']['ext_file'] ) ;
  	}else {
  		$data['ifram_show']  = 0 ;
  	}

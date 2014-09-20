@@ -30,6 +30,9 @@
   <script type='text/javascript'>
     $(document).ready(function(){
       $(".assignment_fancy_<{$assn}>").fancybox({
+      <{if  ($ifram_show) }>
+      'type' : 'iframe' ,        
+      <{/if}>    
       fitToView : true,
       width   : '90%',
       height    : '100%',
@@ -64,11 +67,11 @@
   <{/if}>
   <{if $isAdmin}>
   <div class="row-fluid">
+    <div class="span12">
   <h5>未繳交作業：</h5>
-    <div class="span11">
   <{foreach from=$class_students  key=sit item=stud}>
   <{if (!$stud.in)  }>
-  <span class="badge badge-info"><{ $sit }></span> <{ $stud.name }>  , 
+  <span class="span2"><span class="badge badge-info"><{ $sit }></span> <{ $stud.name }>  , </span>
   <{/if}>
    <{/foreach}>    
    </div>
@@ -88,8 +91,13 @@
       <td><{$all.up_time}></td>
       <td>
       <{if ($open_show)}>
-      <a href='<{$smarty.const._TAD_ASSIGNMENT_UPLOAD_URL}><{$all.assn}>/<{$all.asfsn}>.<{$all.sub_name}>'  class="assignment_fancy_<{$assn}>" rel="group" title="<{$all.sit_id}>.<{$all.author}> (<{$all.up_time}>) <{$all.file_name}>"><{$all.file_name}></a>
-      <div><{  $all.memo}></div>
+          <{if  ($ifram_show) }>
+          <a href="show_file.php?assn=<{$all.assn}>&stud_id=<{$all.stud_id}>&asfsn=<{$all.asfsn}>&sub_name=<{$all.sub_name}>&score_bar=<{$all.score_bar}>"  studfile='<{$smarty.const._TAD_ASSIGNMENT_UPLOAD_URL}><{$all.assn}>/<{$all.asfsn}>.<{$all.sub_name}>'  class="assignment_fancy_<{$assn}>" rel="group" title="<{$all.sit_id}>.<{$all.author}> (<{$all.up_time}>) <{$all.file_name}>"  target="show"><{$all.file_name}></a>
+          <div><{  $all.memo}></div>
+         <{else}>      
+          <a href='<{$smarty.const._TAD_ASSIGNMENT_UPLOAD_URL}><{$all.assn}>/<{$all.asfsn}>.<{$all.sub_name}>'  class="assignment_fancy_<{$assn}>" rel="group" title="<{$all.sit_id}>.<{$all.author}> (<{$all.up_time}>) <{$all.file_name}>"><{$all.file_name}></a>
+          <div><{  $all.memo}></div>
+         <{/if}>
       <{else}>
  		<{$all.file_name}>
       <{/if}>

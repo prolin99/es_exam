@@ -1,0 +1,62 @@
+<link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_url}>/modules/tadtools/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_url}>/modules/tadtools/bootstrap/css/bootstrap-responsive.css" />
+
+<div class='row-fluid'>
+	
+
+	<{if $file_mode=='picture'}>
+	<{*  圖檔 *}>
+	<div class='span12 text-center'> <img src='<{$file}>'></div><div><{  $all.memo}></div>
+	<{/if}>
+
+	<{if $file_mode=='scratch'}>
+	<{*  scratch *}>
+	<div class='span12 text-center'> 
+		<div id="flashContent" ></div>
+		<div><{  $all.memo}></div>
+		<script type="text/javascript" src="<{$xoops_url}>/modules/es_exam/swfobject.js"></script>
+		<script type="text/javascript">   
+		var flashvars = {
+		  project: "<{$file}>" ,
+		  autostart: "false"
+		};
+
+		var params = {
+ 
+		  allowScriptAccess: "always",
+		  allowFullScreen: "true",
+		  wmode: "window",
+		  menu:"‘false"
+		};
+		var attributes = {};
+		swfobject.embedSWF("<{$xoops_url}>/modules/es_exam/images/Scratch.swf", "flashContent", "482", "387", "10.2.0","<{$xoops_url}>/modules/es_exam/images/expressInstall.swf", flashvars, params, attributes);
+		</script>		
+	</div>
+	<{/if}>
+
+	<{if $file_mode=='flash'}>
+	<{*  scratch *}>
+	<div class='span12 text-center'> 
+		<div id="flashContent" ></div>
+		<{  $all.memo}></div>
+		<script type="text/javascript" src="<{$xoops_url}>/modules/es_exam/swfobject.js"></script>
+		<script type="text/javascript">   
+		var flashvars = {
+ 		  autostart: "false"
+		};
+
+		var params = {
+
+		  allowScriptAccess: "always",
+		  allowFullScreen: "true",
+		  wmode: "window",
+		  menu:"‘false"
+		};
+		var attributes = {};
+		swfobject.embedSWF("<{$file}>", "flashContent", "482", "387", "10.2.0","<{$xoops_url}>/modules/es_exam/images/expressInstall.swf", flashvars, params, attributes);
+		</script>		
+	</div>
+	<{/if}>	
+
+	
+</div>

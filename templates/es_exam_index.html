@@ -6,7 +6,7 @@
 <{if $now_op=="list_tad_assignment_menu"}>
   <h2><{$smarty.const._MD_TADASSIGN_SELECT_ASSN}></h2>
   <{if $all}>
-  <form action="index.php" method="post" id="myForm" enctype="multipart/form-data">
+  <form action="index.php" method="post" id="myForm" enctype="multipart/form-data" onsubmit="return check_1() ;">
     <div class="row-fluid">
       <select   id="assn"  name="assn" class="span6">
         <option value=''><{$smarty.const._MD_TADASSIGN_SELECT_ASSN}></option>
@@ -21,7 +21,7 @@
     <div class="row-fluid">      
       上傳密碼：<input  type="password"  id="passwd"  name="passwd" class="span3"   placeholder="這次作業的登入密碼">
       <input type="hidden" name="op" value="login_es_exam">
-      <button type="submit" class="btn btn-primary" onclick="return check_1() ;">登入</button>
+      <button type="submit" class="btn btn-primary" >登入</button>
     </div>
   </form>    
 	<script> 

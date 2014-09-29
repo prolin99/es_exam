@@ -13,11 +13,13 @@
 		<span class="span3">
 		<input class="span12 comment" type="text" onfocus="this.select()"   name="comment[<{$all.asfsn}>]"  id="comment_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>" value="<{$all.comment}>" placeholder='評語'  title="評語"></input>    
 		</span>
-      		<span class="span2"><div id="slider"  class="slider " data_ref="<{$all.asfsn}>"  title="拉動指定成績"   style="background: #CCC"></div>	</span>
+      		<span class="span2"><div id="slider"  class="slider " data_ref="<{$all.asfsn}>"  title="拉動指定成績，左右鍵微調"   style="background: #CCC"></div>	</span>
 
  		<script>$( "#slider" ).slider({value: <{$all.score_bar}>, min: 0,max: <{$bar_max}>}) </script>
-      		<input class="span1 score"  type="text" onfocus="this.select()"   name="score[<{$all.asfsn}>]"  id="score_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>"  
-      		<{if ($all.score)}> value="<{$all.score}>" <{/if}> tabindex="1" placeholder='成績' title="可直接輸入整數成績">		
+		<span class="span1">	
+      		<input   onfocus="this.select()"   class="score" name="score[<{$all.asfsn}>]"   id="score_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>"  
+      		<{if ($all.score)}> value="<{$all.score}>" <{/if}> tabindex="1" placeholder='成績' title="可直接輸入整數成績" >
+      		</span>
 	  </span>
 	</span>
  	
@@ -80,6 +82,15 @@
 
 <script  >
 
+ $(function() {
+    var spinner = $( "#score_<{$all.asfsn}>" ).spinner({ 	min: 0, max: 100     }) ;	
+
+  });
+ 
+ $( "#score_<{$all.asfsn}>" ).on("spinstop", function(){
+   $(this).change();
+});
+ 
   //分數拉條
   $(function() {
 		$( ".slider" ).slider({ 
@@ -109,6 +120,7 @@ $(function() {
 	$(".score").change(function(){
 		var v_id = $( this ).attr('data_ref') ;
 		var get_score = $( this ).val();
+		//alert(get_score) ;
 		get_score = get_score.trim() ;
     	 	if (get_score ) {
     	   		if (  (get_score > 100) | (get_score<0)  | (! isInteger(get_score) ) ) {		

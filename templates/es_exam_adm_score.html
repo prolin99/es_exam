@@ -111,8 +111,8 @@
 
       </td>
       <td>
-      	<!----     拉bar            ---->
-      	<div id="slider_<{$all.asfsn}>"  class="span2 slider" data_ref="<{$all.asfsn}>" style="background: #CCC" ></div>
+      	<{*----     拉bar            ---- *}>
+      	<div id="slider_<{$all.asfsn}>"  class="span2 slider" data_ref="<{$all.asfsn}>" title="拉動指定成績，左右鍵微調"  style="background: #CCC" ></div>
  	<script>$( "#slider_<{$all.asfsn}>" ).slider({value: <{$all.score_bar}>, min: 0,max: <{$bar_max}>}) ;
        </script>
       		<input class="span1 score" type="text" onfocus="this.select()"   name="score[<{$all.asfsn}>]"  id="score_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>"  

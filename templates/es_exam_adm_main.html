@@ -1,9 +1,9 @@
 <link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_url}>/modules/tadtools/bootstrap/css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_url}>/modules/tadtools/bootstrap/css/bootstrap-responsive.css" />
 <link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_url}>/modules/tadtools/css/xoops_adm.css" />
- 
+<link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_url}>/modules/es_exam/css/toggle-switch.css" /> 
 <h2><{$smarty.const._MA_TADASSIGN_ASSN_LIST}></h2>
-
+ 
 <script>
 function delete_tad_assignment_func(assn){
   var sure = window.confirm("<{$smarty.const._TAD_DEL_CONFIRM}>");
@@ -11,6 +11,10 @@ function delete_tad_assignment_func(assn){
   location.href="main.php?op=delete_tad_assignment&assn=" + assn;
 }
 </script>
+
+
+
+
 
 <table class="table table-striped table-bordered table-hover">
 <tr>
@@ -36,7 +40,26 @@ function delete_tad_assignment_func(assn){
     <td>
  
     <div class="span2">
-    
+
+        <div class="row">
+ 
+            <label class="switch-light progress" onclick="">
+              <input type="checkbox">
+              <span>
+                <span aria-label="Off" title="Off">O</span>
+                <span aria-label="On" title="On">I</span>
+              </span>
+
+              <a class="progress-bar bar-success"></a>
+            </label>
+ 
+        </div>
+
+
+ 
+ 
+  
+
       <label class="radio inline">
         <input type="radio" class="upload"  name="upload_mode[<{$as.assn}>]" id="upload_<{$as.assn}>" value="1" <{if $as.upload_mode=='1'}>checked<{/if}>>開啟
       </label>
@@ -73,6 +96,7 @@ function delete_tad_assignment_func(assn){
 </table>
 
 <script type="text/javascript">
+ 
 //密碼更改
 $(function() {
 	$(".pwd").change(function(){

@@ -1,7 +1,11 @@
 <link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_url}>/modules/tadtools/bootstrap/css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_url}>/modules/tadtools/bootstrap/css/bootstrap-responsive.css" />
 <link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_url}>/modules/tadtools/css/xoops_adm.css" />
-<link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_url}>/modules/es_exam/css/toggle-switch.css" /> 
+ 
+ 
+<link href="../css/bootstrap-switch.css" rel="stylesheet">
+<script src="../bootstrap-switch.js"></script>
+
 <h2><{$smarty.const._MA_TADASSIGN_ASSN_LIST}></h2>
  
 <script>
@@ -39,46 +43,16 @@ function delete_tad_assignment_func(assn){
     
     <td>
  
-    <div class="span2">
-
-        <div class="row">
- 
-            <label class="switch-light progress" onclick="">
-              <input type="checkbox">
-              <span>
-                <span aria-label="Off" title="Off">O</span>
-                <span aria-label="On" title="On">I</span>
-              </span>
-
-              <a class="progress-bar bar-success"></a>
-            </label>
- 
-        </div>
-
-
- 
- 
-  
-
-      <label class="radio inline">
-        <input type="radio" class="upload"  name="upload_mode[<{$as.assn}>]" id="upload_<{$as.assn}>" value="1" <{if $as.upload_mode=='1'}>checked<{/if}>>開啟
-      </label>
-      <label class="radio inline">
-        <input type="radio"  class="upload"  name="upload_mode[<{$as.assn}>]" id="upload_<{$as.assn}>"  value="0" <{if $as.upload_mode=='0'}>checked<{/if}>>關畢
-      </label>
-    </div>    
+      <div class="span1">
+        <input type="checkbox" name="my-checkbox"  class="upload" <{if $as.upload_mode=='1'}>checked<{/if}>  id="upload_<{$as.assn}>">
+        </div>    
     </td>
     
     <td> 
-    <div class="span2">
-      <label class="radio inline">
-        <input type="radio"  class="show" name="open_show[<{$as.assn}>]" id="show_<{$as.assn}>" value="1" <{if $as.open_show=='1'}>checked<{/if}>>開放
-      </label>
+      <div class="span1">
+        <input type="checkbox" name="my-checkbox"  class="open_show" <{if $as.open_show=='1'}>checked<{/if}>  id="openshow_<{$as.assn}>">
+        </div>    
 
-      <label class="radio inline">
-        <input type="radio"  class="show" name="open_show[<{$as.assn}>]" id="show_<{$as.assn}>" value="0" <{if $as.open_show=='0'}>checked<{/if}>>不開放
-      </label>
-    </div>    
     </td>
     
     <td>
@@ -96,9 +70,25 @@ function delete_tad_assignment_func(assn){
 </table>
 
 <script type="text/javascript">
- 
+ $("[name='my-checkbox']").bootstrapSwitch();
+
+//上傳 展示 切換  http://www.bootstrap-switch.org/
+$('input[name="my-checkbox"]').on('switchChange.bootstrapSwitch', function(event, state) {
+
+    var tid = $( this).attr('id') ;  
+    /*
+    //alert (tid + state) ;
+    console.log(tid); // DOM element
+    console.log(this); // DOM element
+    console.log(event); // jQuery event
+    console.log(state); // true | false
+    */
+    setdata( 'upload' ,tid , state ) ;
+});
+
 //密碼更改
 $(function() {
+
 	$(".pwd").change(function(){
 		var tid = $( this ).attr('id') ;
 		var pwd = $( this ).val();
@@ -106,24 +96,8 @@ $(function() {
 	});
 });
 
-//上傳更改 
-$(function() {
-	$(".upload").click(function(){
-		var tid = $( this ).attr('id') ;
-		var my_val = $( this ).val();
- 		setdata( 'upload' ,tid , my_val ) ;
-	});
-});
-
-//展示更改 
-$(function() {
-	$(".show").click(function(){
-		var tid = $( this ).attr('id') ;
-		var my_val = $( this ).val();
- 		setdata( 'show' ,tid , my_val ) ;
-	});
-});
-
+ 
+ 
 
 $(function() {
 	$(".pwd").focus(function(){
@@ -134,12 +108,13 @@ $(function() {
  function setdata(do_mode ,tid , sdata )  {
  
  	var splits = tid.split('_') ;
+      var id_mod = splits[0] ;
  	var iid= splits[1] ;
  	//alert (sdata) ;
  	$.ajax({
  		url: 'ajax_set_exam_data.php',
  		type: 'GET',
- 		data: {do: do_mode , id:iid  , setdata :sdata   },
+ 		data: {do: do_mode , id:iid , id_mode: id_mod  , setdata :sdata   },
  	})
  	.done(function(data) {
  		console.log("success");

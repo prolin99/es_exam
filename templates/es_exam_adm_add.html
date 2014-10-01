@@ -6,6 +6,10 @@
 <script type="text/javascript" src="<{$xoops_url}>/modules/tadtools/My97DatePicker/WdatePicker.js"></script>
 <form action="add.php" method="post" id="myForm" name="myForm" enctype="multipart/form-data">
 
+<link href="../css/bootstrap-switch.css" rel="stylesheet">
+<script src="../bootstrap-switch.js"></script>
+
+
 <{if (!$assn)}>
   <div class="row-fluid">
     <div class="span2">選擇班級(可多選)</div>
@@ -47,13 +51,11 @@
   <div class="row-fluid">
     <div class="span2">開放上傳</div>
     <div class="span8">
-      <label class="radio inline">
-        <input type="radio" name="upload_mode" id="upload_mode1" value="1" <{if $upload_mode=='1'}>checked<{/if}>>可以上傳
-      </label>
+        <div class="span1">
+        <input type="checkbox" name="upload_mode"  class="upload" value=1  <{if $upload_mode=='1'}>checked<{/if}>  id="upload_mode">
+        </div>    
 
-      <label class="radio inline">
-        <input type="radio" name="upload_mode" id="upload_mode0" value="0" <{if $upload_mode=='0'}>checked<{/if}>>關畢上傳
-      </label>
+
     </div>
   </div>
   
@@ -61,13 +63,10 @@
   <div class="row-fluid">
     <div class="span2"><{$smarty.const._MA_TADASSIGN_SHOW}></div>
     <div class="span8">
-      <label class="radio inline">
-        <input type="radio" name="open_show" id="show1" value="1" <{if $open_show=='1'}>checked<{/if}>><{$smarty.const._MA_TADASSIGN_SHOW_ASSIGNMENT_YES}>
-      </label>
-
-      <label class="radio inline">
-        <input type="radio" name="open_show" id="show0" value="0" <{if $open_show=='0'}>checked<{/if}>><{$smarty.const._MA_TADASSIGN_SHOW_ASSIGNMENT_NO}>
-      </label>
+       <div class="span1">
+        <input type="checkbox" name="open_show"  class="upload"   value=1  <{if $open_show=='1'}>checked<{/if}>  id="upload_mode">
+        </div>  
+ 
     </div>
   </div>
 
@@ -78,3 +77,7 @@
     <button type="submit" class="btn btn-primary"><{$smarty.const._TAD_SAVE}></button>
   </div>
 </form>
+<script type="text/javascript">
+ $("[name='upload_mode']").bootstrapSwitch();
+  $("[name='open_show']").bootstrapSwitch();
+ </script>

@@ -17,8 +17,8 @@
 
  		<script>$( "#slider" ).slider({value: <{$all.score_bar}>, min: 0,max: <{$bar_max}>}) </script>
 		<span class="span1">	
-      		<input   onfocus="this.select()"   class="score" name="score[<{$all.asfsn}>]"   id="score_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>"  
-      		<{if ($all.score)}> value="<{$all.score}>" <{/if}> tabindex="1" placeholder='成績' title="可直接輸入整數成績" >
+      		<input   onfocus="this.select()"   type="text"  class="score span12" name="score[<{$all.asfsn}>]"   id="score_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>"  
+      		<{if ($all.score)}> value="<{$all.score}>" <{/if}> tabindex="1" placeholder='成績' title="整數成績,enter下一位，pageUp 前 ,PageDown 後" >
       		</span>
 	  </span>
 	</span>
@@ -81,16 +81,16 @@
 </div>
 
 <script  >
-
+/*
  $(function() {
     var spinner = $( "#score_<{$all.asfsn}>" ).spinner({ 	min: 0, max: 100     }) ;	
 
   });
- 
+
  $( "#score_<{$all.asfsn}>" ).on("spinstop", function(){
    $(this).change();
 });
- 
+ */
   //分數拉條
   $(function() {
 		$( ".slider" ).slider({ 
@@ -117,6 +117,18 @@
 
 //成績直接修改
 $(function() {
+	$(".score").keydown(function(event){
+		//alert( event.which );	
+		if ( event.which ==34 ||  event.which ==13 ) {
+			$(this).change() ;
+ 			parent.$.fancybox.next() ;
+		}
+		if ( event.which ==33) {
+			$(this).change() ;
+ 			parent.$.fancybox.prev() ;
+		}		
+	});
+
 	$(".score").change(function(){
 		var v_id = $( this ).attr('data_ref') ;
 		var get_score = $( this ).val();
@@ -132,6 +144,8 @@ $(function() {
  		}
  		save_score( 'score' ,v_id ,  get_score ) ;		
 	});
+
+	
 });
 
 function isInteger(value) {

@@ -31,6 +31,10 @@ function tad_assignment_form($assn=""){
   $op=(empty($assn))?"insert_tad_assignment":"update_tad_assignment";
 
 
+      //取得中文班名
+  $class_list_c = es_class_name_list_c('long')  ;
+    
+  $xoopsTpl->assign('class_list_c',$class_list_c);
   $xoopsTpl->assign('assn',$assn);
   $xoopsTpl->assign('title',$title);
   $xoopsTpl->assign('note',$note);

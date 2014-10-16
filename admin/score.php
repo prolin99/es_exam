@@ -12,8 +12,12 @@ $_GET['assn'] = intval($_GET['assn']) ;
 /*-----------執行動作判斷區----------*/
 	//列出教師指定各項作業，作為選單
 
-	$exam_list=get_exam_list('teacher') ; 
-  	$xoopsTpl->assign('exam_list' , $exam_list);
+$exam_list=get_exam_list('teacher') ; 
+//取得中文班名
+$class_list_c = es_class_name_list_c('long')  ;
+    
+$xoopsTpl->assign('class_list_c',$class_list_c);
+$xoopsTpl->assign('exam_list' , $exam_list);
   	
 if ($_GET['assn'])  {
 	

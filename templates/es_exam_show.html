@@ -10,7 +10,7 @@
     <option value=''><{$smarty.const._MD_TADASSIGN_SELECT_ASSN}></option>
     <{if $select_assn_all}>
       <{foreach from=$select_assn_all item=data}>
-        <option value='<{$data.assn}>' <{if $assn==$data.assn}>selected<{/if}>> <{$data.class_id}> 班 -- <{$data.title}> (<{$data.uid_name}>) </option>
+        <option value='<{$data.assn}>' <{if $assn==$data.assn}>selected<{/if}>> <{$class_list_c[$data.class_id]}>  -- <{$data.title}> (<{$data.uid_name}>) </option>
       <{/foreach}>
     <{/if}>
   </select>

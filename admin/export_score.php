@@ -108,6 +108,9 @@ if  ($_GET['op']) {
 		$objPHPExcel->setActiveSheetIndex(0)->setCellValue($col_str ,$i) ;
       	}	
  */
+        //取得中文班名
+        $class_list_c = es_class_name_list_c('long')  ;
+
         //資料區
         foreach ( $stud_data  as $class_id => $class_list )  {
 		
@@ -134,7 +137,7 @@ if  ($_GET['op']) {
 			$stud_order++ ;
 			
 			$objPHPExcel->setActiveSheetIndex(0)
-				->setCellValue('A'.$row,$stud['class_id'])
+				->setCellValue('A'.$row,$class_list_c[$stud['class_id']])
 				->setCellValue('B'.$row , $stud['class_sit_num'])
 				->setCellValue('C'.$row ,$stud['name']) ;
 			$stud_id= $stud['stud_id']  ;
@@ -163,7 +166,7 @@ if  ($_GET['op']) {
   
 	} 	
 
- 
+ 	ob_clean() ;
 	header('Content-Type: application/vnd.ms-excel');
 	header('Content-Disposition: attachment;filename=score'.date("mdHi").'.xls' );
 	header('Cache-Control: max-age=0');

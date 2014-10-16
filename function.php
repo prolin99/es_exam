@@ -5,6 +5,14 @@ if(!file_exists(XOOPS_ROOT_PATH."/modules/tadtools/tad_function.php")){
 }
 include_once XOOPS_ROOT_PATH."/modules/tadtools/tad_function.php";
 
+//需要單位名稱模組(e_stud_import)1.9
+if(!file_exists(XOOPS_ROOT_PATH."/modules/e_stud_import/es_comm_function.php")){
+ redirect_header("http://campus-xoops.tn.edu.tw/modules/tad_modules/index.php?module_sn=33",3, '需要單位名稱模組(e_stud_import)1.9以上');
+}
+include_once XOOPS_ROOT_PATH."/modules/e_stud_import/es_comm_function.php";
+
+
+//--------------------------------------------------------------
 define("_TAD_ASSIGNMENT_UPLOAD_DIR",XOOPS_ROOT_PATH."/uploads/es_exam/");
 define("_TAD_ASSIGNMENT_UPLOAD_URL",XOOPS_URL."/uploads/es_exam/");
 

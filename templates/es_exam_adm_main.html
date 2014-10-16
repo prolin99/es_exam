@@ -35,7 +35,7 @@ function delete_tad_assignment_func(assn){
 
 <{foreach from=$all_data item=as}>
   <tr>
-    <td><{$as.class_id}></td>
+    <td><{$class_list_c[$as.class_id]}></td>
     <td><{$as.assn}></td>
     <td><a href="../show.php?assn=<{$as.assn}>"><{$as.title}></a></td>
     <td><input id="pwd_<{$as.assn}>" class="span2 pwd"  value="<{$as.passwd}>" title="可以直接修改"></td>

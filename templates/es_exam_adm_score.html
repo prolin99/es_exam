@@ -59,7 +59,7 @@
     <option value=''><{$smarty.const._MD_TADASSIGN_SELECT_ASSN}></option>
 
     <{foreach from=$exam_list  item=exam_list}>
-        <option value='<{$exam_list.assn}>' <{if $assn==$exam_list.assn}>selected<{/if}>> <{$exam_list.class_id}> 班 -- <{$exam_list.title}> (<{$exam_list.uid_name}>) </option>
+        <option value='<{$exam_list.assn}>' <{if $assn==$exam_list.assn}>selected<{/if}>> <{$class_list_c[$exam_list.class_id]}>  -- <{$exam_list.title}> (<{$exam_list.uid_name}>) </option>
       <{/foreach}>
  
   </select>
@@ -69,7 +69,7 @@
 
 <{if ($assn) }>
   <div class="row-fluid">
-    <div class="span4"><h2><{$data.exam.class_id}>班   <{$data.exam.title}></h2></div>
+    <div class="span4"><h2><{$class_list_c[$data.exam.class_id]}>   <{$data.exam.title}></h2></div>
     <div class="span4">
     <a class="btn btn-mono btn-success" href="export_score.php?op=class&class=<{$data.exam.class_id}>">本班學期成績</a>
     <a class="btn btn-mono btn-success" href="export_score.php?op=all">全部任教班學期成績</a>

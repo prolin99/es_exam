@@ -5,14 +5,20 @@ $xoopsOption['template_main'] = "es_exam_index.html";
 include_once XOOPS_ROOT_PATH."/header.php";
 /*-----------function區--------------*/
 
+
+
 //列出所有tad_assignment資料
 function list_tad_assignment_menu(){
   global $xoopsDB,$xoopsModule,$xoopsTpl  ;
   $now=xoops_getUserTimestamp(time());
- 
+
+  //取得中文班名
+  $class_list_c = es_class_name_list_c('long')  ;
+
  //出現可以上傳的作業
   $data = get_exam_list('upload') ;
   
+  $xoopsTpl->assign('class_list_c',$class_list_c);
   $xoopsTpl->assign('all',$data);
   $xoopsTpl->assign('assn', intval($_GET['assn']));
   $xoopsTpl->assign('now_op','list_tad_assignment_menu');
@@ -50,12 +56,15 @@ function tad_assignment_file_form($assn=""){
     exit;
   }
   
+
+    //取得中文班名
+  $class_list_c = es_class_name_list_c('long')  ;
  
   
   //可上傳的副檔
   $j_ext_file  = str_replace(',', '|', $ext_file);
  
-  
+  $xoopsTpl->assign('class_list_c',$class_list_c);
   $xoopsTpl->assign('note',nl2br($note));
   $xoopsTpl->assign('sit_id',$_POST['sit_id']);
   $xoopsTpl->assign('stud_data',$stud_data );

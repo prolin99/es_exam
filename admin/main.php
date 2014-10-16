@@ -23,8 +23,8 @@ function list_tad_assignment($show_function=1 ,$semester =1  ){
 	
 	//只列出自已建立的
 	$my_uid = $xoopsUser->uid() ;
-		if (! in_array(1,$xoopsUser->groups())   )		 
- 			$and_my_sql = "  and   uid='$my_uid' 	" ; 
+	if (! in_array(1,$xoopsUser->groups())   )		 
+ 		$and_my_sql = "  and   uid='$my_uid' 	" ; 
  
 	
 	$sql = "select * from ".$xoopsDB->prefix("exam")." where 1  $and_my_sql  $and_date_sql  order by   assn desc";
@@ -43,26 +43,27 @@ function list_tad_assignment($show_function=1 ,$semester =1  ){
 	$data="";
   	$i=0;
 	while($all=$xoopsDB->fetchArray($result)){
-	  foreach($all as $k=>$v){
+	  	foreach($all as $k=>$v){
 			$$k=$v;
 		}
 
 		$uid_name=XoopsUser::getUnameFromId($uid,1);
 		if(empty($uid_name))$uid_name=XoopsUser::getUnameFromId($uid,0);
  
-
-
-    $all_data[$i]['assn']=$assn;
-    $all_data[$i]['title']=$title;
-    $all_data[$i]['passwd']=$passwd;
-    $all_data[$i]['uid_name']=$uid_name;
-    $all_data[$i]['open_show']=$open_show;
-    $all_data[$i]['upload_mode']=$upload_mode;
-    $all_data[$i]['class_id']=$class_id;
-    $i++;
+		$all_data[$i]['assn']=$assn;
+		$all_data[$i]['title']=$title;
+		$all_data[$i]['passwd']=$passwd;
+		$all_data[$i]['uid_name']=$uid_name;
+		$all_data[$i]['open_show']=$open_show;
+		$all_data[$i]['upload_mode']=$upload_mode;
+		$all_data[$i]['class_id']=$class_id;
+		$i++;
 
 	}
-
+    	//取得中文班名
+  	$class_list_c = es_class_name_list_c('long')  ;
+  	
+  	$xoopsTpl->assign('class_list_c',$class_list_c);
 	$xoopsTpl->assign('all_data' , $all_data);
 	$xoopsTpl->assign('bar' , $bar);
 

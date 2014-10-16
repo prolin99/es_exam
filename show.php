@@ -9,9 +9,12 @@ include_once XOOPS_ROOT_PATH."/header.php";
 function list_tad_assignment_menu(){
   global $xoopsDB,$xoopsModule,$isAdmin,$xoopsTpl;
 
+    //取得中文班名
+  $class_list_c = es_class_name_list_c('long')  ;
 
   $alldata=get_exam_list('') ;
   
+  $xoopsTpl->assign('class_list_c',$class_list_c);
   $xoopsTpl->assign('select_assn_all',$alldata);
 }
 

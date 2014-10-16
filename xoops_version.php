@@ -3,11 +3,11 @@ $modversion = array();
 
 //---模組基本資訊---//
 $modversion['name'] = _MI_ESEXAM_NAME;
-$modversion['version'] = 0.42;
+$modversion['version'] = 0.5;
 $modversion['description'] = _MI_ESEXAM_DESC;
 $modversion['author'] = _MI_ESEXAM_AUTHOR;
 $modversion['credits'] = _MI_ESEXAM_CREDITS;
-$modversion['help'] = 'page=help';
+//$modversion['help'] = 'page=help';
 $modversion['license'] = 'GNU GPL 2.0';
 $modversion['license_url'] = 'www.gnu.org/licenses/gpl-2.0.html/';
 $modversion['image'] = "images/logo.png";

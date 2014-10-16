@@ -16,7 +16,6 @@
   
   <script src="../jquery.ya-enter2tab.js"></script>
 
-
 <style type="text/css">
   .fancybox-nav {
      width: 20%;
@@ -119,7 +118,8 @@
  	<script>$( "#slider_<{$all.asfsn}>" ).slider({value: <{$all.score_bar}>, min: 0,max: <{$bar_max}>}) ;
        </script>
       		<input class="span1 score" type="text" onfocus="this.select()"   name="score[<{$all.asfsn}>]"  id="score_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>"  
-      		<{if ($all.score)}> value="<{$all.score}>" <{/if}> tabindex="<{$ti++}>" title="可直接輸入整數成績">
+      		<{if ($all.score)}> value="<{$all.score}>" <{/if}> tabindex="<{$ti++}>" title="整數成績,Enter 跳下一位">
+             <i  class=" icon-question-sign" id="info_<{$all.asfsn}>" title='分數低於基本分' <{if ( ($all.score >= $base_score) or (!$all.score) )}>  style="display:none"  <{/if}>></i> 
       	</td>
       <td>
         <a href="javascript:delete_func(<{$all.asfsn}>,<{$all.stud_id}>);" class="btn btn-mini btn-danger"><{$smarty.const._TAD_DEL}></a>
@@ -138,8 +138,10 @@
   <{/if}>
    <{/foreach}>
 </div>   
-<script  >
-    //enter 2 tab 
+
+<script type='text/javascript'>
+
+    //enter 2 tab  在 #tscore 內
     $("#tscore").enableEnterToTab({ captureTabKey: true });
 
   //分數拉條
@@ -172,6 +174,7 @@ $(function() {
 		var v_id = $( this ).attr('data_ref') ;
               var get_score = $( this ).val();
               get_score = get_score.trim() ;
+              $("#info_"+v_id).hide() ;
               if (get_score ) {
                   //>100 <0 歸0
                   if (  (get_score > 100) | (get_score<0)  | (! isInteger(get_score) ) ) {    
@@ -179,13 +182,14 @@ $(function() {
                       $(this).val(0) ;
                       $(this).focus() ;
                       get_score= 0 ;
-                  }else {
+                      $("#info_"+v_id).show() ;
+                  }else  {
                     // < 最低份，警告
                     if (  (get_score < parseInt("<{$base_score}>", 10) )  ) {    
                         alert (  '輸入分數低於預設最低分：' + '<{$base_score}>' ) ;
+                        $("#info_"+v_id).show() ;
                     }    
                   }
- 
               }
               save_score( 'score' ,v_id ,  get_score ) ;    
 	});

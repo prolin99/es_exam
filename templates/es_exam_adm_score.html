@@ -119,7 +119,7 @@
        </script>
       		<input class="span1 score" type="text" onfocus="this.select()"   name="score[<{$all.asfsn}>]"  id="score_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>"  
       		<{if ($all.score)}> value="<{$all.score}>" <{/if}> tabindex="<{$ti++}>" title="整數成績,Enter 跳下一位">
-             <i  class=" icon-question-sign" id="info_<{$all.asfsn}>" title='分數低於基本分' <{if ( ($all.score >= $base_score) or (!$all.score) )}>  style="display:none"  <{/if}>></i> 
+             <i  class="icon-warning-sign" id="info_<{$all.asfsn}>" title='分數低於基本分' <{if ( ($all.score >= $base_score) or (!$all.score) )}>  style="display:none"  <{/if}>></i> 
       	</td>
       <td>
         <a href="javascript:delete_func(<{$all.asfsn}>,<{$all.stud_id}>);" class="btn btn-mini btn-danger"><{$smarty.const._TAD_DEL}></a>
@@ -141,7 +141,7 @@
 
 <script type='text/javascript'>
 
-    //enter 2 tab  在 #tscore 內
+    //enter 2 tab  在 #tscore 內 
     $("#tscore").enableEnterToTab({ captureTabKey: true });
 
   //分數拉條

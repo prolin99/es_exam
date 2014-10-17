@@ -118,11 +118,13 @@
 //成績直接修改
 $(function() {
 	$(".score").keydown(function(event){
-		//alert( event.which );	
+ 
+		//pagedown or enter
 		if ( event.which ==34 ||  event.which ==13 ) {
 			$(this).change() ;
- 			parent.$.fancybox.next() ;
+  			parent.$.fancybox.next() ;
 		}
+		//pageUp 
 		if ( event.which ==33) {
 			$(this).change() ;
  			parent.$.fancybox.prev() ;
@@ -135,12 +137,15 @@ $(function() {
 		//alert(get_score) ;
 		get_score = get_score.trim() ;
     	 	if (get_score ) {
+  			if  ( get_score < parseInt("<{$base_score}>", 10)  )
+  				alert (  '分數低於基本分:' +"<{$base_score}>" ) ;    	 		
     	   		if (  (get_score > 100) | (get_score<0)  | (! isInteger(get_score) ) ) {		
     	   			alert (  '輸入分數有問題！') ;
     	   			$(this).val(0) ;
     	   			$(this).focus() ;
     	   			get_score= 0 ;
   			}
+
  		}
  		save_score( 'score' ,v_id ,  get_score ) ;		
 	});

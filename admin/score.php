@@ -21,7 +21,7 @@ $xoopsTpl->assign('exam_list' , $exam_list);
   	
 if ($_GET['assn'])  {
 	
-	//些項作業的資料
+	//這項作業的資料
 	$data['exam']=  get_tad_assignment($_GET['assn']) ;
 	
  	//檢查有無權限
@@ -32,6 +32,13 @@ if ($_GET['assn'])  {
  	//刪除檔案	
 	if ( $_GET['op']=='delete_tad_assignment_file')
 		delete_tad_assignment_file($_GET['asfsn'] ,$_GET['stud_id']  );	
+
+	//填入空作業記錄，以提供成績輸入
+	if ( $_GET['op']=='emp_job') {
+		exam_set_empfile($_GET['assn'],$data['exam']['class_id']) ;
+		redirect_header("score.php?assn=" .$_GET['assn'] ) ;	
+	}	
+
 	
 	//取得作業
 	$data['stud']=  list_exam_file($_GET['assn'] ) ;

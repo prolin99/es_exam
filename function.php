@@ -20,6 +20,26 @@ include_once XOOPS_ROOT_PATH."/modules/e_stud_import/es_comm_function.php";
 define("_TAD_ASSIGNMENT_UPLOAD_DIR",XOOPS_ROOT_PATH."/uploads/es_exam/");
 define("_TAD_ASSIGNMENT_UPLOAD_URL",XOOPS_URL."/uploads/es_exam/");
 
+function exam_set_empfile($assn,$class_id) {
+  global $xoopsDB, $xoopsUser;
+  //班級名單
+  $sql =  "  SELECT  class_sit_num , name ,stud_id  FROM " . $xoopsDB->prefix("e_student") . "   where class_id='{$class_id}'  order by  class_sit_num  " ;
+  $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
+  while($row=$xoopsDB->fetchArray($result)){
+    $class_students[$row['class_sit_num']]=$row  ;
+  }
+  $class_students_r = array_reverse($class_students,TRUE) ;
+
+  foreach  ( $class_students_r  as $sit_id =>$stud ) {
+      $sql = " insert into  " . $xoopsDB->prefix("exam_files") . "  (  `asfsn`, `assn`, `class_id`, `sit_id`, `stud_id`, `file_name`, `file_size`, `file_type`, `show_name`, `memo`, `author`, `score`, `comment`, `up_time` )
+          values ( '0', $assn,  '$class_id' ,$sit_id , '{$stud['stud_id']}' ,'' ,0 , '' ,'' , '外部作業' ,  '{$stud['name']}' ,'0' , '' , now()  ) " ;
+       $result = $xoopsDB->queryF($sql) or die($sql."<br>". mysql_error());   
+  }
+
+
+
+}
+
 
 function  get_exam_list($mode , $order= ' class_id ,  assn desc' , $semester=1) {
 	global $xoopsDB, $xoopsUser;
@@ -67,7 +87,7 @@ function  get_exam_list($mode , $order= ' class_id ,  assn desc' , $semester=1) 
 
 
 //列出所有tad_assignment_file資料
-function list_exam_file($assn=""  , $my_order=' `up_time` DESC '){
+function list_exam_file($assn=""  , $my_order=' `up_time` DESC , sit_id ASC '){
   global $xoopsDB,$xoopsModule,$isAdmin,$xoopsTpl ,$xoopsModuleConfig ;
   
   $base_score= $xoopsModuleConfig['ESEXAM_BASE'] ;

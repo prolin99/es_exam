@@ -42,6 +42,8 @@ if ($_GET['assn'])  {
 	
 	//取得作業
 	$data['stud']=  list_exam_file($_GET['assn'] ) ;
+	//已交作業數
+	$data['count_exams'] = count($data['stud']) ;
 	
  	//判別是否要以框架出現，評分用
   	if  ($data['exam']['ext_file'] ) {

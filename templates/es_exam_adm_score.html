@@ -79,13 +79,18 @@
   <div class="row-fluid">
     <div class="span5"><h3><{$class_list_c[$data.exam.class_id]}>   <{$data.exam.title}></h3></div>
     <div class="span4">
-    <a href="javascript:emp_job(<{$assn}>,<{$data.exam.class_id}>);"  class="btn btn-danger"   title='書面(外部)作品，要建入成績使用。'>外部作品</a>  
+
+    <{if  ( ($data.exam.upload_mode==0) and ($data.count_exams ==0) )}> 
+    <a href="javascript:emp_job(<{$assn}>,<{$data.exam.class_id}>);"  class="btn btn-danger"   title='書面(外部)作品，不上傳不展示，僅在此輸入成績使用。'>外部作品</a>  
+    <{/if}>
     <a class="btn btn-mono btn-success" href="export_score.php?op=class&class=<{$data.exam.class_id}>">本班學期成績</a>
-    <a class="btn btn-mono btn-success" href="export_score.php?op=all">全部任教班學期成績</a>
+    <a class="btn btn-mono btn-success" href="export_score.php?op=all">全部學期成績</a>
     </div>
     <div class="span2 text-right">
       <button class="btn btn-warning" type="button" onClick="window.location.reload()" title='重新載入畫面'>重整</button>
+       <{if    ($data.exam.upload_mode )  }> 
       <a href="../index.php?assn=<{$assn}>" class="btn btn-primary"><{$smarty.const._MD_SAVE}></a>
+      <{/if}>
     </div>
     <div class="span10"><{$data.exam.note}></div>
   </div>

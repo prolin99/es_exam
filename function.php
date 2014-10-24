@@ -111,12 +111,12 @@ function list_exam_file($assn=""  , $my_order=' `up_time` DESC , sit_id ASC '){
   $sql = "select * from ".$xoopsDB->prefix("exam_files")." where assn='{$assn}' order by $my_order  ";
   $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
 
+
   $i=0;
-  $data="";
+
   while($all=$xoopsDB->fetchArray($result)){
 
     foreach($all as $k=>$v){
-	
       $$k=$v;
       $data[$i][$k]=$v;
     }
@@ -142,9 +142,9 @@ function list_exam_file($assn=""  , $my_order=' `up_time` DESC , sit_id ASC '){
     if  ($data[$i]['score_bar']<0) $data[$i]['score_bar']=0 ;
     
     $i++ ;
- } 
-     $xoopsTpl->assign('class_students',$class_students); 
-    return $data ;
+  } 
+  $xoopsTpl->assign('class_students',$class_students); 
+  return $data ;
 }
 
 

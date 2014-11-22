@@ -87,7 +87,7 @@
   </tr>
   <tbody>
   <{foreach from=$file_data item=all}>
-    <{if $all.stud_id}>
+
     <tr>
       <td><{$all.up_time}></td>
       <td>
@@ -98,10 +98,10 @@
          <{else}>      
           <a href='<{$smarty.const._TAD_ASSIGNMENT_UPLOAD_URL}><{$all.assn}>/<{$all.asfsn}>.<{$all.sub_name}>'  class="assignment_fancy_<{$assn}>" rel="group" title="<{$all.sit_id}>.<{$all.author}> (<{$all.up_time}>) <{$all.file_name}>"><{$all.file_name}></a>
           <div><{  $all.memo}></div>
-         <{/if}>
+         <{/if}>  <{*   / $ifram_show *}>
       <{else}>
  		<{$all.file_name}>
-      <{/if}>
+      <{/if}> <{*   / $open_show *}>
       </td>
       
       <td>   <span class="badge badge-info"><{$all.sit_id}></span> <{$all.author}></td>
@@ -111,15 +111,15 @@
 			<div class="bar" style="width: <{$all.bar}>%"></div>
 		</div>
 		<div><{  $all.comment}></div>
-	  <{/if}>	
+	  <{/if}>	 <{*   / $score *}>
 	</td>
       <{if $isAdmin}>
       <td>
         <a href="javascript:delete_func(<{$all.asfsn}>,<{$all.stud_id}>);" class="btn btn-mini btn-danger"><{$smarty.const._TAD_DEL}></a>
       </td>
-      <{/if}>
+      <{/if}>  <{*   / $isAdmin *}>
     </tr>
-    <{/if}>
+
   <{/foreach}>
   </tbody>
   </table>

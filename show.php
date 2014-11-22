@@ -33,7 +33,7 @@ function list_tad_assignment_file($assn=""){
   $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
 
   $i=0;
-  $data="";
+  //$data="";
   //拉bar秀成績，低限
   $bar_base_score= 51 ;
   

@@ -88,7 +88,7 @@ function insert_tad_assignment_file(){
 	$_POST['assn']= intval($_POST['assn']) ;
 	$_POST['class_id']= intval($_POST['class_id']) ;
 	$_POST['sit_id']= intval($_POST['sit_id']) ;
-	$_POST['stud_id']= intval($_POST['stud_id']) ;
+	$_POST['stud_id']= $_POST['stud_id'] ;
 
  
  

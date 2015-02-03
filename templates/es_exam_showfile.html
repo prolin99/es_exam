@@ -27,7 +27,14 @@
 	<{*  圖檔 *}>
 	<div class='span12 text-center' > <img src='<{$file}>'></div><div class='span12 text-center'><{  $all.memo}></div>
 	<{/if}>
+	<{if $file_mode=='pdf'}>
+	<{*  pdf (google doc view ) *}>
+	<div class='span12 text-center' > 
+		<iframe src="http://docs.google.com/gview?url=<{$file}>&embedded=true" style="width:600px; height:500px;" frameborder="0"></iframe>
+	</div><div class='span12 text-center'><{  $all.memo}></div>
+	<{/if}>	
 
+ 
 	<{if $file_mode=='scratch'}>
 	<{*  scratch *}>
 	<div class='span12 text-center'> 

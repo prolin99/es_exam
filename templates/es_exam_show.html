@@ -27,6 +27,13 @@
   <link rel='stylesheet' type='text/css' href='<{$xoops_url}>/modules/tadtools/fancyBox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7' />
   <script type='text/javascript' src='<{$xoops_url}>/modules/tadtools/fancyBox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7'></script>
   <script type='text/javascript' src='<{$xoops_url}>/modules/tadtools/fancyBox/source/helpers/jquery.fancybox-media.js?v=1.0.5'></script>
+
+<style type="text/css">
+  .fancybox-nav {
+     width: 20%;
+   }
+   </style>
+
   <script type='text/javascript'>
     $(document).ready(function(){
       $(".assignment_fancy_<{$assn}>").fancybox({
@@ -36,7 +43,7 @@
       fitToView : true,
       width   : '90%',
       height    : '100%',
-      autoSize  : true,
+       autoSize  : true,
       closeClick  : false
       });
 

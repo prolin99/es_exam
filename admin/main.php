@@ -9,24 +9,24 @@ include_once "../function.php";
 //列出所有tad_assignment資料
 function list_tad_assignment($show_function=1 ,$semester =1  ){
 	global $xoopsDB,$xoopsModule,$xoopsTpl , $xoopsUser ;
-	
+
 	if  ($semester) {
-		//只出現這學期的作業 0201  or 08/01 
-		if  (date("m")>=2 and date("m")<8) 
+		//只出現這學期的作業 0201  or 08/01
+		if  (date("m")>=2 and date("m")<8)
 			$beg_date = date( "Y-m-d", mktime (0,0,0,2 ,1, date("Y")) );
-		elseif  	  (date("m")<2) 
+		elseif  	  (date("m")<2)
 			$beg_date = date( "Y-m-d", mktime (0,0,0,8 ,1, date("Y")-1) );
-		else 
+		else
 			$beg_date = date( "Y-m-d", mktime (0,0,0,8 ,1, date("Y")) );
-		$and_date_sql = "  and   create_date>=$beg_date	" ; 
-	}		
-	
+		$and_date_sql = "  and   create_date>=$beg_date	" ;
+	}
+
 	//只列出自已建立的
 	$my_uid = $xoopsUser->uid() ;
-	if (! in_array(1,$xoopsUser->groups())   )		 
- 		$and_my_sql = "  and   uid='$my_uid' 	" ; 
- 
-	
+	if (! in_array(1,$xoopsUser->groups())   )
+ 		$and_my_sql = "  and   uid='$my_uid' 	" ;
+
+
 	$sql = "select * from ".$xoopsDB->prefix("exam")." where 1  $and_my_sql  $and_date_sql  order by   create_date desc , class_id ASC ";
 
 	//PageBar(資料數, 每頁顯示幾筆資料, 最多顯示幾個頁數選項);
@@ -49,7 +49,7 @@ function list_tad_assignment($show_function=1 ,$semester =1  ){
 
 		$uid_name=XoopsUser::getUnameFromId($uid,1);
 		if(empty($uid_name))$uid_name=XoopsUser::getUnameFromId($uid,0);
- 
+
 		$all_data[$i]['assn']=$assn;
 		$all_data[$i]['title']=$title;
 		$all_data[$i]['passwd']=$passwd;
@@ -62,7 +62,7 @@ function list_tad_assignment($show_function=1 ,$semester =1  ){
 	}
     	//取得中文班名
   	$class_list_c = es_class_name_list_c('long')  ;
-  	
+
   	$xoopsTpl->assign('class_list_c',$class_list_c);
 	$xoopsTpl->assign('all_data' , $all_data);
 	$xoopsTpl->assign('bar' , $bar);

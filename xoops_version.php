@@ -3,7 +3,7 @@ $modversion = array();
 
 //---模組基本資訊---//
 $modversion['name'] = _MI_ESEXAM_NAME;
-$modversion['version'] = 0.8;
+$modversion['version'] = 0.9;
 $modversion['description'] = _MI_ESEXAM_DESC;
 $modversion['author'] = _MI_ESEXAM_AUTHOR;
 $modversion['credits'] = _MI_ESEXAM_CREDITS;
@@ -61,21 +61,36 @@ $modversion['hasMain'] = 1;
 $i=1;
 $modversion['templates'][$i]['file'] = 'es_exam_index.html';
 $modversion['templates'][$i]['description'] = 'es_exam_index.html';
+$i++;
+$modversion['templates'][$i]['file'] = 'es_exam_index_b3.html';
+$modversion['templates'][$i]['description'] = 'es_exam_index.html';
 
 $i++;
 $modversion['templates'][$i]['file'] = 'es_exam_show.html';
+$modversion['templates'][$i]['description'] = 'es_exam_show.html';
+$i++;
+$modversion['templates'][$i]['file'] = 'es_exam_show_b3.html';
 $modversion['templates'][$i]['description'] = 'es_exam_show.html';
 
 $i++;
 $modversion['templates'][$i]['file'] = 'es_exam_adm_main.html';
 $modversion['templates'][$i]['description'] = 'es_exam_adm_main.html';
+$i++;
+$modversion['templates'][$i]['file'] = 'es_exam_adm_main_b3.html';
+$modversion['templates'][$i]['description'] = 'es_exam_adm_main.html';
 
 $i++;
 $modversion['templates'][$i]['file'] = 'es_exam_adm_add.html';
 $modversion['templates'][$i]['description'] = 'es_exam_adm_add.html';
+$i++;
+$modversion['templates'][$i]['file'] = 'es_exam_adm_add_b3.html';
+$modversion['templates'][$i]['description'] = 'es_exam_adm_add.html';
 
 $i++;
 $modversion['templates'][$i]['file'] = 'es_exam_adm_score.html';
+$modversion['templates'][$i]['description'] = 'es_exam_adm_score.html';
+$i++;
+$modversion['templates'][$i]['file'] = 'es_exam_adm_score_b3.html';
 $modversion['templates'][$i]['description'] = 'es_exam_adm_score.html';
 
 $i++;
@@ -99,7 +114,7 @@ $modversion['config'][$i]['title']   = '_MI_ESEXAM_CONFIG_T1';
 $modversion['config'][$i]['description'] = '_MI_ESEXAM_CONFIG_D1';
 $modversion['config'][$i]['formtype']    = 'text';
 $modversion['config'][$i]['valuetype']   = 'int';
-$modversion['config'][$i]['default'] = 70 ;			
+$modversion['config'][$i]['default'] = 70 ;
 
 $i++;
 $modversion['config'][$i]['name'] = 'ESEXAM_LOST';					//未交作品給分
@@ -107,5 +122,5 @@ $modversion['config'][$i]['title']   = '_MI_ESEXAM_CONFIG_T2';
 $modversion['config'][$i]['description'] = '_MI_ESEXAM_CONFIG_D2';
 $modversion['config'][$i]['formtype']    = 'text';
 $modversion['config'][$i]['valuetype']   = 'int';
-$modversion['config'][$i]['default'] = 60 ;		
+$modversion['config'][$i]['default'] = 60 ;
 ?>

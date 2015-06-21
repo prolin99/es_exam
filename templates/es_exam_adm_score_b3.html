@@ -1,6 +1,3 @@
-<link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_url}>/modules/tadtools/bootstrap/css/bootstrap.css" />
-<link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_url}>/modules/tadtools/bootstrap/css/bootstrap-responsive.css" />
-<link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_url}>/modules/tadtools/css/xoops_adm.css" />
 <link rel="stylesheet" href="<{$xoops_url}>/modules/tadtools/jquery/themes/base/jquery-ui.css">
 <script src="<{$xoops_url}>/modules/tadtools/jquery/ui/jquery-ui.js"></script>
 
@@ -65,8 +62,8 @@
     <{if ($exam_list) }>
 <h2>主題</h2>
 
-<div class="row-fluid">
-  <select onChange="window.location.href='score.php?assn='+this.value" class="span6">
+<div class="row">
+  <select onChange="window.location.href='score.php?assn='+this.value" class="col-md-6">
     <option value=''><{$smarty.const._MD_TADASSIGN_SELECT_ASSN}></option>
 
     <{foreach from=$exam_list  item=exam_list}>
@@ -79,9 +76,9 @@
     <{ /if  }>
 
 <{if ($assn) }>
-  <div class="row-fluid">
-    <div class="span5"><h3><{$class_list_c[$data.exam.class_id]}>   <{$data.exam.title}></h3></div>
-    <div class="span4">
+  <div class="row">
+    <div class="col-md-5"><h3><{$class_list_c[$data.exam.class_id]}>   <{$data.exam.title}></h3></div>
+    <div class="col-md-4">
 
     <{if  ( ($data.exam.upload_mode==0) and ($data.count_exams ==0) )}>
     <a href="javascript:emp_job(<{$assn}>,<{$data.exam.class_id}>);"  class="btn btn-danger"   title='書面(外部)作品，不上傳不展示，僅在此輸入成績使用。'>外部作品</a>
@@ -89,13 +86,13 @@
     <a class="btn btn-mono btn-success" href="export_score.php?op=class&class=<{$data.exam.class_id}>">本班學期成績</a>
     <a class="btn btn-mono btn-success" href="export_score.php?op=all">全部學期成績</a>
     </div>
-    <div class="span2 text-right">
+    <div class="col-md-2 text-right">
       <button class="btn btn-warning" type="button" onClick="window.location.reload()" title='重新載入畫面'>重整</button>
        <{if    ($data.exam.upload_mode )  }>
       <a href="../index.php?assn=<{$assn}>" class="btn btn-primary"><{$smarty.const._MD_SAVE}></a>
       <{/if}>
     </div>
-    <div class="span10"><{$data.exam.note}></div>
+    <div class="col-md-10"><{$data.exam.note}></div>
   </div>
 
   <table class="table table-striped table-bordered table-hover" id="tscore">
@@ -125,17 +122,23 @@
       </td>
 
       <td><span class="badge badge-info"><{$all.sit_id}></span> <{$all.author}></td>
-      <td><input class="span2 comment" type="text" onfocus="this.select()"   name="comment[<{$all.asfsn}>]"  id="comment_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>" value="<{$all.comment}>" ></input>
+      <td><input class="form-control comment" type="text" onfocus="this.select()"   name="comment[<{$all.asfsn}>]"  id="comment_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>" value="<{$all.comment}>" ></input>
 
       </td>
       <td>
       	<{*----     拉bar            ---- *}>
-      	<div id="slider_<{$all.asfsn}>"  class="span2 slider" data_ref="<{$all.asfsn}>" title="拉動指定成績，左右鍵微調"  style="background: #CCC" ></div>
- 	<script>$( "#slider_<{$all.asfsn}>" ).slider({value: <{$all.score_bar}>, min: 0,max: <{$bar_max}>}) ;
-       </script>
-      		<input class="span1 score" type="text" onfocus="this.select()"   name="score[<{$all.asfsn}>]"  id="score_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>"
+        <div claa="row">
+        <div class="col-md-6">
+            <div id="slider_<{$all.asfsn}>"  class="slider" data_ref="<{$all.asfsn}>" title="拉動指定成績，左右鍵微調"  style="background: #CCC" ></div>
+ 	        <script>$( "#slider_<{$all.asfsn}>" ).slider({value: <{$all.score_bar}>, min: 0,max: <{$bar_max}>}) ;
+            </script>
+        </div>
+        <div class="col-md-3">
+      		<input class="form-control score" type="text" onfocus="this.select()"   name="score[<{$all.asfsn}>]"  id="score_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>"
       		<{if ($all.score)}> value="<{$all.score}>" <{/if}> tabindex="<{$ti++}>" title="整數成績,Enter 跳下一位">
              <i  class="icon-warning-sign" id="info_<{$all.asfsn}>" title='分數低於基本分' <{if ( ($all.score >= $base_score) or (!$all.score) )}>  style="display:none"  <{/if}>></i>
+        </div>
+    </div>
       	</td>
       <td>
         <a href="javascript:delete_func(<{$all.asfsn}>,<{$all.stud_id}>);" class="btn btn-mini btn-danger"><{$smarty.const._TAD_DEL}></a>
@@ -146,11 +149,11 @@
   <{/if}>
   </tbody>
   </table>
-  <div class="row-fluid">
+  <div class="row">
   <h4>未上傳作業列表</h4>
   <{foreach from=$class_students  key=sit item=stud}>
   <{if (!$stud.in)  }>
- 	<span class="span2"><span class="badge badge-info"><{ $sit }></span> <{ $stud.name }>  </span>
+ 	<span class="col-md-2"><span class="badge badge-info"><{ $sit }></span> <{ $stud.name }>  </span>
   <{/if}>
    <{/foreach}>
 </div>

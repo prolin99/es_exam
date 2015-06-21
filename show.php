@@ -1,7 +1,7 @@
 <?php
 /*-----------引入檔案區--------------*/
 include "header.php";
-$xoopsOption['template_main'] = "es_exam_show.html";
+$xoopsOption['template_main'] = set_bootstrap("es_exam_show.html");
 include_once XOOPS_ROOT_PATH."/header.php";
 
 /*-----------function區--------------*/
@@ -13,7 +13,7 @@ function list_tad_assignment_menu(){
   $class_list_c = es_class_name_list_c('long')  ;
 
   $alldata=get_exam_list('') ;
-  
+
   $xoopsTpl->assign('class_list_c',$class_list_c);
   $xoopsTpl->assign('select_assn_all',$alldata);
 }
@@ -36,7 +36,7 @@ function list_tad_assignment_file($assn=""){
   //$data="";
   //拉bar秀成績，低限
   $bar_base_score= 51 ;
-  
+
   while($all=$xoopsDB->fetchArray($result)){
 
     foreach($all as $k=>$v){
@@ -45,15 +45,15 @@ function list_tad_assignment_file($assn=""){
     }
     //只出現姓
     $data[$i]['author'] =  mb_substr( $data[$i]['author'] ,0,1,'UTF-8') .'同學' ;
-    
-    
+
+
     //分數拉bar 7 等份
-    if  ($data[$i]['score'] ) 
+    if  ($data[$i]['score'] )
     	$data[$i]['bar'] = floor(($data[$i]['score'] - $bar_base_score ) / (( 100-$bar_base_score) /7) )*14+10 ;
-    
+
     //作品說明做處理
     $myts =& MyTextSanitizer::getInstance();
-    $data[$i]['memo'] = $myts->displayTarea($data[$i]['memo'] ) ;    	
+    $data[$i]['memo'] = $myts->displayTarea($data[$i]['memo'] ) ;
 
     $show_name=(empty($show_name))?$author._MD_TADASSIGN_UPLOAD_FILE:$show_name;
     $filepart=explode('.',$file_name);
@@ -70,7 +70,7 @@ function list_tad_assignment_file($assn=""){
  if (preg_match('/(sb|sb2)/i'  ,$ext_file )  )  {
     $ifram_show  =1 ;
     $file_mode = 'scratch' ;
- }    
+ }
 
   //取得作業
   $stud =  list_exam_file($assn) ;
@@ -95,7 +95,7 @@ $asfsn = (!isset($_REQUEST['asfsn']))? "":intval($_REQUEST['asfsn']);
 $stud_id = (!isset($_REQUEST['stud_id']))? "":intval($_REQUEST['stud_id']);
 
 switch($_REQUEST['op']){
- 
+
   //刪除資料
   case "delete_tad_assignment_file":
   delete_tad_assignment_file($asfsn ,$stud_id );
@@ -103,8 +103,8 @@ switch($_REQUEST['op']){
   break;
 
   default:
- 
- 
+
+
   list_tad_assignment_menu();
 
   if(!empty($assn)){

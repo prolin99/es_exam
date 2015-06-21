@@ -4,51 +4,51 @@
 <script src="<{$xoops_url}>/modules/tadtools/jquery/ui/jquery-ui.js"></script>
 <link rel="stylesheet" href="<{$xoops_url}>/modules/tadtools/jquery/themes/base/jquery-ui.css">
 
- 
+
 <div class='row-fluid'>
-	
+
 	<span class="alert alert-success span12"  title='左右邊界處，滑鼠滾軸，可切換上下張。'>
 	  <span class=" span9 offset3">
 
 		<span class="span3">
-		<input class="span12 comment" type="text" onfocus="this.select()"   name="comment[<{$all.asfsn}>]"  id="comment_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>" value="<{$all.comment}>" placeholder='評語'  title="評語"></input>    
+		<input class="span12 comment" type="text" onfocus="this.select()"   name="comment[<{$all.asfsn}>]"  id="comment_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>" value="<{$all.comment}>" placeholder='評語'  title="評語"></input>
 		</span>
       		<span class="span2"><div id="slider"  class="slider " data_ref="<{$all.asfsn}>"  title="拉動指定成績，左右鍵微調"   style="background: #CCC"></div>	</span>
 
  		<script>$( "#slider" ).slider({value: <{$all.score_bar}>, min: 0,max: <{$bar_max}>}) </script>
-		<span class="span1">	
-      		<input   onfocus="this.select()"   type="text"  class="score span12" name="score[<{$all.asfsn}>]"   id="score_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>"  
+		<span class="span1">
+      		<input   onfocus="this.select()"   type="text"  class="score span12" name="score[<{$all.asfsn}>]"   id="score_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>"
       		<{if ($all.score)}> value="<{$all.score}>" <{/if}> tabindex="1" placeholder='成績' title="整數成績,enter下一位，pageUp 前 ,PageDown 後" >
       		</span>
 	  </span>
 	</span>
- 	
+
 	<{if $file_mode=='picture'}>
 	<{*  圖檔 *}>
 	<div class='span12 text-center' > <img src='<{$file}>'></div><div class='span12 text-center'><{  $all.memo}></div>
 	<{/if}>
-	<{if $file_mode=='pdf'}>
+	<{if $file_mode=='google'}>
 	<{*  pdf (google doc view ) *}>
-	<div class='span12 text-center' > 
+	<div class='span12 text-center' >
 		<iframe src="http://docs.google.com/gview?url=<{$file}>&embedded=true" style="width:600px; height:500px;" frameborder="0"></iframe>
 	</div><div class='span12 text-center'><{  $all.memo}></div>
-	<{/if}>	
+	<{/if}>
 
- 
+
 	<{if $file_mode=='scratch'}>
 	<{*  scratch *}>
-	<div class='span12 text-center'> 
+	<div class='span12 text-center'>
 		<div id="flashContent" ></div>
 		<div class='span12 text-center'><{  $all.memo}></div>
 		<script type="text/javascript" src="<{$xoops_url}>/modules/es_exam/swfobject.js"></script>
-		<script type="text/javascript">   
+		<script type="text/javascript">
 		var flashvars = {
 		  project: "<{$file}>" ,
 		  autostart: "false"
 		};
 
 		var params = {
- 
+
 		  allowScriptAccess: "always",
 		  allowFullScreen: "true",
 		  wmode: "window",
@@ -56,17 +56,17 @@
 		};
 		var attributes = {};
 		swfobject.embedSWF("<{$xoops_url}>/modules/es_exam/images/Scratch.swf", "flashContent", "482", "387", "10.2.0","<{$xoops_url}>/modules/es_exam/images/expressInstall.swf", flashvars, params, attributes);
-		</script>		
+		</script>
 	</div>
 	<{/if}>
 
 	<{if $file_mode=='flash'}>
 	<{*  scratch *}>
-	<div class='span12 text-center'> 
+	<div class='span12 text-center'>
 		<div id="flashContent" ></div>
 		<div class='span12 text-center'><{  $all.memo}></div>
 		<script type="text/javascript" src="<{$xoops_url}>/modules/es_exam/swfobject.js"></script>
-		<script type="text/javascript">   
+		<script type="text/javascript">
 		var flashvars = {
  		  autostart: "false"
 		};
@@ -80,17 +80,17 @@
 		};
 		var attributes = {};
 		swfobject.embedSWF("<{$file}>", "flashContent", "482", "387", "10.2.0","<{$xoops_url}>/modules/es_exam/images/expressInstall.swf", flashvars, params, attributes);
-		</script>		
+		</script>
 	</div>
-	<{/if}>	
+	<{/if}>
 
-	
+
 </div>
 
 <script  >
 /*
  $(function() {
-    var spinner = $( "#score_<{$all.asfsn}>" ).spinner({ 	min: 0, max: 100     }) ;	
+    var spinner = $( "#score_<{$all.asfsn}>" ).spinner({ 	min: 0, max: 100     }) ;
 
   });
 
@@ -100,42 +100,42 @@
  */
   //分數拉條
   $(function() {
-		$( ".slider" ).slider({ 
+		$( ".slider" ).slider({
  			slide: function( event, ui ) {
  				var v_id= $(this).attr('data_ref')
 				$( "#score_"+v_id ).val(  parseInt("<{$base_score}>", 10) + ui.value );
 			}});
-	
+
 
 	});
-	
+
  //離開才做動作寫入成績
-  $(function() {	
+  $(function() {
 		$( ".slider" ).focusout(function(){
-		 
+
 			var get_score =parseInt("<{$base_score}>", 10) +$(this).slider( "value" ) ;
 			var v_id= $(this).attr('data_ref') ;
- 
+
  			save_score('score', v_id ,  get_score    ) ;
 			//alert(v_id +  get_score  );
-		})		;	
-		
-	});	
+		})		;
+
+	});
 
 //成績直接修改
 $(function() {
 	$(".score").keydown(function(event){
- 
+
 		//pagedown or enter
 		if ( event.which ==34 ||  event.which ==13 ) {
 			$(this).change() ;
   			parent.$.fancybox.next() ;
 		}
-		//pageUp 
+		//pageUp
 		if ( event.which ==33) {
 			$(this).change() ;
  			parent.$.fancybox.prev() ;
-		}		
+		}
 	});
 
 	$(".score").change(function(){
@@ -145,8 +145,8 @@ $(function() {
 		get_score = get_score.trim() ;
     	 	if (get_score ) {
   			if  ( get_score < parseInt("<{$base_score}>", 10)  )
-  				alert (  '分數低於基本分:' +"<{$base_score}>" ) ;    	 		
-    	   		if (  (get_score > 100) | (get_score<0)  | (! isInteger(get_score) ) ) {		
+  				alert (  '分數低於基本分:' +"<{$base_score}>" ) ;
+    	   		if (  (get_score > 100) | (get_score<0)  | (! isInteger(get_score) ) ) {
     	   			alert (  '輸入分數有問題！') ;
     	   			$(this).val(0) ;
     	   			$(this).focus() ;
@@ -154,17 +154,17 @@ $(function() {
   			}
 
  		}
- 		save_score( 'score' ,v_id ,  get_score ) ;		
+ 		save_score( 'score' ,v_id ,  get_score ) ;
 	});
 
-	
+
 });
 
 function isInteger(value) {
     return (value == parseInt(value));
 }
 
- 
+
 
 
 //評語直接修改
@@ -174,9 +174,9 @@ $(function() {
 		var get_score = $( this ).val();
  		save_score( 'comment' ,v_id ,  get_score ) ;
 	});
-});	
+});
 
- //寫入成績、評語	
+ //寫入成績、評語
  function save_score(do_mode ,tid , sdata )  {
   	$.ajax({
  		url: 'ajax_score_exam_data.php',
@@ -189,12 +189,12 @@ $(function() {
  	})
  	.fail(function() {
  		console.log("error");
- 		
+
  	})
  	.always(function() {
  		console.log("complete");
  	});
-  }		
-  
-  
-  </script>﻿  
+  }
+
+
+  </script>﻿

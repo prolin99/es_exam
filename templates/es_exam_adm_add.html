@@ -15,7 +15,7 @@
     <div class="span2">選擇班級(可多選)</div>
     <div class="span8"><{html_options  multiple="multiple"   size="8" name="class_id[]" options=$class_list_c  }></div>
   </div>
-<{else}>  
+<{else}>
   <div class="row-fluid">
     <div class="span2">班級</div>
     <div class="span8"><{$class_id}></div>
@@ -35,38 +35,38 @@
     <div class="span5"><{$smarty.const._MA_TADASSIGN_PASSWD_DESC}></div>
 
   </div>
-  
+
   <div class="row-fluid">
     <div class="span2">限制上傳的副檔名</div>
     <div class="span3"><input type="text" name="ext_file" class="span12" value="<{$ext_file}>" placeholder="例： jpg,jpeg,png "></div>
     <div class="span5">(以逗號分隔多種副檔案，忽略大小寫，空白表示不限制。)</div>
   </div>
-  
-  
+
+
   <div class="row-fluid">
     <div class="span2"><{$smarty.const._MA_TADASSIGN_NOTE}></div>
     <div class="span8"><textarea name="note"  class="span12" rows=4 placeholder="<{$smarty.const._MA_TADASSIGN_NOTE}>"><{$note}></textarea></div>
   </div>
- 
+
   <div class="row-fluid">
     <div class="span2">開放上傳</div>
     <div class="span8">
         <div class="span1">
         <input type="checkbox" name="upload_mode"  class="upload" value=1  <{if $upload_mode=='1'}>checked<{/if}>  id="upload_mode">
-        </div>    
+        </div>
 
 
     </div>
   </div>
-  
-  
+
+
   <div class="row-fluid">
     <div class="span2"><{$smarty.const._MA_TADASSIGN_SHOW}></div>
     <div class="span8">
        <div class="span1">
         <input type="checkbox" name="open_show"  class="upload"   value=1  <{if $open_show=='1'}>checked<{/if}>  id="upload_mode">
-        </div>  
- 
+        </div>
+
     </div>
   </div>
 

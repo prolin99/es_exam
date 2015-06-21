@@ -1,5 +1,6 @@
 <?php
 /*-----------引入檔案區--------------*/
+
 $xoopsOption['template_main'] = "es_exam_adm_add.html";
 include_once "header.php";
 include_once "../function.php";
@@ -33,7 +34,7 @@ function tad_assignment_form($assn=""){
 
       //取得中文班名
   $class_list_c = es_class_name_list_c('long')  ;
-    
+
   $xoopsTpl->assign('class_list_c',$class_list_c);
   $xoopsTpl->assign('assn',$assn);
   $xoopsTpl->assign('title',$title);
@@ -42,8 +43,8 @@ function tad_assignment_form($assn=""){
   $xoopsTpl->assign('ext_file',$ext_file);
   $xoopsTpl->assign('upload_mode',$upload_mode);
   $xoopsTpl->assign('open_show',$open_show);
-  $xoopsTpl->assign('class_list',$class_list);  
-  $xoopsTpl->assign('class_id',$class_id);    
+  $xoopsTpl->assign('class_list',$class_list);
+  $xoopsTpl->assign('class_id',$class_id);
   $xoopsTpl->assign('op',$op);
 
 }
@@ -52,23 +53,23 @@ function tad_assignment_form($assn=""){
 function insert_tad_assignment(){
   global $xoopsDB,$xoopsUser;
   $uid=$xoopsUser->getVar('uid');
- 
+
     //資料檢查
   $myts =& MyTextSanitizer::getInstance();
   $title = $myts->htmlspecialchars($myts->addSlashes($_POST['title'] )   );
   $passwd = $myts->htmlspecialchars($myts->addSlashes($_POST['passwd'] )   );
   $note = $myts->htmlspecialchars($myts->addSlashes($_POST['note'] )   );
-  $ext_file = $myts->htmlspecialchars($myts->addSlashes($_POST['ext_file'] )   );  
+  $ext_file = $myts->htmlspecialchars($myts->addSlashes($_POST['ext_file'] )   );
   $_POST['open_show'] = intval($_POST['open_show']) ;
   $_POST['upload_mode'] = intval($_POST['upload_mode']) ;
-  
-  foreach ($_POST['class_id'] as $class_id =>$class ) { 
-  	$sql = "insert into ".$xoopsDB->prefix("exam")." (`title`,class_id , `passwd`, `note`,`uid`,`open_show` ,upload_mode , ext_file ,create_date) 
+
+  foreach ($_POST['class_id'] as $class_id =>$class ) {
+  	$sql = "insert into ".$xoopsDB->prefix("exam")." (`title`,class_id , `passwd`, `note`,`uid`,`open_show` ,upload_mode , ext_file ,create_date)
    		values('$title',  '$class'  ,'$passwd','$note','{$uid}','{$_POST['open_show']}' ,'{$_POST['upload_mode']}'  ,'$ext_file' ,now()  )";
-   	//echo $sql .'<br />';	
+   	//echo $sql .'<br />';
   	$xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
   }
- 
+
   //取得最後新增資料的流水編號
   $assn=$xoopsDB->getInsertId();
   return $assn;
@@ -86,13 +87,13 @@ function update_tad_assignment($assn=""){
   $title = $myts->htmlspecialchars($myts->addSlashes($_POST['title'] )   );
   $passwd = $myts->htmlspecialchars($myts->addSlashes($_POST['passwd'] )   );
   $note = $myts->htmlspecialchars($myts->addSlashes($_POST['note'] )   );
-  $ext_file = $myts->htmlspecialchars($myts->addSlashes($_POST['ext_file'] )   );  
+  $ext_file = $myts->htmlspecialchars($myts->addSlashes($_POST['ext_file'] )   );
   echo $_POST['open_show']  ;
   $_POST['open_show'] = intval($_POST['open_show']) ;
   $_POST['upload_mode'] = intval($_POST['upload_mode']) ;
-  
+
   $sql = "update ".$xoopsDB->prefix("exam")." set  `title` = '$title', `passwd` = '$passwd',  `note` = '$note',  `open_show` = '{$_POST['open_show']}'  , upload_mode='{$_POST['upload_mode']}'  , ext_file= '$ext_file'   where assn='$assn'     " ;
- 
+
   $xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
   return $assn;
 }

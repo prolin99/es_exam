@@ -9,6 +9,7 @@ CREATE TABLE `exam` (
   `note` text NOT NULL,
   `uid` int(10) unsigned NOT NULL DEFAULT '0',
   `open_show` enum('1','0') NOT NULL DEFAULT '1',
+  `gview_mode` enum('1','0') NOT NULL DEFAULT '0',
   `create_date` date NOT NULL,
   PRIMARY KEY (`assn`)
 ) ENGINE=MyISAM;

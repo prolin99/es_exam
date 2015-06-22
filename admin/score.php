@@ -25,12 +25,12 @@ if ($_GET['assn'])  {
 	//這項作業的資料
 	$data['exam']=  get_tad_assignment($_GET['assn']) ;
 
- 	//檢查有無權限
+	//檢查有無權限
 	$my_uid = $xoopsUser->uid() ;
-  	if  ( (! in_array(1,$xoopsUser->groups())  ) and ($my_uid <> $data['exam']['uid']) )
- 		redirect_header("main.php",3, "非作業管理人，無法打成績！");
+	if  ( (! in_array(1,$xoopsUser->groups())  ) and ($my_uid <> $data['exam']['uid']) )
+		redirect_header("main.php",3, "非作業管理人，無法打成績！");
 
- 	//刪除檔案
+	//刪除檔案
 	if ( $_GET['op']=='delete_tad_assignment_file')
 		delete_tad_assignment_file($_GET['asfsn'] ,$_GET['stud_id']  );
 
@@ -46,12 +46,16 @@ if ($_GET['assn'])  {
 	//已交作業數
 	$data['count_exams'] = count($data['stud']) ;
 
- 	//判別是否要以框架出現，評分用  或迫以 google view
-  	if  ($data['exam']['ext_file'] ) {
- 		$data['ifram_show'] = preg_match('/(jpg|jpeg|swf|bmp|png|gif|sb|sb2|pdf|doc)/i'  ,$data['exam']['ext_file'] ) ;
- 	}else {
- 		$data['ifram_show']  = 0 ;
- 	}
+	//判別是否要以框架出現，評分用  或迫以 google view
+	if  ($data['exam']['ext_file']   ) {
+		$data['ifram_show'] = preg_match('/(jpg|jpeg|swf|bmp|png|gif|sb|sb2|svg)/i'  ,$data['exam']['ext_file'] ) ;
+	}else {
+		$data['ifram_show']  = 0 ;
+	}
+	//強迫使用 google 來查看
+	if ($data['exam']['gview_mode'] )
+		$data['ifram_show']  = 1 ;
+
 
 
 	//基本分，拉bar 值
@@ -66,6 +70,8 @@ if ($_GET['assn'])  {
 	$xoopsTpl->assign('base_score' , $base_score);
 	$xoopsTpl->assign('bar_max' , $bar_max);
 	$xoopsTpl->assign('score_lost' , $score_lost);
+	$xoopsTpl->assign('gview_mode' , $data['exam']['gview_mode']);
+
 
 }
 

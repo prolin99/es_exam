@@ -16,28 +16,31 @@ include_once "../function.php";
 $ext_file = $_GET['sub_name'] ;
 $asfsn = intval($_GET['asfsn'] );
 $score_bar = intval($_GET['score_bar'] );
+$gv= $_GET['gv'] ;
 
-  //取得作業
-  $data=  list_one_exam($asfsn) ;
-  //作品說明做處理
-  $myts =& MyTextSanitizer::getInstance();
-  $data['memo'] = $myts->displayTarea($data['memo'] ) ;
+//取得作業
+$data=  list_one_exam($asfsn) ;
+//作品說明做處理
+$myts =& MyTextSanitizer::getInstance();
+$data['memo'] = $myts->displayTarea($data['memo'] ) ;
 
 $file = _TAD_ASSIGNMENT_UPLOAD_URL. $data['assn'] . '/' . $data['asfsn'] . '.' . $_GET['sub_name'] ;
 
 
-
+$file_mode='' ;
 if (preg_match('/(jpg|jpeg|bmp|png|gif|svg)/i'  ,$ext_file)  )
     $file_mode='picture' ;
 
 if (preg_match('/(sb|sb2)/i'  ,$ext_file)  )
     $file_mode='scratch' ;
 
-  if (preg_match('/(swf)/i'  ,$ext_file)  )
+if (preg_match('/(swf)/i'  ,$ext_file)  )
     $file_mode='flash' ;
 
-  if (preg_match('/(pdf|doc|docx|xls|xlsx)/i'  ,$ext_file)  )
+//or  (preg_match('/(pdf|doc|docx|xls|xlsx)/i'  ,$ext_file)  )
+if ( $gv   and ($file_mode=='') )
     $file_mode='google' ;
+
 
 /*-----------秀出結果區--------------*/
 

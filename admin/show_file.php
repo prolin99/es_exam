@@ -41,7 +41,7 @@ if (preg_match('/(swf)/i'  ,$ext_file)  )
 if ( $gv   and ($file_mode=='') )
     $file_mode='google' ;
 
-
+ 
 /*-----------秀出結果區--------------*/
 
 $xoopsTpl = new XoopsTpl() ;

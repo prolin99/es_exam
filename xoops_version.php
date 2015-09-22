@@ -3,7 +3,7 @@ $modversion = array();
 
 //---模組基本資訊---//
 $modversion['name'] = _MI_ESEXAM_NAME;
-$modversion['version'] = 1.0;
+$modversion['version'] = 1.1;
 $modversion['description'] = _MI_ESEXAM_DESC;
 $modversion['author'] = _MI_ESEXAM_AUTHOR;
 $modversion['credits'] = _MI_ESEXAM_CREDITS;
@@ -44,7 +44,7 @@ $modversion['system_menu'] = 1;
 //---安裝設定---//
 $modversion['onInstall'] = "include/onInstall.php";
 $modversion['onUninstall'] = "include/onUninstall.php";
-
+$modversion['onUpdate'] = "include/onUpdate.php";
 
 
 //---管理介面設定---//
@@ -54,6 +54,8 @@ $modversion['adminmenu'] = "admin/menu.php";
 
 //---使用者主選單設定---//
 $modversion['hasMain'] = 1;
+
+
 
 
 

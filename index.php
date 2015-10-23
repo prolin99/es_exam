@@ -60,15 +60,19 @@ function tad_assignment_file_form($assn=""){
     //取得中文班名
   $class_list_c = es_class_name_list_c('long')  ;
 
-
-  //可上傳的副檔
-  $j_ext_file  = str_replace(',', '|', $ext_file);
+  if   ($ext_file) {
+      //可上傳的副檔
+      $j_ext_file  = str_replace(',', '|', $ext_file);
+      $accept_filestr  = str_replace(',', ',.', $ext_file);
+      $accept_filestr= " accept='.{$accept_filestr}' " ;
+  }
 
   $xoopsTpl->assign('class_list_c',$class_list_c);
   $xoopsTpl->assign('note',nl2br($note));
   $xoopsTpl->assign('sit_id',$_POST['sit_id']);
   $xoopsTpl->assign('stud_data',$stud_data );
   $xoopsTpl->assign('j_ext_file',$j_ext_file );
+  $xoopsTpl->assign('accept_filestr',$accept_filestr );
 
   $xoopsTpl->assign('now_op','tad_assignment_file_form');
 }

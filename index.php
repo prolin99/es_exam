@@ -152,9 +152,10 @@ function upload_file($asfsn="",$assn=""){
           $xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
       } else {
           $sql = "delete from ".$xoopsDB->prefix("exam_files")." where asfsn='{$asfsn}'";
-          $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
+          $xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
           redirect_header($_SERVER['PHP_SELF'],3, "Error:".$flv_handle->error);
       }
+
    }
 }
 

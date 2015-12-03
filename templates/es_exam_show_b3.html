@@ -76,7 +76,7 @@
   <h5>未繳交作業：</h5>
   <{foreach from=$class_students  key=sit item=stud}>
   <{if (!$stud.in)  }>
-  <span class="col-md-2"><span class="badge badge-info"><{ $sit }></span> <{ $stud.name }></span>
+  <span class="col-md-2 col-xs-4"><span class="badge badge-info"><{ $sit }></span> <{ $stud.name }></span>
   <{/if}>
    <{/foreach}>
    </div>

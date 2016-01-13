@@ -84,42 +84,51 @@
   <{/if}>
   <table class="table table-striped table-bordered table-hover">
   <tr>
-  <th><{$smarty.const._MD_TADASSIGN_UP_TIME}></th>
-  <th><{$smarty.const._MD_TADASSIGN_FILENAME}></th>
-  <th><{$smarty.const._MD_TADASSIGN_AUTHOR}></th>
-  <th>表現</th>
-  <{if $isAdmin}><th><{$smarty.const._TAD_FUNCTION}></th><{/if}>
-  </tr>
+  <th class='col-md-2'><{$smarty.const._MD_TADASSIGN_UP_TIME}></th>
+  <th class='col-md-2'><{$smarty.const._MD_TADASSIGN_FILENAME}></th>
+  <th  class='col-md-2'><{$smarty.const._MD_TADASSIGN_AUTHOR}></th>
+  <th  class='col-md-2'>表現</th>
+  <{if $isAdmin}><th  class='col-md-2'><{$smarty.const._TAD_FUNCTION}></th><{/if}>
+  </tr  >
   <tbody>
   <{foreach from=$file_data item=all}>
 
     <tr>
-      <td><{$all.up_time}></td>
-      <td>
+      <td  class='col-md-2'><{$all.up_time}></td>
+      <td  class='col-md-2' style="word-break : break-all; overflow:hidden; " >
       <{if ($open_show)}>
           <{if  ($ifram_show) }>
-          <a href="show_file.php?assn=<{$all.assn}>&stud_id=<{$all.stud_id}>&asfsn=<{$all.asfsn}>&sub_name=<{$all.sub_name}>&score_bar=<{$all.score_bar}>"  studfile='<{$smarty.const._TAD_ASSIGNMENT_UPLOAD_URL}><{$all.assn}>/<{$all.asfsn}>.<{$all.sub_name}>'  class="assignment_fancy_<{$assn}>" rel="group" title="<{$all.sit_id}>.<{$all.author}> (<{$all.up_time}>) <{$all.file_name}>"  target="show"><{$all.file_name}></a>
-          <div><{  $all.memo}></div>
+          	<div  >
+          	<a href="show_file.php?assn=<{$all.assn}>&stud_id=<{$all.stud_id}>&asfsn=<{$all.asfsn}>&sub_name=<{$all.sub_name}>&score_bar=<{$all.score_bar}>"  studfile='<{$smarty.const._TAD_ASSIGNMENT_UPLOAD_URL}><{$all.assn}>/<{$all.asfsn}>.<{$all.sub_name}>'  class="assignment_fancy_<{$assn}>" rel="group" title="<{$all.sit_id}>.<{$all.author}> (<{$all.up_time}>) <{$all.file_name}>"  target="show"><{$all.file_name |truncate 20}></a>
+          	</div>
+          	<div   ><{  $all.memo}></div>
          <{else}>
-          <a href='<{$smarty.const._TAD_ASSIGNMENT_UPLOAD_URL}><{$all.assn}>/<{$all.asfsn}>.<{$all.sub_name}>'  class="assignment_fancy_<{$assn}>" rel="group" title="<{$all.sit_id}>.<{$all.author}> (<{$all.up_time}>) <{$all.file_name}>"><{$all.file_name}></a>
-          <div><{  $all.memo}></div>
+
+         	 <a href='<{$smarty.const._TAD_ASSIGNMENT_UPLOAD_URL}><{$all.assn}>/<{$all.asfsn}>.<{$all.sub_name}>'  class="assignment_fancy_<{$assn}>" rel="group" title="<{$all.sit_id}>.<{$all.author}> (<{$all.up_time}>) <{$all.file_name}>"><{$all.file_name|truncate 20}></a>
+
+          	<div ><{  $all.memo }></div>
          <{/if}>  <{*   / $ifram_show *}>
       <{else}>
- 		<{$all.file_name}>
+      	<span >
+ 		<{$all.file_name|truncate 20}>
+ 	</span>
       <{/if}> <{*   / $open_show *}>
       </td>
 
-      <td>   <span class="label label-success label-as-badge"><{$all.sit_id}></span> <{$all.author}></td>
-      <td>
-          <{if ($all.score) }>
-      		<div class="progress progress-success progress-striped">
-			<div class="bar" style="width: <{$all.bar}>%"></div>
-		</div>
+      <td  class='col-md-2' >   <span class="label label-success label-as-badge"><{$all.sit_id}></span> <{$all.author}></td>
+      <td  class='col-md-2'>
+      <{if ($all.score) }>
+
+          <div class="progress">
+              <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="<{$all.bar}>" aria-valuemin="0" aria-valuemax="100" style="width: <{$all.bar}>%">
+                  <span class="sr-only">40% Complete (success)</span>
+              </div>
+        </div>
 		<div><{  $all.comment}></div>
 	  <{/if}>	 <{*   / $score *}>
 	</td>
       <{if $isAdmin}>
-      <td>
+      <td  class='col-md-2'>
         <a href="javascript:delete_func(<{$all.asfsn}>,<{$all.stud_id}>);" class="btn btn-mini btn-danger"><{$smarty.const._TAD_DEL}></a>
       </td>
       <{/if}>  <{*   / $isAdmin *}>

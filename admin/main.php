@@ -54,8 +54,10 @@ function list_tad_assignment($show_function=1 ,$semester =1  ){
 		$all_data[$i]['title']=$title;
 		$all_data[$i]['passwd']=$passwd;
 		$all_data[$i]['uid_name']=$uid_name;
+		$all_data[$i]['is_own']=($uid == $my_uid) ;
 		$all_data[$i]['open_show']=$open_show;
 		$all_data[$i]['upload_mode']=$upload_mode;
+		$all_data[$i]['gview_mode']=$gview_mode;
 		$all_data[$i]['class_id']=$class_id;
 		$i++;
 

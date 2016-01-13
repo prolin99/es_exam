@@ -29,6 +29,7 @@ function delete_tad_assignment_func(assn){
   <th><{$smarty.const._MA_TADASSIGN_UID}></th>
   <th>是否上傳</th>
   <th><{$smarty.const._MA_TADASSIGN_SHOW}></th>
+  <th>google觀看</th>
   <th><{$smarty.const._TAD_FUNCTION}></th>
 </tr>
 <tbody>
@@ -51,6 +52,13 @@ function delete_tad_assignment_func(assn){
     <td>
       <div class="span1">
         <input type="checkbox" name="my-checkbox"  class="open_show" <{if $as.open_show=='1'}>checked<{/if}>  id="openshow_<{$as.assn}>">
+        </div>
+
+    </td>
+
+    <td  >
+      <div class="span1">
+        <input type="checkbox" name="my-checkbox"  class="gview_mode" <{if $as.gview_mode=='1'}>checked<{/if}>  id="gviewmode_<{$as.assn}>">
         </div>
 
     </td>

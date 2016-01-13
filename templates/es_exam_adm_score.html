@@ -100,20 +100,20 @@
 
   <table class="table table-striped table-bordered table-hover" id="tscore">
   <tr>
-  <th><{$smarty.const._MD_TADASSIGN_UP_TIME}></th>
-  <th><{$smarty.const._MD_TADASSIGN_FILENAME}></th>
-  <th><{$smarty.const._MD_TADASSIGN_AUTHOR}></th>
-  <th>評語</th>
-  <th>評分(啟始分<{$base_score}>，未交<{$score_lost}>)</th>
-  <th><{$smarty.const._TAD_FUNCTION}></th>
+  <th class="span2" ><{$smarty.const._MD_TADASSIGN_UP_TIME}></th>
+  <th class="span2" ><{$smarty.const._MD_TADASSIGN_FILENAME}></th>
+  <th class="span2" ><{$smarty.const._MD_TADASSIGN_AUTHOR}></th>
+  <th class="span2" >評語</th>
+  <th class="span2" >評分(啟始分<{$base_score}>，未交<{$score_lost}>)</th>
+  <th class="span2" ><{$smarty.const._TAD_FUNCTION}></th>
   </tr>
   <tbody>
   <{if ($data.stud) }>
   <{assign var="ti" value="100"}>
   <{foreach from=$data.stud  item=all}>
     <tr>
-      <td><{$all.up_time}></td>
-      <td>
+      <td class="span2" ><{$all.up_time}></td>
+      <td  class="span2" style="word-break : break-all; overflow:hidden; "  >
         <!--      bmp gif jpg jpeg png sb sb2 flash          -->
         <{if  ($data.ifram_show) }>
 
@@ -124,11 +124,11 @@
      	<div><{  $all.memo}></div>
       </td>
 
-      <td><span class="badge badge-info"><{$all.sit_id}></span> <{$all.author}></td>
-      <td><input class="span2 comment" type="text" onfocus="this.select()"   name="comment[<{$all.asfsn}>]"  id="comment_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>" value="<{$all.comment}>" ></input>
+      <td class="span2" ><span class="badge badge-info"><{$all.sit_id}></span> <{$all.author}></td>
+      <td class="span2" ><input class="span2 comment" type="text" onfocus="this.select()"   name="comment[<{$all.asfsn}>]"  id="comment_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>" value="<{$all.comment}>" ></input>
 
       </td>
-      <td>
+      <td class="span2" >
       	<{*----     拉bar            ---- *}>
       	<div id="slider_<{$all.asfsn}>"  class="span2 slider" data_ref="<{$all.asfsn}>" title="拉動指定成績，左右鍵微調"  style="background: #CCC" ></div>
  	<script>$( "#slider_<{$all.asfsn}>" ).slider({value: <{$all.score_bar}>, min: 0,max: <{$bar_max}>}) ;
@@ -137,7 +137,7 @@
       		<{if ($all.score)}> value="<{$all.score}>" <{/if}> tabindex="<{$ti++}>" title="整數成績,Enter 跳下一位">
              <i  class="icon-warning-sign" id="info_<{$all.asfsn}>" title='分數低於基本分' <{if ( ($all.score >= $base_score) or (!$all.score) )}>  style="display:none"  <{/if}>></i>
       	</td>
-      <td>
+      <td class="span2" >
         <a href="javascript:delete_func(<{$all.asfsn}>,<{$all.stud_id}>);" class="btn btn-mini btn-danger"><{$smarty.const._TAD_DEL}></a>
       </td>
 

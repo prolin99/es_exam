@@ -50,6 +50,7 @@ function list_tad_assignment_file($assn = '')
     //分數拉bar 7 等份
     if ($data[$i]['score']) {
         $data[$i]['bar'] = floor(($data[$i]['score'] - $bar_base_score) / ((100 - $bar_base_score) / 7)) * 14 + 10;
+        $data[$i]['score_star'] =  ($data[$i]['score'] - $bar_base_score) / ((100 - $bar_base_score) / 5)  ;
     }
 
     //作品說明做處理

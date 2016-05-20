@@ -1,18 +1,18 @@
-<link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_url}>/modules/tadtools/bootstrap/css/bootstrap.css" />
-<link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_url}>/modules/tadtools/bootstrap/css/bootstrap-responsive.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_url}>/modules/tadtools/bootstrap3/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_url}>/modules/tadtools/bootstrap3/css/bootstrap-responsive.css" />
 
-<div class='row-fluid'>
+<div class='row'>
 
 
 	<{if $file_mode=='picture'}>
 	<{*  圖檔 *}>
-	<div class='span12 text-center'> <img src='<{$file}>'></div><div><{  $all.memo}></div>
+	<div class='col-md-12 text-center'> <img src='<{$file}>'></div><div><{  $all.memo}></div>
 	<{/if}>
 
 	<{if $file_mode=='scratch'}>
 	<{*  scratch *}>
-	<div class='span12'>
-		<div class='span8 text-right'>
+	<div class='col-md-12'>
+		<div class='col-md-8 text-right'>
 		<div id="flashContent" ></div>
 		</div>
 		Scratch 一套使用拖拉拼湊就可以寫程式的工具，很好玩的程式軟體。<a href='https://scratch.mit.edu/' target='_blank'>官方網站</a><br /><br />
@@ -42,7 +42,7 @@
 	<{if $file_mode=='flash'}>
 	<{*  flash *}>
 
-	<div class='span12 text-center'>
+	<div class='col-md-12 text-center'>
 		<div id="flashContent" ></div>
 		<{  $all.memo}></div>
 		<script type="text/javascript" src="<{$xoops_url}>/modules/es_exam/swfobject.js"></script>

@@ -1,23 +1,27 @@
-<link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_url}>/modules/tadtools/bootstrap/css/bootstrap.css" />
-<link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_url}>/modules/tadtools/bootstrap/css/bootstrap-responsive.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_url}>/modules/tadtools/bootstrap3/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_url}>/modules/tadtools/bootstrap3/css/bootstrap-responsive.css" />
 
 <script src="<{$xoops_url}>/modules/tadtools/jquery/ui/jquery-ui.js"></script>
 <link rel="stylesheet" href="<{$xoops_url}>/modules/tadtools/jquery/themes/base/jquery-ui.css">
 
+<link rel="stylesheet" href="<{$xoops_url}>/modules/tadtools/css/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../css/star-rating.css" media="all" type="text/css"/>
+<link rel="stylesheet" href="../css/theme-krajee-fa.css" media="all" type="text/css"/>
+<script src="../css/star-rating.js" type="text/javascript"></script>
 
-<div class='row-fluid'>
+<div class='row'>
 
-	<span class="alert alert-success span12"  title='左右邊界處，滑鼠滾軸，可切換上下張。'>
-	  <span class=" span9 offset3">
+	<span class="alert alert-success row"  title='左右邊界處，滑鼠滾軸，可切換上下張。'>
+	  <span class=" col-md-9 col-md-offset-3">
 
-		<span class="span3">
-		<input class="span12 comment" type="text" onfocus="this.select()"   name="comment[<{$all.asfsn}>]"  id="comment_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>" value="<{$all.comment}>" placeholder='評語'  title="評語"></input>
+		<span class="col-md-3">
+		<input class="comment" type="text" onfocus="this.select()"   name="comment[<{$all.asfsn}>]"  id="comment_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>" value="<{$all.comment}>" placeholder='評語'  title="評語"></input>
 		</span>
-      		<span class="span2"><div id="slider"  class="slider " data_ref="<{$all.asfsn}>"  title="拉動指定成績，左右鍵微調"   style="background: #CCC"></div>	</span>
-
- 		<script>$( "#slider" ).slider({value: <{$all.score_bar}>, min: 0,max: <{$bar_max}>}) </script>
-		<span class="span1">
-      		<input   onfocus="this.select()"   type="text"  class="score span12" name="score[<{$all.asfsn}>]"   id="score_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>"
+		<span class="col-md-5">
+		<input type="text" class="kv-fa rating-loading" value="<{$all.score_star}>" data-size="xs" title="" data_ref="<{$all.asfsn}>" >
+		</span>
+		<span class="col-md-1">
+      		<input   onfocus="this.select()"   type="text"  class="score" name="score[<{$all.asfsn}>]"   id="score_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>"
       		<{if ($all.score)}> value="<{$all.score}>" <{/if}> tabindex="1" placeholder='成績' title="整數成績,enter下一位，pageUp 前 ,PageDown 後" >
       		</span>
 	  </span>
@@ -25,25 +29,26 @@
 
 	<{if $file_mode=='picture'}>
 	<{*  圖檔 *}>
-	<div class='span12 text-center' > <img src='<{$file}>'></div><div class='span12 text-center'><{  $all.memo}></div>
+	<div class='col-md-12 text-center' > <img src='<{$file}>'></div><div class='col-md-12 text-center'><{  $all.memo}></div>
 	<{/if}>
 
 
 	<{if ($file_mode=='google')}>
 	<{*  pdf (google doc view ) *}>
-	<div class='span12 text-center' >
+	<div class='col-md-12 text-center' >
 		<iframe src="http://docs.google.com/gview?url=<{$file}>&embedded=true" style="width:600px; height:500px;" frameborder="0"></iframe>
 		<br />
 		<a href='<{$file}>' target='_blank'>如果無法查看，原始檔位置</a>
-	</div><div class='span12 text-center'><{  $all.memo}></div>
+	</div><div class='col-md-12 text-center'><{  $all.memo}></div>
 	<{/if}>
 
 
 	<{if $file_mode=='scratch'}>
 	<{*  scratch *}>
-	<div class='span12 text-center'>
+	<div class='row'>
+	<div class='col-md-8 text-center'>
 		<div id="flashContent" ></div>
-		<div class='span12 text-center'><{  $all.memo}></div>
+
 		<script type="text/javascript" src="<{$xoops_url}>/modules/es_exam/swfobject.js"></script>
 		<script type="text/javascript">
 		var flashvars = {
@@ -62,13 +67,15 @@
 		swfobject.embedSWF("<{$xoops_url}>/modules/es_exam/images/Scratch.swf", "flashContent", "482", "387", "10.2.0","<{$xoops_url}>/modules/es_exam/images/expressInstall.swf", flashvars, params, attributes);
 		</script>
 	</div>
+	<div class='col-md-4 text-center'><p>說明：</p><{  $all.memo}></div>
+	</div>
 	<{/if}>
 
 	<{if $file_mode=='flash'}>
 	<{*  scratch *}>
-	<div class='span12 text-center'>
+	<div class='col-md-12 text-center'>
 		<div id="flashContent" ></div>
-		<div class='span12 text-center'><{  $all.memo}></div>
+		<div class='col-md-12 text-center'><{  $all.memo}></div>
 		<script type="text/javascript" src="<{$xoops_url}>/modules/es_exam/swfobject.js"></script>
 		<script type="text/javascript">
 		var flashvars = {
@@ -202,3 +209,36 @@ $(function() {
 
 
   </script>﻿
+  <script>
+      //星等評分
+      $(document).on('ready', function () {
+          $('.kv-gly-star').rating({
+              containerClass: 'is-star'
+          });
+
+          $('.kv-fa').rating({
+              theme: 'krajee-fa',
+              starCaptions: function (rating) {
+                  return rating =  rating + '';
+              },
+              //不出現 no rated
+              clearCaption : '' ,
+              //showClear: false,
+              filledStar: '<i class="fa fa-star"></i>',
+              emptyStar: '<i class="fa fa-star-o"></i>'
+          });
+
+
+
+          $('.rating,.kv-gly-star,.kv-gly-heart,.kv-uni-star,.kv-uni-rook,.kv-fa,.kv-fa-heart,.kv-svg,.kv-svg-heart').on(
+                  'change', function () {
+                      //取得
+                      var v_id= $(this).attr('data_ref') ;
+                      console.log( v_id + 'Rating selected: ' + $(this).val());
+                      var rate_score = (100- <{$base_score}>) / 5 ;
+                      var get_score = parseInt("<{$base_score}>", 10) + $(this).val() * rate_score ;
+                      $( "#score_"+v_id ).val( get_score );
+                      save_score( 'score' ,v_id ,  get_score ) ;
+                  });
+      });
+  </script>

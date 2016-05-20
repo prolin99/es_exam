@@ -13,6 +13,12 @@
 
   <script src="../jquery.ya-enter2tab.js"></script>
 
+
+  <link rel="stylesheet" href="<{$xoops_url}>/modules/tadtools/css/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../css/star-rating.css" media="all" type="text/css"/>
+  <link rel="stylesheet" href="../css/theme-krajee-fa.css" media="all" type="text/css"/>
+  <script src="../css/star-rating.js" type="text/javascript"></script>
+
 <style type="text/css">
   .fancybox-nav {
      width: 20%;
@@ -131,14 +137,13 @@
 
       </td>
       <td class="col-md-3">
-      	<{*----     拉bar            ---- *}>
+      	<{*----       評分          ---- *}>
+
         <div claa="row">
-        <div class="col-md-6">
-            <div id="slider_<{$all.asfsn}>"  class="slider" data_ref="<{$all.asfsn}>" title="拉動指定成績，左右鍵微調"  style="background: #CCC" ></div>
- 	        <script>$( "#slider_<{$all.asfsn}>" ).slider({value: <{$all.score_bar}>, min: 0,max: <{$bar_max}>}) ;
-            </script>
+        <div class="col-md-8">
+        <input type="text" class="kv-fa rating-loading" value="<{$all.score_star}>" data-size="xs" title="" data_ref="<{$all.asfsn}>" >
         </div>
-        <div class="col-md-5">
+        <div class="col-md-4">
       		<input class="form-control score" type="text" onfocus="this.select()"   name="score[<{$all.asfsn}>]"  id="score_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>"
       		<{if ($all.score)}> value="<{$all.score}>" <{/if}> tabindex="<{$ti++}>" title="整數成績,Enter 跳下一位">
              <i  class="icon-warning-sign" id="info_<{$all.asfsn}>" title='分數低於基本分' <{if ( ($all.score >= $base_score) or (!$all.score) )}>  style="display:none"  <{/if}>></i>
@@ -170,15 +175,7 @@
     //enter 2 tab  在 #tscore 內
     $("#tscore").enableEnterToTab({ captureTabKey: true });
 
-  //分數拉條
-  $(function() {
-		$( ".slider" ).slider({
- 			slide: function( event, ui ) {
- 				var v_id= $(this).attr('data_ref')
-				$( "#score_"+v_id ).val(  parseInt("<{$base_score}>", 10) + ui.value );
-			}});
 
-	});
 
  //離開才做動作寫入成績
   $(function() {
@@ -258,5 +255,40 @@ $(function() {
 
   </script>﻿
 
+
+
+  <script>
+      //星等評分
+      $(document).on('ready', function () {
+          $('.kv-gly-star').rating({
+              containerClass: 'is-star'
+          });
+
+          $('.kv-fa').rating({
+              theme: 'krajee-fa',
+              starCaptions: function (rating) {
+                  return rating =  rating + '';
+              },
+              //不出現 no rated
+              clearCaption : '' ,
+              //showClear: false,
+              filledStar: '<i class="fa fa-star"></i>',
+              emptyStar: '<i class="fa fa-star-o"></i>'
+          });
+
+
+
+          $('.rating,.kv-gly-star,.kv-gly-heart,.kv-uni-star,.kv-uni-rook,.kv-fa,.kv-fa-heart,.kv-svg,.kv-svg-heart').on(
+                  'change', function () {
+                      //取得
+                      var v_id= $(this).attr('data_ref') ;
+                      console.log( v_id + 'Rating selected: ' + $(this).val());
+                      var rate_score = (100- <{$base_score}>) / 5 ;
+                      var get_score = parseInt("<{$base_score}>", 10) + $(this).val() * rate_score ;
+                      $( "#score_"+v_id ).val( get_score );
+                      save_score( 'score' ,v_id ,  get_score ) ;
+                  });
+      });
+  </script>
 
 <{/if}>

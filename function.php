@@ -139,6 +139,11 @@ function list_exam_file($assn = '', $my_order = ' `up_time` DESC , sit_id ASC ')
         if ($data[$i]['score_bar'] < 0) {
             $data[$i]['score_bar'] = 0;
         }
+    //星級
+    $data[$i]['score_star'] = ($data[$i]['score'] - $base_score)/( (100 - $base_score)/5 );
+    if ($data[$i]['score_star'] < 0) {
+            $data[$i]['score_star'] = 0;
+    }
 
         ++$i;
     }
@@ -170,6 +175,12 @@ function list_one_exam($asfsn)
     if ($data['score_bar'] < 0) {
         $data['score_bar'] = 0;
     }
+    //星級
+    $data['score_star'] = ($data['score'] - $base_score)/( (100 - $base_score)/5 );
+ 
+        if ($data['score_star'] < 0) {
+            $data['score_star'] = 0;
+        }
 
     return $data;
 }

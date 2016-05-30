@@ -97,15 +97,16 @@ function insert_tad_assignment_file()
   //檢查學生先前上傳的檔案，並刪除舊檔案 ，再新增檔案
   $sql = 'SELECT * FROM '.$xoopsDB->prefix('exam_files')." WHERE `assn` ='{$_POST['assn']}' and  class_id='{$_POST['class_id']}' and sit_id= '{$_POST['sit_id']}'  ";
 
-    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
     while ($row = $xoopsDB->fetchArray($result)) {
         $old_asfsn = $row['asfsn'];
         $stud_id = $row['stud_id'];
     }
 
+
     if ($old_asfsn) {
         //刪除舊檔
-    delete_tad_assignment_file($old_asfsn, $stud_id);
+        delete_tad_assignment_file($old_asfsn, $stud_id);
     }
 
   //資料檢查
@@ -113,10 +114,12 @@ function insert_tad_assignment_file()
     $desc = $myts->htmlspecialchars($myts->addSlashes($_POST['desc']));
     $author = $myts->htmlspecialchars($myts->addSlashes($_POST['author']));
 
-  //新增
-  $sql = 'insert into '.$xoopsDB->prefix('exam_files')." (`assn` ,   `show_name` , `memo` , class_id , sit_id  ,`author` ,  stud_id ,  `up_time`)
-   		values('{$_POST['assn']}', '$show_name','$desc','{$_POST['class_id']}', '{$_POST['sit_id']}', '$author',  '{$_POST['stud_id']}' ,  '$now')";
-    $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+  //新增 commet 要先空值
+  $sql = 'insert into '.$xoopsDB->prefix('exam_files')." (`assn` ,   `show_name` , `memo` , class_id , sit_id  ,`author` ,  stud_id ,  `up_time` ,`comment`)
+   		values('{$_POST['assn']}', '$show_name','$desc','{$_POST['class_id']}', '{$_POST['sit_id']}', '$author',  '{$_POST['stud_id']}' ,  '$now' ,'' )";
+
+  $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
+
   //取得最後新增資料的流水編號
   $asfsn = $xoopsDB->getInsertId();
 
@@ -145,10 +148,11 @@ function upload_file($asfsn = '', $assn = '')
         if ($flv_handle->processed) {
             $flv_handle->clean();
             $sql = 'update '.$xoopsDB->prefix('exam_files')." set file_name='{$_FILES['file']['name']}',file_size='{$_FILES['file']['size']}' ,file_type='{$_FILES['file']['type']}',`up_time`='$now'  where asfsn='$asfsn'";
-            $xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+
+            $xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
         } else {
             $sql = 'delete from '.$xoopsDB->prefix('exam_files')." where asfsn='{$asfsn}'";
-            $xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+            $xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
             redirect_header($_SERVER['PHP_SELF'], 3, 'Error:'.$flv_handle->error);
         }
     }

@@ -30,7 +30,7 @@ function list_tad_assignment($show_function=1 ,$semester =1  ){
 	$sql = "select * from ".$xoopsDB->prefix("exam")." where 1  $and_my_sql  $and_date_sql  order by   create_date desc , class_id ASC ";
 
 	//PageBar(資料數, 每頁顯示幾筆資料, 最多顯示幾個頁數選項);
-	$result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
+	$result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'],3, $xoopsDB->error());
 	$total=$xoopsDB->getRowsNum($result);
 
 	$navbar = new PageBar($total, 20, 10);
@@ -38,7 +38,7 @@ function list_tad_assignment($show_function=1 ,$semester =1  ){
 	$bar= sprintf(_TAD_TOOLBAR,$mybar['total'],$mybar['current'])."{$mybar['left']}{$mybar['center']}{$mybar['right']}";
 	$sql.=$mybar['sql'];
 
-	$result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'],3, mysql_error());
+	$result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'],3, $xoopsDB->error());
 
 	$data="";
   	$i=0;

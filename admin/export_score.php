@@ -19,7 +19,7 @@ function get_score($assn)  {
   	//個人作品
   	$sql = "select stud_id , score  from ".$xoopsDB->prefix("exam_files")." where assn='{$assn}' order by sit_id  ";
 
-  	$result = $xoopsDB->query($sql) or die($sql."<br>". mysql_error());
+  	$result = $xoopsDB->query($sql) or die($sql."<br>". $xoopsDB->error());
   	while($row=$xoopsDB->fetchArray($result)){
 		if  ($row['score']==0 )
 			$row['score']='未評' ;
@@ -34,7 +34,7 @@ function get_class_stud_list( $class_id ) {
 	global  $xoopsDB ;
 
 		$sql =  "  SELECT  class_id ,stud_id , class_sit_num , name  FROM " . $xoopsDB->prefix("e_student") . "   where class_id='$class_id'   order by  class_sit_num " ;
-		$result = $xoopsDB->query($sql) or die($sql."<br>". mysql_error());
+		$result = $xoopsDB->query($sql) or die($sql."<br>". $xoopsDB->error());
 		while($row=$xoopsDB->fetchArray($result)){
  			$data[]=$row ;
 		}

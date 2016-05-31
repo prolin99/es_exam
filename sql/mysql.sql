@@ -6,7 +6,7 @@ CREATE TABLE `exam` (
   `class_id` varchar(255) NOT NULL DEFAULT '',
   `upload_mode` enum('1','0') NOT NULL DEFAULT '1',
   `ext_file` varchar(255) NOT NULL DEFAULT '',
-  `note` text NOT NULL DEFAULT '',
+  `note` text DEFAULT NULL ,
   `uid` int(10) unsigned NOT NULL DEFAULT '0',
   `open_show` enum('1','0') NOT NULL DEFAULT '1',
   `gview_mode` enum('1','0') NOT NULL DEFAULT '0',
@@ -26,10 +26,10 @@ CREATE TABLE `exam_files` (
   `file_size` mediumint(9) unsigned NOT NULL DEFAULT '0',
   `file_type` varchar(255) NOT NULL DEFAULT '',
   `show_name` varchar(255) NOT NULL DEFAULT '',
-  `memo` text NOT NULL DEFAULT '',
+  `memo` text DEFAULT NULL  ,
   `author` varchar(255) NOT NULL DEFAULT '',
   `score` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `comment` text NOT NULL DEFAULT '',
+  `comment` text DEFAULT NULL ,
   `up_time` datetime DEFAULT NULL,
   PRIMARY KEY (`asfsn`)
 ) ENGINE=MyISAM;

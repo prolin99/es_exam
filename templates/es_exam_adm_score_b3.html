@@ -111,8 +111,8 @@
   <th class="col-md-2"><{$smarty.const._MD_TADASSIGN_UP_TIME}></th>
   <th class="col-md-2"><{$smarty.const._MD_TADASSIGN_FILENAME}></th>
   <th class="col-md-2"><{$smarty.const._MD_TADASSIGN_AUTHOR}></th>
+  <th  class="col-md-3">評分(星等啟始分<{$base_score}>，未交<{$score_lost}>)</th>
   <th class="col-md-2">評語</th>
-  <th  class="col-md-3">評分(啟始分<{$base_score}>，未交<{$score_lost}>)</th>
   <th class="col-md-1"><{$smarty.const._TAD_FUNCTION}></th>
   </tr>
   <tbody>
@@ -133,9 +133,7 @@
       </td>
 
       <td class="col-md-2"><span class="badge badge-info"><{$all.sit_id}></span> <{$all.author}></td>
-      <td class="col-md-2"><input class="form-control comment" type="text" onfocus="this.select()"   name="comment[<{$all.asfsn}>]"  id="comment_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>" value="<{$all.comment}>" ></input>
 
-      </td>
       <td class="col-md-3">
       	<{*----       評分          ---- *}>
 
@@ -148,8 +146,11 @@
       		<{if ($all.score)}> value="<{$all.score}>" <{/if}> tabindex="<{$ti++}>" title="整數成績,Enter 跳下一位">
              <i  class="icon-warning-sign" id="info_<{$all.asfsn}>" title='分數低於基本分' <{if ( ($all.score >= $base_score) or (!$all.score) )}>  style="display:none"  <{/if}>></i>
         </div>
-    </div>
-      	</td>
+        </div>
+      </td>
+      <td class="col-md-2">
+          <input class="form-control comment" type="text" onfocus="this.select()"   name="comment[<{$all.asfsn}>]"  id="comment_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>" value="<{$all.comment}>" ></input>
+      </td>
       <td class="col-md-1">
         <a href="javascript:delete_func(<{$all.asfsn}>,<{$all.stud_id}>);" class="btn btn-mini btn-danger"><{$smarty.const._TAD_DEL}></a>
       </td>

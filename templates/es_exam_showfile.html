@@ -12,15 +12,15 @@
 <div class='row'>
 
 	<span class="alert alert-success row"  title='左右邊界處，滑鼠滾軸，可切換上下張。'>
-	  <span class=" col-md-9 col-md-offset-3">
+	  <span class=" col-md-9 col-xs-9 col-xs-offset-3">
 
-		<span class="col-md-3">
+		<span class="col-md-3 col-xs-3">
 		<input class="comment" type="text" onfocus="this.select()"   name="comment[<{$all.asfsn}>]"  id="comment_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>" value="<{$all.comment}>" placeholder='評語'  title="評語"></input>
 		</span>
-		<span class="col-md-5">
+		<span class="col-md-5 col-xs-5">
 		<input type="text" class="kv-fa rating-loading" value="<{$all.score_star}>" data-size="xs" title="" data_ref="<{$all.asfsn}>" >
 		</span>
-		<span class="col-md-1">
+		<span class="col-md-1 col-xs-1">
       		<input   onfocus="this.select()"   type="text"  class="score" name="score[<{$all.asfsn}>]"   id="score_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>"
       		<{if ($all.score)}> value="<{$all.score}>" <{/if}> tabindex="1" placeholder='成績' title="整數成績,enter下一位，pageUp 前 ,PageDown 後" >
       		</span>

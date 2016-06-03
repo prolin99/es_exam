@@ -1,5 +1,10 @@
 <?php
-
+/*
+// Cross-Origin Resource Sharing Header
+header('Access-Control-Allow-Origin: http://120.116.24.96:8000');
+header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
+header('Access-Control-Allow-Headers: X-Requested-With, Content-Type, Accept');
+*/
 /*-----------引入檔案區--------------*/
 include 'header.php';
 $xoopsOption['template_main'] = set_bootstrap('es_exam_show.html');

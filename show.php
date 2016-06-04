@@ -28,7 +28,7 @@ function list_tad_assignment_menu()
 //列出所有tad_assignment_file資料
 function list_tad_assignment_file($assn = '')
 {
-    global $xoopsDB,$xoopsModule,$isAdmin,$xoopsTpl  ,$xoopsModuleConfig;
+    global $xoopsDB,$xoopsModule,$isAdmin,$xoopsTpl  ,$xoopsModuleConfig  ;
 
     $DBV = get_tad_assignment($assn);
     foreach ($DBV as $k => $v) {
@@ -42,7 +42,9 @@ function list_tad_assignment_file($assn = '')
     $i = 0;
   //$data="";
   //拉bar秀成績，低限
-  $bar_base_score = 51;
+  //$bar_base_score = 51;
+  $bar_base_score = $xoopsModuleConfig['ESEXAM_BASE'];
+
 
     while ($all = $xoopsDB->fetchArray($result)) {
         foreach ($all as $k => $v) {

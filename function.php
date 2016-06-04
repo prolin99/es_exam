@@ -17,6 +17,23 @@ include_once XOOPS_ROOT_PATH.'/modules/e_stud_import/es_comm_function.php';
 define('_TAD_ASSIGNMENT_UPLOAD_DIR', XOOPS_ROOT_PATH.'/uploads/es_exam/');
 define('_TAD_ASSIGNMENT_UPLOAD_URL', XOOPS_URL.'/uploads/es_exam/');
 
+
+//取得學生上次傳的作業 的資料
+function get_stud_old_exam($assn ,$class_id , $sit_id ){
+    global $xoopsDB ;
+    $sql = 'SELECT * FROM '.$xoopsDB->prefix('exam_files')." WHERE `assn` ='$assn' and  class_id='$class_id' and sit_id= '$sit_id'  ";
+ 
+    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
+    while ($row = $xoopsDB->fetchArray($result)) {
+          $data['old_asfsn'] = $row['asfsn'];
+          $data['stud_id'] = $row['stud_id'];
+          $data['memo'] = $row['memo'];
+    }
+    return $data ;
+}
+
+
+
 function exam_set_empfile($assn, $class_id)
 {
     global $xoopsDB, $xoopsUser;

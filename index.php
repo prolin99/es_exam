@@ -57,6 +57,8 @@ function tad_assignment_file_form($assn = '')
     //取得中文班名
   $class_list_c = es_class_name_list_c('long');
 
+
+
     if ($ext_file) {
         //可上傳的副檔
       $j_ext_file = str_replace(',', '|', $ext_file);
@@ -64,10 +66,14 @@ function tad_assignment_file_form($assn = '')
         $accept_filestr = " accept='.{$accept_filestr}' ";
     }
 
+    //取得上次作業的說明文字
+    $old_file = get_stud_old_exam( $assn , $class_id ,intval($_POST['sit_id']) ) ;
+     
     $xoopsTpl->assign('class_list_c', $class_list_c);
     $xoopsTpl->assign('note', nl2br($note));
-    $xoopsTpl->assign('sit_id', $_POST['sit_id']);
+    $xoopsTpl->assign('sit_id', intval($_POST['sit_id'])  );
     $xoopsTpl->assign('stud_data', $stud_data);
+    $xoopsTpl->assign('desc', $old_file['memo']);
     $xoopsTpl->assign('j_ext_file', $j_ext_file);
     $xoopsTpl->assign('accept_filestr', $accept_filestr);
 
@@ -95,6 +101,7 @@ function insert_tad_assignment_file()
     $now = date('Y-m-d H:i:s');
 
   //檢查學生先前上傳的檔案，並刪除舊檔案 ，再新增檔案
+  /*
   $sql = 'SELECT * FROM '.$xoopsDB->prefix('exam_files')." WHERE `assn` ='{$_POST['assn']}' and  class_id='{$_POST['class_id']}' and sit_id= '{$_POST['sit_id']}'  ";
 
     $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
@@ -102,17 +109,18 @@ function insert_tad_assignment_file()
         $old_asfsn = $row['asfsn'];
         $stud_id = $row['stud_id'];
     }
+    */
+    $old_file = get_stud_old_exam($_POST['assn'] ,$_POST['class_id'] ,$_POST['sit_id'] ) ;
 
-
-    if ($old_asfsn) {
+    if ($old_file['old_asfsn']) {
         //刪除舊檔
-        delete_tad_assignment_file($old_asfsn, $stud_id);
+        delete_tad_assignment_file($old_file['old_asfsn'], $old_file['stud_id']  );
     }
 
   //資料檢查
   $myts = &MyTextSanitizer::getInstance();
-    $desc = $myts->htmlspecialchars($myts->addSlashes($_POST['desc']));
-    $author = $myts->htmlspecialchars($myts->addSlashes($_POST['author']));
+  $desc = $myts->htmlspecialchars($myts->addSlashes($_POST['desc']));
+  $author = $myts->htmlspecialchars($myts->addSlashes($_POST['author']));
 
   //新增 commet 要先空值
   $sql = 'insert into '.$xoopsDB->prefix('exam_files')." (`assn` ,   `show_name` , `memo` , class_id , sit_id  ,`author` ,  stud_id ,  `up_time` ,`comment`)

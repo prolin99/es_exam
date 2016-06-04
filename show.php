@@ -36,7 +36,7 @@ function list_tad_assignment_file($assn = '')
         $xoopsTpl->assign($k, $v);
     }
 
-    $sql = 'select * from '.$xoopsDB->prefix('exam_files')." where assn='{$assn}' order by `up_time` DESC ";
+    $sql = 'select * from '.$xoopsDB->prefix('exam_files')." where assn='{$assn}' order by `up_time`  DESC ,sit_id ";
     $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
 
     $i = 0;

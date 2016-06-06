@@ -108,11 +108,11 @@
 
   <table class="table table-striped table-bordered table-hover" id="tscore">
   <tr>
-  <th class="col-md-2"><{$smarty.const._MD_TADASSIGN_UP_TIME}></th>
+  <th class="col-md-1 col-xs-2"><{$smarty.const._MD_TADASSIGN_UP_TIME}></th>
   <th class="col-md-2"><{$smarty.const._MD_TADASSIGN_FILENAME}></th>
-  <th class="col-md-2"><{$smarty.const._MD_TADASSIGN_AUTHOR}></th>
+  <th class="col-md-1"><{$smarty.const._MD_TADASSIGN_AUTHOR}></th>
   <th  class="col-md-3">評分(星等啟始分<{$base_score}>，未交<{$score_lost}>)</th>
-  <th class="col-md-2">評語</th>
+  <th class="col-md-1">評語</th>
   <th class="col-md-1"><{$smarty.const._TAD_FUNCTION}></th>
   </tr>
   <tbody>
@@ -120,7 +120,7 @@
   <{assign var="ti" value="100"}>
   <{foreach from=$data.stud  item=all}>
     <tr>
-      <td  class="col-md-2"><{$all.up_time}></td>
+      <td  class="col-md-1 col-xs-2"><{$all.up_time}></td>
       <td class="col-md-2" style="word-break : break-all; overflow:hidden; ">
         <!--      bmp gif jpg jpeg png sb sb2 flash          -->
         <{if  ($data.ifram_show) }>
@@ -132,9 +132,9 @@
      	<div><{  $all.memo}></div>
       </td>
 
-      <td class="col-md-2"><span class="badge badge-info"><{$all.sit_id}></span> <{$all.author}></td>
+      <td class="col-md-1"><span class="badge badge-info"><{$all.sit_id}></span> <{$all.author}></td>
 
-      <td class="col-md-3">
+      <td class="col-md-4">
       	<{*----       評分          ---- *}>
 
         <div claa="row">
@@ -148,7 +148,7 @@
         </div>
         </div>
       </td>
-      <td class="col-md-2">
+      <td class="col-md-1">
           <input class="form-control comment" type="text" onfocus="this.select()"   name="comment[<{$all.asfsn}>]"  id="comment_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>" value="<{$all.comment}>" ></input>
       </td>
       <td class="col-md-1">

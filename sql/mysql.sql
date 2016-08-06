@@ -31,5 +31,7 @@ CREATE TABLE `exam_files` (
   `score` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `comment` text DEFAULT NULL ,
   `up_time` datetime DEFAULT NULL,
+  `old_file` tinyint(3) unsigned NOT NULL DEFAULT '0', 
+  `up_ip` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`asfsn`)
 ) ENGINE=MyISAM;

@@ -94,8 +94,11 @@
   </tr>
   <tbody>
   <{foreach from=$file_data item=all}>
-
+    <{ if ($all.old_file) }>
+    <tr class='danger'>
+    <{else}>
     <tr>
+    <{/if}>
       <td   class="span2" ><{$all.up_time}></td>
       <td  class="span2" style="word-break : break-all; overflow:hidden; " >
       <{if ($open_show)}>

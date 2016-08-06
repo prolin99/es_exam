@@ -99,8 +99,12 @@
   <tbody>
   <{foreach from=$file_data item=all}>
 
-    <tr>
-      <td  class='col-md-2'><{$all.up_time}></td>
+  <{ if ($all.old_file) }>
+  <tr class='danger' title='舊檔案'>
+  <{else}>
+  <tr>
+  <{/if}>
+      <td  class='col-md-2'><{$all.up_time}><br /><{$all.up_ip}></td>
       <td  class='col-md-2' style="word-break : break-all; overflow:hidden; " >
       <{if ($open_show)}>
           <{if  ($ifram_show) }>

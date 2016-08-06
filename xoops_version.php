@@ -4,7 +4,7 @@ $modversion = array();
 
 //---模組基本資訊---//
 $modversion['name'] = _MI_ESEXAM_NAME;
-$modversion['version'] = 1.4;
+$modversion['version'] = 1.5;
 $modversion['description'] = _MI_ESEXAM_DESC;
 $modversion['author'] = _MI_ESEXAM_AUTHOR;
 $modversion['credits'] = _MI_ESEXAM_CREDITS;
@@ -15,7 +15,7 @@ $modversion['image'] = 'images/logo.png';
 $modversion['dirname'] = basename(dirname(__FILE__));
 
 //---模組狀態資訊---//
-$modversion['release_date'] = '2016/6/3';
+$modversion['release_date'] = '2016/8/13';
 $modversion['module_website_url'] = 'https://github.com/prolin99/es_exam';
 $modversion['module_website_name'] = 'prolin';
 $modversion['module_status'] = 'release';
@@ -120,3 +120,11 @@ $modversion['config'][$i]['description'] = '_MI_ESEXAM_CONFIG_D2';
 $modversion['config'][$i]['formtype'] = 'text';
 $modversion['config'][$i]['valuetype'] = 'int';
 $modversion['config'][$i]['default'] = 60;
+
+++$i;
+$modversion['config'][$i]['name'] = 'ESEXAM_MULTI_FILES';                    //保留多次繳交個檔案
+$modversion['config'][$i]['title'] = '_MI_ESEXAM_CONFIG_T3';
+$modversion['config'][$i]['description'] = '_MI_ESEXAM_CONFIG_D3';
+$modversion['config'][$i]['formtype']    = 'yesno';
+$modversion['config'][$i]['valuetype']   = 'int';
+$modversion['config'][$i]['default'] = 0 ;

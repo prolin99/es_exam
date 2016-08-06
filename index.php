@@ -68,7 +68,7 @@ function tad_assignment_file_form($assn = '')
 
     //取得上次作業的說明文字
     $old_file = get_stud_old_exam( $assn , $class_id ,intval($_POST['sit_id']) ) ;
-     
+
     $xoopsTpl->assign('class_list_c', $class_list_c);
     $xoopsTpl->assign('note', nl2br($note));
     $xoopsTpl->assign('sit_id', intval($_POST['sit_id'])  );
@@ -83,7 +83,7 @@ function tad_assignment_file_form($assn = '')
 //上傳動作，新增資料到tad_assignment_file中-----------------------------------------------------------------------------------
 function insert_tad_assignment_file()
 {
-    global $xoopsDB;
+    global $xoopsDB ,$xoopsModuleConfig ;
 
   //密碼再次確認
   $assignment = get_tad_assignment(intval($_POST['assn']));
@@ -111,10 +111,17 @@ function insert_tad_assignment_file()
     }
     */
     $old_file = get_stud_old_exam($_POST['assn'] ,$_POST['class_id'] ,$_POST['sit_id'] ) ;
+    $no_real_del = $xoopsModuleConfig['ESEXAM_MULTI_FILES'] ;
 
     if ($old_file['old_asfsn']) {
-        //刪除舊檔
-        delete_tad_assignment_file($old_file['old_asfsn'], $old_file['stud_id']  );
+        if ($no_real_del ){
+            mark_old_tad_assignment_file($old_file['old_asfsn'], $old_file['stud_id']    );
+
+        }else{
+            //刪除舊檔
+            delete_tad_assignment_file($old_file['old_asfsn'], $old_file['stud_id']   );
+
+        }
     }
 
   //資料檢查
@@ -122,9 +129,17 @@ function insert_tad_assignment_file()
   $desc = $myts->htmlspecialchars($myts->addSlashes($_POST['desc']));
   $author = $myts->htmlspecialchars($myts->addSlashes($_POST['author']));
 
+
+  //取得 IP (可能ipv6 或 ipv4)
+  if ($_SERVER['HTTP_X_FORWARDED_FOR']){
+          $remoIP=$_SERVER['HTTP_X_FORWARDED_FOR'];
+  }  else {
+          $remoIP=$_SERVER['REMOTE_ADDR'];
+  }
+
   //新增 commet 要先空值
-  $sql = 'insert into '.$xoopsDB->prefix('exam_files')." (`assn` ,   `show_name` , `memo` , class_id , sit_id  ,`author` ,  stud_id ,  `up_time` ,`comment`)
-   		values('{$_POST['assn']}', '$show_name','$desc','{$_POST['class_id']}', '{$_POST['sit_id']}', '$author',  '{$_POST['stud_id']}' ,  '$now' ,'' )";
+  $sql = 'insert into '.$xoopsDB->prefix('exam_files')." (`assn` ,   `show_name` , `memo` , class_id , sit_id  ,`author` ,  stud_id ,  `up_time` ,`comment` , `up_ip` )
+   		values('{$_POST['assn']}', '$show_name','$desc','{$_POST['class_id']}', '{$_POST['sit_id']}', '$author',  '{$_POST['stud_id']}' ,  '$now' ,'' ,'$remoIP'  )";
 
   $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
 
@@ -144,6 +159,11 @@ function upload_file($asfsn = '', $assn = '')
     set_time_limit(0);
     ini_set('memory_limit', '150M');
     $flv_handle = new upload($_FILES['file'], 'zh_TW');
+
+
+
+
+
     if ($flv_handle->uploaded) {
         //$name=substr($_FILES['file']['name'],0,-4);
       $flv_handle->file_safe_name = false;

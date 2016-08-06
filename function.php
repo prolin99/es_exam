@@ -22,7 +22,7 @@ define('_TAD_ASSIGNMENT_UPLOAD_URL', XOOPS_URL.'/uploads/es_exam/');
 function get_stud_old_exam($assn ,$class_id , $sit_id ){
     global $xoopsDB ;
     $sql = 'SELECT * FROM '.$xoopsDB->prefix('exam_files')." WHERE `assn` ='$assn' and  class_id='$class_id' and sit_id= '$sit_id'  ";
- 
+
     $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
     while ($row = $xoopsDB->fetchArray($result)) {
           $data['old_asfsn'] = $row['asfsn'];
@@ -273,13 +273,13 @@ function delete_tad_assignment($assn = '')
 }
 
 //刪除 exam_files 某筆資料資料
-function delete_tad_assignment_file($asfsn = '', $stud_id)
+function delete_tad_assignment_file($asfsn = '', $stud_id )
 {
     global $xoopsDB;
 
     $sql = 'select * from '.$xoopsDB->prefix('exam_files')." where asfsn='{$asfsn}'    and stud_id = '$stud_id'   ";
- //   echo  $sql ; exit ;
-  $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
+    //   echo  $sql ; exit ;
+    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
 
     while ($all = $xoopsDB->fetchArray($result)) {
         foreach ($all as $k => $v) {
@@ -295,6 +295,18 @@ function delete_tad_assignment_file($asfsn = '', $stud_id)
     unlink(_TAD_ASSIGNMENT_UPLOAD_DIR."{$assn}/{$asfsn}.{$sub_name}");
 
     $sql = 'delete from '.$xoopsDB->prefix('exam_files')." where asfsn='$asfsn'";
+    $xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
+
+
+}
+
+//標記  exam_files 某筆檔案為舊版本
+function mark_old_tad_assignment_file($asfsn = '', $stud_id )
+{
+    global $xoopsDB;
+
+    $sql = 'update   '.$xoopsDB->prefix('exam_files')." set old_file = 1  where asfsn='$asfsn'  ";
+ 
     $xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
 }
 

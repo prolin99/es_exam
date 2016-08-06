@@ -28,7 +28,7 @@ function list_tad_assignment_menu()
 //列出所有tad_assignment_file資料
 function list_tad_assignment_file($assn = '')
 {
-    global $xoopsDB,$xoopsModule,$isAdmin,$xoopsTpl  ,$xoopsModuleConfig  ;
+    global $xoopsDB,$xoopsModule,$isAdmin,$xoopsTpl  ,$xoopsModuleConfig;
 
     $DBV = get_tad_assignment($assn);
     foreach ($DBV as $k => $v) {
@@ -45,23 +45,22 @@ function list_tad_assignment_file($assn = '')
   //$bar_base_score = 51;
   $bar_base_score = $xoopsModuleConfig['ESEXAM_BASE'];
 
-
     while ($all = $xoopsDB->fetchArray($result)) {
         foreach ($all as $k => $v) {
             $$k = $v;
             $data[$i][$k] = $v;
         }
-    //只出現姓
-    $data[$i]['author'] = mb_substr($data[$i]['author'], 0, 1, 'UTF-8').'同學';
+        //只出現姓
+        $data[$i]['author'] = mb_substr($data[$i]['author'], 0, 1, 'UTF-8').'同學';
 
-    //分數拉bar 7 等份
-    if ($data[$i]['score']) {
-        $data[$i]['bar'] = floor(($data[$i]['score'] - $bar_base_score) / ((100 - $bar_base_score) / 7)) * 14 + 10;
-        $data[$i]['score_star'] =  ($data[$i]['score'] - $bar_base_score) / ((100 - $bar_base_score) / 5)  ;
-    }
+        //分數拉bar 7 等份
+        if ($data[$i]['score']) {
+            $data[$i]['bar'] = floor(($data[$i]['score'] - $bar_base_score) / ((100 - $bar_base_score) / 7)) * 14 + 10;
+            $data[$i]['score_star'] = ($data[$i]['score'] - $bar_base_score) / ((100 - $bar_base_score) / 5);
+        }
 
-    //作品說明做處理
-    $myts = &MyTextSanitizer::getInstance();
+        //作品說明做處理
+        $myts = &MyTextSanitizer::getInstance();
         $data[$i]['memo'] = $myts->displayTarea($data[$i]['memo']);
 
         $show_name = (empty($show_name)) ? $author._MD_TADASSIGN_UPLOAD_FILE : $show_name;
@@ -72,6 +71,7 @@ function list_tad_assignment_file($assn = '')
 
         $data[$i]['sub_name'] = $sub_name;
         $data[$i]['show_name'] = $show_name;
+        $data[$i]['up_ip'] = substr($data[$i]['up_ip'],-7)  ;
 
         ++$i;
     }

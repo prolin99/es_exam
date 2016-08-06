@@ -20,4 +20,6 @@ define("_MI_ESEXAM_CONFIG_T1", "基本分數");
 define("_MI_ESEXAM_CONFIG_D1", "打分數時，最低起跳分數，星等啟始分數");
 define("_MI_ESEXAM_CONFIG_T2", "缺繳呈現分數");
 define("_MI_ESEXAM_CONFIG_D2", "如果學生作品未繳交，學期中呈現的分數");
+define("_MI_ESEXAM_CONFIG_T3", "保留多次上傳檔案");
+define("_MI_ESEXAM_CONFIG_D3", "如設否，只會保留最後上傳的作品。");
 ?>

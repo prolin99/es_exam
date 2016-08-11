@@ -17,22 +17,21 @@ include_once XOOPS_ROOT_PATH.'/modules/e_stud_import/es_comm_function.php';
 define('_TAD_ASSIGNMENT_UPLOAD_DIR', XOOPS_ROOT_PATH.'/uploads/es_exam/');
 define('_TAD_ASSIGNMENT_UPLOAD_URL', XOOPS_URL.'/uploads/es_exam/');
 
-
 //取得學生上次傳的作業 的資料
-function get_stud_old_exam($assn ,$class_id , $sit_id ){
-    global $xoopsDB ;
+function get_stud_old_exam($assn, $class_id, $sit_id)
+{
+    global $xoopsDB;
     $sql = 'SELECT * FROM '.$xoopsDB->prefix('exam_files')." WHERE `assn` ='$assn' and  class_id='$class_id' and sit_id= '$sit_id'  ";
 
     $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
     while ($row = $xoopsDB->fetchArray($result)) {
-          $data['old_asfsn'] = $row['asfsn'];
-          $data['stud_id'] = $row['stud_id'];
-          $data['memo'] = $row['memo'];
+        $data['old_asfsn'] = $row['asfsn'];
+        $data['stud_id'] = $row['stud_id'];
+        $data['memo'] = $row['memo'];
     }
-    return $data ;
+
+    return $data;
 }
-
-
 
 function exam_set_empfile($assn, $class_id)
 {
@@ -135,8 +134,8 @@ function list_exam_file($assn = '', $my_order = ' `up_time` DESC , sit_id ASC ')
             $data[$i][$k] = $v;
         }
 
-    //作品說明做處理
-    $myts = &MyTextSanitizer::getInstance();
+        //作品說明做處理
+        $myts = &MyTextSanitizer::getInstance();
         $data[$i]['memo'] = $myts->displayTarea($data[$i]['memo']);
 
         $show_name = (empty($show_name)) ? $author._MD_TADASSIGN_UPLOAD_FILE : $show_name;
@@ -148,19 +147,27 @@ function list_exam_file($assn = '', $my_order = ' `up_time` DESC , sit_id ASC ')
         $data[$i]['sub_name'] = $sub_name;
         $data[$i]['show_name'] = $show_name;
 
-    //作品座號標記
-    $class_students[$sit_id]['in'] = 1;
+        //作品座號標記
+        $class_students[$sit_id]['in'] = 1;
 
-    //成績 bar
-    $data[$i]['score_bar'] = $data[$i]['score'] - $base_score;
+        //判別是否有多個檔案 後面的為舊檔
+        if ($files_has[$stud_id])
+            $data[$i]['old_file'] = 1 ;
+        else {
+            $files_has[$stud_id] = 1 ;
+            $data[$i]['old_file'] = 0 ;
+        }
+
+        //成績 bar
+        $data[$i]['score_bar'] = $data[$i]['score'] - $base_score;
         if ($data[$i]['score_bar'] < 0) {
             $data[$i]['score_bar'] = 0;
         }
-    //星級
-    $data[$i]['score_star'] = ($data[$i]['score'] - $base_score)/( (100 - $base_score)/5 );
-    if ($data[$i]['score_star'] < 0) {
+        //星級
+        $data[$i]['score_star'] = ($data[$i]['score'] - $base_score) / ((100 - $base_score) / 5);
+        if ($data[$i]['score_star'] < 0) {
             $data[$i]['score_star'] = 0;
-    }
+        }
 
         ++$i;
     }
@@ -193,11 +200,11 @@ function list_one_exam($asfsn)
         $data['score_bar'] = 0;
     }
     //星級
-    $data['score_star'] = ($data['score'] - $base_score)/( (100 - $base_score)/5 );
+    $data['score_star'] = ($data['score'] - $base_score) / ((100 - $base_score) / 5);
 
-        if ($data['score_star'] < 0) {
-            $data['score_star'] = 0;
-        }
+    if ($data['score_star'] < 0) {
+        $data['score_star'] = 0;
+    }
 
     return $data;
 }
@@ -273,7 +280,7 @@ function delete_tad_assignment($assn = '')
 }
 
 //刪除 exam_files 某筆資料資料
-function delete_tad_assignment_file($asfsn = '', $stud_id )
+function delete_tad_assignment_file($asfsn = '', $stud_id)
 {
     global $xoopsDB;
 
@@ -296,17 +303,15 @@ function delete_tad_assignment_file($asfsn = '', $stud_id )
 
     $sql = 'delete from '.$xoopsDB->prefix('exam_files')." where asfsn='$asfsn'";
     $xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
-
-
 }
 
 //標記  exam_files 某筆檔案為舊版本
-function mark_old_tad_assignment_file($asfsn = '', $stud_id )
+function mark_old_tad_assignment_file($asfsn = '', $stud_id)
 {
     global $xoopsDB;
 
     $sql = 'update   '.$xoopsDB->prefix('exam_files')." set old_file = 1  where asfsn='$asfsn'  ";
- 
+
     $xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
 }
 

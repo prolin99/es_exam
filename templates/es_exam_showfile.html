@@ -8,9 +8,12 @@
 <link rel="stylesheet" href="../css/star-rating.css" media="all" type="text/css"/>
 <link rel="stylesheet" href="../css/theme-krajee-fa.css" media="all" type="text/css"/>
 <script src="../css/star-rating.js" type="text/javascript"></script>
-
-<div class='row'>
-
+<{ if ($old_file) }>
+	<div class='row alert-danger' title='舊檔案'>
+<{else}>
+	<div class='row'>
+<{/if}>
+000<{$old_file }>
 	<span class="alert alert-success row"  title='左右邊界處，滑鼠滾軸，可切換上下張。'>
 	  <span class=" col-md-9 col-xs-9 col-xs-offset-3">
 

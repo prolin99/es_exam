@@ -72,6 +72,15 @@ function list_tad_assignment_file($assn = '')
         $data[$i]['sub_name'] = $sub_name;
         $data[$i]['show_name'] = $show_name;
         $data[$i]['up_ip'] = substr($data[$i]['up_ip'],-7)  ;
+        //判別是否有多個檔案 後面的為舊檔
+        if ($files_has[$stud_id])
+            $data[$i]['old_file'] = 1 ;
+        else {
+            $files_has[$stud_id] = 1 ;
+            $data[$i]['old_file'] = 0 ;
+        }
+
+
 
         ++$i;
     }

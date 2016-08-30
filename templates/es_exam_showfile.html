@@ -13,10 +13,12 @@
 <{else}>
 	<div class='row'>
 <{/if}>
-000<{$old_file }>
+<{$old_file }>
 	<span class="alert alert-success row"  title='左右邊界處，滑鼠滾軸，可切換上下張。'>
-	  <span class=" col-md-9 col-xs-9 col-xs-offset-3">
-
+	  <span class=" col-md-10 col-xs-10 col-xs-offset-1">
+		  <span class="col-md-1 col-xs-1">
+			ip..<{$all.up_ip|substr:-5}>
+		  </span>
 		<span class="col-md-3 col-xs-3">
 		<input class="comment" type="text" onfocus="this.select()"   name="comment[<{$all.asfsn}>]"  id="comment_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>" value="<{$all.comment}>" placeholder='評語'  title="評語"></input>
 		</span>

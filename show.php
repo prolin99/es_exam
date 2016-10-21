@@ -89,6 +89,10 @@ function list_tad_assignment_file($assn = '')
         $ifram_show = 1;
         $file_mode = 'scratch';
     }
+    if (preg_match('/(pdf)/i', $ext_file)) {
+        $ifram_show = 1;
+        $file_mode = 'pdf';
+    }
 
   //取得作業
   $stud = list_exam_file($assn);

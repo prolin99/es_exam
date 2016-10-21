@@ -41,6 +41,10 @@ if (preg_match('/(swf)/i', $ext_file)) {
     $file_mode = 'flash';
 }
 
+if (preg_match('/(pdf)/i', $ext_file)) {
+    $file_mode = 'pdf';
+}
+
 //or  (preg_match('/(pdf|doc|docx|xls|xlsx)/i'  ,$ext_file)  )
 if ($gv   and ($file_mode == '')) {
     $file_mode = 'google';

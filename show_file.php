@@ -32,7 +32,9 @@ if (preg_match('/(sb|sb2)/i', $ext_file)) {
 if (preg_match('/(swf)/i', $ext_file)) {
     $file_mode = 'flash';
 }
-
+if (preg_match('/(pdf)/i', $ext_file)) {
+    $file_mode = 'pdf';
+}
 /*-----------秀出結果區--------------*/
 
 $xoopsTpl = new XoopsTpl();

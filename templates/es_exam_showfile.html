@@ -1,3 +1,4 @@
+<{*  評分用的view *}>
 <link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_url}>/modules/tadtools/bootstrap3/css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_url}>/modules/tadtools/bootstrap3/css/bootstrap-responsive.css" />
 
@@ -13,7 +14,6 @@
 <{else}>
 	<div class='row'>
 <{/if}>
-<{$old_file }>
 	<span class="alert alert-success row"  title='左右邊界處，滑鼠滾軸，可切換上下張。'>
 	  <span class=" col-md-10 col-xs-10 col-xs-offset-1">
 		  <span class="col-md-1 col-xs-1">
@@ -34,7 +34,10 @@
 
 	<{if $file_mode=='picture'}>
 	<{*  圖檔 *}>
-	<div class='col-md-12 text-center' > <img src='<{$file}>'></div><div class='col-md-12 text-center'><{  $all.memo}></div>
+	<div class='col-md-12 text-center' >
+	<div class='col-md-12 text-center' > <img class='img-responsive' src='<{$file}>'></div>
+	<div class='col-md-12 text-center'><{  $all.memo}></div>
+	</div>
 	<{/if}>
 
 
@@ -50,54 +53,53 @@
 
 	<{if $file_mode=='scratch'}>
 	<{*  scratch *}>
-	<div class='row'>
-	<div class='col-md-8 text-center'>
-		<div id="flashContent" ></div>
+	<div   class='col-md-12 text-center'>
 
-		<script type="text/javascript" src="<{$xoops_url}>/modules/es_exam/swfobject.js"></script>
-		<script type="text/javascript">
-		var flashvars = {
-		  project: "<{$file}>" ,
-		  autostart: "false"
-		};
+		<div class="row">
+		<div class='col-md-8 text-center col-md-offset-2'>
+			<div class="embed-responsive embed-responsive-16by9">
+			    <iframe class="embed-responsive-item" src="<{$xoops_url}>/modules/es_exam/images/Scratch.swf?project=<{$file}>&autostart=flase"></iframe>
+			</div>
+		</div>
+		</div>
+		<div id="flashContent" >
 
-		var params = {
-
-		  allowScriptAccess: "always",
-		  allowFullScreen: "true",
-		  wmode: "window",
-		  menu:"‘false"
-		};
-		var attributes = {};
-		swfobject.embedSWF("<{$xoops_url}>/modules/es_exam/images/Scratch.swf", "flashContent", "482", "387", "10.2.0","<{$xoops_url}>/modules/es_exam/images/expressInstall.swf", flashvars, params, attributes);
-		</script>
+		<a href='<{$file}>'>作品下載</a><br />
+		使用說明：<br />
+		<{$all.memo}>
+		</div>
 	</div>
-	<div class='col-md-4 text-center'><p>說明：</p><{  $all.memo}></div>
-	</div>
+
+
 	<{/if}>
 
 	<{if $file_mode=='flash'}>
 	<{*  scratch *}>
 	<div class='col-md-12 text-center'>
-		<div id="flashContent" ></div>
-		<div class='col-md-12 text-center'><{  $all.memo}></div>
-		<script type="text/javascript" src="<{$xoops_url}>/modules/es_exam/swfobject.js"></script>
-		<script type="text/javascript">
-		var flashvars = {
- 		  autostart: "false"
-		};
+		<div id="flashContent" ><{$all.memo}></div>
+		<div class='row'>
+			<div class="embed-responsive embed-responsive-16by9">
+			    <iframe class="embed-responsive-item" src="<{$file}>?autostart=flase"></iframe>
+			</div>
+		</div>
 
-		var params = {
-
-		  allowScriptAccess: "always",
-		  allowFullScreen: "true",
-		  wmode: "window",
-		  menu:"‘false"
-		};
-		var attributes = {};
-		swfobject.embedSWF("<{$file}>", "flashContent", "482", "387", "10.2.0","<{$xoops_url}>/modules/es_exam/images/expressInstall.swf", flashvars, params, attributes);
-		</script>
 	</div>
+	<{/if}>
+
+	<{if $file_mode=='pdf'}>
+	<{*  pdf *}>
+	<div class='col-md-12 text-center'>
+ 		<div id="pdfContent" ><a href="<{$file}>" target="_blank">下載檔案</a>.</p> <p> <{  $all.memo}></p></div>
+		<div class="embed-responsive embed-responsive-16by9">
+	       <object class="embed-responsive-item" data="<{$file}>" type="application/pdf" internalinstanceid="9" title="">
+	           <p>Your browser isn't supporting embedded pdf files. You can download the file
+	               <a href="<{$file}>">here</a>.</p>
+	       </object>
+	    </div>
+
+ 	</div>
+
+
 	<{/if}>
 
 

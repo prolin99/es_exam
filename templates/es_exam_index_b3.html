@@ -7,8 +7,8 @@
 
   <form class="form-horizontal" action="index.php" method="post" id="myForm" enctype="multipart/form-data" onsubmit="return check_1() ;">
       <div class="form-group">
-          <label for="assn" class="col-sm-2 control-label">主題</label>
-          <div class="col-sm-6">
+          <label for="assn" class="col-xs-2 control-label">主題</label>
+          <div class="col-xs-6">
           <select   id="assn"  name="assn"  class="form-control" >
             <option value=''><{$smarty.const._MD_TADASSIGN_SELECT_ASSN}></option>
             <{foreach from=$all item=data}>
@@ -18,19 +18,19 @@
             </div>
       </div>
       <div class="form-group">
-        <label for="sit_id" class="col-sm-2 control-label">你的座號</label>
-        <div class="col-sm-4">
+        <label for="sit_id" class="col-xs-2 control-label">你的座號</label>
+        <div class="col-xs-4">
           <input  type="text"  id="sit_id"  class="form-control" name="sit_id"   placeholder="你的座號">
         </div>
       </div>
       <div class="form-group">
-        <label for="passwd" class="col-sm-2 control-label">上傳密碼：</label>
-        <div class="col-sm-4">
+        <label for="passwd" class="col-xs-2 control-label">上傳密碼：</label>
+        <div class="col-xs-4">
            <input  type="password"  id="passwd" class="form-control"  name="passwd"   placeholder="這次作業的登入密碼">
         </div>
       </div>
       <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-4">
+        <div class="col-md-offset-2 col-xs-4">
             <input type="hidden" name="op" value="login_es_exam">
             <button type="submit" class="btn btn-primary" >登入</button>
         </div>

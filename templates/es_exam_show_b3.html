@@ -62,8 +62,8 @@
   </script>
 <{if ($assn) }>
   <div class="row">
-    <div class="col-md-8"><h2><{$class_id}>班   <{$title}></h2></div>
-    <div class="col-md-4 text-right">
+    <div class="col-xs-8"><h2><{$class_id}>班   <{$title}></h2></div>
+    <div class="col-xs-4 text-right">
        <button class="btn btn-warning" type="button" onClick="window.location.reload()" title='重新載入畫面'>重整</button>
     	<a href="index.php?assn=<{$assn}>" class="btn btn-primary"><{$smarty.const._MD_SAVE}></a>
     	<{if $isAdmin}><a href="admin/score.php?assn=<{$assn}>" class="btn btn-success">評分</a><{/if}>
@@ -78,11 +78,11 @@
   <{/if}>
   <{if $isAdmin}>
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-xs-12">
   <h5>未繳交作業：</h5>
   <{foreach from=$class_students  key=sit item=stud}>
   <{if (!$stud.in)  }>
-  <span class="col-md-2 col-xs-4"><span class="badge badge-info"><{ $sit }></span> <{ $stud.name }></span>
+  <span class="col-xs-2 col-xs-4"><span class="badge badge-info"><{ $sit }></span> <{ $stud.name }></span>
   <{/if}>
    <{/foreach}>
    </div>
@@ -90,11 +90,11 @@
   <{/if}>
   <table class="table table-striped table-bordered table-hover">
   <tr>
-  <th class='col-md-2'><{$smarty.const._MD_TADASSIGN_UP_TIME}></th>
-  <th class='col-md-2'><{$smarty.const._MD_TADASSIGN_FILENAME}></th>
-  <th  class='col-md-2'><{$smarty.const._MD_TADASSIGN_AUTHOR}></th>
-  <th  class='col-md-2'>表現</th>
-  <{if $isAdmin}><th  class='col-md-2'><{$smarty.const._TAD_FUNCTION}></th><{/if}>
+  <th class='col-xs-2'><{$smarty.const._MD_TADASSIGN_UP_TIME}></th>
+  <th class='col-xs-2'><{$smarty.const._MD_TADASSIGN_FILENAME}></th>
+  <th  class='col-xs-2'><{$smarty.const._MD_TADASSIGN_AUTHOR}></th>
+  <th  class='col-xs-2'>表現</th>
+  <{if $isAdmin}><th  class='col-xs-2'><{$smarty.const._TAD_FUNCTION}></th><{/if}>
   </tr  >
   <tbody>
   <{foreach from=$file_data item=all}>
@@ -104,8 +104,8 @@
   <{else}>
   <tr>
   <{/if}>
-      <td  class='col-md-2'><{$all.up_time}><br />..<{$all.up_ip}></td>
-      <td  class='col-md-2' style="word-break : break-all; overflow:hidden; " >
+      <td  class='col-xs-2'><{$all.up_time}><br />..<{$all.up_ip}></td>
+      <td  class='col-xs-2' style="word-break : break-all; overflow:hidden; " >
       <{if ($open_show)}>
           <{if  ($ifram_show) }>
           	<div  >
@@ -125,18 +125,18 @@
       <{/if}> <{*   / $open_show *}>
       </td>
 
-      <td  class='col-md-2' >   <span class="label label-success label-as-badge"><{$all.sit_id}></span> <{$all.author}></td>
-      <td  class='col-md-3'>
+      <td  class='col-xs-2' >   <span class="label label-success label-as-badge"><{$all.sit_id}></span> <{$all.author}></td>
+      <td  class='col-xs-3'>
       <{if ($all.score) }>
       <div class="row">
        <input  type="text"   class="kv-fa rating-loading" value="<{$all.score_star}>" data-size="xs"       >
 
-		<div class='col-md-4'><{  $all.comment}></div>
+		<div class='col-xs-4'><{  $all.comment}></div>
        </div>
 	  <{/if}>	 <{*   / $score *}>
 	</td>
       <{if $isAdmin}>
-      <td  class='col-md-1'>
+      <td  class='col-xs-1'>
         <a href="javascript:delete_func(<{$all.asfsn}>,<{$all.stud_id}>);" class="btn btn-mini btn-danger"><{$smarty.const._TAD_DEL}></a>
       </td>
       <{/if}>  <{*   / $isAdmin *}>

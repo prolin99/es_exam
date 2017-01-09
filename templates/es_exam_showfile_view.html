@@ -6,12 +6,12 @@
 
 	<{if $file_mode=='picture'}>
 	<{*  圖檔 *}>
-	<div class='col-md-12 text-center'> <img class='img-responsive' src='<{$file}>'></div><div><{  $all.memo}></div>
+	<div class='col-xs-12 text-center'> <img class='img-responsive' src='<{$file}>'></div><div><{  $all.memo}></div>
 	<{/if}>
 
 	<{if $file_mode=='scratch'}>
 	<{*  scratch *}>
-	<div   class='col-md-12 text-center'>
+	<div   class='col-xs-12 text-center'>
 
 		<div id="flashContent" >
 
@@ -32,7 +32,7 @@
 	<{if $file_mode=='flash'}>
 	<{*  flash *}>
 
-	<div class='col-md-12 text-center'>
+	<div class='col-xs-12 text-center'>
 		<div id="flashContent" ><{  $all.memo}></div>
 		<div class='row'>
 			<div class="embed-responsive embed-responsive-16by9">
@@ -46,7 +46,7 @@
 	<{if $file_mode=='pdf'}>
  	<{*  pdf *}>
 
- 	<div class='col-md-12 text-center'>
+ 	<div class='col-xs-12 text-center'>
  		<div id="pdfContent" ><a href="<{$file}>" target="_blank">下載檔案</a>.</p> <p> <{  $all.memo}></p></div>
 		<div class="embed-responsive embed-responsive-16by9">
 	       <object class="embed-responsive-item" data="<{$file}>" type="application/pdf" internalinstanceid="9" title="">

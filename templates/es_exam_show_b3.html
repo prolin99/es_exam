@@ -100,10 +100,11 @@
   <{/if}>
   <table class="table" data-sorting="true">
     <thead>
-  <tr>
+  <tr alt='可依條件排序' title='可依條件排序'>
   <th class='col-xs-2'><{$smarty.const._MD_TADASSIGN_UP_TIME}></th>
   <th class='col-xs-2'><{$smarty.const._MD_TADASSIGN_FILENAME}></th>
-  <th  class='col-xs-2' data-breakpoints="xs"><{$smarty.const._MD_TADASSIGN_AUTHOR}></th>
+  <th  class='col-xs-1' data-breakpoints="xs" data-type="number" >座號</th>
+  <th  class='col-xs-2' data-breakpoints="xs" ><{$smarty.const._MD_TADASSIGN_AUTHOR}></th>
   <th  class='col-xs-2'>表現</th>
   <{if $isAdmin}><th  class='col-xs-2'><{$smarty.const._TAD_FUNCTION}></th><{/if}>
 </thead>
@@ -112,11 +113,11 @@
   <{foreach from=$file_data item=all}>
 
   <{ if ($all.old_file) }>
-  <tr class='danger' title='舊檔案'>
+    <tr class='danger' title='舊檔案'>
   <{else}>
-  <tr>
+    <tr>
   <{/if}>
-      <td  class='col-xs-2'><{$all.up_time}><br />..<{$all.up_ip}></td>
+      <td  class='col-xs-2'><{$all.up_time}><br /><span alt="<{$all.up_ip_all}>" title="<{$all.up_ip_all}>">ip</span>:<{$all.up_ip}></td>
       <td  class='col-xs-2' style="word-break : break-all; overflow:hidden; " >
       <{if ($open_show)}>
           <{if  ($ifram_show) }>
@@ -132,12 +133,12 @@
          <{/if}>  <{*   / $ifram_show *}>
       <{else}>
       	<span >
- 		<{$all.file_name|truncate 20}>
- 	</span>
+ 		    <{$all.file_name|truncate 20}>
+ 	      </span>
       <{/if}> <{*   / $open_show *}>
       </td>
-
-      <td  class='col-xs-2' >   <span class="label label-success label-as-badge"><{$all.sit_id}></span> <{$all.author}></td>
+      <td  class='col-xs-1' > <{$all.sit_id}></td>
+      <td  class='col-xs-2' > <{$all.author}></td>
       <td  class='col-xs-3'>
       <{if ($all.score) }>
       <div class="row">

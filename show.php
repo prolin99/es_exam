@@ -71,7 +71,11 @@ function list_tad_assignment_file($assn = '')
 
         $data[$i]['sub_name'] = $sub_name;
         $data[$i]['show_name'] = $show_name;
-        $data[$i]['up_ip'] = substr($data[$i]['up_ip'],-7)  ;
+        //
+        $ip_split = preg_split("/[:.]+/", $data[$i]['up_ip']);
+        $data[$i]['up_ip_all'] =  $data[$i]['up_ip'] ;
+        $data[$i]['up_ip'] =  end($ip_split) ;
+        //$data[$i]['up_ip'] = substr($data[$i]['up_ip'],-7)  ;
         //判別是否有多個檔案 後面的為舊檔
         if ($files_has[$stud_id])
             $data[$i]['old_file'] = 1 ;

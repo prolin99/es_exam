@@ -21,7 +21,7 @@ $data['memo'] = $myts->displayTarea($data['memo']);
 
 $file = _TAD_ASSIGNMENT_UPLOAD_URL.$data['assn'].'/'.$data['asfsn'].'.'.$_GET['sub_name'];
 
-if (preg_match('/(jpg|jpeg|bmp|png|gif)/i', $ext_file)) {
+if (preg_match('/(jpg|jpeg|bmp|png|gif|svg)/i', $ext_file)) {
     $file_mode = 'picture';
 }
 

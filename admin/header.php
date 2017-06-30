@@ -34,8 +34,8 @@ if (!isset($xoopsTpl) || !is_object($xoopsTpl)) {
 }
 
 if(file_exists(XOOPS_ROOT_PATH."/modules/tadtools/include/beforeheader.php")){
- include_once XOOPS_ROOT_PATH."/modules/tadtools/include/beforeheader.php";
- $xoopsOption['template_main']=set_bootstrap() ;
+  include_once XOOPS_ROOT_PATH."/modules/tadtools/include/beforeheader.php";
+  $xoopsOption['template_main']=set_bootstrap() ;
 }
 
 xoops_cp_header();

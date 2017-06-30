@@ -1,7 +1,3 @@
-<link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_url}>/modules/tadtools/bootstrap/css/bootstrap.css" />
-<link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_url}>/modules/tadtools/bootstrap/css/bootstrap-responsive.css" />
-<link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_url}>/modules/tadtools/css/xoops_adm.css" />
-
 
 <link href="../css/bootstrap-switch.css" rel="stylesheet">
 <script src="../bootstrap-switch.js"></script>
@@ -35,29 +31,34 @@ function delete_tad_assignment_func(assn){
 <tbody>
 
 <{foreach from=$all_data item=as}>
-  <tr>
+  <{if ($as.is_own) }>
+  <tr >
+ <{else}>
+ <tr class="warning">
+ <{/if}>
     <td><{$class_list_c[$as.class_id]}></td>
     <td><{$as.assn}></td>
-    <td><a href="../show.php?assn=<{$as.assn}>"><{$as.title}></a></td>
-    <td><input id="pwd_<{$as.assn}>" class="span2 pwd"  value="<{$as.passwd}>" title="可以直接修改"></td>
+    <td ><a href="../show.php?assn=<{$as.assn}>"><{$as.title}></a></td>
+    <td class="col-md-1 col-xs-1">
+        <input id="pwd_<{$as.assn}>" class="form-control  pwd"  value="<{$as.passwd}>" title="可以直接修改">
+    </td>
     <td><{$as.uid_name}></td>
 
-    <td>
+    <td class="col-md-1 col-xs-1">
 
-      <div class="span1">
+      <div class="col-md-1 col-xs-1">
         <input type="checkbox" name="my-checkbox"  class="upload" <{if $as.upload_mode=='1'}>checked<{/if}>  id="upload_<{$as.assn}>">
         </div>
     </td>
 
-    <td>
-      <div class="span1">
+    <td class="col-md-1 col-xs-1 col-xs-1">
+      <div class="col-md-1 col-xs-1">
         <input type="checkbox" name="my-checkbox"  class="open_show" <{if $as.open_show=='1'}>checked<{/if}>  id="openshow_<{$as.assn}>">
         </div>
 
     </td>
-
-    <td  >
-      <div class="span1">
+    <td class="col-md-1 col-xs-1">
+      <div class="col-md-1 col-xs-1">
         <input type="checkbox" name="my-checkbox"  class="gview_mode" <{if $as.gview_mode=='1'}>checked<{/if}>  id="gviewmode_<{$as.assn}>">
         </div>
 

@@ -108,13 +108,19 @@ if  ($_GET['op']) {
 		$objPHPExcel->setActiveSheetIndex(0)->setCellValue($col_str ,$i) ;
       	}
  */
-        //取得中文班名
-        $class_list_c = es_class_name_list_c('long')  ;
+  //取得中文班名
+  $class_list_c = es_class_name_list_c('long')  ;
 
-        //資料區
-        foreach ( $stud_data  as $class_id => $class_list )  {
+    //資料區 ，取出各班
+  foreach ( $stud_data  as $class_id => $class_list )  {
 
-		if ($row<>1) $row += 4 ;		//多班級時，間隔
+		if ($row<>1)  {
+			//分頁
+			//$row += 4 ;		//多班級時，間隔
+			$objPHPExcel->setActiveSheetIndex(0)->setBreak('A' . ($row -1) , PHPExcel_Worksheet::BREAK_ROW);
+
+		}
+
 		//標題行
 		$objPHPExcel->setActiveSheetIndex(0)
 		->setCellValue('A' . $row, '班級')
@@ -132,6 +138,11 @@ if  ($_GET['op']) {
 			$objPHPExcel->setActiveSheetIndex(0)->setCellValue($col_str ,$i_str) ;
 			$i++ ;
 		}
+		$col++ ;
+		$col_str =$col .$row ;
+		$objPHPExcel->setActiveSheetIndex(0)->setCellValue($col_str ,'平均') ;
+
+
 		foreach ( $class_list  as $order => $stud )  {
 			$row++ ;
 			$stud_order++ ;
@@ -174,7 +185,7 @@ if  ($_GET['op']) {
 
 	$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
 	//$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
- 	ob_clean() ;	
+ 	ob_clean() ;
 	$objWriter->save('php://output');
 	exit;
 

@@ -66,8 +66,8 @@ function list_tad_assignment($show_function=1 ,$semester =1  ){
   	$class_list_c = es_class_name_list_c('long')  ;
 
   	$xoopsTpl->assign('class_list_c',$class_list_c);
-	$xoopsTpl->assign('all_data' , $all_data);
-	$xoopsTpl->assign('bar' , $bar);
+		$xoopsTpl->assign('all_data' , $all_data);
+		$xoopsTpl->assign('bar' , $bar);
 
 }
 

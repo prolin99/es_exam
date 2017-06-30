@@ -1,7 +1,7 @@
 <?php
 
 /*-----------引入檔案區--------------*/
-//$xoopsOption['template_main'] = "es_exam_adm_score.html";
+
 include_once 'header.php';
 include_once '../function.php';
 

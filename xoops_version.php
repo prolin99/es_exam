@@ -4,7 +4,7 @@ $modversion = array();
 
 //---模組基本資訊---//
 $modversion['name'] = _MI_ESEXAM_NAME;
-$modversion['version'] = 1.62;
+$modversion['version'] = 1.7;
 $modversion['description'] = _MI_ESEXAM_DESC;
 $modversion['author'] = _MI_ESEXAM_AUTHOR;
 $modversion['credits'] = _MI_ESEXAM_CREDITS;
@@ -59,37 +59,27 @@ $modversion['hasMain'] = 1;
 $i = 1;
 $modversion['templates'][$i]['file'] = 'es_exam_index.html';
 $modversion['templates'][$i]['description'] = 'es_exam_index.html';
-++$i;
-$modversion['templates'][$i]['file'] = 'es_exam_index_b3.html';
-$modversion['templates'][$i]['description'] = 'es_exam_index.html';
+
 
 ++$i;
 $modversion['templates'][$i]['file'] = 'es_exam_show.html';
 $modversion['templates'][$i]['description'] = 'es_exam_show.html';
-++$i;
-$modversion['templates'][$i]['file'] = 'es_exam_show_b3.html';
-$modversion['templates'][$i]['description'] = 'es_exam_show.html';
+
 
 ++$i;
 $modversion['templates'][$i]['file'] = 'es_exam_adm_main.html';
 $modversion['templates'][$i]['description'] = 'es_exam_adm_main.html';
-++$i;
-$modversion['templates'][$i]['file'] = 'es_exam_adm_main_b3.html';
-$modversion['templates'][$i]['description'] = 'es_exam_adm_main.html';
+
 
 ++$i;
 $modversion['templates'][$i]['file'] = 'es_exam_adm_add.html';
 $modversion['templates'][$i]['description'] = 'es_exam_adm_add.html';
-++$i;
-$modversion['templates'][$i]['file'] = 'es_exam_adm_add_b3.html';
-$modversion['templates'][$i]['description'] = 'es_exam_adm_add.html';
+
 
 ++$i;
 $modversion['templates'][$i]['file'] = 'es_exam_adm_score.html';
 $modversion['templates'][$i]['description'] = 'es_exam_adm_score.html';
-++$i;
-$modversion['templates'][$i]['file'] = 'es_exam_adm_score_b3.html';
-$modversion['templates'][$i]['description'] = 'es_exam_adm_score.html';
+
 
 ++$i;
 $modversion['templates'][$i]['file'] = 'es_exam_empt.html';

@@ -1,6 +1,5 @@
 <{*  評分用的view *}>
 <link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_url}>/modules/tadtools/bootstrap3/css/bootstrap.css" />
-<link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_url}>/modules/tadtools/bootstrap3/css/bootstrap-responsive.css" />
 
 <script src="<{$xoops_url}>/modules/tadtools/jquery/ui/jquery-ui.js"></script>
 <link rel="stylesheet" href="<{$xoops_url}>/modules/tadtools/jquery/themes/base/jquery-ui.css">
@@ -20,7 +19,7 @@
 			ip..<{$all.up_ip|substr:-5}>
 		  </span>
 		<span class="col-xs-3">
-		<input class="comment" type="text" onfocus="this.select()"   name="comment[<{$all.asfsn}>]"  id="comment_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>" value="<{$all.comment}>" placeholder='評語'  title="評語"></input>
+		<input class="comment" type="text" onfocus="this.select()"   name="comment[<{$all.asfsn}>]"  id="comment_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>" value="<{$all.comment}>" placeholder='評語'  title="評語">
 		</span>
 		<span class="col-xs-5">
 		<input type="text" class="kv-fa rating-loading" value="<{$all.score_star}>" data-size="xs" title="" data_ref="<{$all.asfsn}>" >
@@ -34,10 +33,10 @@
 
 	<{if $file_mode=='picture'}>
 	<{*  圖檔 *}>
-	<div class='col-xs-12 text-center' >
-	<div class='col-xs-12 text-center' > <img class='img-responsive' src='<{$file}>'></div>
+
+	<div class='col-xs-12 text-center' > <img class='img-responsive  center-block' src='<{$file}>'></div>
 	<div class='col-xs-12 text-center'><{  $all.memo}></div>
-	</div>
+
 	<{/if}>
 
 
@@ -219,9 +218,7 @@ $(function() {
   <script>
       //星等評分
       $(document).on('ready', function () {
-          $('.kv-gly-star').rating({
-              containerClass: 'is-star'
-          });
+
 
           $('.kv-fa').rating({
               theme: 'krajee-fa',
@@ -231,13 +228,14 @@ $(function() {
               //不出現 no rated
               clearCaption : '' ,
               //showClear: false,
+							containerClass: 'is-star' ,
               filledStar: '<i class="fa fa-star"></i>',
               emptyStar: '<i class="fa fa-star-o"></i>'
           });
 
 
 
-          $('.rating,.kv-gly-star,.kv-gly-heart,.kv-uni-star,.kv-uni-rook,.kv-fa,.kv-fa-heart,.kv-svg,.kv-svg-heart').on(
+          $('.kv-fa').on(
                   'change', function () {
                       //取得
                       var v_id= $(this).attr('data_ref') ;

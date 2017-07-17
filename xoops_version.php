@@ -4,7 +4,7 @@ $modversion = array();
 
 //---模組基本資訊---//
 $modversion['name'] = _MI_ESEXAM_NAME;
-$modversion['version'] = 1.7;
+$modversion['version'] = 1.8;
 $modversion['description'] = _MI_ESEXAM_DESC;
 $modversion['author'] = _MI_ESEXAM_AUTHOR;
 $modversion['credits'] = _MI_ESEXAM_CREDITS;
@@ -115,6 +115,14 @@ $modversion['config'][$i]['default'] = 60;
 $modversion['config'][$i]['name'] = 'ESEXAM_MULTI_FILES';                    //保留多次繳交個檔案
 $modversion['config'][$i]['title'] = '_MI_ESEXAM_CONFIG_T3';
 $modversion['config'][$i]['description'] = '_MI_ESEXAM_CONFIG_D3';
+$modversion['config'][$i]['formtype']    = 'yesno';
+$modversion['config'][$i]['valuetype']   = 'int';
+$modversion['config'][$i]['default'] = 0 ;
+
+++$i;
+$modversion['config'][$i]['name'] = 'ESEXAM_SB2JS';                    //保留多次繳交個檔案
+$modversion['config'][$i]['title'] = '_MI_ESEXAM_CONFIG_T4';
+$modversion['config'][$i]['description'] = '_MI_ESEXAM_CONFIG_D4';
 $modversion['config'][$i]['formtype']    = 'yesno';
 $modversion['config'][$i]['valuetype']   = 'int';
 $modversion['config'][$i]['default'] = 0 ;

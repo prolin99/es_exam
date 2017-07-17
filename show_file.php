@@ -10,7 +10,7 @@ include_once XOOPS_ROOT_PATH.'/header.php';
 
 $ext_file = $_GET['sub_name'];
 $asfsn = intval($_GET['asfsn']);
-$score_bar = intval($_GET['score_bar']);
+//$score_bar = intval($_GET['score_bar']);
 
 //取得作業
 $data = list_one_exam($asfsn);
@@ -35,14 +35,18 @@ if (preg_match('/(swf)/i', $ext_file)) {
 if (preg_match('/(pdf)/i', $ext_file)) {
     $file_mode = 'pdf';
 }
+
+
+$sb2js = $xoopsModuleConfig['ESEXAM_SB2JS'] ;
 /*-----------秀出結果區--------------*/
 
 $xoopsTpl = new XoopsTpl();
 
-  $xoopsTpl->assign('base_score', $base_score);
-  $xoopsTpl->assign('bar_max', $bar_max);
-  $xoopsTpl->assign('score_lost', $score_lost);
-  $xoopsTpl->assign('all', $data);
+  //$xoopsTpl->assign('base_score', $base_score);
+  //$xoopsTpl->assign('bar_max', $bar_max);
+  //$xoopsTpl->assign('score_lost', $score_lost);
+  //$xoopsTpl->assign('all', $data);
+$xoopsTpl->assign('sb2js_mode', $sb2js);
 
 $xoopsTpl->assign('file', $file);
 $xoopsTpl->assign('file_mode', $file_mode);

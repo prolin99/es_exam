@@ -22,4 +22,6 @@ define("_MI_ESEXAM_CONFIG_T2", "缺繳呈現分數");
 define("_MI_ESEXAM_CONFIG_D2", "如果學生作品未繳交，學期中呈現的分數");
 define("_MI_ESEXAM_CONFIG_T3", "保留多次上傳檔案");
 define("_MI_ESEXAM_CONFIG_D3", "如設否，只會保留最後上傳的作品。");
+define("_MI_ESEXAM_CONFIG_T4", "scratch 使用 sb2.js 展示");
+define("_MI_ESEXAM_CONFIG_D4", "如設否，預設使用 Flash 做展示。");
 ?>

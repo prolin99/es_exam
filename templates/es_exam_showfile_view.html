@@ -9,6 +9,7 @@
 
 <script type="text/javascript" src="js/script/sb2.js"></script>
 <script>
+	basedir="images/"
 	autoLoad = "<{$file}>";
 </script>
 <{/if}>
@@ -33,13 +34,13 @@
 		<{$all.memo}>
 		</div>
 		<{ if $sb2js_mode }>
-		<canvas id='scratch' width='486' height='391' tabindex='1'></canvas>
+				<canvas id='scratch' width='486' height='391' tabindex='1'></canvas>
 		<{else}>
-		<div class='row'>
+		  <div class='row'>
 			<div class="embed-responsive embed-responsive-16by9">
 			    <iframe class="embed-responsive-item" src="<{$xoops_url}>/modules/es_exam/images/Scratch.swf?project=<{$file}>&autostart=flase"></iframe>
 			</div>
-		</div>
+		  </div>
 		<{/if}>
 
 

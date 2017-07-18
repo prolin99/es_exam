@@ -12,6 +12,10 @@ include_once '../function.php';
   //未交作業，給的分數
   $score_lost = $xoopsModuleConfig['ESEXAM_LOST'];
 
+  //是否使用 sb2.js
+  $sb2js = $xoopsModuleConfig['ESEXAM_SB2JS'] ;
+
+
 /*-----------function區--------------*/
 
 $ext_file = $_GET['sub_name'];
@@ -54,6 +58,8 @@ if ($gv   and ($file_mode == '')) {
 
 $xoopsTpl = new XoopsTpl();
 
+$xoopsTpl->assign('sb2js_mode', $sb2js);
+
 $xoopsTpl->assign('base_score', $base_score);
 $xoopsTpl->assign('bar_max', $bar_max);
 $xoopsTpl->assign('score_lost', $score_lost);
@@ -64,6 +70,6 @@ $xoopsTpl->assign('file', $file);
 $xoopsTpl->assign('file_mode', $file_mode);
 //內包樣版
 $xoopsTpl->assign('module_dir', $xoopsModule->dirname());
-$xoopsTpl->assign('html_file', 'es_exam_showfile.html');
+$xoopsTpl->assign('html_file', 'es_exam_adm_showfile.html');
 
 $xoopsTpl->display('db:es_exam_empt.html');

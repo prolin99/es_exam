@@ -65,6 +65,9 @@ $modversion['templates'][$i]['description'] = 'es_exam_index.html';
 $modversion['templates'][$i]['file'] = 'es_exam_show.html';
 $modversion['templates'][$i]['description'] = 'es_exam_show.html';
 
+++$i;
+$modversion['templates'][$i]['file'] = 'es_exam_showfile_view.html';
+$modversion['templates'][$i]['description'] =  'es_exam_showfile_view.html';
 
 ++$i;
 $modversion['templates'][$i]['file'] = 'es_exam_adm_main.html';
@@ -84,6 +87,10 @@ $modversion['templates'][$i]['description'] = 'es_exam_adm_score.html';
 ++$i;
 $modversion['templates'][$i]['file'] = 'es_exam_empt.html';
 $modversion['templates'][$i]['description'] = 'es_exam_empt.html';
+
+++$i;
+$modversion['templates'][$i]['file'] = 'es_exam_adm_showfile.html';
+$modversion['templates'][$i]['description'] = 'es_exam_adm_showfile.html';
 
 /*
 //---區塊設定---//

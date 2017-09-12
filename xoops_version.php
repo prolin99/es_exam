@@ -66,8 +66,8 @@ $modversion['templates'][$i]['file'] = 'es_exam_show.tpl';
 $modversion['templates'][$i]['description'] = 'es_exam_show.tpl';
 
 ++$i;
-$modversion['templates'][$i]['file'] = 'es_exam_showfile_view.html';
-$modversion['templates'][$i]['description'] =  'es_exam_showfile_view.html';
+$modversion['templates'][$i]['file'] = 'es_exam_showfile_view.tpl';
+$modversion['templates'][$i]['description'] =  'es_exam_showfile_view.tpl';
 
 ++$i;
 $modversion['templates'][$i]['file'] = 'es_exam_adm_main.tpl';

@@ -4,7 +4,7 @@ $modversion = array();
 
 //---模組基本資訊---//
 $modversion['name'] = _MI_ESEXAM_NAME;
-$modversion['version'] = 1.7;
+$modversion['version'] = 1.8;
 $modversion['description'] = _MI_ESEXAM_DESC;
 $modversion['author'] = _MI_ESEXAM_AUTHOR;
 $modversion['credits'] = _MI_ESEXAM_CREDITS;
@@ -57,33 +57,37 @@ $modversion['hasMain'] = 1;
 
 //---樣板設定---//
 $i = 1;
-$modversion['templates'][$i]['file'] = 'es_exam_index.html';
-$modversion['templates'][$i]['description'] = 'es_exam_index.html';
+$modversion['templates'][$i]['file'] = 'es_exam_index.tpl';
+$modversion['templates'][$i]['description'] = 'es_exam_index.tpl';
 
 
 ++$i;
-$modversion['templates'][$i]['file'] = 'es_exam_show.html';
-$modversion['templates'][$i]['description'] = 'es_exam_show.html';
+$modversion['templates'][$i]['file'] = 'es_exam_show.tpl';
+$modversion['templates'][$i]['description'] = 'es_exam_show.tpl';
 
 
 ++$i;
-$modversion['templates'][$i]['file'] = 'es_exam_adm_main.html';
-$modversion['templates'][$i]['description'] = 'es_exam_adm_main.html';
+$modversion['templates'][$i]['file'] = 'es_exam_adm_main.tpl';
+$modversion['templates'][$i]['description'] = 'es_exam_adm_main.tpl';
 
 
 ++$i;
-$modversion['templates'][$i]['file'] = 'es_exam_adm_add.html';
-$modversion['templates'][$i]['description'] = 'es_exam_adm_add.html';
+$modversion['templates'][$i]['file'] = 'es_exam_adm_add.tpl';
+$modversion['templates'][$i]['description'] = 'es_exam_adm_add.tpl';
 
 
 ++$i;
-$modversion['templates'][$i]['file'] = 'es_exam_adm_score.html';
-$modversion['templates'][$i]['description'] = 'es_exam_adm_score.html';
+$modversion['templates'][$i]['file'] = 'es_exam_adm_score.tpl';
+$modversion['templates'][$i]['description'] = 'es_exam_adm_score.tpl';
 
 
 ++$i;
 $modversion['templates'][$i]['file'] = 'es_exam_empt.html';
 $modversion['templates'][$i]['description'] = 'es_exam_empt.html';
+++$i;
+$modversion['templates'][$i]['file'] = 'es_exam_adm_showfile.tpl';
+$modversion['templates'][$i]['description'] = 'es_exam_adm_showfile.tpl';
+
 
 /*
 //---區塊設定---//

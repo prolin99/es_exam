@@ -1,5 +1,19 @@
 <link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_url}>/modules/tadtools/bootstrap3/css/bootstrap.css" />
+<{if $file_mode=='scratch'}>
+<{if $sb2js_mode }>
+<{*  scratch *}>
+<script type="text/javascript" src='js/script/ZipFile.complete.js'></script>
 
+<script type="text/javascript" src="http://canvg.googlecode.com/svn/trunk/rgbcolor.js"></script>
+<script type="text/javascript" src="http://canvg.googlecode.com/svn/trunk/canvg.js"></script>
+
+<script type="text/javascript" src="js/script/sb2.js"></script>
+<script>
+	basedir="images/"
+	autoLoad = "<{$file}>";
+</script>
+<{/if}>
+<{/if}>
 <div class='row'>
 
 
@@ -19,13 +33,21 @@
 		使用說明：<br />
 		<{$all.memo}>
 		</div>
-		<div class='row'>
+		<{ if $sb2js_mode }>
+				<canvas id='scratch' width='486' height='391' tabindex='1'></canvas>
+		<{else}>
+		  <div class='row'>
 			<div class="embed-responsive embed-responsive-16by9">
 			    <iframe class="embed-responsive-item" src="<{$xoops_url}>/modules/es_exam/images/Scratch.swf?project=<{$file}>&autostart=flase"></iframe>
 			</div>
-		</div>
+		  </div>
+		<{/if}>
+
 
 	</div>
+
+
+
 	<{/if}>
 
 	<{if $file_mode=='flash'}>

@@ -1,29 +1,22 @@
+
 <link rel="stylesheet" href="<{$xoops_url}>/modules/tadtools/jquery/themes/base/jquery-ui.css">
 <script src="<{$xoops_url}>/modules/tadtools/jquery/ui/jquery-ui.js"></script>
 
-  <link rel='stylesheet' type='text/css' href='<{$xoops_url}>/modules/tadtools/css/iconize.css' />
-  <script type='text/javascript' src='<{$xoops_url}>/modules/tadtools/fancyBox/lib/jquery.mousewheel-3.0.6.pack.js'></script>
-  <script type='text/javascript' language='javascript' src='<{$xoops_url}>/modules/tadtools/fancyBox/source/jquery.fancybox.js?v=2.1.4'></script>
-  <link rel='stylesheet' href='<{$xoops_url}>/modules/tadtools/fancyBox/source/jquery.fancybox.css?v=2.1.4' type='text/css' media='screen' />
-  <link rel='stylesheet' type='text/css' href='<{$xoops_url}>/modules/tadtools/fancyBox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5' />
-  <script type='text/javascript' src='<{$xoops_url}>/modules/tadtools/fancyBox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5'></script>
-  <link rel='stylesheet' type='text/css' href='<{$xoops_url}>/modules/tadtools/fancyBox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7' />
-  <script type='text/javascript' src='<{$xoops_url}>/modules/tadtools/fancyBox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7'></script>
-  <script type='text/javascript' src='<{$xoops_url}>/modules/tadtools/fancyBox/source/helpers/jquery.fancybox-media.js?v=1.0.5'></script>
-
-  <script src="../jquery.ya-enter2tab.js"></script>
+<link rel="stylesheet" href="<{$xoops_url}>/modules/tadtools/fancyBox/source/jquery.fancybox.css" type="text/css" />
+<script src="<{$xoops_url}>/modules/tadtools/fancyBox/lib/jquery.mousewheel.pack.js" type="text/javascript"></script>
+<script src="<{$xoops_url}>/modules/tadtools/fancyBox/source/jquery.fancybox.js" type="text/javascript"></script>
 
 
-  <link rel="stylesheet" href="<{$xoops_url}>/modules/tadtools/css/font-awesome/css/font-awesome.min.css">
+<script src="<{$xoops_url}>/modules/tadtools/jquery/jquery-migrate-3.0.0.min.js" type="text/javascript"></script>
+
+
   <link rel="stylesheet" href="../css/star-rating.css" media="all" type="text/css"/>
   <link rel="stylesheet" href="../css/theme-krajee-fa.css" media="all" type="text/css"/>
+
   <script src="../css/star-rating.js" type="text/javascript"></script>
 
-  <link href="../css/footable.bootstrap.min.css" rel="stylesheet">
-  <link href="../css/footable.sorting.min.css" rel="stylesheet">
-  <script type='text/javascript' src='../js/footable.js'></script>
-  <script type='text/javascript' src='../js/footable.sorting.min.js'></script>
 
+ <script src="../js/jquery.ya-enter2tab.js"></script>
 
 <style type="text/css">
   .fancybox-nav {
@@ -72,9 +65,7 @@
     }
 
 
-    jQuery(function($){
-    	$('.table').footable();
-    });
+
 
   </script>
     <{if ($exam_list) }>
@@ -118,7 +109,7 @@
     <div class="col-md-1 col-xs-20"><{$data.exam.note}></div>
   </div>
 
-  <table class="table" id="tscore" data-sorting="true">
+  <table class="table" id="tscore"  >
 
     <thead>
       <tr>
@@ -160,6 +151,7 @@
 
         <div claa="row">
         <div class="col-md-8 col-xs-8">
+
         <input type="text" class="kv-fa rating-loading" value="<{$all.score_star}>" data-size="xs" title="" data_ref="<{$all.asfsn}>" >
         </div>
         <div class="col-md-4 col-xs-4">
@@ -272,14 +264,14 @@ $(function() {
  	.always(function() {
  		console.log("complete");
  	});
-  }
+} ;
 
 
   </script>﻿
 
 
 
-  <script>
+<script type='text/javascript'>
       //星等評分
       $(document).on('ready', function () {
           $('.kv-gly-star').rating({

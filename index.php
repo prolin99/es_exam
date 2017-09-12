@@ -2,7 +2,7 @@
 
 /*-----------引入檔案區--------------*/
 include 'header.php';
-$xoopsOption['template_main'] = set_bootstrap('es_exam_index.html');
+$xoopsOption['template_main'] = set_bootstrap('es_exam_index.tpl');
 include_once XOOPS_ROOT_PATH.'/header.php';
 /*-----------function區--------------*/
 

@@ -8,7 +8,7 @@ define("_MA_TADASSIGN_ASSN_LIST","上傳主題一覽");
 define("_MA_TADASSIGN_ASSN","上傳編號");
 define("_MA_TADASSIGN_TITLE","上傳主題");
 define("_MA_TADASSIGN_PASSWD","上傳密碼");
-define("_MA_TADASSIGN_PASSWD_DESC","（輸入密碼，使用者不用登入就能上傳）");
+define("_MA_TADASSIGN_PASSWD_DESC","（輸入密碼，使用者不用額外帳號管理）");
 define("_MA_TADASSIGN_START_DATE","開始上傳時間");
 define("_MA_TADASSIGN_END_DATE","上傳截止時間");
 define("_MA_TADASSIGN_NOTE","上傳說明");

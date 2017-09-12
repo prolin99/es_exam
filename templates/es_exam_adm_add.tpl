@@ -2,7 +2,7 @@
 <form action="add.php" class="form-inline" method="post" id="myForm" name="myForm" enctype="multipart/form-data">
 
 <link href="../css/bootstrap-switch.css" rel="stylesheet">
-<script src="../bootstrap-switch.js"></script>
+<script src="../js/bootstrap-switch.js"></script>
 
 
 <{if (!$assn)}>

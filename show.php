@@ -7,7 +7,7 @@ header('Access-Control-Allow-Headers: X-Requested-With, Content-Type, Accept');
 */
 /*-----------引入檔案區--------------*/
 include 'header.php';
-$xoopsOption['template_main'] = set_bootstrap('es_exam_show.html');
+$xoopsOption['template_main'] = set_bootstrap('es_exam_show.tpl');
 include_once XOOPS_ROOT_PATH.'/header.php';
 
 /*-----------function區--------------*/

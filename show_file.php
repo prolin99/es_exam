@@ -48,6 +48,6 @@ $xoopsTpl->assign('file', $file);
 $xoopsTpl->assign('file_mode', $file_mode);
 //內包樣版
 $xoopsTpl->assign('module_dir', $xoopsModule->dirname());
-$xoopsTpl->assign('html_file', 'es_exam_showfile_view.html');
+$xoopsTpl->assign('html_file', 'es_exam_showfile_view.tpl');
 
 $xoopsTpl->display('db:es_exam_empt.html');

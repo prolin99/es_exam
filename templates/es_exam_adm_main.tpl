@@ -1,6 +1,6 @@
 
 <link href="../css/bootstrap-switch.css" rel="stylesheet">
-<script src="../bootstrap-switch.js"></script>
+<script src="../js/bootstrap-switch.js"></script>
 
 <h2><{$smarty.const._MA_TADASSIGN_ASSN_LIST}></h2>
 

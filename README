@@ -21,6 +21,8 @@
 3.教師在後台，可以作評分、評語。匯出學期成績。
 4.偏好中可以設定分數最低分及未繳交作業時，匯出學期時的指定分數。
 
-【更新記錄】
+【其他說明】
  =================================================
-0.2版 正式釋出。
+https://github.com/darkthread/jquery.ya-enter2tab， Enter 鍵移到下一欄位
+https://github.com/Bttstrp/bootstrap-switch
+https://github.com/irfan/jquery-star-rating

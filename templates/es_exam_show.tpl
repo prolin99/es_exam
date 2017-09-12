@@ -16,25 +16,16 @@
 
 
 
-  <link rel='stylesheet' type='text/css' href='<{$xoops_url}>/modules/tadtools/css/iconize.css' />
-  <script type='text/javascript' src='<{$xoops_url}>/modules/tadtools/fancyBox/lib/jquery.mousewheel-3.0.6.pack.js'></script>
-  <script type='text/javascript' language='javascript' src='<{$xoops_url}>/modules/tadtools/fancyBox/source/jquery.fancybox.js?v=2.1.4'></script>
-  <link rel='stylesheet' href='<{$xoops_url}>/modules/tadtools/fancyBox/source/jquery.fancybox.css?v=2.1.4' type='text/css' media='screen' />
-  <link rel='stylesheet' type='text/css' href='<{$xoops_url}>/modules/tadtools/fancyBox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5' />
-  <script type='text/javascript' src='<{$xoops_url}>/modules/tadtools/fancyBox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5'></script>
-  <link rel='stylesheet' type='text/css' href='<{$xoops_url}>/modules/tadtools/fancyBox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7' />
-  <script type='text/javascript' src='<{$xoops_url}>/modules/tadtools/fancyBox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7'></script>
-  <script type='text/javascript' src='<{$xoops_url}>/modules/tadtools/fancyBox/source/helpers/jquery.fancybox-media.js?v=1.0.5'></script>
+  <link rel="stylesheet" href="<{$xoops_url}>/modules/tadtools/fancyBox/source/jquery.fancybox.css" type="text/css" />
+  <script src="<{$xoops_url}>/modules/tadtools/fancyBox/lib/jquery.mousewheel.pack.js" type="text/javascript"></script>
+  <script src="<{$xoops_url}>/modules/tadtools/fancyBox/source/jquery.fancybox.js" type="text/javascript"></script>
 
   <link rel="stylesheet" href="css/star-rating.css" media="all" type="text/css"/>
   <link rel="stylesheet" href="css/theme-krajee-fa.css" media="all" type="text/css"/>
 
   <script src="css/star-rating.js" type="text/javascript"></script>
 
-  <link href="./css/footable.bootstrap.min.css" rel="stylesheet">
-  <link href="./css/footable.sorting.min.css" rel="stylesheet">
-  <script type='text/javascript' src='./js/footable.js'></script>
-  <script type='text/javascript' src='./js/footable.sorting.min.js'></script>
+
 
 
 <style type="text/css">
@@ -65,9 +56,7 @@
       location.href="show.php?op=delete_tad_assignment_file&assn=<{$assn}>&asfsn=" + asfsn   + "&stud_id=" + stud_id  ;
     }
 
-    jQuery(function($){
-    	$('.table').footable();
-    });
+
 
   </script>
 <{if ($assn) }>
@@ -98,7 +87,7 @@
    </div>
     </div>
   <{/if}>
-  <table class="table" data-sorting="true">
+  <table class="table"  >
     <thead>
   <tr alt='可依條件排序' title='可依條件排序'>
   <th class='col-xs-2'><{$smarty.const._MD_TADASSIGN_UP_TIME}></th>

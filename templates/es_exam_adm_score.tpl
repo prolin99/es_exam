@@ -7,8 +7,9 @@
 <script src="<{$xoops_url}>/modules/tadtools/fancyBox/source/jquery.fancybox.js" type="text/javascript"></script>
 
 
-<script src="<{$xoops_url}>/modules/tadtools/jquery/jquery-migrate-3.0.0.min.js" type="text/javascript"></script>
 
+<script src="<{$xoops_url}>/modules/tadtools/jquery/jquery-migrate-3.0.0.min.js" type="text/javascript"></script>
+<script src="../js/jquery.ya-enter2tab.js"></script>
 
   <link rel="stylesheet" href="../css/star-rating.css" media="all" type="text/css"/>
   <link rel="stylesheet" href="../css/theme-krajee-fa.css" media="all" type="text/css"/>

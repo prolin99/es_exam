@@ -65,6 +65,9 @@ $modversion['templates'][$i]['description'] = 'es_exam_index.tpl';
 $modversion['templates'][$i]['file'] = 'es_exam_show.tpl';
 $modversion['templates'][$i]['description'] = 'es_exam_show.tpl';
 
+++$i;
+$modversion['templates'][$i]['file'] = 'es_exam_showfile_view.html';
+$modversion['templates'][$i]['description'] =  'es_exam_showfile_view.html';
 
 ++$i;
 $modversion['templates'][$i]['file'] = 'es_exam_adm_main.tpl';
@@ -87,6 +90,7 @@ $modversion['templates'][$i]['description'] = 'es_exam_empt.html';
 ++$i;
 $modversion['templates'][$i]['file'] = 'es_exam_adm_showfile.tpl';
 $modversion['templates'][$i]['description'] = 'es_exam_adm_showfile.tpl';
+
 
 
 /*
@@ -122,3 +126,13 @@ $modversion['config'][$i]['description'] = '_MI_ESEXAM_CONFIG_D3';
 $modversion['config'][$i]['formtype']    = 'yesno';
 $modversion['config'][$i]['valuetype']   = 'int';
 $modversion['config'][$i]['default'] = 0 ;
+
+/*
+++$i;
+$modversion['config'][$i]['name'] = 'ESEXAM_SB2JS';                    //sb2js 不合適不使用
+$modversion['config'][$i]['title'] = '_MI_ESEXAM_CONFIG_T4';
+$modversion['config'][$i]['description'] = '_MI_ESEXAM_CONFIG_D4';
+$modversion['config'][$i]['formtype']    = 'yesno';
+$modversion['config'][$i]['valuetype']   = 'int';
+$modversion['config'][$i]['default'] = 0 ;
+*/

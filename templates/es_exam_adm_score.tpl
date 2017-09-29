@@ -141,17 +141,17 @@
       <td class="col-xs-1"><{$all.sit_id}></td>
       <td class="col-md-1 col-xs-2"><{$all.author}></td>
 
-      <td class="col-md-4 col-xs-4">
+      <td class="col-md-4">
       	<{*----       評分          ---- *}>
 
         <div claa="row">
-        <div class="col-md-8 col-xs-8">
+        <div class="col-md-8">
 
         <input type="text" class="rating" value="<{$all.score_star}>" data-size="sm" title="" data_ref="<{$all.asfsn}>" >
         </div>
-        <div class="col-md-4 col-xs-4">
+        <div class="col-md-4 ">
       		<input class="form-control score" type="text" onfocus="this.select()"   name="score[<{$all.asfsn}>]"  id="score_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>"
-      		<{if ($all.score)}> value="<{$all.score}>" <{/if}> tabindex="<{$ti++}>" title="整數成績,Enter 跳下一位">
+      		<{if ($all.score)}> value="<{$all.score}>" <{/if}> tabindex="<{$ti++}>" title="整數成績">
              <i  class="icon-warning-sign" id="info_<{$all.asfsn}>" title='分數低於基本分' <{if ( ($all.score >= $base_score) or (!$all.score) )}>  style="display:none"  <{/if}>></i>
         </div>
         </div>

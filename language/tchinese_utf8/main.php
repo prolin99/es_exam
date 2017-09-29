@@ -34,7 +34,7 @@ define("_MD_TADASSIGN_HIDE","本主題不開放展示！");
 
 
 define("_MD_TADASSIGN_INPUT_PASSWD","輸入上傳密碼");
-define("_MD_TADASSIGN_FILE","選擇檔案");
+define("_MD_TADASSIGN_FILE","選擇上傳的檔案");
 define("_MD_TADASSIGN_ASFSN","檔案編號");
 define("_MD_TADASSIGN_ASSN","上傳編號");
 define("_MD_TADASSIGN_DESC","相關說明");

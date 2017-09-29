@@ -77,17 +77,17 @@
     <table class="table table-striped table-bordered table-hover">
       <tr>
         <th>你的姓名</th>
-        <td><span class="label label-info col-md-3"><{$class_list_c[$class_id]}> <{$sit_id}> 號 <{$stud_data.name}> </span><span class='col-md-1' ></span>
-          <a href="index.php?assn=<{$assn}>" class="btn btn-danger">如不正確，重選</a>
+        <td><h3><span class="col-md-6"><{$class_list_c[$class_id]}> <{$sit_id}> 號 <{$stud_data.name}> </h3></span><span class='col-md-1' ></span>
+          <a href="index.php?assn=<{$assn}>" class="btn btn-danger">姓名如果不正確，重新登入</a>
          </td>
       </tr>
       <tr>
-        <th><{$smarty.const._MD_TADASSIGN_FILE}></th>
+        <th><{$smarty.const._MD_TADASSIGN_FILE}> </th>
         <td><input  id="file" name="file"    type="file" size=40  <{$accept_filestr}>  ><p>上傳的副檔名限制：<{$ext_file}></p></td>
       </tr>
       <tr>
         <th>檔案說明</th>
-        <td><textarea name="desc"  class="form-control" rows=4 placeholder="作業內容說明"><{$desc}></textarea></td>
+        <td><textarea name="desc"  class="form-control" rows=4 placeholder="作業內容說明，可省略"><{$desc}></textarea></td>
       </tr>
       <tr>
         <th> </th>
@@ -99,7 +99,7 @@
           <input type="hidden" name="sit_id" value="<{$sit_id}>">
           <input type="hidden" name="author" value="<{$stud_data.name}>">
           <input type="hidden" name="stud_id" value="<{$stud_data.stud_id}>">
-          <button type="submit"  class="btn btn-primary"  onclick="return check_2() ;" ><{$smarty.const._TAD_SAVE}></button>
+          <button type="submit"  class="btn btn-primary"  onclick="return check_2() ;" ><{$smarty.const._MD_SAVE}></button>
         </td>
       </tr>
     </table>

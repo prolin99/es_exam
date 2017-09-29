@@ -1,14 +1,12 @@
 <{*  評分用的view *}>
 <link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_url}>/modules/tadtools/bootstrap3/css/bootstrap.css" />
-<script src="<{$xoops_url}>/modules/tadtools/jquery/jquery-migrate-3.0.0.min.js" type="text/javascript"></script>
 
 <script src="<{$xoops_url}>/modules/tadtools/jquery/ui/jquery-ui.js"></script>
 <link rel="stylesheet" href="<{$xoops_url}>/modules/tadtools/jquery/themes/base/jquery-ui.css">
 
 <link rel="stylesheet" href="<{$xoops_url}>/modules/tadtools/css/font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet" href="../css/star-rating.css" media="all" type="text/css"/>
-<link rel="stylesheet" href="../css/theme-krajee-fa.css" media="all" type="text/css"/>
-<script src="../css/star-rating.js" type="text/javascript"></script>
+<script src="../js/star-rating.js" type="text/javascript"></script>
 <{ if ($old_file) }>
 	<div class='row alert-danger' title='舊檔案'>
 <{else}>
@@ -23,7 +21,7 @@
 		<input class="comment" type="text" onfocus="this.select()"   name="comment[<{$all.asfsn}>]"  id="comment_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>" value="<{$all.comment}>" placeholder='評語'  title="評語">
 		</span>
 		<span class="col-xs-5">
-		<input type="text" class="kv-fa rating-loading" value="<{$all.score_star}>" data-size="xs" title="" data_ref="<{$all.asfsn}>" >
+		<input type="text" class="rating" value="<{$all.score_star}>" data-size="xs" title="" data_ref="<{$all.asfsn}>" >
 		</span>
 		<span class="col-xs-1 col-xs-1">
       		<input   onfocus="this.select()"   type="text"  class="score" name="score[<{$all.asfsn}>]"   id="score_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>"
@@ -216,27 +214,11 @@ $(function() {
 
 
   </script>﻿
-  <script>
-      //星等評分
-      $(document).on('ready', function () {
+<script type='text/javascript'>
+	//星等評分
+	jQuery(document).ready(function () {
 
-
-          $('.kv-fa').rating({
-              theme: 'krajee-fa',
-              starCaptions: function (rating) {
-                  return rating =  rating + '';
-              },
-              //不出現 no rated
-              clearCaption : '' ,
-              //showClear: false,
-							containerClass: 'is-star' ,
-              filledStar: '<i class="fa fa-star"></i>',
-              emptyStar: '<i class="fa fa-star-o"></i>'
-          });
-
-
-
-          $('.kv-fa').on(
+          $('.rating').on(
                   'change', function () {
                       //取得
                       var v_id= $(this).attr('data_ref') ;

@@ -15,16 +15,13 @@
 </form>
 
 
-<script src="<{$xoops_url}>/modules/tadtools/jquery/jquery-migrate-3.0.0.min.js" type="text/javascript"></script>
 
   <link rel="stylesheet" href="<{$xoops_url}>/modules/tadtools/fancyBox/source/jquery.fancybox.css" type="text/css" />
   <script src="<{$xoops_url}>/modules/tadtools/fancyBox/lib/jquery.mousewheel.pack.js" type="text/javascript"></script>
   <script src="<{$xoops_url}>/modules/tadtools/fancyBox/source/jquery.fancybox.js" type="text/javascript"></script>
 
   <link rel="stylesheet" href="css/star-rating.css" media="all" type="text/css"/>
-  <link rel="stylesheet" href="css/theme-krajee-fa.css" media="all" type="text/css"/>
-
-  <script src="css/star-rating.js" type="text/javascript"></script>
+  <script src="js/star-rating.js" type="text/javascript"></script>
 
 
 
@@ -132,7 +129,7 @@
       <td  class='col-xs-3'>
       <{if ($all.score) }>
       <div class="row">
-       <input  type="text"   class="kv-fa rating-loading" value="<{$all.score_star}>" data-size="xs"       >
+       <input  type="text"   readonly class="rating" value="<{$all.score_star}>"   data-min=0 data-max=5 data-step=0.5 data-size="xs" title=""     >
 
 		<div class='col-xs-4'><{  $all.comment}></div>
        </div>
@@ -149,29 +146,5 @@
   </tbody>
   </table>
 
-  <script>
-      //星等評分
-      $(document).on('ready', function () {
-          $('.kv-gly-star').rating({
-              containerClass: 'is-star'
-          });
-/*
-          $('.kv-fa').rating({
-              theme: 'krajee-fa',
-              starCaptions: function (rating) {
-                  return rating =  rating + '';
-              },
-              filledStar: '<i class="fa fa-star"></i>',
-              emptyStar: '<i class="fa fa-star-o"></i>'
-          });*/
-          $('.kv-fa').rating({
-                //不顯示文字，只顯示
-              showClear: false,
-              showCaption: false,
-              displayOnly:true,
-              filledStar: '<i class="fa fa-star"></i>',
-              emptyStar: '<i class="fa fa-star-o"></i>'
-          });
-      });
-  </script>
+
 <{/if}>

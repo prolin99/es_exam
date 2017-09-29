@@ -8,16 +8,10 @@
 
 
 
-<script src="<{$xoops_url}>/modules/tadtools/jquery/jquery-migrate-3.0.0.min.js" type="text/javascript"></script>
-<script src="../js/jquery.ya-enter2tab.js"></script>
-
   <link rel="stylesheet" href="../css/star-rating.css" media="all" type="text/css"/>
-  <link rel="stylesheet" href="../css/theme-krajee-fa.css" media="all" type="text/css"/>
-
-  <script src="../css/star-rating.js" type="text/javascript"></script>
+  <script src="../js/star-rating.js" type="text/javascript"></script>
 
 
- <script src="../js/jquery.ya-enter2tab.js"></script>
 
 <style type="text/css">
   .fancybox-nav {
@@ -153,7 +147,7 @@
         <div claa="row">
         <div class="col-md-8 col-xs-8">
 
-        <input type="text" class="kv-fa rating-loading" value="<{$all.score_star}>" data-size="xs" title="" data_ref="<{$all.asfsn}>" >
+        <input type="text" class="rating" value="<{$all.score_star}>" data-size="sm" title="" data_ref="<{$all.asfsn}>" >
         </div>
         <div class="col-md-4 col-xs-4">
       		<input class="form-control score" type="text" onfocus="this.select()"   name="score[<{$all.asfsn}>]"  id="score_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>"
@@ -188,7 +182,7 @@
 <script type='text/javascript'>
 
     //enter 2 tab  在 #tscore 內
-    $("#tscore").enableEnterToTab({ captureTabKey: true });
+    //$("#tscore").enableEnterToTab({ captureTabKey: true });
 
 
 
@@ -274,29 +268,13 @@ $(function() {
 
 <script type='text/javascript'>
       //星等評分
-      $(document).on('ready', function () {
-          $('.kv-gly-star').rating({
-              containerClass: 'is-star'
-          });
+      jQuery(document).ready(function () {
 
-          $('.kv-fa').rating({
-              theme: 'krajee-fa',
-              starCaptions: function (rating) {
-                  return rating =  rating + '';
-              },
-              //不出現 no rated
-              clearCaption : '' ,
-              //showClear: false,
-              filledStar: '<i class="fa fa-star"></i>',
-              emptyStar: '<i class="fa fa-star-o"></i>'
-          });
-
-
-
-          $('.rating,.kv-gly-star,.kv-gly-heart,.kv-uni-star,.kv-uni-rook,.kv-fa,.kv-fa-heart,.kv-svg,.kv-svg-heart').on(
+          $('.rating').on(
                   'change', function () {
                       //取得
                       var v_id= $(this).attr('data_ref') ;
+                      //alert(v_id) ;
                       console.log( v_id + 'Rating selected: ' + $(this).val());
                       var rate_score = (100- <{$base_score}>) / 5 ;
                       var get_score = parseInt("<{$base_score}>", 10) + $(this).val() * rate_score ;

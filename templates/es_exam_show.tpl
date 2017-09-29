@@ -15,6 +15,7 @@
 </form>
 
 
+<script src="<{$xoops_url}>/modules/tadtools/jquery/jquery-migrate-3.0.0.min.js" type="text/javascript"></script>
 
   <link rel="stylesheet" href="<{$xoops_url}>/modules/tadtools/fancyBox/source/jquery.fancybox.css" type="text/css" />
   <script src="<{$xoops_url}>/modules/tadtools/fancyBox/lib/jquery.mousewheel.pack.js" type="text/javascript"></script>

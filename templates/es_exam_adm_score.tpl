@@ -136,7 +136,12 @@
        <{else}>
        <a href="<{$smarty.const._TAD_ASSIGNMENT_UPLOAD_URL}><{$all.assn}>/<{$all.asfsn}>.<{$all.sub_name}>"  studfile='<{$smarty.const._TAD_ASSIGNMENT_UPLOAD_URL}><{$all.assn}>/<{$all.asfsn}>.<{$all.sub_name}>'  class="assignment_fancy_<{$assn}>" rel="group" title="<{$all.sit_id}>.<{$all.author}> (<{$all.up_time}>) <{$all.file_name}>"  target="show"><{$all.file_name}></a>
        <{/if}>
-     	<div><{  $all.memo}></div>
+       	<div id="memo_<{$all.asfsn}>" >
+          <{if   ($all.memo) }>
+          <span class="glyphicon glyphicon-volume-off clean_memo" title="清除說明文字"  data_ref="<{$all.asfsn}>"></span>  <{$all.memo}>
+          <{/if}>
+        </div>
+
       </td>
       <td class="col-xs-1"><{$all.sit_id}></td>
       <td class="col-md-1 col-xs-2"><{$all.author}></td>
@@ -240,6 +245,18 @@ $(function() {
  		save_score( 'comment' ,v_id ,  get_score ) ;
 	});
 });
+
+
+//把學生說明清除
+$(function() {
+	$(".clean_memo").on("click" , function(){
+		var v_id = $( this ).attr('data_ref') ;
+		var get_score = '';
+    $(this).parent().hide() ;
+ 		save_score( 'memo' ,v_id ,  get_score ) ;
+	});
+});
+
 
  //寫入成績、評語
  function save_score(do_mode ,tid , sdata )  {

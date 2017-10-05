@@ -138,7 +138,7 @@
        <{/if}>
        	<div id="memo_<{$all.asfsn}>" >
           <{if   ($all.memo) }>
-          <span class="glyphicon glyphicon-volume-off clean_memo" title="清除說明文字"  data_ref="<{$all.asfsn}>"></span>  <{$all.memo}>
+          <span class="glyphicon glyphicon-volume-off clean_memo" title="清除說明文字" alt="清除說明文字"  data_ref="<{$all.asfsn}>"></span>  <{$all.memo}>
           <{/if}>
         </div>
 

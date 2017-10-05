@@ -24,7 +24,8 @@
 【更新記錄】
  =================================================
  1.81版
-    配合 tadtools 3.10 jquery-migrate-3 移除。移除不相融 jquery.ya-enter2tab.js，更新 star-rating。
+    配合 tadtools 3.10 jquery-migrate-3 移除。移除不相容的 jquery.ya-enter2tab.js，更新 star-rating。
+    加入在評分區可快速移除學生亂輸入的檔案說明內容。
 
  1.8版
     調整樣版檔名。

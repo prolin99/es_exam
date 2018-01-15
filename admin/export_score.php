@@ -116,7 +116,7 @@ if  ($_GET['op']) {
 
 		if ($row<>1)  {
 			//分頁
-			//$row += 4 ;		//多班級時，間隔
+			$row += 4 ;		//多班級時，間隔
 			$objPHPExcel->setActiveSheetIndex(0)->setBreak('A' . ($row -1) , PHPExcel_Worksheet::BREAK_ROW);
 
 		}

@@ -26,7 +26,7 @@ function list_tad_assignment_menu()
 }
 
 //列出所有tad_assignment_file資料
-function list_tad_assignment_file($assn = '')
+function list_tad_assignment_file($assn = '', $order='')
 {
     global $xoopsDB,$xoopsModule,$isAdmin,$xoopsTpl  ,$xoopsModuleConfig;
 
@@ -36,7 +36,10 @@ function list_tad_assignment_file($assn = '')
         $xoopsTpl->assign($k, $v);
     }
 
-    $sql = 'select * from '.$xoopsDB->prefix('exam_files')." where assn='{$assn}' order by `up_time`  DESC ,sit_id ";
+    if ($order=='num_id')
+      $sql = 'select * from '.$xoopsDB->prefix('exam_files')." where assn='{$assn}' order by sit_id ";
+    else
+      $sql = 'select * from '.$xoopsDB->prefix('exam_files')." where assn='{$assn}' order by `up_time`  DESC ,sit_id ";
     $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
 
     $i = 0;
@@ -128,7 +131,7 @@ switch ($_REQUEST['op']) {
   list_tad_assignment_menu();
 
   if (!empty($assn)) {
-      list_tad_assignment_file($assn);
+      list_tad_assignment_file($assn ,$_GET['order']);
   }
   break;
 }
@@ -138,5 +141,6 @@ $xoopsTpl->assign('toolbar', toolbar_bootstrap($interface_menu));
 //$xoopsTpl->assign('bootstrap', get_bootstrap());
 //$xoopsTpl->assign('jquery', get_jquery(true));
 $xoopsTpl->assign('isAdmin', $isAdmin);
+$xoopsTpl->assign('assn', $assn);
 
 include_once XOOPS_ROOT_PATH.'/footer.php';

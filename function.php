@@ -82,7 +82,7 @@ function get_exam_list($mode, $order = ' class_id ,  assn desc', $semester = 1)
  //echo $sql ;
   $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
     $i = 0;
-    $data = '';
+    $data = array();
     while (list($assn, $title, $uid, $class_id, $open_show) = $xoopsDB->fetchRow($result)) {
         $uid_name = XoopsUser::getUnameFromId($uid, 1);
         if (empty($uid_name)) {
@@ -186,7 +186,7 @@ function list_one_exam($asfsn)
 
     $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
 
-    $data = '';
+    $data = array();
     while ($all = $xoopsDB->fetchArray($result)) {
         foreach ($all as $k => $v) {
             $$k = $v;
@@ -217,6 +217,7 @@ function get_tad_assignment($assn = '')
         return;
     }
     $sql = 'select * from '.$xoopsDB->prefix('exam')." where assn='$assn'";
+
     $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
     $data = $xoopsDB->fetchArray($result);
 

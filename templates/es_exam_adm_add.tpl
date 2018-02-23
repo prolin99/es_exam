@@ -34,7 +34,8 @@
   <div class="row">
     <div class="col-md-2  col-xs-2">限制上傳的副檔名</div>
     <div class="col-md-3  col-xs-3"><input type="text" name="ext_file" class="col-md-12 col-xs-12" value="<{$ext_file}>" placeholder="例： jpg,jpeg,png "></div>
-    <div class="col-md-5  col-xs-5">(以逗號分隔多種副檔案，忽略大小寫，空白表示不限制。)</div>
+    <div class="col-md-5  col-xs-5">(以逗號分隔多種副檔案，依此做線上展示（PDF,scratch...)，空白表示不限制。)</div>
+
   </div>
 
 

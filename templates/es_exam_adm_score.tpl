@@ -108,9 +108,9 @@
 
     <thead>
       <tr>
-  <th class="col-md-1 col-xs-2"><{$smarty.const._MD_TADASSIGN_UP_TIME}></th>
+  <th class="col-md-1 col-xs-2"><{$smarty.const._MD_TADASSIGN_UP_TIME}><a href='score.php?assn=<{$assn}>'><span class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span> </a></th>
   <th class="col-md-2 col-xs-2"><{$smarty.const._MD_TADASSIGN_FILENAME}></th>
-  <th class="col-xs-1"  data-breakpoints="xs" data-type="number">座號</th>
+  <th class="col-xs-1">座號<a href='score.php?assn=<{$assn}>&order=num_id'><span class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span> </a></th>
   <th class="col-md-1 col-xs-2"><{$smarty.const._MD_TADASSIGN_AUTHOR}></th>
   <th  class="col-md-3 col-xs-3">評分(星等啟始分<{$base_score}>，未交<{$score_lost}>)</th>
   <th class="col-md-1 col-xs-2">評語</th>

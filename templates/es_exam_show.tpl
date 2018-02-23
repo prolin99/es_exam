@@ -87,11 +87,11 @@
   <{/if}>
   <table class="table"  >
     <thead>
-  <tr alt='可依條件排序' title='可依條件排序'>
-  <th class='col-xs-2'><{$smarty.const._MD_TADASSIGN_UP_TIME}></th>
+  <tr >
+  <th class='col-xs-2'><{$smarty.const._MD_TADASSIGN_UP_TIME}><a href='show.php?assn=<{$assn}>'><span class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span> </a></th>
   <th class='col-xs-2'><{$smarty.const._MD_TADASSIGN_FILENAME}></th>
-  <th  class='col-xs-1' data-breakpoints="xs" data-type="number" >座號</th>
-  <th  class='col-xs-2' data-breakpoints="xs" ><{$smarty.const._MD_TADASSIGN_AUTHOR}></th>
+  <th  class='col-xs-1' alt='可依條件排序' title='可依條件排序'>座號<a href='show.php?assn=<{$assn}>&order=num_id'><span class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span> </a></th>
+  <th  class='col-xs-2'><{$smarty.const._MD_TADASSIGN_AUTHOR}></th>
   <th  class='col-xs-2'>表現</th>
   <{if $isAdmin}><th  class='col-xs-2'><{$smarty.const._TAD_FUNCTION}></th><{/if}>
 </thead>

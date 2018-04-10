@@ -45,12 +45,12 @@
   </div>
 
   <div class="row">
-    <div class="col-md-2 col-xs-2">開放上傳</div>
+    <div class="col-md-2 col-xs-2">外部作業、僅供評分</div>
     <div class="col-md-8 col-xs-8">
         <div class="col-md-2  ">
         <input type="checkbox" name="upload_mode"  class="upload" value=1  <{if $upload_mode=='1'}>checked<{/if}>  id="upload_mode">
         </div>
-        <div class="col-md-8 ">(外部作品評分或上課表現評份，可以指定不開放上傳，。)</div>
+        <div class="col-md-8 ">(不開放上傳，學生無法登入，用於外部作品或上課表現評分)</div>
 
     </div>
   </div>
@@ -59,10 +59,10 @@
   <div class="row">
     <div class="col-md-2  col-xs-2"><{$smarty.const._MA_TADASSIGN_SHOW}></div>
     <div class="col-md-8  col-xs-8">
-       <div class="col-md-1 col-xs-2">
+       <div class="col-md-2">
         <input type="checkbox" name="open_show"  class="upload"   value=1  <{if $open_show=='1'}>checked<{/if}>  id="upload_mode">
         </div>
-
+        <div class="col-md-8 ">(開放全部人都可以查看作品)</div>
     </div>
   </div>
 
@@ -72,6 +72,17 @@
        <div class="col-md-1  col-xs-2">
         <input type="checkbox" name="gview_mode"  class="upload"   value=1  <{if $gview_mode=='1'}>checked<{/if}>  id="gview_mode">
         </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2  col-xs-2">只撰寫文字上傳</div>
+    <div class="col-md-8 col-xs-8">
+        <div class="col-md-2  ">
+        <input type="checkbox" name="no_file"  class="upload"   value=1  <{if $no_file=='1'}>checked<{/if}>  id="no_file">
+
+      </div>
+      <div class="col-md-8 ">(設定後不會出現選擇檔案上傳，用於心得寫作類。)</div>
     </div>
   </div>
 
@@ -85,4 +96,5 @@
  $("[name='upload_mode']").bootstrapSwitch();
   $("[name='open_show']").bootstrapSwitch();
   $("[name='gview_mode']").bootstrapSwitch();
+  $("[name='no_file']").bootstrapSwitch();
  </script>

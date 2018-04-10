@@ -58,6 +58,7 @@ function list_tad_assignment($show_function=1 ,$semester =1  ){
 		$all_data[$i]['open_show']=$open_show;
 		$all_data[$i]['upload_mode']=$upload_mode;
 		$all_data[$i]['gview_mode']=$gview_mode;
+		$all_data[$i]['no_file']=$no_file;
 		$all_data[$i]['class_id']=$class_id;
 		$i++;
 

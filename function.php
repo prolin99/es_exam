@@ -143,6 +143,9 @@ function list_exam_file($assn = '', $my_order = ' `up_time` DESC , sit_id ASC ')
         foreach ($filepart as $ff) {
             $sub_name = strtolower($ff);
         }
+        //無附檔名
+        if (count($filepart) <=1)
+          $sub_name='txt' ;
 
         $data[$i]['sub_name'] = $sub_name;
         $data[$i]['show_name'] = $show_name;

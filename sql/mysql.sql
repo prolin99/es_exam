@@ -11,6 +11,7 @@ CREATE TABLE `exam` (
   `open_show` enum('1','0') NOT NULL DEFAULT '1',
   `gview_mode` enum('1','0') NOT NULL DEFAULT '0',
   `create_date` date NOT NULL,
+  `no_file` enum('1','0') NOT NULL DEFAULT '0',
   PRIMARY KEY (`assn`)
 ) ENGINE=MyISAM;
 
@@ -31,7 +32,7 @@ CREATE TABLE `exam_files` (
   `score` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `comment` text DEFAULT NULL ,
   `up_time` datetime DEFAULT NULL,
-  `old_file` tinyint(3) unsigned NOT NULL DEFAULT '0', 
+  `old_file` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `up_ip` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`asfsn`)
 ) ENGINE=MyISAM;

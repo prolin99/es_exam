@@ -71,6 +71,8 @@ function list_tad_assignment_file($assn = '', $order='')
         foreach ($filepart as $ff) {
             $sub_name = strtolower($ff);
         }
+        if (count($filepart) <=1)
+          $sub_name='txt' ;
 
         $data[$i]['sub_name'] = $sub_name;
         $data[$i]['show_name'] = $show_name;

@@ -81,6 +81,7 @@
           <a href="index.php?assn=<{$assn}>" class="btn btn-danger">姓名如果不正確，重新登入</a>
          </td>
       </tr>
+      <{if ($no_file==0) }>
       <tr>
         <th><{$smarty.const._MD_TADASSIGN_FILE}> </th>
         <td><input  id="file" name="file"    type="file" size=40  <{$accept_filestr}>  ><p>上傳的副檔名限制：<{$ext_file}></p></td>
@@ -89,6 +90,13 @@
         <th>檔案說明</th>
         <td><textarea name="desc"  class="form-control" rows=4 placeholder="作業內容說明，可省略"><{$desc}></textarea></td>
       </tr>
+      <{else}>
+      <tr>
+        <th>輸入文字處</th>
+        <td><textarea name="desc"  class="form-control" rows=4 placeholder="作業內容說明，可省略"><{$desc}></textarea></td>
+      </tr>
+      <{/if}>
+
       <tr>
         <th> </th>
         <td>
@@ -112,6 +120,11 @@
 			alert ('你還沒有選擇要上傳的檔案！')　;
 			return false ;
 		}　
+
+    if (getFileExtension(fn)=="") {
+			alert ('要上傳的檔案沒有副檔名，請先另存檔名後再重新上傳！')　;
+			return false ;
+		}
 		<{if ($j_ext_file) }>
 			//允許的圖片副檔名
 			var re = /\.(<{$j_ext_file}>)$/i;
@@ -122,5 +135,10 @@
 		<{/if}>
 　
 	}
+
+  //取得副檔名
+  function getFileExtension(filename) {
+    return filename.slice((filename.lastIndexOf(".") - 1 >>> 0) + 2);
+  }
 	</script>
 <{/if}>

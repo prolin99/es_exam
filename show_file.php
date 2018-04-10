@@ -19,7 +19,8 @@ $data = list_one_exam($asfsn);
 $myts = &MyTextSanitizer::getInstance();
 $data['memo'] = $myts->displayTarea($data['memo']);
 
-$file = _TAD_ASSIGNMENT_UPLOAD_URL.$data['assn'].'/'.$data['asfsn'].'.'.$_GET['sub_name'];
+//$file = _TAD_ASSIGNMENT_UPLOAD_URL.$data['assn'].'/'.$data['asfsn'].'.'.$_GET['sub_name'];
+$file = "../../uploads/es_exam/".$data['assn'].'/'.$data['asfsn'].'.'.$_GET['sub_name'];
 
 if (preg_match('/(jpg|jpeg|bmp|png|gif|svg)/i', $ext_file)) {
     $file_mode = 'picture';
@@ -45,7 +46,7 @@ $xoopsTpl = new XoopsTpl();
   //$xoopsTpl->assign('base_score', $base_score);
   //$xoopsTpl->assign('bar_max', $bar_max);
   //$xoopsTpl->assign('score_lost', $score_lost);
-  //$xoopsTpl->assign('all', $data);
+$xoopsTpl->assign('all', $data);
 $xoopsTpl->assign('sb2js_mode', $sb2js);
 
 $xoopsTpl->assign('file', $file);

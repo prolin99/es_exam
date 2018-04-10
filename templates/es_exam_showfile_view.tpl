@@ -26,23 +26,72 @@
 	<{*  scratch *}>
 	<div   class='col-xs-12 text-center'>
 
-		<div id="flashContent" >
+		<div id="flashContentdoc" >
 
 		Scratch 一套使用拖拉拼湊就可以寫程式的工具，很好玩的程式軟體。<a href='https://scratch.mit.edu/' target='_blank'>官方網站</a><br /><br />
 		<a href='<{$file}>'>作品下載</a><br />
 		使用說明：<br />
 		<{$all.memo}>
-		</div>
+
 		<{ if $sb2js_mode }>
 				<canvas id='scratch' width='486' height='391' tabindex='1'></canvas>
 		<{else}>
 		  <div class='row'>
 			<div class="embed-responsive embed-responsive-16by9">
-			    <iframe class="embed-responsive-item" src="<{$xoops_url}>/modules/es_exam/images/Scratch.swf?project=<{$file}>&autostart=flase"></iframe>
+			<div id="flashContent" > <br>  如未出現 Scratch 畫面 <br> 請點選此處並允許執行 Flash <br>  <br> </div>
+ 				<script type="text/javascript" src="swfobject.js"></script>
+				<script type="text/javascript">
+				/**
+				 * Tries to show browser's promt for enabling flash
+				 *
+				 * Chrome starting from 56 version and Edge from 15 are disabling flash
+				 * by default. To promt user to enable flash, they suggest to send user to
+				 * flash player download page. Then this browser will catch such request
+				 * and show a promt to user:
+				 * https://www.chromium.org/flash-roadmap#TOC-Developer-Recommendations
+				 * In this method we are forcing such promt by navigating user to adobe
+				 * site in iframe, instead of top window
+				 */
+				function requestFlashPermission() {
+				    var iframe = document.createElement('iframe');
+				    iframe.src = 'https://get.adobe.com/flashplayer';
+				    iframe.sandbox = '';
+				    document.body.appendChild(iframe);
+				    document.body.removeChild(iframe);
+				}
+
+
+				var isNewEdge = (navigator.userAgent.match(/Edge\/(\d+)/) || [])[1] > 14;
+				var isNewSafari = (navigator.userAgent.match(/OS X (\d+)/) || [])[1] > 9;
+				var isNewChrome = (navigator.userAgent.match(/Chrom(e|ium)\/(\d+)/) || [])[2] > 56
+				    && !/Mobile/i.test(navigator.userAgent);
+				var canRequestPermission = isNewEdge || isNewSafari || isNewChrome;
+
+				if (!swfobject.hasFlashPlayerVersion('10') && canRequestPermission) {
+				    requestFlashPermission();
+				    // Chrome requires user's click in order to allow iframe embeding
+				    $(window).one('click', requestFlashPermission);
+				}
+
+				var flashvars = {
+				  project: "<{$file}>" ,
+				  autostart: "false"
+				};
+
+				var params = {
+				  bgcolor: "#FFFFFF",
+				  allowScriptAccess: "always",
+				  allowFullScreen: "true",
+				  wmode: "window",
+				  menu:"‘false"
+				};
+				var attributes = {};
+				swfobject.embedSWF("images/Scratch.swf", "flashContent", "512", "387", "11.7.0","images/expressInstall.swf", flashvars, params, attributes);
+				</script>
 			</div>
 		  </div>
 		<{/if}>
-
+		</div>
 
 	</div>
 
@@ -57,7 +106,50 @@
 		<div id="flashContent" ><{  $all.memo}></div>
 		<div class='row'>
 			<div class="embed-responsive embed-responsive-16by9">
-			    <iframe class="embed-responsive-item" src="<{$file}>?autostart=flase"></iframe>
+				<div id="flashContent" > <br>  如未出現 Flash 畫面 <br> 請點選此處並允許執行 Flash <br>  <br> </div>
+	 				<script type="text/javascript" src="swfobject.js"></script>
+					<script type="text/javascript">
+					/**
+					 * Tries to show browser's promt for enabling flash
+					 *
+					 * Chrome starting from 56 version and Edge from 15 are disabling flash
+					 * by default. To promt user to enable flash, they suggest to send user to
+					 * flash player download page. Then this browser will catch such request
+					 * and show a promt to user:
+					 * https://www.chromium.org/flash-roadmap#TOC-Developer-Recommendations
+					 * In this method we are forcing such promt by navigating user to adobe
+					 * site in iframe, instead of top window
+					 */
+					function requestFlashPermission() {
+					    var iframe = document.createElement('iframe');
+					    iframe.src = 'https://get.adobe.com/flashplayer';
+					    iframe.sandbox = '';
+					    document.body.appendChild(iframe);
+					    document.body.removeChild(iframe);
+					}
+
+
+					var isNewEdge = (navigator.userAgent.match(/Edge\/(\d+)/) || [])[1] > 14;
+					var isNewSafari = (navigator.userAgent.match(/OS X (\d+)/) || [])[1] > 9;
+					var isNewChrome = (navigator.userAgent.match(/Chrom(e|ium)\/(\d+)/) || [])[2] > 56
+					    && !/Mobile/i.test(navigator.userAgent);
+					var canRequestPermission = isNewEdge || isNewSafari || isNewChrome;
+
+					if (!swfobject.hasFlashPlayerVersion('10') && canRequestPermission) {
+					    requestFlashPermission();
+					    // Chrome requires user's click in order to allow iframe embeding
+					    $(window).one('click', requestFlashPermission);
+					}
+					var params = {
+					  bgcolor: "#FFFFFF",
+					  allowScriptAccess: "always",
+					  allowFullScreen: "true",
+					  wmode: "window",
+					  menu:"‘false"
+					};
+					var attributes = {};
+					swfobject.embedSWF("<{$file}>", "flashContent", "512", "387", "11.7.0","images/expressInstall.swf", flashvars, params, attributes);
+					</script>
 			</div>
 		</div>
 

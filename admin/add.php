@@ -26,6 +26,7 @@ function tad_assignment_form($assn=""){
   $open_show=(!isset($DBV['open_show']))?"1":$DBV['open_show'];
   $upload_mode=(!isset($DBV['upload_mode']))?"1":$DBV['upload_mode'];
   $gview_mode=(!isset($DBV['gview_mode']))?"1":$DBV['gview_mode'];
+  $no_file=(!isset($DBV['no_file']))?"":$DBV['no_file'];
   $ext_file=(!isset($DBV['ext_file']))?"":$DBV['ext_file'];
   $class_id=(!isset($DBV['class_id']))?"":$DBV['class_id'];
   $class_list= get_class_list() ;
@@ -44,6 +45,8 @@ function tad_assignment_form($assn=""){
   $xoopsTpl->assign('ext_file',$ext_file);
   $xoopsTpl->assign('upload_mode',$upload_mode);
   $xoopsTpl->assign('gview_mode',$gview_mode);
+  $xoopsTpl->assign('no_file',$no_file);
+
   $xoopsTpl->assign('open_show',$open_show);
   $xoopsTpl->assign('class_list',$class_list);
   $xoopsTpl->assign('class_id',$class_id);
@@ -65,10 +68,11 @@ function insert_tad_assignment(){
   $_POST['open_show'] = intval($_POST['open_show']) ;
   $_POST['upload_mode'] = intval($_POST['upload_mode']) ;
   $_POST['gview_mode'] = intval($_POST['gview_mode']) ;
+  $_POST['no_file'] = intval($_POST['no_file']) ;
 
   foreach ($_POST['class_id'] as $class_id =>$class ) {
-  	$sql = "insert into ".$xoopsDB->prefix("exam")." (`title`,class_id , `passwd`, `note`,`uid`,`open_show` ,upload_mode , ext_file ,create_date ,gview_mode )
-   		values('$title',  '$class'  ,'$passwd','$note','{$uid}','{$_POST['open_show']}' ,'{$_POST['upload_mode']}'  ,'$ext_file' ,now()  ,'{$_POST['gview_mode']}'  )";
+  	$sql = "insert into ".$xoopsDB->prefix("exam")." (`title`,class_id , `passwd`, `note`,`uid`,`open_show` ,upload_mode , ext_file ,create_date ,gview_mode  ,no_file )
+   		values('$title',  '$class'  ,'$passwd','$note','{$uid}','{$_POST['open_show']}' ,'{$_POST['upload_mode']}'  ,'$ext_file' ,now()  ,'{$_POST['gview_mode']}'  ,'{$_POST['no_file']}' )";
    	//echo $sql .'<br />';
   	$xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'],3, $xoopsDB->error());
   }
@@ -95,8 +99,8 @@ function update_tad_assignment($assn=""){
   $_POST['open_show'] = intval($_POST['open_show']) ;
   $_POST['upload_mode'] = intval($_POST['upload_mode']) ;
   $_POST['gview_mode'] = intval($_POST['gview_mode']) ;
-
-  $sql = "update ".$xoopsDB->prefix("exam")." set  `title` = '$title', `passwd` = '$passwd',  `note` = '$note',  `open_show` = '{$_POST['open_show']}'  , upload_mode='{$_POST['upload_mode']}'  , ext_file= '$ext_file'   ,gview_mode='{$_POST['gview_mode']}'   where assn='$assn'     " ;
+  $_POST['no_file'] = intval($_POST['no_file']) ;
+  $sql = "update ".$xoopsDB->prefix("exam")." set  `title` = '$title', `passwd` = '$passwd',  `note` = '$note',  `open_show` = '{$_POST['open_show']}'  , upload_mode='{$_POST['upload_mode']}'  , ext_file= '$ext_file'   ,gview_mode='{$_POST['gview_mode']}'  ,no_file='{$_POST['no_file']}'  where assn='$assn'     " ;
 
   $xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'],3, $xoopsDB->error());
   return $assn;

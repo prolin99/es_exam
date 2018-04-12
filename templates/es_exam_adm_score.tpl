@@ -127,7 +127,7 @@
   <{else}>
   <tr>
   <{/if}>
-      <td  class="col-md-1 col-xs-2"><{$all.up_time}><br/> ip:..<{$all.up_ip|substr:-5}></td>
+      <td  class="col-md-1 col-xs-2"><{$all.up_time}><br/> <span title='<{$all.up_ip}>'>ip:..<{$all.up_ip|substr:-5}></span></td>
       <td class="col-md-2 col-xs-2" style="word-break : break-all; overflow:hidden; ">
         <!--      bmp gif jpg jpeg png sb sb2 flash          -->
         <{if  ($data.ifram_show) }>

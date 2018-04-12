@@ -104,7 +104,7 @@
   <{else}>
     <tr>
   <{/if}>
-      <td  class='col-xs-2'><{$all.up_time}><br /><span alt="<{$all.up_ip_all}>" title="<{$all.up_ip_all}>">ip</span>:<{$all.up_ip}></td>
+      <td  class='col-xs-2'><{$all.up_time}><br />ip:<{$all.up_ip}></td>
       <td  class='col-xs-2' style="word-break : break-all; overflow:hidden; " >
       <{if ($open_show)}>
           <{if  ($ifram_show) }>

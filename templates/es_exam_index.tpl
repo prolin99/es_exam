@@ -93,7 +93,7 @@
       <{else}>
       <tr>
         <th>輸入文字處</th>
-        <td><textarea name="desc"  class="form-control" rows=4 placeholder="作業內容說明，可省略"><{$desc}></textarea></td>
+        <td><textarea name="desc"  class="form-control" rows=4 placeholder="作業內容說明"><{$desc}></textarea></td>
       </tr>
       <{/if}>
 
@@ -107,7 +107,7 @@
           <input type="hidden" name="sit_id" value="<{$sit_id}>">
           <input type="hidden" name="author" value="<{$stud_data.name}>">
           <input type="hidden" name="stud_id" value="<{$stud_data.stud_id}>">
-          <button type="submit"  class="btn btn-primary"  onclick="return check_2() ;" ><{$smarty.const._MD_SAVE}></button>
+          <button type="submit"  class="btn btn-primary"  onclick="return check_2() ;" ><{$smarty.const._MD_SAVE}></button>（上傳後記得再檢查展示作品是否正確！）
         </td>
       </tr>
     </table>

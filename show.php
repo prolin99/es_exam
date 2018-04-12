@@ -98,6 +98,10 @@ function list_tad_assignment_file($assn = '', $order='')
         $ifram_show = 1;
         $file_mode = 'scratch';
     }
+    if (preg_match('/(swf)/i', $ext_file)) {
+        $ifram_show = 1;
+        $file_mode = 'flash';
+    }
     if (preg_match('/(pdf)/i', $ext_file)) {
         $ifram_show = 1;
         $file_mode = 'pdf';

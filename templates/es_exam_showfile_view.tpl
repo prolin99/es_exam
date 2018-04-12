@@ -38,7 +38,8 @@
 		<{else}>
 		  <div class='row'>
 			<div class="embed-responsive embed-responsive-16by9">
-			<div id="flashContent" > <br>  如未出現 Scratch 畫面 <br> 請點選此處並允許執行 Flash <br>  <br> </div>
+			<div id="flashContent" > <br>  如未出現 Scratch 畫面 <br> 請點選此處並允許執行 Flash <br> <img src="./images/flash_start.png"> <br>
+			</div>
  				<script type="text/javascript" src="swfobject.js"></script>
 				<script type="text/javascript">
 				/**
@@ -101,12 +102,17 @@
 
 	<{if $file_mode=='flash'}>
 	<{*  flash *}>
+	<div   class='col-xs-12 text-center'>
 
-	<div class='col-xs-12 text-center'>
-		<div id="flashContent" ><{  $all.memo}></div>
-		<div class='row'>
+		<div id="flashContentdoc" >
+		<a href='<{$file}>'>作品下載</a><br />
+		使用說明：<br />
+		<{$all.memo}>
+	</div>
+		  <div class='row'>
 			<div class="embed-responsive embed-responsive-16by9">
-				<div id="flashContent" > <br>  如未出現 Flash 畫面 <br> 請點選此處並允許執行 Flash <br>  <br> </div>
+				<div id="flashContent" > <br>  如未出現 Flash 畫面 <br> 請點選此處並允許執行 Flash <br> <img src="./images/flash_start.png">  <br>
+				</div>
 	 				<script type="text/javascript" src="swfobject.js"></script>
 					<script type="text/javascript">
 					/**
@@ -148,12 +154,13 @@
 					  menu:"‘false"
 					};
 					var attributes = {};
-					swfobject.embedSWF("<{$file}>", "flashContent", "512", "387", "11.7.0","images/expressInstall.swf", flashvars, params, attributes);
+					swfobject.embedSWF("<{$file}>", "flashContent", "512", "387", "10.2.0","images/expressInstall.swf",  params, attributes);
 					</script>
 			</div>
 		</div>
 
 	</div>
+</div>
 	<{/if}>
 
 	<{if $file_mode=='pdf'}>

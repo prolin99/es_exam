@@ -15,7 +15,7 @@
 
 <style type="text/css">
   .fancybox-nav {
-     width: 20%;
+     width: 10%;
    }
    </style>
 

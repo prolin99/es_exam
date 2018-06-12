@@ -34,7 +34,7 @@
   <div class="row">
     <div class="col-md-2  col-xs-2">限制上傳的副檔名</div>
     <div class="col-md-3  col-xs-3"><input type="text" name="ext_file" class="col-md-12 col-xs-12" value="<{$ext_file}>" placeholder="例： jpg,jpeg,png "></div>
-    <div class="col-md-5  col-xs-5">(以逗號分隔多種副檔名，依此做線上展示（PDF,scratch...)，空白表示不限制。)</div>
+    <div class="col-md-5  col-xs-5">(以逗號分隔多種副檔名，依此類別做線上展示（PDF,scratch...)，空白表示不限制。)</div>
 
   </div>
 
@@ -45,12 +45,12 @@
   </div>
 
   <div class="row">
-    <div class="col-md-2 col-xs-2">外部作業、僅供評分</div>
+    <div class="col-md-2 col-xs-2">允許學生登入上傳或撰寫文字</div>
     <div class="col-md-8 col-xs-8">
         <div class="col-md-2  ">
         <input type="checkbox" name="upload_mode"  class="upload" value=1  <{if $upload_mode=='1'}>checked<{/if}>  id="upload_mode">
         </div>
-        <div class="col-md-8 ">(不開放上傳，學生無法登入，用於外部作品或上課表現評分)</div>
+        <div class="col-md-8 ">(不開放登入時，只用於老師給外部作品或上課表現輸入評分)</div>
 
     </div>
   </div>
@@ -82,7 +82,7 @@
         <input type="checkbox" name="no_file"  class="upload"   value=1  <{if $no_file=='1'}>checked<{/if}>  id="no_file">
 
       </div>
-      <div class="col-md-8 ">(設定後不會出現選擇檔案上傳，用於心得寫作類。)</div>
+      <div class="col-md-8 ">(設定後只出現文字欄位，不會出現選擇檔案上傳，用於純文字心得寫作。)</div>
     </div>
   </div>
 

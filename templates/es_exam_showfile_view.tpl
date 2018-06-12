@@ -30,14 +30,13 @@
 
 		Scratch 一套使用拖拉拼湊就可以寫程式的工具，很好玩的程式軟體。<a href='https://scratch.mit.edu/' target='_blank'>官方網站</a><br /><br />
 		<a href='<{$file}>'>作品下載</a><br />
-		使用說明：<br />
-		<{$all.memo}>
+
 
 		<{ if $sb2js_mode }>
 				<canvas id='scratch' width='486' height='391' tabindex='1'></canvas>
 		<{else}>
 		  <div class='row'>
-			<div class="embed-responsive embed-responsive-16by9">
+
 			<div id="flashContent" > <br>  如未出現 Scratch 畫面 <br> 請點選此處並允許執行 Flash <br> <img src="./images/flash_start.png"> <br>
 			</div>
  				<script type="text/javascript" src="swfobject.js"></script>
@@ -89,7 +88,11 @@
 				var attributes = {};
 				swfobject.embedSWF("images/Scratch.swf", "flashContent", "512", "387", "11.7.0","images/expressInstall.swf", flashvars, params, attributes);
 				</script>
-			</div>
+
+			<p>
+				使用說明：<br />
+				<{$all.memo}>
+			</p>
 		  </div>
 		<{/if}>
 		</div>
@@ -110,7 +113,7 @@
 		<{$all.memo}>
 	</div>
 		  <div class='row'>
-			<div class="embed-responsive embed-responsive-16by9">
+
 				<div id="flashContent" > <br>  如未出現 Flash 畫面 <br> 請點選此處並允許執行 Flash <br> <img src="./images/flash_start.png">  <br>
 				</div>
 	 				<script type="text/javascript" src="swfobject.js"></script>
@@ -156,7 +159,7 @@
 					var attributes = {};
 					swfobject.embedSWF("<{$file}>", "flashContent", "512", "387", "10.2.0","images/expressInstall.swf",  params, attributes);
 					</script>
-			</div>
+
 		</div>
 
 	</div>

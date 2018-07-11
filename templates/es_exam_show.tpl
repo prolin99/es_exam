@@ -73,18 +73,18 @@
   	這項主題作業未開放展示，只顯示上傳記錄！
   	</div>
   <{/if}>
-  <{if $isAdmin}>
+
   <div class="row">
     <div class="col-xs-12">
   <h5>未繳交作業：</h5>
   <{foreach from=$class_students  key=sit item=stud}>
   <{if (!$stud.in)  }>
-  <span class="col-xs-2 col-xs-4"><span class="badge badge-info"><{ $sit }></span> <{ $stud.name }></span>
+  <span class="col-xs-2"><span class="badge badge-info"><{ $sit }></span><{if $isAdmin}> <{ $stud.name }><{/if}></span>
   <{/if}>
    <{/foreach}>
    </div>
     </div>
-  <{/if}>
+
   <table class="table"  >
     <thead>
   <tr >

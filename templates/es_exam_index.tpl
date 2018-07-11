@@ -1,6 +1,5 @@
 <{$toolbar}>
 
-
 <{if $now_op=="list_tad_assignment_menu"}>
   <h2><{$smarty.const._MD_TADASSIGN_SELECT_ASSN}></h2>
   <{if $all}>

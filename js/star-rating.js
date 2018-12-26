@@ -1,9 +1,9 @@
 /*!
- * bootstrap-star-rating v4.0.3
+ * bootstrap-star-rating v4.0.5
  * http://plugins.krajee.com/star-rating
  *
  * Author: Kartik Visweswaran
- * Copyright: 2013 - 2017, Kartik Visweswaran, Krajee.com
+ * Copyright: 2013 - 2018, Kartik Visweswaran, Krajee.com
  *
  * Licensed under the BSD 3-Clause
  * https://github.com/kartik-v/bootstrap-star-rating/blob/master/LICENSE.md
@@ -139,7 +139,9 @@
                 $h.getCss(self.size, 'rating-' + self.size) +
                 $h.getCss(self.animate, 'rating-animate') +
                 $h.getCss(self.disabled || self.readonly, 'rating-disabled') +
-                $h.getCss(self.containerClass, self.containerClass);
+                $h.getCss(self.containerClass, self.containerClass) +
+                (self.displayOnly ? ' is-display-only' : '');
+
         },
         _checkDisabled: function () {
             var self = this, $el = self.$element, opts = self.options;
@@ -167,6 +169,7 @@
             self._renderCaption();
             self._renderClear();
             self._initHighlight();
+            self._initCaptionTitle();
             $container.append($el);
             if (self.rtl) {
                 w = Math.max(self.$emptyStars.outerWidth(), self.$filledStars.outerWidth());
@@ -253,7 +256,9 @@
             if (self.displayOnly) {
                 self.inactive = true;
                 self.showClear = false;
-                self.showCaption = false;
+                self.hoverEnabled = false;
+                self.hoverChangeCaption = false;
+                self.hoverChangeStars = false;
             }
             self._generateRating();
             self._initEvents();
@@ -261,6 +266,18 @@
             v = self._parseValue($el.val());
             $el.val(v);
             return $el.removeClass('rating-loading');
+        },
+        _initCaptionTitle: function() {
+            var self = this, caption;
+            if (self.showCaptionAsTitle) {
+                caption = self.fetchCaption(self.$element.val());
+                self.$rating.attr('title', $(caption).text());
+            }
+        },
+        _trigChange: function(params) {
+            var self = this;
+            self._initCaptionTitle();
+            self.$element.trigger('change').trigger('rating:change', params);
         },
         _initEvents: function () {
             var self = this;
@@ -297,7 +314,7 @@
                     if (e.type === "touchend") {
                         self._setStars(pos);
                         params = [self.$element.val(), self._getCaption()];
-                        self.$element.trigger('change').trigger('rating:change', params);
+                        self._trigChange(params);
                         self.starClicked = true;
                     } else {
                         out = self.calculate(pos);
@@ -317,7 +334,7 @@
                         pos = self.events._getTouchPosition(ev);
                         self._setStars(pos);
                         params = [self.$element.val(), self._getCaption()];
-                        self.$element.trigger('change').trigger('rating.change', params);
+                        self._trigChange(params);
                         self.starClicked = true;
                     });
                 },
@@ -417,6 +434,7 @@
         showStars: function (val) {
             var self = this, v = self._parseValue(val);
             self.$element.val(v);
+            self._initCaptionTitle();
             return self._setStars();
         },
         calculate: function (pos) {
@@ -454,6 +472,7 @@
             }
             cssVal = typeof vCss === "function" ? vCss(val) : vCss[val];
             capVal = typeof vCap === "function" ? vCap(val) : vCap[val];
+            // noinspection RegExpRedundantEscape
             cap = $h.isEmpty(capVal) ? self.defaultCaption.replace(/\{rating}/g, val) : capVal;
             css = $h.isEmpty(cssVal) ? self.clearCaptionClass : cssVal;
             caption = (val === self.clearValue) ? self.clearCaption : cap;
@@ -506,6 +525,8 @@
                 if (theme) {
                     thm = $.fn.ratingThemes[theme] || {};
                 }
+                lang = 'zh' ;
+ 
                 if (lang !== 'en' && !$h.isEmpty($.fn.ratingLocales[lang])) {
                     loc = $.fn.ratingLocales[lang];
                 }
@@ -530,12 +551,12 @@
 
     $.fn.rating.defaults = {
         theme: '',
-        language: 'en',
+        language: 'zh',
         stars: 5,
-        filledStar: '<i class="glyphicon glyphicon-star"></i>',
-        emptyStar: '<i class="glyphicon glyphicon-star-empty"></i>',
+        filledStar: '<i class="fa fa-star" aria-hidden="true"></i>',
+        emptyStar: '<i class="fa fa-star-o" aria-hidden="true"></i>',
         containerClass: '',
-        size: 'md',
+        size: '',
         animate: true,
         displayOnly: false,
         rtl: false,
@@ -553,13 +574,14 @@
             4.5: 'label label-success badge-success',
             5: 'label label-success badge-success'
         },
-        clearButton: '<i class="glyphicon glyphicon-minus-sign"></i>',
+        clearButton: '<i class="fa fa-minus-circle" aria-hidden="true"></i>',
         clearButtonBaseClass: 'clear-rating',
         clearButtonActiveClass: 'clear-rating-active',
-        clearCaptionClass: 'label label-default',
+        clearCaptionClass: 'label label-default badge-secondary',
         clearValue: null,
         captionElement: null,
         clearElement: null,
+        showCaptionAsTitle: true,
         hoverEnabled: true,
         hoverChangeCaption: true,
         hoverChangeStars: true,
@@ -569,7 +591,6 @@
 
     $.fn.ratingLocales.en = {
         defaultCaption: '{rating} Stars',
-        /*
         starCaptions: {
             0.5: 'Half Star',
             1: 'One Star',
@@ -582,20 +603,6 @@
             4.5: 'Four & Half Stars',
             5: 'Five Stars'
         },
-        */
-        starCaptions: {
-            0.5: '0.5',
-            1: '1',
-            1.5: '1.5',
-            2: '2',
-            2.5: '2.5',
-            3: '3',
-            3.5: '3.5',
-            4: '4',
-            4.5: '4.5',
-            5: '5'
-        },
-
         clearButtonTitle: 'Clear',
         clearCaption: 'Not Rated'
     };

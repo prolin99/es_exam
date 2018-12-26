@@ -5,7 +5,7 @@ define("_TAD_NEED_TADTOOLS"," 需要 tadtools 模組，可至<a href='http://www
 define("_MA_INPUT_FORM","建立上傳主題");
 
 define("_MA_TADASSIGN_ASSN_LIST","上傳主題一覽");
-define("_MA_TADASSIGN_ASSN","上傳編號");
+define("_MA_TADASSIGN_ASSN","編號");
 define("_MA_TADASSIGN_TITLE","上傳主題");
 define("_MA_TADASSIGN_PASSWD","上傳密碼");
 define("_MA_TADASSIGN_PASSWD_DESC","（輸入密碼，使用者不用額外帳號管理）");

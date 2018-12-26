@@ -27,6 +27,7 @@ define("_MD_TADASSIGN_SHOW","是否展示上傳檔案");
 define("_MD_TADASSIGN_SELECT_ASSN","請選擇上傳主題");
 define("_MD_INPUT_FORM","選擇欲上傳檔案");
 define("_MD_SAVE","上傳確定");
+define("_MD_UPLOAD","上傳");
 define("_MD_TADASSIGN_FILENAME","檔案名稱、內容");
 define("_MD_TADASSIGN_UPLOAD_FILE","上傳的檔案");
 define("_MD_TADASSIGN_UP_TIME","上傳時間");

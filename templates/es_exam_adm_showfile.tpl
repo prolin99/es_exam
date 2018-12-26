@@ -1,3 +1,4 @@
+
 <{*  評分用的view *}>
 <link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_url}>/modules/tadtools/bootstrap3/css/bootstrap.css" />
 
@@ -7,6 +8,8 @@
 <link rel="stylesheet" href="<{$xoops_url}>/modules/tadtools/css/font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet" href="../css/star-rating.css" media="all" type="text/css"/>
 <script src="../js/star-rating.js" type="text/javascript"></script>
+<script src="../js/locales/zh.js" type="text/javascript"></script>
+
 <{ if ($old_file) }>
 	<div class='row alert-danger' title='舊檔案'>
 <{else}>

@@ -142,6 +142,7 @@ switch ($_REQUEST['op']) {
   break;
 }
 
+
 /*-----------秀出結果區--------------*/
 $xoopsTpl->assign('toolbar', toolbar_bootstrap($interface_menu));
 //$xoopsTpl->assign('bootstrap', get_bootstrap());

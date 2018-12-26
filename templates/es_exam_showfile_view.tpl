@@ -1,4 +1,10 @@
-<link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_url}>/modules/tadtools/bootstrap3/css/bootstrap.css" />
+
+<!-- bootstrap4 -->
+<link href="<{$xoops_url}>/modules/tadtools/bootstrap4/css/bootstrap.css" rel="stylesheet" media="all">
+<!-- SmartMenus jQuery Bootstrap Addon CSS -->
+<link href="<{$xoops_url}>/modules/tadtools/smartmenus/addons/bootstrap-4/jquery.smartmenus.bootstrap-4.css" media="all" rel="stylesheet">
+<!-- font-awesome -->
+<link href="<{$xoops_url}>/modules/tadtools/css/font-awesome/css/font-awesome.css" rel="stylesheet" media="all">
 <{if $file_mode=='scratch'}>
 <{if $sb2js_mode }>
 <{*  scratch *}>
@@ -19,12 +25,12 @@
 
 	<{if $file_mode=='picture'}>
 	<{*  圖檔 *}>
-	<div class='col-xs-12 text-center'> <img class='img-responsive' src='<{$file}>'></div><div><{  $all.memo}></div>
+	<div class='col-12 text-center'> <img class='img-fluid' src='<{$file}>'></div><div><{  $all.memo}></div>
 	<{/if}>
 
 	<{if $file_mode=='scratch'}>
 	<{*  scratch *}>
-	<div   class='col-xs-12 text-center'>
+	<div   class='col-12 text-center'>
 
 		<div id="flashContentdoc" >
 
@@ -35,9 +41,9 @@
 		<{ if $sb2js_mode }>
 				<canvas id='scratch' width='486' height='391' tabindex='1'></canvas>
 		<{else}>
-		  <div class='row'>
+		  <div class='col-12  text-center'>
 
-			<div id="flashContent" > <br>  如未出現 Scratch 畫面 <br> 請點選此處並允許執行 Flash <br> <img src="./images/flash_start.png"> <br>
+			<div class='col-12  text-center' id="flashContent" > <br>  如未出現 Scratch 畫面 <br> 請點選此處並允許執行 Flash <br> <img src="./images/flash_start.png"> <br>
 			</div>
  				<script type="text/javascript" src="swfobject.js"></script>
 				<script type="text/javascript">
@@ -88,12 +94,12 @@
 				var attributes = {};
 				swfobject.embedSWF("images/Scratch.swf", "flashContent", "512", "387", "11.7.0","images/expressInstall.swf", flashvars, params, attributes);
 				</script>
-
-			<p>
+			</div>
+			<div class='col-12  text-center'>
 				使用說明：<br />
 				<{$all.memo}>
-			</p>
-		  </div>
+			</div>
+
 		<{/if}>
 		</div>
 
@@ -105,14 +111,14 @@
 
 	<{if $file_mode=='flash'}>
 	<{*  flash *}>
-	<div   class='col-xs-12 text-center'>
+	<div   class='col-12 text-center'>
 
 		<div id="flashContentdoc" >
 		<a href='<{$file}>'>作品下載</a><br />
 		使用說明：<br />
 		<{$all.memo}>
 	</div>
-		  <div class='row'>
+		  <div class='col-12  text-center'>
 
 				<div id="flashContent" > <br>  如未出現 Flash 畫面 <br> 請點選此處並允許執行 Flash <br> <img src="./images/flash_start.png">  <br>
 				</div>
@@ -169,7 +175,7 @@
 	<{if $file_mode=='pdf'}>
  	<{*  pdf *}>
 
- 	<div class='col-xs-12 text-center'>
+ 	<div class='col-12 text-center'>
  		<div id="pdfContent" ><a href="<{$file}>" target="_blank">下載檔案</a>.</p> <p> <{  $all.memo}></p></div>
 		<div class="embed-responsive embed-responsive-16by9">
 	       <object class="embed-responsive-item" data="<{$file}>" type="application/pdf" internalinstanceid="9" title="">

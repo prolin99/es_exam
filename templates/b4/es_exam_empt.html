@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="<{$xoops_langcode}>">
+
+<head>
+  <title><{$xoops_sitename}><{if $xoops_pagetitle !=''}> - <{$xoops_pagetitle}><{/if}></title>
+  <meta charset="<{$xoops_charset}>">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+  <script type='text/javascript'>
+    if(typeof jQuery == 'undefined') {
+    document.write("<script type='text/javascript' src='<{$xoops_url}>/browse.php?Frameworks/jquery/jquery.js'><\/script>");
+    }
+  </script>
+</head>
+
+  <body>
+
+    <{includeq file="$xoops_rootpath/modules/$module_dir/templates/$html_file"}>
+
+  </body>
+</html>

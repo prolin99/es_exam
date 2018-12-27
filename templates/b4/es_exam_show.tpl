@@ -24,7 +24,8 @@
   <link rel="stylesheet" href="css/star-rating.css" media="all" type="text/css"/>
   <script src="js/star-rating.js" type="text/javascript"></script>
   <script src="js/locales/zh.js" type="text/javascript"></script>
-
+  <link rel="stylesheet" href="js/krajee-fa/theme.css" media="all" type="text/css"/>
+  <script src="js/krajee-fa/theme.js" type="text/javascript"></script>
 
 
 <style type="text/css">
@@ -46,6 +47,13 @@
       closeClick  : false
       });
 
+      $('.fa-rating').rating({
+          hoverOnClear: false ,
+          language: 'zh' ,
+          theme: 'krajee-fa'
+      });
+
+
     });
 
 
@@ -54,6 +62,8 @@
       if (!sure)  return;
       location.href="show.php?op=delete_tad_assignment_file&assn=<{$assn}>&asfsn=" + asfsn   + "&stud_id=" + stud_id  ;
     }
+
+ 
 
   </script>
 <{if ($assn) }>
@@ -83,7 +93,7 @@
   <{/if}>
   <{/foreach}>
   </div>
-<div class="table-responsive">
+
   <table class="table"  >
     <thead>
   <tr class='row' >
@@ -139,7 +149,7 @@
       <td  class='col-2' >
       <{if ($all.score) }>
       <div class="row">
-       <input  type="text"   readonly class="rating" value="<{$all.score_star}>"   data-min=0 data-max=5 data-step=0.5 data-size="xs" title=""     >
+       <input  type="text"   readonly class="fa-rating" value="<{$all.score_star}>"   data-min=0 data-max=5 data-step=0.5 data-size="xs" title=""     >
 
 		<div class='col-4'><{  $all.comment}></div>
        </div>
@@ -155,6 +165,6 @@
   <{/foreach}>
   </tbody>
   </table>
-</div>
+
 
 <{/if}>

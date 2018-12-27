@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="../css/star-rating.css" media="all" type="text/css"/>
   <script src="../js/star-rating.js" type="text/javascript"></script>
   <script src="../js/locales/zh.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="../js/krajee-fa/theme.css" media="all" type="text/css"/>
+  <script src="../js/krajee-fa/theme.js" type="text/javascript"></script>
 
 
 <style type="text/css">
@@ -40,6 +42,12 @@
       autoSize  : true,
       closeClick  : false,
 
+      });
+
+      $('.fa-rating').rating({
+          hoverOnClear: false ,
+          language: 'zh' ,
+          theme: 'krajee-fa'
       });
 
     });
@@ -150,7 +158,7 @@
         <div claa="row">
         <div class="col-xs-9">
 
-        <input  type="text" class="form-control rating" value="<{$all.score_star}>" data-size="xs" title="" data_ref="<{$all.asfsn}>" >
+        <input  type="text" class="form-control fa-rating" value="<{$all.score_star}>" data-size="xs" title="" data_ref="<{$all.asfsn}>" >
         </div>
         <div class="col-xs-3">
       		<input class="form-control score" type="text" onfocus="this.select()"   name="score[<{$all.asfsn}>]"  id="score_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>"

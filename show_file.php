@@ -7,16 +7,16 @@ include 'header.php';
 include_once XOOPS_ROOT_PATH.'/header.php';
 
 /*-----------function區--------------*/
+$myts = &MyTextSanitizer::getInstance();
 
-$ext_file = $_GET['sub_name'];
+$ext_file = $myts->addSlashes($_GET['sub_name']);
 $asfsn = intval($_GET['asfsn']);
 //$score_bar = intval($_GET['score_bar']);
 
 //取得作業
 $data = list_one_exam($asfsn);
 
-    //作品說明做處理
-$myts = &MyTextSanitizer::getInstance();
+//作品說明做處理
 $data['memo'] = $myts->displayTarea($data['memo']);
 
 //$file = _TAD_ASSIGNMENT_UPLOAD_URL.$data['assn'].'/'.$data['asfsn'].'.'.$_GET['sub_name'];

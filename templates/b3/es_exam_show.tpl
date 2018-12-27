@@ -24,7 +24,8 @@
   <link rel="stylesheet" href="css/star-rating.css" media="all" type="text/css"/>
   <script src="js/star-rating.js" type="text/javascript"></script>
   <script src="js/locales/zh.js" type="text/javascript"></script>
-
+  <link rel="stylesheet" href="js/krajee-fa/theme.css" media="all" type="text/css"/>
+  <script src="js/krajee-fa/theme.js" type="text/javascript"></script>
 
 
 <style type="text/css">
@@ -45,6 +46,14 @@
        autoSize  : true,
       closeClick  : false
       });
+
+
+      $('.fa-rating').rating({
+          hoverOnClear: false ,
+          language: 'zh' ,
+          theme: 'krajee-fa'
+      });
+
 
     });
 
@@ -130,7 +139,7 @@
       <td  class='col-xs-3'>
       <{if ($all.score) }>
       <div class="row">
-       <input  type="text"   readonly class="rating" value="<{$all.score_star}>"   data-min=0 data-max=5 data-step=0.5 data-size="xs" title=""     >
+       <input  type="text"   readonly class="fa-rating" value="<{$all.score_star}>"   data-min=0 data-max=5 data-step=0.5 data-size="xs" title=""     >
 
 		<div class='col-xs-4'><{  $all.comment}></div>
        </div>

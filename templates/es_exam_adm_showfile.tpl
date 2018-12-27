@@ -9,6 +9,9 @@
 <link rel="stylesheet" href="../css/star-rating.css" media="all" type="text/css"/>
 <script src="../js/star-rating.js" type="text/javascript"></script>
 <script src="../js/locales/zh.js" type="text/javascript"></script>
+<link rel="stylesheet" href="../js/krajee-fa/theme.css" media="all" type="text/css"/>
+<script src="../js/krajee-fa/theme.js" type="text/javascript"></script>
+
 
 <{ if ($old_file) }>
 	<div class='row alert-danger' title='舊檔案'>
@@ -24,7 +27,7 @@
 		<input class="comment" type="text" onfocus="this.select()"   name="comment[<{$all.asfsn}>]"  id="comment_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>" value="<{$all.comment}>" placeholder='評語'  title="評語">
 		</span>
 		<span class="col-xs-5">
-		<input type="text" class="rating" value="<{$all.score_star}>" data-size="xs" title="" data_ref="<{$all.asfsn}>" >
+		<input type="text" class="fa-rating" value="<{$all.score_star}>" data-size="xs" title="" data_ref="<{$all.asfsn}>" >
 		</span>
 		<span class="col-xs-1 col-xs-1">
       		<input   onfocus="this.select()"   type="text"  class="score" name="score[<{$all.asfsn}>]"   id="score_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>"
@@ -315,7 +318,13 @@ $(function() {
 	//星等評分
 	jQuery(document).ready(function () {
 
-          $('.rating').on(
+		$('.fa-rating').rating({
+            hoverOnClear: false ,
+            language: 'zh' ,
+            theme: 'krajee-fa'
+        });
+
+          $('.fa-rating').on(
                   'change', function () {
                       //取得
                       var v_id= $(this).attr('data_ref') ;

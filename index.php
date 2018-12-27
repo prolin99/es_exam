@@ -61,7 +61,7 @@ function tad_assignment_file_form($assn = '')
 
     if ($ext_file) {
         //可上傳的副檔
-      $j_ext_file = str_replace(',', '|', $ext_file);
+        $j_ext_file = str_replace(',', '|', $ext_file);
         $accept_filestr = str_replace(',', ',.', $ext_file);
         $accept_filestr = " accept='.{$accept_filestr}' ";
     }
@@ -85,8 +85,8 @@ function insert_tad_assignment_file()
 {
     global $xoopsDB ,$xoopsModuleConfig ;
 
-  //密碼再次確認
-  $assignment = get_tad_assignment(intval($_POST['assn']));
+    //密碼再次確認
+    $assignment = get_tad_assignment(intval($_POST['assn']));
     if ($_POST['passwd'] != $assignment['passwd']) {
         redirect_header($_SERVER['PHP_SELF'], 3, _TAD_ASSIGNMENT_WRONG_PASSWD);
         exit;
@@ -166,7 +166,7 @@ function upload_file($asfsn = '', $assn = '')
 
     if ($flv_handle->uploaded) {
         //$name=substr($_FILES['file']['name'],0,-4);
-      $flv_handle->file_safe_name = false;
+        $flv_handle->file_safe_name = false;
         $flv_handle->mime_check = false;
 
         $flv_handle->auto_create_dir = true;

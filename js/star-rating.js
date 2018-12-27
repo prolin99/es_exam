@@ -525,8 +525,6 @@
                 if (theme) {
                     thm = $.fn.ratingThemes[theme] || {};
                 }
-                lang = 'zh' ;
- 
                 if (lang !== 'en' && !$h.isEmpty($.fn.ratingLocales[lang])) {
                     loc = $.fn.ratingLocales[lang];
                 }
@@ -551,12 +549,12 @@
 
     $.fn.rating.defaults = {
         theme: '',
-        language: 'zh',
+        language: 'en',
         stars: 5,
-        filledStar: '<i class="fa fa-star" aria-hidden="true"></i>',
-        emptyStar: '<i class="fa fa-star-o" aria-hidden="true"></i>',
+        filledStar: '<i class="glyphicon glyphicon-star"></i>',
+        emptyStar: '<i class="glyphicon glyphicon-star-empty"></i>',
         containerClass: '',
-        size: '',
+        size: 'md',
         animate: true,
         displayOnly: false,
         rtl: false,
@@ -574,7 +572,7 @@
             4.5: 'label label-success badge-success',
             5: 'label label-success badge-success'
         },
-        clearButton: '<i class="fa fa-minus-circle" aria-hidden="true"></i>',
+        clearButton: '<i class="glyphicon glyphicon-minus-sign"></i>',
         clearButtonBaseClass: 'clear-rating',
         clearButtonActiveClass: 'clear-rating-active',
         clearCaptionClass: 'label label-default badge-secondary',

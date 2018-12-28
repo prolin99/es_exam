@@ -295,7 +295,7 @@ $(function() {
       //星等評分
       jQuery(document).ready(function () {
 
-          $('.rating').on(
+          $('.fa-rating').on(
                   'change', function () {
                       //取得
                       var v_id= $(this).attr('data_ref') ;

@@ -160,7 +160,7 @@
         <div claa="row">
         <div class="col-md-8">
 
-        <input type="text" class="rating" value="<{$all.score_star}>" data-size="sm" title="" data_ref="<{$all.asfsn}>" >
+        <input type="text" class="fa-rating" value="<{$all.score_star}>" data-size="sm" title="" data_ref="<{$all.asfsn}>" >
         </div>
         <div class="col-md-4 ">
       		<input class="form-control score" type="text" onfocus="this.select()"   name="score[<{$all.asfsn}>]"  id="score_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>"

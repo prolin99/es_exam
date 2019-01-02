@@ -13,7 +13,7 @@ define("_MA_TADASSIGN_START_DATE","開始上傳時間");
 define("_MA_TADASSIGN_END_DATE","上傳截止時間");
 define("_MA_TADASSIGN_NOTE","上傳說明");
 define("_MA_TADASSIGN_UID","建立者");
-define("_MA_TADASSIGN_SHOW","是否展示上傳檔案");
+define("_MA_TADASSIGN_SHOW","展示上傳檔案");
 define("_MA_TADASSIGN_SHOW_ASSIGNMENT_YES","是，其他人可以觀看");
 define("_MA_TADASSIGN_SHOW_ASSIGNMENT_NO","否，不開放");
 define("_MA_TADASSIGN_ADD_TYPE_TITLE","選擇欲加入的檔案格式");

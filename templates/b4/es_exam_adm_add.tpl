@@ -35,23 +35,23 @@
 
   <div class="row">
     <div class="col-2">限制上傳的副檔名</div>
-    <div class=" col-3"><input class="form-control" type="text" name="ext_file"   value="<{$ext_file}>" placeholder="例： jpg,jpeg,png "></div>
-    <div class=" col-3">(以逗號分隔多種副檔名，依此類別做線上展示（PDF,scratch...)，空白表示不限制。)</div>
+    <div class="col-3"><input class="form-control" type="text" name="ext_file"   value="<{$ext_file}>" placeholder="例： jpg,jpeg,png "></div>
+    <div class="col-3">(以逗號分隔多種副檔名，依此類別做線上展示（PDF,scratch...)，空白表示不限制。)</div>
 
   </div>
 
 
   <div class="row">
-    <div class=" col-2"><{$smarty.const._MA_TADASSIGN_NOTE}></div>
-    <div class=" col-8"><textarea name="note"  class="form-control" rows=4 placeholder="<{$smarty.const._MA_TADASSIGN_NOTE}>"><{$note}></textarea></div>
+    <div class="col-2"><{$smarty.const._MA_TADASSIGN_NOTE}></div>
+    <div class="col-8"><textarea name="note"  class="form-control" rows=4 placeholder="<{$smarty.const._MA_TADASSIGN_NOTE}>"><{$note}></textarea></div>
   </div>
 
   <div class="row">
-    <div class="col-2">允許學生登入上傳或撰寫文字</div>
+    <div class="col-2">允許上傳或撰寫文字</div>
     <div class="col-2">
         <input type="checkbox" class="form-control" name="upload_mode"  class="upload" value=1  <{if $upload_mode=='1'}>checked<{/if}>  id="upload_mode">
     </div>
-    <div class="col-6">(不開放登入時，只用於老師給外部作品或上課表現輸入評分)</div>
+    <div class="col-6">(不上傳，用於外部作品或上課表現評分)</div>
 
   </div>
 
@@ -79,7 +79,7 @@
     <div class="col-2">
         <input class="form-control" type="checkbox" name="no_file"  class="upload"   value=1  <{if $no_file=='1'}>checked<{/if}>  id="no_file">
     </div>
-      <div class="col-6 ">(設定後只出現文字欄位，不會出現選擇檔案上傳，用於純文字心得寫作。)</div>
+      <div class="col-6 ">(只有文字欄位，無檔案上傳，用於純文字心得寫作。)</div>
   </div>
 
   <div style="text-align:center;">

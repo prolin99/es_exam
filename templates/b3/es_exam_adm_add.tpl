@@ -1,5 +1,5 @@
 <script type="text/javascript" src="<{$xoops_url}>/modules/tadtools/My97DatePicker/WdatePicker.js"></script>
-<form action="add.php"  method="post" id="myForm" name="myForm" enctype="multipart/form-data">
+<form action="add.php"  method="post" id="myForm" name="myForm" enctype="multipart/form-data" class="form-inline">
 
 <link href="../css/bootstrap-switch.css" rel="stylesheet">
 <script src="../js/bootstrap-switch.js"></script>

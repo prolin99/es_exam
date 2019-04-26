@@ -8,6 +8,7 @@ include_once "../function.php";
 
 //列出所有tad_assignment資料
 function list_tad_assignment($show_function=1 ,$semester =1  ){
+
 	global $xoopsDB,$xoopsModule,$xoopsTpl , $xoopsUser ;
 
 	if  ($semester) {
@@ -30,18 +31,18 @@ function list_tad_assignment($show_function=1 ,$semester =1  ){
 	$sql = "select * from ".$xoopsDB->prefix("exam")." where 1  $and_my_sql  $and_date_sql  order by   create_date desc , class_id ASC ";
 
 	//PageBar(資料數, 每頁顯示幾筆資料, 最多顯示幾個頁數選項);
-	$result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'],3, $xoopsDB->error());
-	$total=$xoopsDB->getRowsNum($result);
+	$result = $xoopsDB->query($sql) or web_error($sql, __FILE__, __LINE__);
+	$total  = $xoopsDB->getRowsNum($result);
 
-	$navbar = new PageBar($total, 20, 10);
-	$mybar = $navbar->makeBar();
-	$bar= sprintf(_TAD_TOOLBAR,$mybar['total'],$mybar['current'])."{$mybar['left']}{$mybar['center']}{$mybar['right']}";
-	$sql.=$mybar['sql'];
+	$PageBar = getPageBar($sql, 20, 10);
+	$bar     = $PageBar['bar'];
+    $sql     = $PageBar['sql'];
+    $total   = $PageBar['total'];
 
-	$result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'],3, $xoopsDB->error());
+	$result   = $xoopsDB->query($sql) or web_error($sql, __FILE__, __LINE__);
+    $all_data = array();
+    $i        = 0;
 
-	$data="";
-  	$i=0;
 	while($all=$xoopsDB->fetchArray($result)){
 	  	foreach($all as $k=>$v){
 			$$k=$v;
@@ -67,8 +68,8 @@ function list_tad_assignment($show_function=1 ,$semester =1  ){
   	$class_list_c = es_class_name_list_c('long')  ;
 
   	$xoopsTpl->assign('class_list_c',$class_list_c);
-		$xoopsTpl->assign('all_data' , $all_data);
-		$xoopsTpl->assign('bar' , $bar);
+	$xoopsTpl->assign('all_data' , $all_data);
+	$xoopsTpl->assign('bar' , $bar);
 
 }
 

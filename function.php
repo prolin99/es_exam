@@ -1,9 +1,9 @@
 <?php
 //引入TadTools的函式庫
-if (!file_exists(XOOPS_ROOT_PATH.'/modules/tadtools/tad_function.php')) {
-    redirect_header('http://www.tad0616.net/modules/tad_uploader/index.php?of_cat_sn=50', 3, _TAD_NEED_TADTOOLS);
+if (!file_exists(XOOPS_ROOT_PATH . "/modules/tadtools/tad_function.php")) {
+    redirect_header("http://www.tad0616.net/modules/tad_uploader/index.php?of_cat_sn=50", 3, _TAD_NEED_TADTOOLS);
 }
-include_once XOOPS_ROOT_PATH.'/modules/tadtools/tad_function.php';
+include_once XOOPS_ROOT_PATH . "/modules/tadtools/tad_function.php";
 
 //需要單位名稱模組(e_stud_import)1.9
 
@@ -23,7 +23,7 @@ function get_stud_old_exam($assn, $class_id, $sit_id)
     global $xoopsDB;
     $sql = 'SELECT * FROM '.$xoopsDB->prefix('exam_files')." WHERE `assn` ='$assn' and  class_id='$class_id' and sit_id= '$sit_id'  ";
 
-    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
+    $result = $xoopsDB->query($sql) ;
     while ($row = $xoopsDB->fetchArray($result)) {
         $data['old_asfsn'] = $row['asfsn'];
         $data['stud_id'] = $row['stud_id'];
@@ -38,7 +38,7 @@ function exam_set_empfile($assn, $class_id)
     global $xoopsDB, $xoopsUser;
   //班級名單
   $sql = '  SELECT  class_sit_num , name ,stud_id  FROM '.$xoopsDB->prefix('e_student')."   where class_id='{$class_id}'  order by  class_sit_num  ";
-    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
+    $result = $xoopsDB->query($sql)  ;
     while ($row = $xoopsDB->fetchArray($result)) {
         $class_students[$row['class_sit_num']] = $row;
     }
@@ -80,7 +80,7 @@ function get_exam_list($mode, $order = ' class_id ,  assn desc', $semester = 1)
 
     $sql = 'select assn,title,uid , class_id,open_show  from '.$xoopsDB->prefix('exam')." where 1    $sql_and     $and_date_sql   order by  $order    ";
  //echo $sql ;
-  $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
+  $result = $xoopsDB->query($sql) ;
     $i = 0;
     $data = array();
     while (list($assn, $title, $uid, $class_id, $open_show) = $xoopsDB->fetchRow($result)) {
@@ -116,7 +116,7 @@ function list_exam_file($assn = '', $my_order = ' `up_time` DESC , sit_id ASC ')
 
   //班級名單
   $sql = '  SELECT  class_sit_num , name  FROM '.$xoopsDB->prefix('e_student')."   where class_id='{$class_id}'  order by  class_sit_num  ";
-    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
+    $result = $xoopsDB->query($sql)  ;
     while ($row = $xoopsDB->fetchArray($result)) {
         $class_students[$row['class_sit_num']]['name'] = $row['name'];
     }
@@ -124,7 +124,7 @@ function list_exam_file($assn = '', $my_order = ' `up_time` DESC , sit_id ASC ')
 
   //個人作品
   $sql = 'select * from '.$xoopsDB->prefix('exam_files')." where assn='{$assn}' order by $my_order  ";
-    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
+    $result = $xoopsDB->query($sql)  ;
 
     $i = 0;
 
@@ -187,7 +187,7 @@ function list_one_exam($asfsn)
     //個人作品
   $sql = 'select * from '.$xoopsDB->prefix('exam_files')." where asfsn='{$asfsn}'   ";
 
-    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
+    $result = $xoopsDB->query($sql)  ;
 
     $data = array();
     while ($all = $xoopsDB->fetchArray($result)) {
@@ -221,7 +221,7 @@ function get_tad_assignment($assn = '')
     }
     $sql = 'select * from '.$xoopsDB->prefix('exam')." where assn='$assn'";
 
-    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
+    $result = $xoopsDB->query($sql) ;
     $data = $xoopsDB->fetchArray($result);
 
     return $data;
@@ -273,11 +273,11 @@ function delete_tad_assignment($assn = '')
     global $xoopsDB;
     //exam
     $sql = 'delete from '.$xoopsDB->prefix('exam')." where assn='$assn'";
-    $xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
+    $xoopsDB->queryF($sql)  ;
 
     //exam_files
     $sql = 'delete from '.$xoopsDB->prefix('exam_files')." where assn='$assn'";
-    $xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
+    $xoopsDB->queryF($sql)  ;
 
     //刪除目錄
     delete_directory(_TAD_ASSIGNMENT_UPLOAD_DIR."{$assn}");
@@ -290,7 +290,7 @@ function delete_tad_assignment_file($asfsn = '', $stud_id)
 
     $sql = 'select * from '.$xoopsDB->prefix('exam_files')." where asfsn='{$asfsn}'    and stud_id = '$stud_id'   ";
     //   echo  $sql ; exit ;
-    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
+    $result = $xoopsDB->query($sql)  ;
 
     while ($all = $xoopsDB->fetchArray($result)) {
         foreach ($all as $k => $v) {
@@ -306,7 +306,7 @@ function delete_tad_assignment_file($asfsn = '', $stud_id)
     unlink(_TAD_ASSIGNMENT_UPLOAD_DIR."{$assn}/{$asfsn}.{$sub_name}");
 
     $sql = 'delete from '.$xoopsDB->prefix('exam_files')." where asfsn='$asfsn'";
-    $xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
+    $xoopsDB->queryF($sql) ;
 }
 
 //標記  exam_files 某筆檔案為舊版本
@@ -316,7 +316,7 @@ function mark_old_tad_assignment_file($asfsn = '', $stud_id)
 
     $sql = 'update   '.$xoopsDB->prefix('exam_files')." set old_file = 1  where asfsn='$asfsn'  ";
 
-    $xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
+    $xoopsDB->queryF($sql) ;
 }
 
 /********************* 預設函數 *********************/
@@ -328,7 +328,7 @@ function get_class_list()
 
     $sql = '  SELECT  class_id  FROM '.$xoopsDB->prefix('e_student').'   group by class_id   ';
 
-    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
+    $result = $xoopsDB->query($sql)  ;
     while ($row = $xoopsDB->fetchArray($result)) {
         $data[$row['class_id']] = $row['class_id'];
     }
@@ -343,7 +343,7 @@ function get_stud_name($class_id, $sit_id)
 
     $sql = '  SELECT  stud_id , name  FROM '.$xoopsDB->prefix('e_student')."   where class_id='$class_id' and class_sit_num='$sit_id'  ";
 
-    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
+    $result = $xoopsDB->query($sql)  ;
     while ($row = $xoopsDB->fetchArray($result)) {
         $data = $row;
     }

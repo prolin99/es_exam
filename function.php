@@ -1,9 +1,6 @@
 <?php
-//引入TadTools的函式庫
-if (!file_exists(XOOPS_ROOT_PATH . "/modules/tadtools/tad_function.php")) {
-    redirect_header("http://www.tad0616.net/modules/tad_uploader/index.php?of_cat_sn=50", 3, _TAD_NEED_TADTOOLS);
-}
-include_once XOOPS_ROOT_PATH . "/modules/tadtools/tad_function.php";
+use XoopsModules\Tadtools\Utility;
+
 
 //需要單位名稱模組(e_stud_import)1.9
 
@@ -243,29 +240,7 @@ function day2ts($day = '', $sy = '-')
     return $ts;
 }
 
-//刪除整個目錄
-function delete_directory($dirname)
-{
-    if (is_dir($dirname)) {
-        $dir_handle = opendir($dirname);
-    }
-    if (!$dir_handle) {
-        return false;
-    }
-    while ($file = readdir($dir_handle)) {
-        if ($file != '.' && $file != '..') {
-            if (!is_dir($dirname.'/'.$file)) {
-                unlink($dirname.'/'.$file);
-            } else {
-                delete_directory($dirname.'/'.$file);
-            }
-        }
-    }
-    closedir($dir_handle);
-    rmdir($dirname);
-
-    return true;
-}
+ 
 
 //刪除 exam 某筆資料資料
 function delete_tad_assignment($assn = '')
@@ -280,7 +255,7 @@ function delete_tad_assignment($assn = '')
     $xoopsDB->queryF($sql)  ;
 
     //刪除目錄
-    delete_directory(_TAD_ASSIGNMENT_UPLOAD_DIR."{$assn}");
+    Utility::delete_directory(_TAD_ASSIGNMENT_UPLOAD_DIR."{$assn}");
 }
 
 //刪除 exam_files 某筆資料資料

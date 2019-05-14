@@ -1,5 +1,5 @@
 <?php
-include_once XOOPS_ROOT_PATH."/modules/tadtools/language/{$xoopsConfig['language']}/modinfo_common.php";
+xoops_loadLanguage('modinfo_common', 'tadtools');
 define("_MI_ESEXAM_NAME","學生作業繳交");
 define("_MI_ESEXAM_AUTHOR","prolin(prolin99@gmail.com)");
 define("_MI_ESEXAM_CREDITS","");

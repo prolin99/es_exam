@@ -1,5 +1,5 @@
 <?php
-
+use XoopsModules\Tadtools\Utility;
 function xoops_module_update_es_exam(&$module, $old_version) {
 
     if(!chk_add_gview()) go_update_add_gview();

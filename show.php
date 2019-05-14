@@ -5,9 +5,10 @@ header('Access-Control-Allow-Origin: http://120.116.24.96:8000');
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: X-Requested-With, Content-Type, Accept');
 */
+use XoopsModules\Tadtools\Utility;
 /*-----------引入檔案區--------------*/
 include 'header.php';
-$xoopsOption['template_main'] = set_bootstrap('es_exam_show.tpl');
+$xoopsOption['template_main'] = 'es_exam_show.tpl';
 include_once XOOPS_ROOT_PATH.'/header.php';
 
 /*-----------function區--------------*/
@@ -144,9 +145,9 @@ switch ($_REQUEST['op']) {
 
 
 /*-----------秀出結果區--------------*/
-$xoopsTpl->assign('toolbar', toolbar_bootstrap($interface_menu));
-//$xoopsTpl->assign('bootstrap', get_bootstrap());
-//$xoopsTpl->assign('jquery', get_jquery(true));
+$xoopsTpl->assign('toolbar', Utility::toolbar_bootstrap($interface_menu));
+$xoopsTpl->assign('bootstrap', Utility::get_bootstrap());
+$xoopsTpl->assign('jquery', Utility::get_jquery(true));
 $xoopsTpl->assign('isAdmin', $isAdmin);
 $xoopsTpl->assign('assn', $assn);
 

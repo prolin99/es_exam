@@ -1,4 +1,5 @@
 <?php
+use XoopsModules\Tadtools\Utility;
 /*-----------引入檔案區--------------*/
 $xoopsOption['template_main'] = "es_exam_adm_main.tpl";
 include_once "header.php";
@@ -31,15 +32,15 @@ function list_tad_assignment($show_function=1 ,$semester =1  ){
 	$sql = "select * from ".$xoopsDB->prefix("exam")." where 1  $and_my_sql  $and_date_sql  order by   create_date desc , class_id ASC ";
 
 	//PageBar(資料數, 每頁顯示幾筆資料, 最多顯示幾個頁數選項);
-	$result = $xoopsDB->query($sql) or web_error($sql, __FILE__, __LINE__);
+	$result = $xoopsDB->query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
 	$total  = $xoopsDB->getRowsNum($result);
 
-	$PageBar = getPageBar($sql, 20, 10);
+	$PageBar = Utility::getPageBar($sql, 20, 10);
 	$bar     = $PageBar['bar'];
     $sql     = $PageBar['sql'];
     $total   = $PageBar['total'];
 
-	$result   = $xoopsDB->query($sql) or web_error($sql, __FILE__, __LINE__);
+	$result   = $xoopsDB->query($sql) or Utility::web_error($sql, __FILE__, __LINE__);
     $all_data = array();
     $i        = 0;
 

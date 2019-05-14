@@ -4,7 +4,7 @@ $modversion = array();
 
 //---模組基本資訊---//
 $modversion['name'] = _MI_ESEXAM_NAME;
-$modversion['version'] = 1.91;
+$modversion['version'] = 1.92;
 $modversion['description'] = _MI_ESEXAM_DESC;
 $modversion['author'] = _MI_ESEXAM_AUTHOR;
 $modversion['credits'] = _MI_ESEXAM_CREDITS;
@@ -21,7 +21,7 @@ $modversion['module_website_name'] = 'prolin';
 $modversion['module_status'] = 'release';
 $modversion['author_website_url'] = 'https://github.com/prolin99/es_exam';
 $modversion['author_website_name'] = 'prolin';
-$modversion['min_php'] = 5.2;
+$modversion['min_php'] = 5.4;
 $modversion['min_xoops'] = '2.5';
 $modversion['min_tadtools'] = '2.02';
 /*

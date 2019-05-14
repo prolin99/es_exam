@@ -1,8 +1,8 @@
 <?php
-
+use XoopsModules\Tadtools\Utility;
 /*-----------引入檔案區--------------*/
 include 'header.php';
-$xoopsOption['template_main'] = set_bootstrap('es_exam_index.tpl');
+$xoopsOption['template_main'] = 'es_exam_index.tpl';
 include_once XOOPS_ROOT_PATH.'/header.php';
 /*-----------function區--------------*/
 
@@ -211,7 +211,9 @@ switch ($_REQUEST['op']) {
 }
 
 /*-----------秀出結果區--------------*/
-$xoopsTpl->assign('toolbar', toolbar_bootstrap($interface_menu));
+$xoopsTpl->assign('toolbar', Utility::toolbar_bootstrap($interface_menu));
+$xoopsTpl->assign('bootstrap', Utility::get_bootstrap());
+$xoopsTpl->assign('jquery', Utility::get_jquery(true));
 $xoopsTpl->assign('isAdmin', $isAdmin);
 
 include_once XOOPS_ROOT_PATH.'/footer.php';

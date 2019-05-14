@@ -56,7 +56,7 @@ if ($gv   and ($file_mode == '')) {
 
 /*-----------秀出結果區--------------*/
 
-$xoopsTpl = new XoopsTpl();
+$xoopsTpl = new \XoopsTpl();
 
 $xoopsTpl->assign('sb2js_mode', $sb2js);
 

@@ -41,7 +41,7 @@ if (preg_match('/(pdf)/i', $ext_file)) {
 $sb2js = $xoopsModuleConfig['ESEXAM_SB2JS'] ;
 /*-----------秀出結果區--------------*/
 
-$xoopsTpl = new XoopsTpl();
+$xoopsTpl = new \XoopsTpl();
 
   //$xoopsTpl->assign('base_score', $base_score);
   //$xoopsTpl->assign('bar_max', $bar_max);

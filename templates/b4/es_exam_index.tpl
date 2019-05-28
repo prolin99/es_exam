@@ -70,7 +70,7 @@
     </div>
   <{/if}>
 <{elseif $now_op=="tad_assignment_file_form"}>
-  <{*             上傳畫面                                    *}>
+  <{*   ------          上傳畫面          -------                          *}>
   <form action="index.php" method="post" id="myForm" enctype="multipart/form-data">
     <h2><{$title}></h2>
     <div class="alert alert-info"><{$note}></div>
@@ -82,19 +82,24 @@
          </td>
       </tr>
       <{if ($no_file==0) }>
-      <tr>
-        <th><{$smarty.const._MD_TADASSIGN_FILE}> </th>
-        <td><input  id="file" name="file"    type="file" size=40  <{$accept_filestr}>  ><p>上傳的副檔名限制：<{$ext_file}></p></td>
-      </tr>
-      <tr>
-        <th>檔案說明</th>
-        <td><textarea name="desc"  class="form-control" rows=4 placeholder="作業內容說明，可省略"><{$desc}></textarea></td>
-      </tr>
+          <tr>
+              <{if ($upload_url==1)}>
+                  <th>貼上網址</th>
+                  <td><input  id="show_name"  class="form-control" name="show_name"    placeholder="貼上完整網路位置" ></td>
+              <{else}>
+                <th><{$smarty.const._MD_TADASSIGN_FILE}> </th>
+                <td><input  id="file" name="file"    type="file" size=40  <{$accept_filestr}>  ><p>上傳的副檔名限制：<{$ext_file}></p></td>
+              <{/if}>
+          </tr>
+          <tr>
+            <th>作業說明</th>
+            <td><textarea name="desc"  class="form-control" rows=4 placeholder="作業內容說明，可省略"><{$desc}></textarea></td>
+          </tr>
       <{else}>
-      <tr>
-        <th>輸入文字處</th>
-        <td><textarea name="desc"  class="form-control" rows=4 placeholder="作業內容說明"><{$desc}></textarea></td>
-      </tr>
+          <tr>
+            <th>輸入文字處</th>
+            <td><textarea name="desc"  class="form-control" rows=4 placeholder="作業內容說明"><{$desc}></textarea></td>
+          </tr>
       <{/if}>
 
       <tr>

@@ -30,9 +30,17 @@ $data = list_one_exam($asfsn);
 $myts = &MyTextSanitizer::getInstance();
 $data['memo'] = $myts->displayTarea($data['memo']);
 
-$file = _TAD_ASSIGNMENT_UPLOAD_URL.$data['assn'].'/'.$data['asfsn'].'.'.$_GET['sub_name'];
+$file_mode='' ;
 
-$file_mode = '';
+$d = get_url_iframe(trim($data['show_name']) )  ;
+if ($d['mode'] ) {
+    $file_mode = $d['mode'];
+    $data['project_id']=$d['project_id'] ;
+}
+
+$file = _TAD_ASSIGNMENT_UPLOAD_URL.$data['assn'].'/'.$data['asfsn'].'.'.$_GET['sub_name'];
+$ext_file =$_GET['sub_name'] ;
+
 if (preg_match('/(jpg|jpeg|bmp|png|gif|svg)/i', $ext_file)) {
     $file_mode = 'picture';
 }

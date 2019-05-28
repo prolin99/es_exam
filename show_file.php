@@ -10,6 +10,8 @@ include_once XOOPS_ROOT_PATH.'/header.php';
 $myts = &MyTextSanitizer::getInstance();
 
 $ext_file = $myts->addSlashes($_GET['sub_name']);
+
+$asfsn = intval($_GET['asfsn']);
 $asfsn = intval($_GET['asfsn']);
 //$score_bar = intval($_GET['score_bar']);
 
@@ -36,6 +38,28 @@ if (preg_match('/(swf)/i', $ext_file)) {
 if (preg_match('/(pdf)/i', $ext_file)) {
     $file_mode = 'pdf';
 }
+
+/*
+
+//如果是scratch 3 網站
+if (preg_match('/^https:\/\/scratch.mit.edu\/projects\/(\d+)/',trim($data['show_name']) ,$matches ) ) {
+    $project_id = $matches[1] ;
+    $file_mode = 'scratch3';
+    $data['project_id']=$project_id ;
+}
+
+if (preg_match('/^https:\/\/www.youtube.com\/watch\?v\=(.*)/',trim($data['show_name']),$matches  ) ) {
+    $project_id = $matches[1] ;
+    $file_mode = 'youtube';
+    $data['project_id']=$project_id ;
+}
+*/
+$d = get_url_iframe(trim($data['show_name']) )  ;
+if ($d['mode'] ) {
+    $file_mode = $d['mode'];
+    $data['project_id']=$d['project_id'] ;    
+}
+
 
 
 $sb2js = $xoopsModuleConfig['ESEXAM_SB2JS'] ;

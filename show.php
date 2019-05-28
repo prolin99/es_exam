@@ -67,13 +67,24 @@ function list_tad_assignment_file($assn = '', $order='')
         $myts = &MyTextSanitizer::getInstance();
         $data[$i]['memo'] = $myts->displayTarea($data[$i]['memo']);
 
-        $show_name = (empty($show_name)) ? $author._MD_TADASSIGN_UPLOAD_FILE : $show_name;
+        //上傳網址放在 show_name ， 檢查是否可做 iframe
+        if ($show_name){
+            $d = get_url_iframe($show_name, $data[$i]['asfsn'] , $data[$i]['assn'] ) ;
+            $show_name= $d['link'] ;
+        }
+
         $filepart = explode('.', $file_name);
         foreach ($filepart as $ff) {
             $sub_name = strtolower($ff);
         }
         if (count($filepart) <=1)
           $sub_name='txt' ;
+
+        //檔案可以 iframe
+        if (preg_match('/(sb|sb2|swf|pdf)/i', $sub_name)) {
+          $show_name ="<a href='show_file.php?asfsn={$data[$i]['asfsn']}&sub_name=$sub_name' class='assignment_fancy_{$data[$i]['assn']}' rel='group' target='show'>$file_name</a>" ;
+        }
+
 
         $data[$i]['sub_name'] = $sub_name;
         $data[$i]['show_name'] = $show_name;
@@ -90,26 +101,11 @@ function list_tad_assignment_file($assn = '', $order='')
             $data[$i]['old_file'] = 0 ;
         }
 
-
-
         ++$i;
     }
 
-    if (preg_match('/(sb|sb2)/i', $ext_file)) {
-        $ifram_show = 1;
-        $file_mode = 'scratch';
-    }
-    if (preg_match('/(swf)/i', $ext_file)) {
-        $ifram_show = 1;
-        $file_mode = 'flash';
-    }
-    if (preg_match('/(pdf)/i', $ext_file)) {
-        $ifram_show = 1;
-        $file_mode = 'pdf';
-    }
-
-  //取得作業
-  $stud = list_exam_file($assn);
+    //取得作業
+    $stud = list_exam_file($assn);
 
     $xoopsTpl->assign('title', $title);
     $xoopsTpl->assign('assn', $assn);

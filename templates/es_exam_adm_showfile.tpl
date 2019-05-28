@@ -54,6 +54,31 @@
 	</div><div class='col-xs-12 text-center'><{  $all.memo}></div>
 	<{/if}>
 
+	<{if $file_mode=='youtube'}>
+	<{*  youtube  *}>
+	<div class='col-12 text-center'>
+ 		<iframe width="560" height="315" src="https://www.youtube.com/embed/<{$all.project_id}>"
+ 			frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+ 		</iframe>
+		<p><{$all.memo}></p>
+	</div>
+	<{/if}>
+
+	<{if $file_mode=='scratch3'}>
+	<{*  scrtach3  *}>
+	<div class='col-12 text-center'>
+		Scratch 一套使用拖拉拼湊就可以寫程式的工具，很好玩的程式軟體。<a href='https://scratch.mit.edu/' target='_blank'>官方網站</a><br /><br />
+		<br />
+		<iframe allowfullscreen="" allowtransparency="false" bgcolor="#220000" height="536" scrolling="no"
+		src="https://scratch.mit.edu/projects/<{$all.project_id}>/embed/"
+		 width="658">
+	     </iframe>
+		 <p> <a href='https://scratch.mit.edu/projects/<{$all.project_id}>/' target='_blank'>原站展示</a></p>
+		 <{$all.memo}>
+	</div>
+	<{/if}>
+
+
 
 	<{if $file_mode=='scratch'}>
 	<{*  scratch *}>

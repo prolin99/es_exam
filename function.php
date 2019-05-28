@@ -135,7 +135,12 @@ function list_exam_file($assn = '', $my_order = ' `up_time` DESC , sit_id ASC ')
         $myts = &MyTextSanitizer::getInstance();
         $data[$i]['memo'] = $myts->displayTarea($data[$i]['memo']);
 
-        $show_name = (empty($show_name)) ? $author._MD_TADASSIGN_UPLOAD_FILE : $show_name;
+        //上傳網址放在 show_name ， 檢查是否可做 iframe
+        if ($show_name){
+            $d = get_url_iframe($show_name, $asfsn , $assn ) ;
+            $show_name= $d['link'] ;
+        }
+
         $filepart = explode('.', $file_name);
         foreach ($filepart as $ff) {
             $sub_name = strtolower($ff);
@@ -144,8 +149,14 @@ function list_exam_file($assn = '', $my_order = ' `up_time` DESC , sit_id ASC ')
         if (count($filepart) <=1)
           $sub_name='txt' ;
 
+        //檔案可以 iframe
+        if (preg_match('/(jpg|jpeg|swf|bmp|png|gif|sb|sb2|svg|pdf)/i', $sub_name)) {
+            $show_name ="<a href='show_file.php?asfsn=$asfsn&sub_name=$sub_name' class='assignment_fancy_$assn' rel='group' target='show'>$file_name</a>" ;
+        }
+
         $data[$i]['sub_name'] = $sub_name;
         $data[$i]['show_name'] = $show_name;
+
 
         //作品座號標記
         $class_students[$sit_id]['in'] = 1;
@@ -240,7 +251,7 @@ function day2ts($day = '', $sy = '-')
     return $ts;
 }
 
- 
+
 
 //刪除 exam 某筆資料資料
 function delete_tad_assignment($assn = '')
@@ -324,4 +335,23 @@ function get_stud_name($class_id, $sit_id)
     }
 
     return $data;
+}
+
+
+function get_url_iframe($url ,$asfsn=0 , $assn=0 ){
+    $myts = &MyTextSanitizer::getInstance();
+    if (preg_match('/^https:\/\/scratch.mit.edu\/projects\/(\d+)/',trim($url) ,$matches ) ) {
+        $project_id = $matches[1] ;
+        $d['mode']= 'scratch3';
+        $d['project_id']= $project_id;
+        $d['link'] ="<a href='show_file.php?asfsn=$asfsn' class='assignment_fancy_$assn' rel='group' target='show'>scratch專案 $project_id</a>" ;
+    }elseif (preg_match('/^https:\/\/www.youtube.com\/watch\?v\=(.*)/',trim($url),$matches  ) ) {
+        $project_id = $matches[1] ;
+        $d['mode']= 'youtube';
+        $d['project_id']= $project_id;
+        $d['link'] ="<a href='show_file.php?asfsn=$asfsn' class='assignment_fancy_$assn' rel='group' target='show'>youtube影片 $project_id</a>" ;
+    }else{
+        $d['link']= $show_name = $myts->displayTarea($url);
+    }
+    return $d ;
 }

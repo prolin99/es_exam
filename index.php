@@ -36,10 +36,10 @@ function tad_assignment_file_form($assn = '')
         exit;
     }
     //不可以上傳
-  if ($assignment['upload_mode'] == 0) {
-      redirect_header($_SERVER['PHP_SELF'], 3, '這個作業已關畢了，無法上傳！');
+    if ($assignment['upload_mode'] == 0) {
+      redirect_header($_SERVER['PHP_SELF'], 3, '這個作業不開放上傳！');
       exit;
-  }
+    }
 
     $DBV = get_tad_assignment($assn);
     foreach ($DBV as $k => $v) {
@@ -47,15 +47,15 @@ function tad_assignment_file_form($assn = '')
         $xoopsTpl->assign($k, $v);
     }
 
-  //取得學生資料
-  $stud_data = get_stud_name($class_id, intval($_POST['sit_id']));
+    //取得學生資料
+    $stud_data = get_stud_name($class_id, intval($_POST['sit_id']));
     if (!$stud_data) {
         redirect_header($_SERVER['PHP_SELF']."?assn={$_POST['assn']}", 3, '找不到合適的學生，請重新輸入座號');
         exit;
     }
 
     //取得中文班名
-  $class_list_c = es_class_name_list_c('long');
+    $class_list_c = es_class_name_list_c('long');
 
 
 
@@ -128,6 +128,7 @@ function insert_tad_assignment_file()
   $myts = &MyTextSanitizer::getInstance();
   $desc = $myts->htmlspecialchars($myts->addSlashes($_POST['desc']));
   $author = $myts->htmlspecialchars($myts->addSlashes($_POST['author']));
+  $show_name = $myts->htmlspecialchars($myts->addSlashes($_POST['show_name']));
 
 
   //取得 IP (可能ipv6 或 ipv4)
@@ -146,9 +147,8 @@ function insert_tad_assignment_file()
   //取得最後新增資料的流水編號
   $asfsn = $xoopsDB->getInsertId();
 
-    upload_file($asfsn, $_POST['assn']);
-
-    return $_POST['assn'];
+  upload_file($asfsn, $_POST['assn']);
+  return $_POST['assn'];
 }
 
 //上傳檔案

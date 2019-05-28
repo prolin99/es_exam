@@ -12,6 +12,7 @@ CREATE TABLE `exam` (
   `gview_mode` enum('1','0') NOT NULL DEFAULT '0',
   `create_date` date NOT NULL,
   `no_file` enum('1','0') NOT NULL DEFAULT '0',
+  `upload_url` enum('1','0') NOT NULL DEFAULT '0',
   PRIMARY KEY (`assn`)
 ) ENGINE=MyISAM;
 

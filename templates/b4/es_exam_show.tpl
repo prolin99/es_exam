@@ -37,9 +37,9 @@
   <script type='text/javascript'>
     $(document).ready(function(){
       $(".assignment_fancy_<{$assn}>").fancybox({
-      <{if  ($ifram_show) }>
+
       'type' : 'iframe' ,
-      <{/if}>
+
       fitToView : true,
       width   : '90%',
       height    : '100%',
@@ -63,7 +63,7 @@
       location.href="show.php?op=delete_tad_assignment_file&assn=<{$assn}>&asfsn=" + asfsn   + "&stud_id=" + stud_id  ;
     }
 
- 
+
 
   </script>
 <{if ($assn) }>
@@ -127,24 +127,27 @@
       <td class='col-2' ><{$all.up_time}><br />ip:<{$all.up_ip}></td>
       <td  class='col-2'  style="word-break : break-all; overflow:hidden; " >
       <{if ($open_show)}>
-          <{if  ($ifram_show) }>
-          	<div  >
-          	<a href="show_file.php?assn=<{$all.assn}>&stud_id=<{$all.stud_id}>&asfsn=<{$all.asfsn}>&sub_name=<{$all.sub_name}>&score_bar=<{$all.score_bar}>"  studfile='<{$smarty.const._TAD_ASSIGNMENT_UPLOAD_URL}><{$all.assn}>/<{$all.asfsn}>.<{$all.sub_name}>'  class="assignment_fancy_<{$assn}>" rel="group" title="<{$all.sit_id}>.<{$all.author}> (<{$all.up_time}>) <{$all.file_name}>"  target="show"><{$all.file_name |truncate 20}></a>
-          	</div>
-          	<div ><{  $all.memo}></div>
-         <{else}>
-
-         	 <a href='<{$smarty.const._TAD_ASSIGNMENT_UPLOAD_URL}><{$all.assn}>/<{$all.asfsn}>.<{$all.sub_name}>'  class="assignment_fancy_<{$assn}>" rel="group" title="<{$all.sit_id}>.<{$all.author}> (<{$all.up_time}>) <{$all.file_name}>"><{$all.file_name|truncate 20}></a>
-
-          	<div ><{  $all.memo }></div>
-         <{/if}>  <{*   / $ifram_show *}>
+          <{if ($all.show_name)}>
+              <{$all.show_name}>
+              <div ><{ $all.memo}></div>
+          <{else}>
+              <{if  ($ifram_show) }>
+              	<div  >
+              	<a href="show_file.php?assn=<{$all.assn}>&stud_id=<{$all.stud_id}>&asfsn=<{$all.asfsn}>&sub_name=<{$all.sub_name}>&score_bar=<{$all.score_bar}>"  studfile='<{$smarty.const._TAD_ASSIGNMENT_UPLOAD_URL}><{$all.assn}>/<{$all.asfsn}>.<{$all.sub_name}>'  class="assignment_fancy_<{$assn}>" rel="group" title="<{$all.sit_id}>.<{$all.author}> (<{$all.up_time}>) <{$all.file_name}>"  target="show"><{$all.file_name |truncate 20}></a>
+              	</div>
+              	<div ><{ $all.memo}></div>
+             <{else}>
+             	<a href='<{$smarty.const._TAD_ASSIGNMENT_UPLOAD_URL}><{$all.assn}>/<{$all.asfsn}>.<{$all.sub_name}>'  class="assignment_fancy_<{$assn}>" rel="group" title="<{$all.sit_id}>.<{$all.author}> (<{$all.up_time}>) <{$all.file_name}>"><{$all.file_name|truncate 20}></a>
+                <div ><{ $all.memo}></div>
+             <{/if}>  <{*   / $ifram_show *}>
+         <{/if}>
       <{else}>
       	<span >
- 		    <{$all.file_name|truncate 20}>
- 	      </span>
+            不展示作品
+ 	    </span>
       <{/if}> <{*   / $open_show *}>
       </td>
-      <td   class='col-1'> <{$all.sit_id}></td>
+      <td  class='col-1'> <{$all.sit_id}></td>
       <td  class='col-2' > <{$all.author}></td>
       <td  class='col-2' >
       <{if ($all.score) }>

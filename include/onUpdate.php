@@ -5,11 +5,28 @@ function xoops_module_update_es_exam(&$module, $old_version) {
     if(!chk_add_gview()) go_update_add_gview();
     if(!chk_add_ip()) go_update_add_ip();
     if(!chk_add_onlyTXT()) go_update_add_onlyTXT();
+    if(!chk_add_uploadUrl()) go_update_add_uploadUrl();
 
     return true;
 }
+//加入只上傳網址  ------------------
+function chk_add_uploadUrl(){
+  global $xoopsDB;
+  $sql="select count(`upload_url`)  from ".$xoopsDB->prefix("exam");
+  $result=$xoopsDB->query($sql);
+  if(empty($result)) return false;
+  return true;
+}
 
-//加入不上傳檔案，只撰寫文字
+function go_update_add_uploadUrl(){
+  global $xoopsDB;
+
+  $sql=" ALTER TABLE  " .$xoopsDB->prefix("exam") .  "  ADD `upload_url`   enum('1','0') NOT NULL DEFAULT '0' ;  "   ;
+  $xoopsDB->queryF($sql)  ;
+}
+
+
+//加入不上傳檔案，只撰寫文字  ------------------
 function chk_add_onlyTXT(){
   global $xoopsDB;
   $sql="select count(`no_file`)  from ".$xoopsDB->prefix("exam");

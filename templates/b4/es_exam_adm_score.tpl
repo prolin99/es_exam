@@ -106,11 +106,12 @@
     <div class="col-2 text-right">
       <button class="btn btn-warning" type="button" onClick="window.location.reload()" title='重新載入畫面'>重整</button>
        <{if    ($data.exam.upload_mode )  }>
-      <a href="../index.php?assn=<{$assn}>" class="btn btn-primary"><{$smarty.const._MD_SAVE}></a>
+      <a href="../index.php?assn=<{$assn}>"><button class="btn btn-primary" type="button"><{$smarty.const._MD_UPLOAD}></button></a>
       <{/if}>
     </div>
-    <div class="col-8"><{$data.exam.note}></div>
   </div>
+  <div class="row"><{$data.exam.note}></div>
+
 <div class="table-responsive-xl">
   <table class="table" id="tscore"  >
     <thead>

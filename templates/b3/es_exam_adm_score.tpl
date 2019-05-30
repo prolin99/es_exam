@@ -24,7 +24,7 @@
   <script type='text/javascript'>
     $(document).ready(function(){
       $(".assignment_fancy_<{$assn}>").fancybox({
-      <{if  ($data.ifram_show) }>
+
       openEffect: 'elastic',
       closeEffect: 'elastic',
       autoSize: true,
@@ -34,7 +34,7 @@
       'afterShow': function(){
           $('.fancybox-iframe').contents().find(".score").attr("tabindex",1).focus();
       } ,
-      <{/if}>
+
       fitToView : true,
       width   : '90%',
       height    : '100%',
@@ -71,7 +71,7 @@
 
 
   </script>
-    <{if ($exam_list) }>
+<{if ($exam_list) }>
 
 <div class="container-fluid">
 <h2>主題</h2>
@@ -106,11 +106,11 @@
     <div class="col-md-2 col-xs-2 text-right">
       <button class="btn btn-warning" type="button" onClick="window.location.reload()" title='重新載入畫面'>重整</button>
        <{if    ($data.exam.upload_mode )  }>
-      <a href="../index.php?assn=<{$assn}>" class="btn btn-primary"><{$smarty.const._MD_SAVE}></a>
+      <a href="../index.php?assn=<{$assn}>" ><button class="btn btn-primary" type="button"><{$smarty.const._MD_UPLOAD}></button></a>
       <{/if}>
     </div>
-    <div class="col-md-1 col-xs-20"><{$data.exam.note}></div>
   </div>
+  <div class="row"><{$data.exam.note}></div>
 
   <table class="table" id="tscore"  >
 
@@ -137,16 +137,19 @@
   <{/if}>
       <td  class="col-md-1 col-xs-2"><{$all.up_time}><br/> <span title='<{$all.up_ip}>'>ip:..<{$all.up_ip|substr:-5}></span></td>
       <td class="col-md-2 col-xs-2" style="word-break : break-all; overflow:hidden; ">
+      <{if ($all.show_name)}>
+          <{$all.show_name}>
+      <{else}>
         <!--      bmp gif jpg jpeg png sb sb2 flash          -->
-        <{if  ($data.ifram_show) }>
-
-       <a href="show_file.php?assn=<{$all.assn}>&stud_id=<{$all.stud_id}>&asfsn=<{$all.asfsn}>&sub_name=<{$all.sub_name}>&score_bar=<{$all.score_bar}>&gv=1&old_file=<{$all.old_file}>"  studfile='<{$smarty.const._TAD_ASSIGNMENT_UPLOAD_URL}><{$all.assn}>/<{$all.asfsn}>.<{$all.sub_name}>'  class="assignment_fancy_<{$assn}>" rel="group" title="<{$all.sit_id}>.<{$all.author}> (<{$all.up_time}>) <{$all.file_name}>"  target="show"><{$all.file_name}></a>
-       <{else}>
-       <a href="<{$smarty.const._TAD_ASSIGNMENT_UPLOAD_URL}><{$all.assn}>/<{$all.asfsn}>.<{$all.sub_name}>"  studfile='<{$smarty.const._TAD_ASSIGNMENT_UPLOAD_URL}><{$all.assn}>/<{$all.asfsn}>.<{$all.sub_name}>'  class="assignment_fancy_<{$assn}>" rel="group" title="<{$all.sit_id}>.<{$all.author}> (<{$all.up_time}>) <{$all.file_name}>"  target="show"><{$all.file_name}></a>
+           <{if  ($data.ifram_show) }>
+               <a href="show_file.php?assn=<{$all.assn}>&stud_id=<{$all.stud_id}>&asfsn=<{$all.asfsn}>&sub_name=<{$all.sub_name}>&score_bar=<{$all.score_bar}>&gv=1&old_file=<{$all.old_file}>"  studfile='<{$smarty.const._TAD_ASSIGNMENT_UPLOAD_URL}><{$all.assn}>/<{$all.asfsn}>.<{$all.sub_name}>'  class="assignment_fancy_<{$assn}>" rel="group" title="<{$all.sit_id}>.<{$all.author}> (<{$all.up_time}>) <{$all.file_name}>"  target="show"><{$all.file_name}></a>
+           <{else}>
+               <a href="<{$smarty.const._TAD_ASSIGNMENT_UPLOAD_URL}><{$all.assn}>/<{$all.asfsn}>.<{$all.sub_name}>"  studfile='<{$smarty.const._TAD_ASSIGNMENT_UPLOAD_URL}><{$all.assn}>/<{$all.asfsn}>.<{$all.sub_name}>'  class="assignment_fancy_<{$assn}>" rel="group" title="<{$all.sit_id}>.<{$all.author}> (<{$all.up_time}>) <{$all.file_name}>"  target="show"><{$all.file_name}></a>
+           <{/if}>
        <{/if}>
        	<div id="memo_<{$all.asfsn}>" >
           <{if   ($all.memo) }>
-          <span class="glyphicon glyphicon-volume-off clean_memo" title="清除說明文字" alt="清除說明文字"  data_ref="<{$all.asfsn}>"></span>  <{$all.memo}>
+          <i class="fa fa-window-close clean_memo" title="清除說明文字" alt="清除說明文字" data_ref="<{$all.asfsn}>" aria-hidden="true"></i>  <{$all.memo}>
           <{/if}>
         </div>
 

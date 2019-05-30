@@ -71,7 +71,7 @@
     <div class="col-8"><h2><{$class_id}>班   <{$title}></h2></div>
     <div class="col-4 text-right">
        <button class="btn btn-warning" type="button" onClick="window.location.reload()" title='重新載入畫面'>重整</button>
-    	<a href="index.php?assn=<{$assn}>" class="btn btn-primary"><{$smarty.const._MD_UPLOAD}></a>
+    	<a href="index.php?assn=<{$assn}>" ><button class="btn btn-primary" type="button"><{$smarty.const._MD_UPLOAD}></button></a>
     	<{if $isAdmin}><a href="admin/score.php?assn=<{$assn}>" class="btn btn-success">評分</a><{/if}>
 
     </div>

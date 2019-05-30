@@ -37,9 +37,9 @@
   <script type='text/javascript'>
     $(document).ready(function(){
       $(".assignment_fancy_<{$assn}>").fancybox({
-      <{if  ($ifram_show) }>
+
       'type' : 'iframe' ,
-      <{/if}>
+
       fitToView : true,
       width   : '90%',
       height    : '100%',
@@ -72,7 +72,7 @@
     <div class="col-xs-8"><h2><{$class_id}>班   <{$title}></h2></div>
     <div class="col-xs-4 text-right">
        <button class="btn btn-warning" type="button" onClick="window.location.reload()" title='重新載入畫面'>重整</button>
-    	<a href="index.php?assn=<{$assn}>" class="btn btn-primary"><{$smarty.const._MD_SAVE}></a>
+    	<a href="index.php?assn=<{$assn}>" ><button class="btn btn-primary" type="button"><{$smarty.const._MD_UPLOAD}></button></a>
     	<{if $isAdmin}><a href="admin/score.php?assn=<{$assn}>" class="btn btn-success">評分</a><{/if}>
 
     </div>
@@ -117,20 +117,23 @@
       <td  class='col-xs-2'><{$all.up_time}><br />ip:<{$all.up_ip}></td>
       <td  class='col-xs-2' style="word-break : break-all; overflow:hidden; " >
       <{if ($open_show)}>
+        <{if ($all.show_name)}>
+          <{$all.show_name}>
+          <div ><{ $all.memo}></div>
+        <{else}>
           <{if  ($ifram_show) }>
           	<div  >
           	<a href="show_file.php?assn=<{$all.assn}>&stud_id=<{$all.stud_id}>&asfsn=<{$all.asfsn}>&sub_name=<{$all.sub_name}>&score_bar=<{$all.score_bar}>"  studfile='<{$smarty.const._TAD_ASSIGNMENT_UPLOAD_URL}><{$all.assn}>/<{$all.asfsn}>.<{$all.sub_name}>'  class="assignment_fancy_<{$assn}>" rel="group" title="<{$all.sit_id}>.<{$all.author}> (<{$all.up_time}>) <{$all.file_name}>"  target="show"><{$all.file_name |truncate 20}></a>
           	</div>
           	<div ><{  $all.memo}></div>
          <{else}>
-
          	 <a href='<{$smarty.const._TAD_ASSIGNMENT_UPLOAD_URL}><{$all.assn}>/<{$all.asfsn}>.<{$all.sub_name}>'  class="assignment_fancy_<{$assn}>" rel="group" title="<{$all.sit_id}>.<{$all.author}> (<{$all.up_time}>) <{$all.file_name}>"><{$all.file_name|truncate 20}></a>
-
-          	<div ><{  $all.memo }></div>
+      	     <div ><{  $all.memo }></div>
          <{/if}>  <{*   / $ifram_show *}>
+        <{/if}>
       <{else}>
       	<span >
- 		    <{$all.file_name|truncate 20}>
+ 		    不展示作品
  	      </span>
       <{/if}> <{*   / $open_show *}>
       </td>

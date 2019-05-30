@@ -8,40 +8,37 @@
 <{if (!$assn)}>
   <div class="row">
     <div class="col-md-2 ">選擇班級(可多選)</div>
-    <div class="col-md-8  "><{html_options  multiple="multiple"   class="form-control" size="8" name="class_id[]" options=$class_list_c  class="form-control"   }></div>
+    <div class="col-md-8  "><{html_options  multiple="multiple"   class="form-control" size="8"  name="class_id[]" options=$class_list_c      }></div>
   </div>
 <{else}>
   <div class="row">
     <div class="col-md-2  ">班級</div>
     <div class="col-md-8  "><{$class_id}></div>
-
   </div>
 <{/if}>
 
   <div class="row">
     <div class="col-md-2  "><{$smarty.const._MA_TADASSIGN_TITLE}></div>
-    <div class="col-md-8  "><input type="text" name="title" value="<{$title}>" class="form-control"  placeholder="<{$smarty.const._MA_TADASSIGN_TITLE}>"></div>
+    <div class="col-md-8  "><input type="text" name="title" value="<{$title}>" class="form-control"  placeholder="<{$smarty.const._MA_TADASSIGN_TITLE}>" ></div>
 
   </div>
 
   <div class="row">
     <div class="col-md-2  "><{$smarty.const._MA_TADASSIGN_PASSWD}></div>
-    <div class="col-md-3 "><input type="text" name="passwd" class="form-control" value="<{$passwd}>" placeholder="<{$smarty.const._MA_TADASSIGN_PASSWD}>"></div>
+    <div class="col-md-3"><input type="text" name="passwd" class="form-control" value="<{$passwd}>" placeholder="<{$smarty.const._MA_TADASSIGN_PASSWD}>"></div>
     <div class="col-md-5 "><{$smarty.const._MA_TADASSIGN_PASSWD_DESC}></div>
-
   </div>
 
   <div class="row">
     <div class="col-md-2  ">限制上傳的副檔名</div>
     <div class="col-md-3 "><input type="text" name="ext_file" class="form-control" value="<{$ext_file}>" placeholder="例： jpg,jpeg,png "></div>
     <div class="col-md-5 ">(逗號分隔多種副檔名，依此類別做線上展示（PDF,scratch...)，空白表示不限制。)</div>
-
   </div>
 
 
   <div class="row">
     <div class="col-md-2 "><{$smarty.const._MA_TADASSIGN_NOTE}></div>
-    <div class="col-md-8 "><textarea name="note"  class="form-control" rows=4 placeholder="<{$smarty.const._MA_TADASSIGN_NOTE}>"><{$note}></textarea></div>
+    <div class="col-md-8 "><textarea name="note"  class="form-control" rows=4 cols=60 placeholder="<{$smarty.const._MA_TADASSIGN_NOTE}>"><{$note}></textarea></div>
   </div>
 
   <div class="row">
@@ -55,11 +52,13 @@
   </div>
 
   <div class="row">
-    <div class="col-2">只傳網址</div>
-    <div class="col-2">
+    <div class="col-md-2">只傳網址</div>
+    <div class="col-md-8 ">
+    <div class="col-md-2">
         <input type="checkbox" class="form-control" name="upload_url"  class="upload" value=1  <{if $upload_url=='1'}>checked<{/if}>  id="upload_url">
     </div>
-    <div class="col-6">(不上傳檔案，只貼上網址，可用於 scratch.mit.edu 作品呈現)</div>
+    <div class="col-md-6">(不上傳檔案，只貼上網址，可用於 scratch.mit.edu 作品呈現)</div>
+    </div>
   </div>
 
   <div class="row">

@@ -69,8 +69,9 @@ function list_tad_assignment_file($assn = '', $order='')
 
         //上傳網址放在 show_name ， 檢查是否可做 iframe
         if ($show_name){
-            $d = get_url_iframe($show_name, $data[$i]['asfsn'] , $data[$i]['assn'] ) ;
+            $d = get_url_iframe($show_name, $data[$i]['asfsn'] , $data[$i]['assn']  ,$data[$i]['sit_id'] . '.' . $data[$i]['author']  . $data[$i]['up_time']  ) ;
             $show_name= $d['link'] ;
+            //echo $show_name ;
         }
 
         $filepart = explode('.', $file_name);

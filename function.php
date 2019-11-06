@@ -135,10 +135,11 @@ function list_exam_file($assn = '', $my_order = ' `up_time` DESC , sit_id ASC ')
         $myts = &MyTextSanitizer::getInstance();
         $data[$i]['memo'] = $myts->displayTarea($data[$i]['memo']);
 
-        //上傳網址放在 show_name ， 檢查是否可做 iframe
+        //上傳網址放在 show_name ， 檢查是否可做 iframe     iframe title:  $assn , $sit_id .'.' . $author  . $up_time
         if ($show_name){
-            $d = get_url_iframe($show_name, $asfsn , $assn ) ;
+            $d = get_url_iframe($show_name, $asfsn , $assn , $sit_id .'.' . $author  . $up_time) ;
             $show_name= $d['link'] ;
+
         }
 
         $filepart = explode('.', $file_name);
@@ -338,18 +339,20 @@ function get_stud_name($class_id, $sit_id)
 }
 
 
-function get_url_iframe($url ,$asfsn=0 , $assn=0 ){
+function get_url_iframe($url ,$asfsn=0 , $assn=0 ,$author_title='' ){
+
     $myts = &MyTextSanitizer::getInstance();
     if (preg_match('/^https:\/\/scratch.mit.edu\/projects\/(\d+)/',trim($url) ,$matches ) ) {
         $project_id = $matches[1] ;
         $d['mode']= 'scratch3';
         $d['project_id']= $project_id;
-        $d['link'] ="<a href='show_file.php?asfsn=$asfsn' class='assignment_fancy_$assn' rel='group' target='show'>scratch專案 $project_id</a>" ;
+        $d['link'] ="<a href='show_file.php?asfsn=$asfsn' class='assignment_fancy_$assn' rel='group' target='show' title='$author_title' >scratch專案 $project_id</a>" ;
+        //echo $d['link'] ;
     }elseif (preg_match('/^https:\/\/www.youtube.com\/watch\?v\=(.*)/',trim($url),$matches  ) ) {
         $project_id = $matches[1] ;
         $d['mode']= 'youtube';
         $d['project_id']= $project_id;
-        $d['link'] ="<a href='show_file.php?asfsn=$asfsn' class='assignment_fancy_$assn' rel='group' target='show'>youtube影片 $project_id</a>" ;
+        $d['link'] ="<a href='show_file.php?asfsn=$asfsn' class='assignment_fancy_$assn' rel='group' target='show' title='$author_title' >youtube影片 $project_id</a>" ;
     }else{
         $d['link']= $show_name = $myts->displayTarea($url);
     }

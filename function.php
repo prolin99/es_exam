@@ -19,13 +19,15 @@ function get_stud_old_exam($assn, $class_id, $sit_id)
 {
     global $xoopsDB;
     $sql = 'SELECT * FROM '.$xoopsDB->prefix('exam_files')." WHERE `assn` ='$assn' and  class_id='$class_id' and sit_id= '$sit_id'  ";
-
+ 
     $result = $xoopsDB->query($sql) ;
     while ($row = $xoopsDB->fetchArray($result)) {
         $data['old_asfsn'] = $row['asfsn'];
         $data['stud_id'] = $row['stud_id'];
         $data['memo'] = $row['memo'];
+        $data['show_name'] = $row['show_name'];
     }
+
 
     return $data;
 }

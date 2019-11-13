@@ -85,7 +85,7 @@
       <tr>
           <{if ($upload_url==1)}>
               <th>貼上網址</th>
-              <td><input  id="show_name"  class="form-control" name="show_name"    placeholder="貼上完整網路位置" ></td>
+              <td><input  id="show_name"  class="form-control" name="show_name"   value="<{$show_name}>"     placeholder="貼上完整網路位置" ></td>
           <{else}>
             <th><{$smarty.const._MD_TADASSIGN_FILE}> </th>
             <td><input  id="file" name="file"    type="file" size=40  <{$accept_filestr}>  ><p>上傳的副檔名限制：<{$ext_file}></p></td>

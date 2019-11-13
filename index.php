@@ -74,6 +74,7 @@ function tad_assignment_file_form($assn = '')
     $xoopsTpl->assign('sit_id', intval($_POST['sit_id'])  );
     $xoopsTpl->assign('stud_data', $stud_data);
     $xoopsTpl->assign('desc', $old_file['memo']);
+    $xoopsTpl->assign('show_name', $old_file['show_name']);     //網址
     $xoopsTpl->assign('j_ext_file', $j_ext_file);
     $xoopsTpl->assign('accept_filestr', $accept_filestr);
 

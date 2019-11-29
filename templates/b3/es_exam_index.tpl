@@ -119,6 +119,13 @@
   </form>
 	<script>
 	function check_2() {
+     <{if ($upload_url==1)}>
+         if (  $("#show_name").val()=="" ) {
+             alert ('你還沒有填寫上傳網址！')　;
+             return false ;
+         }
+    <{/if}>
+
 		var fn = ($("#file").val() ) ;
 
 		if (  $("#file").val()=="" ) {
@@ -138,6 +145,7 @@
 			 	return false ;
 			}
 		<{/if}>
+
 　
 	}
 

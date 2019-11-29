@@ -28,8 +28,8 @@ if (preg_match('/(jpg|jpeg|bmp|png|gif|svg)/i', $ext_file)) {
     $file_mode = 'picture';
 }
 
-if (preg_match('/(sb|sb2)/i', $ext_file)) {
-    $file_mode = 'scratch';
+if (preg_match('/(sb|sb2|sb3)/i', $ext_file)) {
+    $file_mode = 'scratch3';
 }
 
 if (preg_match('/(swf)/i', $ext_file)) {
@@ -57,7 +57,7 @@ if (preg_match('/^https:\/\/www.youtube.com\/watch\?v\=(.*)/',trim($data['show_n
 $d = get_url_iframe(trim($data['show_name']) )  ;
 if ($d['mode'] ) {
     $file_mode = $d['mode'];
-    $data['project_id']=$d['project_id'] ;    
+    $data['project_id']=$d['project_id'] ;
 }
 
 

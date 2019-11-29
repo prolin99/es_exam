@@ -5,21 +5,12 @@
 <link href="<{$xoops_url}>/modules/tadtools/smartmenus/addons/bootstrap-4/jquery.smartmenus.bootstrap-4.css" media="all" rel="stylesheet">
 <!-- font-awesome -->
 <link href="<{$xoops_url}>/modules/tadtools/css/font-awesome/css/font-awesome.css" rel="stylesheet" media="all">
-<{if $file_mode=='scratch'}>
-<{if $sb2js_mode }>
-<{*  scratch *}>
-<script type="text/javascript" src='js/script/ZipFile.complete.js'></script>
 
-<script type="text/javascript" src="http://canvg.googlecode.com/svn/trunk/rgbcolor.js"></script>
-<script type="text/javascript" src="http://canvg.googlecode.com/svn/trunk/canvg.js"></script>
 
-<script type="text/javascript" src="js/script/sb2.js"></script>
-<script>
-	basedir="images/"
-	autoLoad = "<{$file}>";
-</script>
-<{/if}>
-<{/if}>
+
+
+
+
 <div class='row'>
 
 
@@ -40,17 +31,35 @@
 
 	<{if $file_mode=='scratch3'}>
 	<{*  scrtach3  *}>
-	<div class='col-12 text-center'>
-		Scratch 一套使用拖拉拼湊就可以寫程式的工具，很好玩的程式軟體。<a href='https://scratch.mit.edu/' target='_blank'>官方網站</a><br /><br />
-		<br />
-		<iframe allowfullscreen="" allowtransparency="false" bgcolor="#220000" height="536" scrolling="no"
-		src="https://scratch.mit.edu/projects/<{$all.project_id}>/embed/"
-		 width="658">
-	     </iframe>
-		 <p> <a href='https://scratch.mit.edu/projects/<{$all.project_id}>/' target='_blank'>原站展示</a></p>
-		 <{$all.memo}>
+	<div id="w">
+	<canvas id="s"></canvas>
+	<div id="m"></div>
+	<div id="b">
+	<label id="q" for="a">Question</label>
+	<input type="text" id="a">
 	</div>
-	<{/if}>
+	</div>
+
+
+
+
+
+
+
+	<span id="l">...</span>
+
+
+	<button id="f"></button>
+
+	<script src="./js/vm.min.js"></script>
+	<script src="./js/sb3.js"></script>
+	<script type="text/javascript" id="j">
+
+	var
+	DESIRED_USERNAME = "griffpatch",COMPAT = true, TURBO = false;
+	</script>
+	<script src="./js/play_scratch.js"></script>
+ 	<{/if}>
 
 
 	<{if $file_mode=='scratch'}>

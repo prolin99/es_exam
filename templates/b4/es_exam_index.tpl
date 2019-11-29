@@ -119,6 +119,13 @@
   </form>
 	<script>
 	function check_2() {
+        <{if ($upload_url==1)}>
+            if (  $("#show_name").val()=="" ) {
+                alert ('你還沒有填寫上傳網址！')　;
+                return false ;
+            }
+       <{/if}>
+
 		var fn = ($("#file").val() ) ;
 
 		if (  $("#file").val()=="" ) {
@@ -126,7 +133,7 @@
 			return false ;
 		}　
 
-    if (getFileExtension(fn)=="") {
+        if (getFileExtension(fn)=="") {
 			alert ('要上傳的檔案沒有副檔名，請先另存檔名後再重新上傳！')　;
 			return false ;
 		}
@@ -138,7 +145,7 @@
 			 	return false ;
 			}
 		<{/if}>
-　
+ 
 	}
 
   //取得副檔名

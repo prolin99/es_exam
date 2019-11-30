@@ -82,8 +82,9 @@ function list_tad_assignment_file($assn = '', $order='')
           $sub_name='txt' ;
 
         //檔案可以 iframe
-        if (preg_match('/(sb|sb2|swf|pdf)/i', $sub_name)) {
-          $show_name ="<a href='show_file.php?asfsn={$data[$i]['asfsn']}&sub_name=$sub_name' class='assignment_fancy_{$data[$i]['assn']}' rel='group' target='show'>$file_name</a>" ;
+        if (preg_match('/(sb|sb2|sb3|swf|pdf)/i', $sub_name)) {
+          //$show_name ="<a href='show_file.php?asfsn={$data[$i]['asfsn']}&sub_name=$sub_name' class='assignment_fancy_{$data[$i]['assn']}' rel='group' target='show' >$file_name</a>" ;
+          $ifram_show=1 ;
         }
 
 

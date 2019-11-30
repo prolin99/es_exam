@@ -19,7 +19,7 @@ function get_stud_old_exam($assn, $class_id, $sit_id)
 {
     global $xoopsDB;
     $sql = 'SELECT * FROM '.$xoopsDB->prefix('exam_files')." WHERE `assn` ='$assn' and  class_id='$class_id' and sit_id= '$sit_id'  ";
- 
+
     $result = $xoopsDB->query($sql) ;
     while ($row = $xoopsDB->fetchArray($result)) {
         $data['old_asfsn'] = $row['asfsn'];
@@ -153,8 +153,8 @@ function list_exam_file($assn = '', $my_order = ' `up_time` DESC , sit_id ASC ')
           $sub_name='txt' ;
 
         //檔案可以 iframe
-        if (preg_match('/(jpg|jpeg|swf|bmp|png|gif|sb|sb2|svg|pdf)/i', $sub_name)) {
-            $show_name ="<a href='show_file.php?asfsn=$asfsn&sub_name=$sub_name' class='assignment_fancy_$assn' rel='group' target='show'>$file_name</a>" ;
+        if (preg_match('/(jpg|jpeg|swf|bmp|png|gif|sb|sb2|sb3|svg|pdf)/i', $sub_name)) {
+            $show_name ="<a href='show_file.php?asfsn=$asfsn&sub_name=$sub_name' class='assignment_fancy_$assn' rel='group' target='show' title= '$sit_id  $author $up_time'>$file_name</a>" ;
         }
 
         $data[$i]['sub_name'] = $sub_name;
@@ -346,7 +346,7 @@ function get_url_iframe($url ,$asfsn=0 , $assn=0 ,$author_title='' ){
     $myts = &MyTextSanitizer::getInstance();
     if (preg_match('/^https:\/\/scratch.mit.edu\/projects\/(\d+)/',trim($url) ,$matches ) ) {
         $project_id = $matches[1] ;
-        $d['mode']= 'scratch3';
+        $d['mode']= 'scratchWeb';
         $d['project_id']= $project_id;
         $d['link'] ="<a href='show_file.php?asfsn=$asfsn' class='assignment_fancy_$assn' rel='group' target='show' title='$author_title' >scratch專案 $project_id</a>" ;
         //echo $d['link'] ;

@@ -30,6 +30,7 @@ if (preg_match('/(jpg|jpeg|bmp|png|gif|svg)/i', $ext_file)) {
 
 if (preg_match('/(sb|sb2|sb3)/i', $ext_file)) {
     $file_mode = 'scratch3';
+    $sb3_base64 =base64_encode( file_get_contents($file) );
 }
 
 if (preg_match('/(swf)/i', $ext_file)) {
@@ -44,7 +45,7 @@ if (preg_match('/(pdf)/i', $ext_file)) {
 //如果是scratch 3 網站
 if (preg_match('/^https:\/\/scratch.mit.edu\/projects\/(\d+)/',trim($data['show_name']) ,$matches ) ) {
     $project_id = $matches[1] ;
-    $file_mode = 'scratch3';
+    $file_mode = 'scratchWeb';
     $data['project_id']=$project_id ;
 }
 
@@ -71,7 +72,9 @@ $xoopsTpl = new \XoopsTpl();
   //$xoopsTpl->assign('bar_max', $bar_max);
   //$xoopsTpl->assign('score_lost', $score_lost);
 $xoopsTpl->assign('all', $data);
-$xoopsTpl->assign('sb2js_mode', $sb2js);
+ 
+
+$xoopsTpl->assign('sb3_base64', $sb3_base64);
 
 $xoopsTpl->assign('file', $file);
 $xoopsTpl->assign('file_mode', $file_mode);

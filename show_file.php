@@ -11,7 +11,7 @@ $myts = &MyTextSanitizer::getInstance();
 
 $ext_file = $myts->addSlashes($_GET['sub_name']);
 
-$asfsn = intval($_GET['asfsn']);
+
 $asfsn = intval($_GET['asfsn']);
 //$score_bar = intval($_GET['score_bar']);
 
@@ -72,8 +72,8 @@ $xoopsTpl = new \XoopsTpl();
   //$xoopsTpl->assign('bar_max', $bar_max);
   //$xoopsTpl->assign('score_lost', $score_lost);
 $xoopsTpl->assign('all', $data);
- 
 
+$xoopsTpl->assign('asfsn', $asfsn);
 $xoopsTpl->assign('sb3_base64', $sb3_base64);
 
 $xoopsTpl->assign('file', $file);

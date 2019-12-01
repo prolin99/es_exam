@@ -32,32 +32,15 @@
 	<{if $file_mode=='scratch3'}>
 	<{*  scrtach3  *}>
 
-	<div style="position:absolute;   top:20px;    left:20px ;z-index:100;">
-	使用說明：<br />
-	<{$all.memo}>
-	</div>
-
-	<div  id ="w">
-	<canvas id="s"></canvas>
-	<div id="m"></div>
-	<div id="b">
-	<label id="q" for="a">Question</label>
-	<input type="text" id="a">
+    <div class='row' >
+	<div class='col-12 text-center'>
+		<iframe allowfullscreen="" allowtransparency="false" bgcolor="#220000" height="536" scrolling="no"
+		src="./play_scratch.php?asfsn=<{$asfsn}>"	 width="725">
+	     </iframe>
+		 <p> <a href='<{$file}>' target='_blank'>下載</a></p>
+		 <{$all.memo}>
 	</div>
 	</div>
-
-	<span id="l">...</span>
-	<button id="f"></button>
-
-	<script src="./js/vm.min.js"></script>
-	<script type="text/javascript" id="j">
-			//var sb3_base64  =  readSb3File('<{$file}>');
-			var SRC = "file", FILE = "data:application/octet-stream;base64,<{$sb3_base64}>"   ;
-			var
-			DESIRED_USERNAME = "griffpatch",COMPAT = true, TURBO = false;
-	</script>
-
-	<script src="./js/play_scratch.js"></script>
  	<{/if}>
 
 

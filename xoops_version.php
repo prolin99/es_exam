@@ -91,7 +91,10 @@ $modversion['templates'][$i]['description'] = 'es_exam_empt.html';
 $modversion['templates'][$i]['file'] = 'es_exam_adm_showfile.tpl';
 $modversion['templates'][$i]['description'] = 'es_exam_adm_showfile.tpl';
 
-
+++$i;
+$modversion['templates'][$i]['file'] = 'es_exam_scratch.tpl';
+$modversion['templates'][$i]['description'] = 'es_exam_scratch.tpl';
+ 
 
 /*
 //---區塊設定---//

@@ -25,12 +25,11 @@
 【更新記錄】
  =================================================
  2.10版
-    加入可以線上執行 scratch 3 (.sb .sb2 .sb3 )檔案。
-    移除使用 Flash 播放 sb2 的檔案。
-    目前問題：由於 Scratch 全畫面展示，文字、評分無法放在同畫面中。無開始、結束功能。
+    加入網頁展示 scratch 3 作品檔案(也支援 .sb .sb2 .sb3 )，但無開始、結束功能。
+    移除先前使用 Flash 展示 scratch 功能的作法。
 
-    scratch 3 網頁播放功能擷取自 ：https://sheeptester.github.io/words-go-here/htmlifier/
-    再切分成 play_scratch.js ，及 vm.min.js （放了所有的音效、翻譯等，所以檔案很大）。
+    scratch 3 網頁展示功能擷取自 ：https://sheeptester.github.io/words-go-here/htmlifier/
+    再切分成 play_scratch.js ，及 vm.min.js （放了所有的音效、翻譯等，所以檔案較大）。
 
  2.02版
     重新上傳時，網址資料會保存，方便做更新。

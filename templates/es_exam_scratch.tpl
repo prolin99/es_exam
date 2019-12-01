@@ -55,6 +55,43 @@
     font-size: 16px;
   }
 
+  #green {
+    -webkit-appearance: none;
+    border: none;
+    background: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 24px;
+
+    background-image: url('./js/greenFlag.svg');
+    background-color: rgba(0, 0, 0, 0.5);
+    border-bottom-left-radius: 10px;
+  }
+
+  #stop {
+  -webkit-appearance: none;
+  border: none;
+  background: none;
+  position: fixed;
+  top: 0;
+  left: 32px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 24px;
+
+  background-image: url('./js/stop.svg');
+  background-color: rgba(0, 0, 0, 0.5);
+  border-bottom-left-radius: 10px;
+}
 
   #f {
     -webkit-appearance: none;
@@ -202,6 +239,8 @@
 </div>
 
 <span id="l">...</span>
+<button id="green"></button>
+<button id="stop"></button>
 <button id="f"></button>
 
 <script src="./js/vm.min.js"></script>

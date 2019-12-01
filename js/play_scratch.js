@@ -295,7 +295,8 @@ const runBenchmark = function () {
 
     vm.setCompatibilityMode(COMPAT);
     vm.setTurboMode(TURBO);
-    vm.greenFlag();
+    //不自動播放
+    //vm.greenFlag();
 
     document.body.removeChild(document.getElementById('j'));
   });
@@ -604,3 +605,16 @@ document.addEventListener('fullscreenchange', onFullscreenChange);
 document.addEventListener('mozfullscreenchange', onFullscreenChange);
 document.addEventListener('webkitfullscreenchange', onFullscreenChange);
 document.addEventListener('msfullscreenchange', onFullscreenChange);
+
+//green Flag 執行
+const greenBtn = document.getElementById('green');
+greenBtn.addEventListener('click', e => {
+    greenBtn.blur();
+    Scratch.vm.greenFlag();
+});
+
+const stopBtn = document.getElementById('stop');
+stopBtn.addEventListener('click', e => {
+    stopBtn.blur();
+    Scratch.vm.stopAll();
+});

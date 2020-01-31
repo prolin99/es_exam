@@ -4,7 +4,7 @@ $modversion = array();
 
 //---模組基本資訊---//
 $modversion['name'] = _MI_ESEXAM_NAME;
-$modversion['version'] = 2.1 ;
+$modversion['version'] = 2.2 ;
 $modversion['description'] = _MI_ESEXAM_DESC;
 $modversion['author'] = _MI_ESEXAM_AUTHOR;
 $modversion['credits'] = _MI_ESEXAM_CREDITS;
@@ -94,7 +94,7 @@ $modversion['templates'][$i]['description'] = 'es_exam_adm_showfile.tpl';
 ++$i;
 $modversion['templates'][$i]['file'] = 'es_exam_scratch.tpl';
 $modversion['templates'][$i]['description'] = 'es_exam_scratch.tpl';
- 
+
 
 /*
 //---區塊設定---//

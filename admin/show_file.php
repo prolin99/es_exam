@@ -40,6 +40,7 @@ if ($d['mode'] ) {
 
 //$file = _TAD_ASSIGNMENT_UPLOAD_URL.$data['assn'].'/'.$data['asfsn'].'.'.$_GET['sub_name'];
 $file = "../../../uploads/es_exam/".$data['assn'].'/'.$data['asfsn'].'.'.$_GET['sub_name'];
+$file_url= XOOPS_URL . "/uploads/es_exam/".$data['assn'].'/'.$data['asfsn'].'.'.$_GET['sub_name'];
 $ext_file =$_GET['sub_name'] ;
 
 if (preg_match('/(jpg|jpeg|bmp|png|gif|svg)/i', $ext_file)) {
@@ -49,7 +50,7 @@ if (preg_match('/(jpg|jpeg|bmp|png|gif|svg)/i', $ext_file)) {
 if (preg_match('/(sb|sb2|sb3)/i', $ext_file)) {
     $file_mode = 'scratch3';
     $sb3_base64 =base64_encode( file_get_contents($file) );
- 
+
 }
 
 if (preg_match('/(swf)/i', $ext_file)) {
@@ -78,6 +79,7 @@ $xoopsTpl->assign('all', $data);
 $xoopsTpl->assign('old_file', $old_file);
 
 $xoopsTpl->assign('file', $file);
+$xoopsTpl->assign('file_url', $file_url);
 $xoopsTpl->assign('file_mode', $file_mode);
 //內包樣版
 $xoopsTpl->assign('module_dir', $xoopsModule->dirname());

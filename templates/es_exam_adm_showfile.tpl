@@ -48,7 +48,7 @@
 	<{if ($file_mode=='google')}>
 	<{*  pdf (google doc view ) *}>
 	<div class='col-xs-12 text-center' >
-		<iframe src="http://docs.google.com/gview?url=<{$file}>&embedded=true" style="width:600px; height:500px;" frameborder="0"></iframe>
+		<iframe src="https://docs.google.com/gview?url=<{$file_url}>&embedded=true" style="width:600px; height:500px;" frameborder="0"></iframe>
 		<br />
 		<a href='<{$file}>' target='_blank'>如果無法查看，原始檔位置</a>
 	</div><div class='col-xs-12 text-center'><{  $all.memo}></div>

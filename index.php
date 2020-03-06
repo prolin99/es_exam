@@ -159,9 +159,7 @@ function upload_file($asfsn = '', $assn = '')
     include_once XOOPS_ROOT_PATH.'/modules/tadtools/upload/class.upload.php';
     set_time_limit(0);
     ini_set('memory_limit', '150M');
-    $flv_handle = new upload($_FILES['file'], 'zh_TW');
-
-
+    $flv_handle = new \Verot\upload\upload($_FILES['file'], 'zh_TW');
 
 
 

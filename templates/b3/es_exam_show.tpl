@@ -37,14 +37,16 @@
   <script type='text/javascript'>
     $(document).ready(function(){
       $(".assignment_fancy_<{$assn}>").fancybox({
-
+      <{if  ($ifram_show) }>
       'type' : 'iframe' ,
+      <{/if}>
 
-      fitToView : true,
-      width   : '90%',
-      height    : '100%',
-       autoSize  : true,
-      closeClick  : false
+
+      'fitToView' : true,
+      'width'   : '80%',
+      'height'    : '90%',
+      'autoSize'  : true,
+      'closeClick'  : false
       });
 
 

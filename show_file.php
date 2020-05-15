@@ -21,8 +21,8 @@ $data = list_one_exam($asfsn);
 //作品說明做處理
 $data['memo'] = $myts->displayTarea($data['memo']);
 
-//$file = _TAD_ASSIGNMENT_UPLOAD_URL.$data['assn'].'/'.$data['asfsn'].'.'.$_GET['sub_name'];
-$file = "../../uploads/es_exam/".$data['assn'].'/'.$data['asfsn'].'.'.$_GET['sub_name'];
+$file = _TAD_ASSIGNMENT_UPLOAD_URL.$data['assn'].'/'.$data['asfsn'].'.'.$_GET['sub_name'];
+//$file = "../../uploads/es_exam/".$data['assn'].'/'.$data['asfsn'].'.'.$_GET['sub_name'];
 
 if (preg_match('/(jpg|jpeg|bmp|png|gif|svg)/i', $ext_file)) {
     $file_mode = 'picture';

@@ -38,8 +38,8 @@ if ($d['mode'] ) {
     $data['project_id']=$d['project_id'] ;
 }
 
-//$file = _TAD_ASSIGNMENT_UPLOAD_URL.$data['assn'].'/'.$data['asfsn'].'.'.$_GET['sub_name'];
-$file = "../../../uploads/es_exam/".$data['assn'].'/'.$data['asfsn'].'.'.$_GET['sub_name'];
+$file = _TAD_ASSIGNMENT_UPLOAD_URL.$data['assn'].'/'.$data['asfsn'].'.'.$_GET['sub_name'];
+//$file = "../../../uploads/es_exam/".$data['assn'].'/'.$data['asfsn'].'.'.$_GET['sub_name'];
 $file_url= XOOPS_URL . "/uploads/es_exam/".$data['assn'].'/'.$data['asfsn'].'.'.$_GET['sub_name'];
 $ext_file =$_GET['sub_name'] ;
 

@@ -75,10 +75,15 @@ function tad_assignment_file_form($assn = '')
     $xoopsTpl->assign('stud_data', $stud_data);
     $xoopsTpl->assign('desc', $old_file['memo']);
     $xoopsTpl->assign('show_name', $old_file['show_name']);     //網址
+
+    $xoopsTpl->assign('team_sitid_list', $old_file['team_sitid_list']);     //組員座號
+
     $xoopsTpl->assign('j_ext_file', $j_ext_file);
     $xoopsTpl->assign('accept_filestr', $accept_filestr);
 
     $xoopsTpl->assign('now_op', 'tad_assignment_file_form');
+
+
 }
 
 //上傳動作，新增資料到tad_assignment_file中-----------------------------------------------------------------------------------
@@ -130,7 +135,7 @@ function insert_tad_assignment_file()
   $desc = $myts->htmlspecialchars($myts->addSlashes($_POST['desc']));
   $author = $myts->htmlspecialchars($myts->addSlashes($_POST['author']));
   $show_name = $myts->htmlspecialchars($myts->addSlashes($_POST['show_name']));
-
+  $team_sitid_list = $myts->htmlspecialchars($myts->addSlashes($_POST['team_sitid_list']));
 
   //取得 IP (可能ipv6 或 ipv4)
   if ($_SERVER['HTTP_X_FORWARDED_FOR']){
@@ -140,8 +145,8 @@ function insert_tad_assignment_file()
   }
 
   //新增 commet 要先空值
-  $sql = 'insert into '.$xoopsDB->prefix('exam_files')." (`assn` ,   `show_name` , `memo` , class_id , sit_id  ,`author` ,  stud_id ,  `up_time` ,`comment` , `up_ip` )
-   		values('{$_POST['assn']}', '$show_name','$desc','{$_POST['class_id']}', '{$_POST['sit_id']}', '$author',  '{$_POST['stud_id']}' ,  '$now' ,'' ,'$remoIP'  )";
+  $sql = 'insert into '.$xoopsDB->prefix('exam_files')." (`assn` ,   `show_name` , `memo` , class_id , sit_id  ,`author` ,  stud_id ,  `up_time` ,`comment` , `up_ip` ,team_sitid_list )
+   		values('{$_POST['assn']}', '$show_name','$desc','{$_POST['class_id']}', '{$_POST['sit_id']}', '$author',  '{$_POST['stud_id']}' ,  '$now' ,'' ,'$remoIP'  , '$team_sitid_list' )";
 
   $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $xoopsDB->error());
 

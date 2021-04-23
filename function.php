@@ -26,6 +26,7 @@ function get_stud_old_exam($assn, $class_id, $sit_id)
         $data['stud_id'] = $row['stud_id'];
         $data['memo'] = $row['memo'];
         $data['show_name'] = $row['show_name'];
+        $data['team_sitid_list'] = $row['team_sitid_list'];
     }
 
 
@@ -163,6 +164,16 @@ function list_exam_file($assn = '', $my_order = ' `up_time` DESC , sit_id ASC ')
 
         //作品座號標記
         $class_students[$sit_id]['in'] = 1;
+
+        //同組組員也要標記
+        $sit_list = preg_split("/[\s,]+/", $data[$i]['team_sitid_list']);
+        foreach( $sit_list as $ord_id => $sid){
+            $int_id = intval($sid) ;
+            if ($int_id > 0 )
+                $class_students[$int_id]['in'] = 1;
+        }
+
+    
 
         //判別是否有多個檔案 後面的為舊檔
         if ($files_has[$stud_id])

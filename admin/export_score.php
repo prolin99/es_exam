@@ -14,20 +14,32 @@ require_once '../../tadtools/PHPExcel/IOFactory.php';
 
 
 //取得一項作業的成績
-function get_score($assn)  {
+function get_score($assn , $class_stud_list )  {
 	global $xoopsDB,$xoopsModule,$isAdmin,$xoopsTpl ,$xoopsModuleConfig ;
   	//個人作品
-  	$sql = "select stud_id , score  from ".$xoopsDB->prefix("exam_files")." where assn='{$assn}' order by sit_id  ";
+  	$sql = "select stud_id , score , team_sitid_list from ".$xoopsDB->prefix("exam_files")." where assn='{$assn}' order by sit_id  ";
 
   	$result = $xoopsDB->query($sql) or die($sql."<br>". $xoopsDB->error());
   	while($row=$xoopsDB->fetchArray($result)){
 		if  ($row['score']==0 )
 			$row['score']='未評' ;
 		$data[$row['stud_id']]=$row['score'] ;
+		//組員的分數
+		if ($row['team_sitid_list']) {
+			$sit_list = preg_split("/[\s,]+/", $row['team_sitid_list']);
+			foreach( $sit_list as $ord_id => $sid){
+				$int_id = intval($sid) ;
+				if ($int_id > 0 )
+					$gstud_id = $class_stud_list[$int_id]['stud_id'] ;
+					$data[$gstud_id]=$row['score'] ;
+
+			}
+		}
    	}
    	return $data ;
 
 }
+
 
 function get_class_stud_list( $class_id ) {
 	//取得該班的學生名冊
@@ -36,7 +48,8 @@ function get_class_stud_list( $class_id ) {
 		$sql =  "  SELECT  class_id ,stud_id , class_sit_num , name  FROM " . $xoopsDB->prefix("e_student") . "   where class_id='$class_id'   order by  class_sit_num " ;
 		$result = $xoopsDB->query($sql) or die($sql."<br>". $xoopsDB->error());
 		while($row=$xoopsDB->fetchArray($result)){
- 			$data[]=$row ;
+			$sit_id = $row['class_sit_num'] ;
+ 			$data[$sit_id]=$row ;
 		}
 	return $data ;
 
@@ -63,15 +76,15 @@ if  ($_GET['op']) {
 				$stud_data[$now_class] =  get_class_stud_list($now_class) ;
 			}
 			//取得成績
-			$score_data[$now_class][$ei] = get_score($exam['assn'])  ;
+			$score_data[$now_class][$ei] = get_score($exam['assn'] , $stud_data[$now_class] )  ;
 			$ei ++ ;
 		}else {
 			if ($exam['class_id'] ==$class_id ) {
 				//單一班級
-				//取得成績
-				$score_data[$class_id][$ei] = get_score($exam['assn'])  ;
 				if ( !$stud_data[$class_id])
 					$stud_data[$class_id] =  get_class_stud_list($class_id) ;
+				//取得成績
+				$score_data[$class_id][$ei] = get_score($exam['assn'] , $stud_data[$class_id] )  ;
 			}
 			$ei ++ ;
 		}
@@ -166,8 +179,7 @@ if  ($_GET['op']) {
 						$my_data=$score_lost ;
 						$objPHPExcel->getActiveSheet(0)->getStyle($col_str)->getFont()->getColor()->setARGB('FF808080');
 					}
-
-					   $objPHPExcel->setActiveSheetIndex(0)->setCellValue($col_str , $my_data) ;
+					$objPHPExcel->setActiveSheetIndex(0)->setCellValue($col_str , $my_data) ;
 
 
 			}	//end foreach --成績

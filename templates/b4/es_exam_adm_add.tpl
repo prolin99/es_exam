@@ -55,11 +55,19 @@
   </div>
 
   <div class="row">
+    <div class="col-2">分組作業</div>
+    <div class="col-2">
+        <input type="checkbox" class="form-control" name="team_work"  class="upload" value=1  <{if $team_work=='1'}>checked<{/if}>  id="team_work">
+    </div>
+    <div class="col-6">(分組作業，只需組長上傳作品，並加註組員座號)</div>
+  </div>
+
+  <div class="row">
     <div class="col-2">只傳網址</div>
     <div class="col-2">
         <input type="checkbox" class="form-control" name="upload_url"  class="upload" value=1  <{if $upload_url=='1'}>checked<{/if}>  id="upload_url">
     </div>
-    <div class="col-6">(不上傳檔案，只貼上網址，可用於 scratch.mit.edu 作品呈現)</div>
+    <div class="col-6">(不上傳檔案，只貼上網址，如 scratch.mit.edu 作品呈現)</div>
   </div>
   
   <div class="row">
@@ -103,4 +111,5 @@
  $("[name='gview_mode']").bootstrapSwitch();
  $("[name='no_file']").bootstrapSwitch();
  $("[name='upload_url']").bootstrapSwitch();
+ $("[name='team_work']").bootstrapSwitch();
 </script>

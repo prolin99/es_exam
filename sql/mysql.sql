@@ -13,6 +13,7 @@ CREATE TABLE `exam` (
   `create_date` date NOT NULL,
   `no_file` enum('1','0') NOT NULL DEFAULT '0',
   `upload_url` enum('1','0') NOT NULL DEFAULT '0',
+  `team_work` enum('1','0') NOT NULL DEFAULT '0',
   PRIMARY KEY (`assn`)
 ) ENGINE=MyISAM;
 
@@ -35,5 +36,6 @@ CREATE TABLE `exam_files` (
   `up_time` datetime DEFAULT NULL,
   `old_file` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `up_ip` varchar(255) NOT NULL DEFAULT '',
+  `team_sitid_list` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`asfsn`)
 ) ENGINE=MyISAM;

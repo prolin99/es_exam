@@ -52,6 +52,17 @@
   </div>
 
   <div class="row">
+    <div class="col-md-2">分組作業</div>
+    <div class="col-md-8 ">
+    <div class="col-md-2">
+        <input type="checkbox" class="form-control" name="team_work"  class="upload" value=1  <{if $team_work=='1'}>checked<{/if}>  id="team_work">
+    </div>
+    <div class="col-md-6">(分組作業，只需組長上傳作品，並加註組員座號)</div>
+    </div>
+  </div>
+
+
+  <div class="row">
     <div class="col-md-2">只傳網址</div>
     <div class="col-md-8 ">
     <div class="col-md-2">
@@ -105,4 +116,5 @@
   $("[name='gview_mode']").bootstrapSwitch();
   $("[name='no_file']").bootstrapSwitch();
   $("[name='upload_url']").bootstrapSwitch();
+  $("[name='team_work']").bootstrapSwitch();
  </script>

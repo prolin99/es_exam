@@ -156,7 +156,7 @@
 
       </td>
       <td class="col-1"><{$all.sit_id}></td>
-      <td class="col-2"><{$all.author}></td>
+      <td class="col-2"><{$all.author}><{if $all.team_sitid_list}> （組員：<{$all.team_sitid_list}>）<{/if}></td>
 
       <td  class="col-3">
       	<{*----       評分          ---- *}>
@@ -188,7 +188,7 @@
   </tbody>
   </table>
 </div>
-  <div class="row">
+
   <h4>未上傳作業列表</h4>
   <div class="row">
   <{foreach from=$class_students  key=sit item=stud}>
@@ -196,7 +196,7 @@
  	<span class="col-2"><span class="badge badge-info"><{ $sit }></span> <{ $stud.name }>  </span>
   <{/if}>
    <{/foreach}>
-  </div>
+
 </div>
 
 </div>

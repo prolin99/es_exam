@@ -6,9 +6,30 @@ function xoops_module_update_es_exam(&$module, $old_version) {
     if(!chk_add_ip()) go_update_add_ip();
     if(!chk_add_onlyTXT()) go_update_add_onlyTXT();
     if(!chk_add_uploadUrl()) go_update_add_uploadUrl();
+    if(!chk_add_teamwork()) go_update_add_teamwork();
 
     return true;
 }
+//加入分組作業
+function chk_add_teamwork(){
+  global $xoopsDB;
+  $sql="select count(`team_work`)  from ".$xoopsDB->prefix("exam");
+  $result=$xoopsDB->query($sql);
+  if(empty($result)) return false;
+  return true;
+}
+
+function go_update_add_teamwork(){
+  global $xoopsDB;
+
+  $sql=" ALTER TABLE  " .$xoopsDB->prefix("exam") .  "  ADD `team_work`   enum('1','0') NOT NULL DEFAULT '0' ;  "   ;
+  $xoopsDB->queryF($sql)  ;
+
+  $sql=" ALTER TABLE  " .$xoopsDB->prefix("exam_files") .  "  ADD `team_sitid_list`   varchar(255) NOT NULL DEFAULT '' ;  "   ;
+  $xoopsDB->queryF($sql)  ;
+}
+
+
 //加入只上傳網址  ------------------
 function chk_add_uploadUrl(){
   global $xoopsDB;

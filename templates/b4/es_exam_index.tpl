@@ -90,7 +90,14 @@
                 <th><{$smarty.const._MD_TADASSIGN_FILE}> </th>
                 <td><input  id="file" name="file"    type="file" size=40  <{$accept_filestr}>  ><p>上傳的副檔名限制：<{$ext_file}></p></td>
               <{/if}>
+
           </tr>
+          <{if ($team_work==1)}>
+            <tr>
+                <th>組員座號（多人座號中要加空隔）</th>
+                <td><input  id="team_sitid_list"  class="form-control" name="team_sitid_list"    value="<{$team_sitid_list}>"  placeholder="同組組員座號" ></td>
+            </tr>
+          <{/if}>
           <tr>
             <th>作業說明</th>
             <td><textarea name="desc"  class="form-control" rows=4 placeholder="作業內容說明，可省略"><{$desc}></textarea></td>

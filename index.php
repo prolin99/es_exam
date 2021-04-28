@@ -136,6 +136,8 @@ function insert_tad_assignment_file()
   $author = $myts->htmlspecialchars($myts->addSlashes($_POST['author']));
   $show_name = $myts->htmlspecialchars($myts->addSlashes($_POST['show_name']));
   $team_sitid_list = $myts->htmlspecialchars($myts->addSlashes($_POST['team_sitid_list']));
+  #只留數字和空白
+  $team_sitid_list = preg_replace('/[^0-9\s.]+/', '', $team_sitid_list);
 
   //取得 IP (可能ipv6 或 ipv4)
   if ($_SERVER['HTTP_X_FORWARDED_FOR']){

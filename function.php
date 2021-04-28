@@ -169,8 +169,12 @@ function list_exam_file($assn = '', $my_order = ' `up_time` DESC , sit_id ASC ')
         $sit_list = preg_split("/[\s,]+/", $data[$i]['team_sitid_list']);
         foreach( $sit_list as $ord_id => $sid){
             $int_id = intval($sid) ;
-            if ($int_id > 0 )
+            if ($int_id > 0 ){
                 $class_students[$int_id]['in'] = 1;
+                $class_students[$sit_id]['team_sitid_list_name'] .= "($int_id)" . mb_substr($class_students[$int_id]['name'], 0, 1, 'UTF-8').'同學';
+                $class_students[$sit_id]['team_sitid_list_rname'] .= "($int_id)" .$class_students[$int_id]['name'] ;
+            }
+
         }
 
     

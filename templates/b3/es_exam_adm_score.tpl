@@ -155,7 +155,7 @@
 
       </td>
       <td class="col-xs-1"><{$all.sit_id}></td>
-      <td class="col-md-1 col-xs-2"><{$all.author}><{if $all.team_sitid_list}> （組員：<{$all.team_sitid_list}>）<{/if}></td>
+      <td class="col-md-1 col-xs-2"><{$all.author}><{if $class_students[$all.sit_id].team_sitid_list_name}> 組員：<{$class_students[$all.sit_id].team_sitid_list_rname}><{/if}> </td>
 
       <td class="col-md-4">
       	<{*----       評分          ---- *}>

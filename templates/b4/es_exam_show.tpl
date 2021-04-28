@@ -148,7 +148,7 @@
       <{/if}> <{*   / $open_show *}>
       </td>
       <td  class='col-1'> <{$all.sit_id}></td>
-      <td  class='col-2' > <{$all.author}><{if $all.team_sitid_list}> （組員：<{$all.team_sitid_list}>）<{/if}> </td>
+      <td  class='col-2' > <{$all.author}><{if $class_students[$all.sit_id].team_sitid_list_name}> （組員：<{$class_students[$all.sit_id].team_sitid_list_name}>）<{/if}> </td>
       <td  class='col-2' >
       <{if ($all.score) }>
       <div class="row">

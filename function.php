@@ -370,6 +370,11 @@ function get_url_iframe($url ,$asfsn=0 , $assn=0 ,$author_title='' ){
         $d['mode']= 'youtube';
         $d['project_id']= $project_id;
         $d['link'] ="<a href='show_file.php?asfsn=$asfsn' class='assignment_fancy_$assn' rel='group' target='show' title='$author_title' >youtube影片 $project_id</a>" ;
+    }elseif (preg_match('/^https:\/\/www.tinkercad.com\/things\/(.*)/',trim($url),$matches  ) ) {
+        $project_id = $matches[1] ;
+        $d['mode']= 'tinkercad';
+        $d['project_id']= $project_id;
+        $d['link'] ="<a href='show_file.php?asfsn=$asfsn' class='assignment_fancy_$assn' rel='group' target='show' title='$author_title' >tinkercad 3D: $project_id</a>" ;
     }else{
         $d['link']= $show_name = $myts->displayTarea($url);
     }

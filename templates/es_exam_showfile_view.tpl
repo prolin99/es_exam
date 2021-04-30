@@ -27,6 +27,18 @@
 	</div>
 	<{/if}>
 
+ <{*  ---------------------------------------------------------------------------------------------------------------------------   *}>
+	<{if $file_mode=='tinkercad'}>
+	<{*  tinkercad  *}>
+	<div class='row' id ="w">
+	<div class='col-12 text-center'>
+ 		<iframe width="725" height="453" src="https://www.tinkercad.com/embed/<{$all.project_id}>?editbtn=1"
+ 			frameborder="0" marginwidth="0" marginheight="0" scrolling="no">
+ 		</iframe>
+		<p><{$all.memo}></p>
+	</div>
+	</div>
+	<{/if}>
 
 <{*  ---------------------------------------------------------------------------------------------------------------------------   *}>
 	<{if $file_mode=='scratch3'}>

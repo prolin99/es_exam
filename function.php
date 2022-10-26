@@ -309,6 +309,11 @@ function delete_tad_assignment_file($asfsn = '', $stud_id)
 
     unlink(_TAD_ASSIGNMENT_UPLOAD_DIR."{$assn}/{$asfsn}.{$sub_name}");
 
+    if (is_dir(_TAD_ASSIGNMENT_UPLOAD_DIR."{$assn}/{$asfsn}")) {
+        //刪除目錄
+        Utility::delete_directory(_TAD_ASSIGNMENT_UPLOAD_DIR."{$assn}/{$asfsn}");
+    }
+
     $sql = 'delete from '.$xoopsDB->prefix('exam_files')." where asfsn='$asfsn'";
     $xoopsDB->queryF($sql) ;
 }

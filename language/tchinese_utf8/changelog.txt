@@ -24,8 +24,12 @@
 
 【更新記錄】
  =================================================
+ 2.41
+   增加 scratch 3 展示開始、結束、最大化功能。
+
  2.4
    由於 scratch 3 的改版，修改 scratch 展示程式。改採用程式：https://packager.turbowarp.org/
+   下載它的 zip 格式，修改 index 檔中 assets 目錄位置，複製成 es_exam_scratch.tpl
    在展示時，會在作業目錄中解壓縮 sb3 檔。
 
  2.31

@@ -26,6 +26,7 @@
  =================================================
  2.41
    增加 scratch 3 展示開始、結束、最大化功能。
+   修正 PHPExcel 所在目錄
 
  2.4
    由於 scratch 3 的改版，修改 scratch 展示程式。改採用程式：https://packager.turbowarp.org/

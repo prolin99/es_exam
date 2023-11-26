@@ -193,7 +193,7 @@
   <div class="row">
   <{foreach from=$class_students  key=sit item=stud}>
   <{if (!$stud.in)  }>
- 	<span class="col-2"><span class="badge badge-info"><{ $sit }></span> <{ $stud.name }>  </span>
+ 	<span class="col-2"><span class="badge badge-info bg-secondary "><{ $sit }></span> <{ $stud.name }>  </span>
   <{/if}>
    <{/foreach}>
 

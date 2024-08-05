@@ -9,7 +9,7 @@ include_once XOOPS_ROOT_PATH.'/header.php';
 /*-----------function區--------------*/
 $myts = &MyTextSanitizer::getInstance();
 
-$ext_file = $myts->addSlashes($_GET['sub_name']);
+$ext_file = $xoopsDB->escape($_GET['sub_name']);
 
 
 $asfsn = intval($_GET['asfsn']);

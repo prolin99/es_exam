@@ -132,10 +132,10 @@ function insert_tad_assignment_file()
 
   //資料檢查
   $myts = &MyTextSanitizer::getInstance();
-  $desc = $myts->htmlspecialchars($myts->addSlashes($_POST['desc']));
-  $author = $myts->htmlspecialchars($myts->addSlashes($_POST['author']));
-  $show_name = $myts->htmlspecialchars($myts->addSlashes($_POST['show_name']));
-  $team_sitid_list = $myts->htmlspecialchars($myts->addSlashes($_POST['team_sitid_list']));
+  $desc = $myts->htmlspecialchars($xoopsDB->escape($_POST['desc']));
+  $author = $myts->htmlspecialchars($xoopsDB->escape($_POST['author']));
+  $show_name = $myts->htmlspecialchars($xoopsDB->escape($_POST['show_name']));
+  $team_sitid_list = $myts->htmlspecialchars($xoopsDB->escape($_POST['team_sitid_list']));
   #只留數字和空白
   $team_sitid_list = preg_replace('/[^0-9\s.]+/', '', $team_sitid_list);
 

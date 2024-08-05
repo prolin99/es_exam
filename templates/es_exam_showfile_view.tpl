@@ -10,7 +10,7 @@
 	<{if $file_mode=='picture'}>
 	<{*  圖檔 *}>
 	<div class='row' id ="w">
-	<div class='col-12 text-center'> <img class='img-fluid' src='<{$file}>'></div><div><{  $all.memo}></div>
+	<div class='col-12 text-center'> <img class='img-fluid' src='<{$file}>'></div><div><{$all.memo}></div>
 	</div>
 	<{/if}>
 
@@ -146,7 +146,7 @@
  	<{*  pdf *}>
 	<div class='row' id ="w">
  	<div class='col-12 text-center'>
- 		<div id="pdfContent" ><a href="<{$file}>" target="_blank">下載檔案</a>.</p> <p> <{  $all.memo}></p></div>
+ 		<div id="pdfContent" ><a href="<{$file}>" target="_blank">下載檔案</a>.</p> <p> <{$all.memo}></p></div>
 		<div class="embed-responsive embed-responsive-16by9">
 	       <object class="embed-responsive-item" data="<{$file}>" type="application/pdf" internalinstanceid="9" title="">
 	           <p>Your browser isn't supporting embedded pdf files. You can download the file

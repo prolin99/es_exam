@@ -65,10 +65,10 @@ function insert_tad_assignment(){
 
     //資料檢查
   $myts =& MyTextSanitizer::getInstance();
-  $title = $myts->htmlspecialchars($myts->addSlashes($_POST['title'] )   );
-  $passwd = $myts->htmlspecialchars($myts->addSlashes($_POST['passwd'] )   );
-  $note = $myts->htmlspecialchars($myts->addSlashes($_POST['note'] )   );
-  $ext_file = $myts->htmlspecialchars($myts->addSlashes($_POST['ext_file'] )   );
+  $title = $myts->htmlspecialchars($xoopsDB->escape($_POST['title'] )   );
+  $passwd = $myts->htmlspecialchars($xoopsDB->escape($_POST['passwd'] )   );
+  $note = $myts->htmlspecialchars($xoopsDB->escape($_POST['note'] )   );
+  $ext_file = $myts->htmlspecialchars($xoopsDB->escape($_POST['ext_file'] )   );
   $_POST['open_show'] = intval($_POST['open_show']) ;
   $_POST['upload_mode'] = intval($_POST['upload_mode']) ;
   $_POST['gview_mode'] = intval($_POST['gview_mode']) ;
@@ -97,10 +97,10 @@ function update_tad_assignment($assn=""){
 
     //資料檢查
   $myts =& MyTextSanitizer::getInstance();
-  $title = $myts->htmlspecialchars($myts->addSlashes($_POST['title'] )   );
-  $passwd = $myts->htmlspecialchars($myts->addSlashes($_POST['passwd'] )   );
-  $note = $myts->htmlspecialchars($myts->addSlashes($_POST['note'] )   );
-  $ext_file = $myts->htmlspecialchars($myts->addSlashes($_POST['ext_file'] )   );
+  $title = $myts->htmlspecialchars($xoopsDB->escape($_POST['title'] )   );
+  $passwd = $myts->htmlspecialchars($xoopsDB->escape($_POST['passwd'] )   );
+  $note = $myts->htmlspecialchars($xoopsDB->escape($_POST['note'] )   );
+  $ext_file = $myts->htmlspecialchars($xoopsDB->escape($_POST['ext_file'] )   );
   //echo $_POST['open_show']  ;
   $_POST['open_show'] = intval($_POST['open_show']) ;
   $_POST['upload_mode'] = intval($_POST['upload_mode']) ;

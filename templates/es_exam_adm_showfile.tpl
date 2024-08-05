@@ -12,7 +12,7 @@
 <script src="../js/krajee-fa/theme.js" type="text/javascript"></script>
 
 
-<{ if ($old_file) }>
+<{if ($old_file) }>
 	<div class='row alert-danger' title='舊檔案'>
 <{else}>
 	<div class='row'>
@@ -40,7 +40,7 @@
 	<{*  圖檔 *}>
 
 	<div class='col-xs-12 text-center' > <img class='img-responsive  center-block' src='<{$file}>'></div>
-	<div class='col-xs-12 text-center'><{  $all.memo}></div>
+	<div class='col-xs-12 text-center'><{$all.memo}></div>
 
 	<{/if}>
 
@@ -51,7 +51,7 @@
 		<iframe src="https://docs.google.com/gview?url=<{$file_url}>&embedded=true" style="width:600px; height:500px;" frameborder="0"></iframe>
 		<br />
 		<a href='<{$file}>' target='_blank'>如果無法查看，原始檔位置</a>
-	</div><div class='col-xs-12 text-center'><{  $all.memo}></div>
+	</div><div class='col-xs-12 text-center'><{$all.memo}></div>
 	<{/if}>
 
 <{*  ---------------------------------------------------------------------------------------------------------------------------   *}>
@@ -172,7 +172,7 @@
 	<{if $file_mode=='pdf'}>
 	<{*  pdf *}>
 	<div class='col-xs-12 text-center'>
- 		<div id="pdfContent" ><a href="<{$file}>" target="_blank">下載檔案</a>.</p> <p> <{  $all.memo}></p></div>
+ 		<div id="pdfContent" ><a href="<{$file}>" target="_blank">下載檔案</a>.</p> <p> <{$all.memo}></p></div>
 		<div class="embed-responsive embed-responsive-16by9">
 	       <object class="embed-responsive-item" data="<{$file}>" type="application/pdf" internalinstanceid="9" title="">
 	           <p>Your browser isn't supporting embedded pdf files. You can download the file

@@ -4,11 +4,11 @@
 <{if $now_op=="list_tad_assignment_menu"}>
   <h2><{$smarty.const._MD_TADASSIGN_SELECT_ASSN}></h2>
   <{if $all}>
-  <div class="col-md-7">
-  <form  action="index.php" method="post" id="myForm" enctype="multipart/form-data" onsubmit="return check_1() ;">
+
+  <form class="form-horizontal" action="index.php" method="post" id="myForm" enctype="multipart/form-data" onsubmit="return check_1() ;">
       <div class="form-group ">
-          <label for="assn" class="col-2 control-label">主題</label>
-          <div class="col-6">
+          <label for="assn" class="col-2 col-md-2 control-label">主題</label>
+          <div class="col-6 col-md-6">
           <select   id="assn"  name="assn"  class="form-control" >
             <option value=''><{$smarty.const._MD_TADASSIGN_SELECT_ASSN}></option>
             <{foreach from=$all item=data}>
@@ -18,14 +18,14 @@
             </div>
       </div>
       <div class="form-group">
-        <label for="sit_id" class="col-2 control-label">你的座號</label>
-        <div class="col-4">
+        <label for="sit_id" class="col-2 col-md-2 control-label">你的座號</label>
+        <div class="col-4 col-md-4">
           <input  type="text"  id="sit_id"  class="form-control" name="sit_id"   placeholder="你的座號">
         </div>
       </div>
       <div class="form-group">
-        <label for="passwd" class="col-2 control-label">上傳密碼：</label>
-        <div class="col-4">
+        <label for="passwd" class="col-2 col-md-2 control-label">上傳密碼：</label>
+        <div class="col-4 col-md-4">
            <input  type="password"  id="passwd" class="form-control"  name="passwd"   placeholder="這次作業的登入密碼">
         </div>
       </div>
@@ -36,7 +36,7 @@
         </div>
       </div>
    </form>
-  </div>
+
 
 	<script>
 	function check_1() {

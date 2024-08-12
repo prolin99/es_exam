@@ -4,9 +4,9 @@
 <{if $now_op=="list_tad_assignment_menu"}>
   <h2><{$smarty.const._MD_TADASSIGN_SELECT_ASSN}></h2>
   <{if $all}>
-
-  <form class="form-horizontal" action="index.php" method="post" id="myForm" enctype="multipart/form-data" onsubmit="return check_1() ;">
-      <div class="form-group">
+  <div class="col-md-7">
+  <form  action="index.php" method="post" id="myForm" enctype="multipart/form-data" onsubmit="return check_1() ;">
+      <div class="form-group ">
           <label for="assn" class="col-2 control-label">主題</label>
           <div class="col-6">
           <select   id="assn"  name="assn"  class="form-control" >
@@ -36,7 +36,7 @@
         </div>
       </div>
    </form>
-
+  </div>
 
 	<script>
 	function check_1() {

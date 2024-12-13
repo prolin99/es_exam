@@ -1,9 +1,9 @@
 /*!
- * bootstrap-star-rating v4.0.5
+ * bootstrap-star-rating v4.1.3
  * http://plugins.krajee.com/star-rating
  *
  * Author: Kartik Visweswaran
- * Copyright: 2013 - 2018, Kartik Visweswaran, Krajee.com
+ * Copyright: 2013 - 2021, Kartik Visweswaran, Krajee.com
  *
  * Licensed under the BSD 3-Clause
  * https://github.com/kartik-v/bootstrap-star-rating/blob/master/LICENSE.md
@@ -29,7 +29,11 @@
     white-space: nowrap;
 }
 
-.rating-container .rating-input {
+.rating-container .rating-stars:focus {
+    outline: 1px dotted;
+}
+
+.rating-input {
     position: absolute;
     cursor: pointer;
     width: 100%;
@@ -37,19 +41,21 @@
     bottom: 0;
     left: 0;
     font-size: 1px;
-    border: none;
-    background: none;
     opacity: 0;
     padding: 0;
     margin: 0;
+    outline: none;
+    pointer-events: none;
+    border: none;
+    box-shadow: none;
+    background: none;
 }
 
-.rating-container.is-display-only .rating-input,
 .rating-container.is-display-only .rating-stars {
     cursor: default;
 }
 
-.rating-disabled .rating-input, .rating-disabled .rating-stars {
+.rating-disabled .rating-stars {
     cursor: not-allowed;
 }
 
@@ -165,34 +171,81 @@
 /**
  * Sizes
  */
-.rating-xl  {
+.rating-xl {
     font-size: 48px;
 }
-.rating-lg  {
+.rating-lg {
     font-size: 40px;
 }
-.rating-md  {
+.rating-md {
     font-size: 32px;
 }
-.rating-sm  {
+.rating-sm {
     font-size: 24px;
 }
-.rating-xs  {
+.rating-xs {
     font-size: 16px;
 }
 
 .rating-xl .caption {
     font-size: 20px;
 }
+
 .rating-lg .caption {
     font-size: 18px;
 }
+
 .rating-md .caption {
     font-size: 16px;
 }
+
 .rating-sm .caption {
     font-size: 14px;
 }
+
 .rating-xs .caption {
     font-size: 12px;
+}
+
+/**
+ * Caption
+ */
+.caption-badge {
+    font-family: Arial, Helvetica, sans-serif;
+    display: inline-block;
+    padding: .35em .65em;
+    font-size: .75em;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+}
+
+.caption-secondary {
+    background-color: #6c757d;
+}
+
+.caption-danger {
+    background-color: #dc3545;
+}
+
+.caption-warning {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.caption-info {
+    background-color: #0dcaf0;
+    color: #212529;
+}
+
+.caption-primary {
+    background-color: #0d6efd;
+}
+
+.caption-success {
+    background-color: #198754;
 }

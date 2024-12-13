@@ -11,8 +11,10 @@
   <link rel="stylesheet" href="../css/star-rating.css" media="all" type="text/css"/>
   <script src="../js/star-rating.js" type="text/javascript"></script>
   <script src="../js/locales/zh.js" type="text/javascript"></script>
-  <link rel="stylesheet" href="../js/krajee-fa/theme.css" media="all" type="text/css"/>
-  <script src="../js/krajee-fa/theme.js" type="text/javascript"></script>
+
+
+  <link href="../js/krajee-fas/theme.css" media="all" rel="stylesheet" type="text/css"/>
+  <script src="../js/krajee-fas/theme.js" type="text/javascript"></script>  
 
 
 <style type="text/css">
@@ -46,8 +48,7 @@
 
       $('.fa-rating').rating({
           hoverOnClear: false ,
-          language: 'zh' ,
-          theme: 'krajee-fa'
+          theme: 'krajee-fas'
       });
 
     });
@@ -163,7 +164,7 @@
         <div class="row">
         <span class="col-7">
 
-        <input  type="text" class="form-control fa-rating" value="<{$all.score_star}>" data-size="xs" title="" data_ref="<{$all.asfsn}>" >
+        <input  type="text" class="form-control fa-rating rating-loading" value="<{$all.score_star}>" data-theme="krajee-fas" data-size="xs" data-min="0" data-max="5"  data-show-clear="false" data-show-caption="true" title="" data_ref="<{$all.asfsn}>" >
         </span>
         <span class="col-3">
       		<input class="form-control score" type="text" onfocus="this.select()"   name="score[<{$all.asfsn}>]"  id="score_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>"
@@ -296,7 +297,7 @@ $(function() {
 } ;
 
 
-  </script>﻿
+  </script>
 
 
 

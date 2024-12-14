@@ -1,15 +1,17 @@
 <{*  評分用的view *}>
 <link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_url}>/modules/tadtools/bootstrap3/css/bootstrap.css" />
 
+
 <script src="<{$xoops_url}>/modules/tadtools/jquery/ui/jquery-ui.js"></script>
 <link rel="stylesheet" href="<{$xoops_url}>/modules/tadtools/jquery/themes/base/jquery-ui.css">
 
 <link rel="stylesheet" href="<{$xoops_url}>/modules/tadtools/css/font-awesome/css/font-awesome.min.css">
-<link rel="stylesheet" href="../css/star-rating.css" media="all" type="text/css"/>
-<script src="../js/star-rating.js" type="text/javascript"></script>
-<script src="../js/locales/zh.js" type="text/javascript"></script>
-<link rel="stylesheet" href="../js/krajee-fa/theme.css" media="all" type="text/css"/>
-<script src="../js/krajee-fa/theme.js" type="text/javascript"></script>
+
+  <link rel="stylesheet" href="../css/star-rating.css" media="all" type="text/css"/>
+  <script src="../js/star-rating.js" type="text/javascript"></script>
+
+<link href="../js/krajee-svg/theme.css" media="all" rel="stylesheet" type="text/css" />
+<script src="../js/krajee-svg/theme.js" type="text/javascript"></script>
 
 
 <{if ($old_file) }>
@@ -26,7 +28,8 @@
 		<input class="comment" type="text" onfocus="this.select()"   name="comment[<{$all.asfsn}>]"  id="comment_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>" value="<{$all.comment}>" placeholder='評語'  title="評語">
 		</span>
 		<span class="col-xs-5">
-		<input type="text" class="fa-rating" value="<{$all.score_star}>" data-size="xs" title="" data_ref="<{$all.asfsn}>" >
+		<input type="text" class="fa-rating" value="<{$all.score_star}>" data-size="xs"   data-size="xs" data-min="0" data-max="5"  data-show-clear="false" data-show-caption="true" title="" data_ref="<{$all.asfsn}>" >
+
 		</span>
 		<span class="col-xs-1 col-xs-1">
       		<input   onfocus="this.select()"   type="text"  class="score" name="score[<{$all.asfsn}>]"   id="score_<{$all.asfsn}>"  data_ref="<{$all.asfsn}>"
@@ -298,16 +301,14 @@ $(function() {
   }
 
 
-  </script>﻿
+  </script>
 <script type='text/javascript'>
 	//星等評分
 	jQuery(document).ready(function () {
 
-		$('.fa-rating').rating({
-            hoverOnClear: false ,
-            language: 'zh' ,
-            theme: 'krajee-fa'
-        });
+      $('.fa-rating').rating({
+          hoverOnClear: false  
+      });
 
           $('.fa-rating').on(
                   'change', function () {

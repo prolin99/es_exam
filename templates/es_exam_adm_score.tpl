@@ -10,7 +10,7 @@
 
   <link rel="stylesheet" href="../css/star-rating.css" media="all" type="text/css"/>
   <script src="../js/star-rating.js" type="text/javascript"></script>
-  <script src="../js/locales/zh.js" type="text/javascript"></script>
+
 
 
   <link href="../js/krajee-fas/theme.css" media="all" rel="stylesheet" type="text/css"/>

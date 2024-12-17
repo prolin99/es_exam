@@ -150,7 +150,7 @@ function list_exam_file($assn = '', $my_order = ' `up_time` DESC , sit_id ASC ')
             $sub_name = strtolower($ff);
         }
         //無附檔名
-        if (count($filepart) <=1)
+        if (count($filepart??[]) <=1)
           $sub_name='txt' ;
 
         //檔案可以 iframe

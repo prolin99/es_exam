@@ -47,7 +47,7 @@ if ($_GET['assn'])  {
 	else
 		$data['stud']=  list_exam_file($_GET['assn']  );
 	//已交作業數
-	$data['count_exams'] = count($data['stud']) ;
+	$data['count_exams'] = count($data['stud']??[]) ;
 
 	//判別是否要以框架出現，評分用  或迫以 google view
 	if  ($data['exam']['ext_file']   ) {

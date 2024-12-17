@@ -23,9 +23,9 @@
 
   <link rel="stylesheet" href="css/star-rating.css" media="all" type="text/css"/>
   <script src="js/star-rating.js" type="text/javascript"></script>
-  <script src="js/locales/zh.js" type="text/javascript"></script>
-  <link rel="stylesheet" href="js/krajee-fa/theme.css" media="all" type="text/css"/>
-  <script src="js/krajee-fa/theme.js" type="text/javascript"></script>
+
+  <link rel="stylesheet" href="js/krajee-fas/theme.css" media="all" type="text/css"/>
+  <script src="js/krajee-fas/theme.js" type="text/javascript"></script>
 
 
 <style type="text/css">
@@ -49,8 +49,7 @@
 
       $('.fa-rating').rating({
           hoverOnClear: false ,
-          language: 'zh' ,
-          theme: 'krajee-fa'
+          theme: 'krajee-fas'
       });
 
 

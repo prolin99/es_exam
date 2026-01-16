@@ -5,7 +5,7 @@ $modversion = array();
 //---模組基本資訊---//
 $modversion['name'] = _MI_ESEXAM_NAME;
 //$modversion['version'] = 2.42 ;
-$modversion['version'] = $_SESSION['xoops_version'] >= 20511 ? '2.6.0-Stable' : '2.6';
+$modversion['version'] = $_SESSION['xoops_version'] >= 20511 ? '2.7.0-Stable' : '2.7';
 $modversion['description'] = _MI_ESEXAM_DESC;
 $modversion['author'] = _MI_ESEXAM_AUTHOR;
 $modversion['credits'] = _MI_ESEXAM_CREDITS;

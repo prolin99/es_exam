@@ -128,16 +128,16 @@
       <{if ($open_show)}>
           <{if ($all.show_name)}>
               <{$all.show_name}>
-              <div ><{$all.memo}></div>
+              <div  title='<{$all.memo}>'><{$all.memo|truncate:20}></div>
           <{else}>
               <{if  ($ifram_show)}>
               	<div  >
               	<a href="show_file.php?assn=<{$all.assn}>&stud_id=<{$all.stud_id}>&asfsn=<{$all.asfsn}>&sub_name=<{$all.sub_name}>&score_bar=<{$all.score_bar}>"  studfile='<{$smarty.const._TAD_ASSIGNMENT_UPLOAD_URL}><{$all.assn}>/<{$all.asfsn}>.<{$all.sub_name}>'  class="assignment_fancy_<{$assn}>" rel="group" title="<{$all.sit_id}>.<{$all.author}> (<{$all.up_time}>) <{$all.file_name}>"  target="show"  ><{$all.file_name|truncate:20}></a>
               	</div>
-              	<div ><{$all.memo}></div>
+              	<div  title='<{$all.memo}>'><{$all.memo|truncate:20}></div>
              <{else}>
              	<a href='<{$smarty.const._TAD_ASSIGNMENT_UPLOAD_URL}><{$all.assn}>/<{$all.asfsn}>.<{$all.sub_name}>'  class="assignment_fancy_<{$assn}>" rel="group" title="<{$all.sit_id}>.<{$all.author}> (<{$all.up_time}>) <{$all.file_name}>"><{$all.file_name|truncate:20}></a>
-                <div ><{$all.memo}></div>
+                <div  title='<{$all.memo}>'><{$all.memo|truncate:20}></div>
              <{/if}>  <{*   / $ifram_show *}>
          <{/if}>
       <{else}>

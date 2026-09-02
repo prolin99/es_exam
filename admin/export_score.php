@@ -190,7 +190,10 @@ if  ($_GET['op']) {
 
 	}
 
-
+    // 把前面所有不需要的輸出清掉
+    while (ob_get_level() > 0) {
+        ob_end_clean();
+    }
 	//header('Content-Type: application/vnd.ms-excel');
 	header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 	header('Content-Disposition: attachment;filename=score'.date("mdHi").'.xlsx' );
@@ -198,7 +201,7 @@ if  ($_GET['op']) {
 
 	$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
 	//$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
- 	ob_clean() ;
+
 	$objWriter->save('php://output');
 	exit;
 
